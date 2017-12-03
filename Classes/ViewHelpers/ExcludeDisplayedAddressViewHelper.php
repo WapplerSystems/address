@@ -1,0 +1,66 @@
+<?php
+
+namespace WapplerSystems\Address\ViewHelpers;
+
+/**
+ * This file is part of the "address" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+use WapplerSystems\Address\Domain\Model\Address;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+
+/**
+ * ViewHelper to exclude address items in other plugins
+ *
+ * # Example: Basic example
+ *
+ * <code>
+ * <n:excludeDisplayedAddress addressItem="{addressItem}" />
+ * </code>
+ * <output>
+ * None
+ * </output>
+ *
+ */
+class ExcludeDisplayedAddressViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper implements CompilableInterface
+{
+    use CompileWithRenderStatic;
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('addressItem', Address::class, 'address item', true);
+    }
+
+    /**
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     */
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
+        $addressItem = $arguments['addressItem'];
+        $uid = $addressItem->getUid();
+
+        if (empty($GLOBALS['EXT']['address']['alreadyDisplayed'])) {
+            $GLOBALS['EXT']['address']['alreadyDisplayed'] = [];
+        }
+        $GLOBALS['EXT']['address']['alreadyDisplayed'][$uid] = $uid;
+
+        // Add localized uid as well
+        $originalUid = (int)$addressItem->_getProperty('_localizedUid');
+        if ($originalUid > 0) {
+            $GLOBALS['EXT']['address']['alreadyDisplayed'][$originalUid] = $originalUid;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address">
+		<header/>
+		<body>
+
+			<trans-unit id="hdl.address">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="hdl.contact">
+				<target>Kontakt</target>
+			</trans-unit>
+
+
+			<trans-unit id="lbl.telephone">
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="lbl.fax">
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="lbl.contactTo" xml:space="preserve">
+				<target>Kontakt zu</target>
+			</trans-unit>
+
+			<trans-unit id="btn.contact">
+				<target>Kontakt</target>
+			</trans-unit>
+
+			<trans-unit id="btn.detail_page">
+				<target>Mehr Informationen</target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

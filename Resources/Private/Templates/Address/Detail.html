@@ -1,0 +1,202 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:a2="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="Detail" />
+
+<!--
+	=====================
+		Address/Detail.html
+-->
+
+<f:section name="content">
+	<f:if condition="{addressItem}">
+		<f:then>
+			<a2:format.nothing>
+				<a2:excludeDisplayedAddress addressItem="{addressItem}" />
+				<f:if condition="{addressItem.alternativeTitle}">
+					<f:then>
+						<a2:titleTag>
+							<f:format.htmlentitiesDecode>{addressItem.alternativeTitle}</f:format.htmlentitiesDecode>
+						</a2:titleTag>
+					</f:then>
+					<f:else>
+						<a2:titleTag>
+							<f:format.htmlentitiesDecode><f:render partial="Title" arguments="{addressItem:addressItem}" /></f:format.htmlentitiesDecode>
+						</a2:titleTag>
+					</f:else>
+				</f:if>
+				<f:render partial="Detail/Opengraph" arguments="{addressItem: addressItem, settings:settings}" />
+			</a2:format.nothing>
+			<f:if condition="{settings.detail.showPrevNext}">
+				<a2:simplePrevNext pidList="{addressItem.pid}" address="{addressItem}" as="paginated" sortField="datetime">
+					<f:if condition="{paginated}">
+						<ul class="pager">
+							<f:if condition="{paginated.prev}">
+								<li class="previous">
+									<a2:link addressItem="{paginated.prev}" settings="{settings}">
+										<span aria-hidden="true">&larr; </span>{paginated.prev.title}
+									</a2:link>
+								</li>
+							</f:if>
+							<f:if condition="{paginated.next}">
+								<li class="next">
+									<a2:link addressItem="{paginated.next}" settings="{settings}" class="next">
+										{paginated.next.title} <span aria-hidden="true"> &rarr;</span>
+									</a2:link>
+								</li>
+							</f:if>
+						</ul>
+					</f:if>
+				</a2:simplePrevNext>
+			</f:if>
+			<div class="header">
+				<h2 itemprop="headline"><f:render partial="Title" arguments="{addressItem:addressItem}" /></h2>
+				<p><b>{addressItem.position}</b></p>
+			</div>
+			<div class="footer">
+				<p>
+
+					<f:if condition="{addressItem.categories}">
+						<f:render partial="Category/Items" arguments="{categories:addressItem.categories, settings:settings}" />
+					</f:if>
+
+					<f:if condition="{addressItem.tags}">
+						<!-- Tags -->
+						<span class="address-list-tags" itemprop="keywords">
+						<f:for each="{addressItem.tags}" as="tag">
+							{tag.title}
+						</f:for>
+						</span>
+					</f:if>
+
+
+				</p>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-md-4">
+
+					<a2:renderMedia address="{addressItem}" imgClass="img-fluid" videoClass="video-wrapper" audioClass="audio-wrapper">
+
+						<f:render partial="Detail/MediaContainer" arguments="{media: addressItem.media, settings:settings}" />
+
+					</a2:renderMedia>
+
+				</div>
+				<div class="col-xs-12 col-md-8">
+
+					<p><b><f:translate key="hdl.contact">Contact</f:translate></b><br />
+						<f:translate key="lbl.telephone">Telephone</f:translate>: {addressItem.phone}<br />
+						<f:translate key="lbl.fax">Fax</f:translate>: {addressItem.fax}<br />
+
+						<f:if condition="{addressItem.directContact}">
+							<f:then>
+								<f:link.email email="{addressItem.email}" />
+							</f:then>
+							<f:else>
+								<f:if condition="{settings.contact.pageId}">
+									<f:link.action pageUid="{settings.contact.pageId}" arguments="{address:addressItem.uid}"><f:translate key="btn.contact">Contact</f:translate></f:link.action>
+								</f:if>
+
+							</f:else>
+						</f:if>
+
+
+					</p>
+
+
+					<p><b><f:translate key="hdl.address">Address</f:translate></b><br />
+					<f:format.nl2br>{addressItem.address}</f:format.nl2br>
+					</p>
+
+
+					<f:if condition="{addressItem.contentElements}">
+						<!-- content elements -->
+						<f:cObject typoscriptObjectPath="lib.tx_address.contentElementRendering">{addressItem.contentElementIdList}</f:cObject>
+					</f:if>
+
+				</div>
+
+
+			</div>
+
+			<f:if condition="{addressItem.teaser}">
+				<!-- teaser -->
+				<div class="teaser-text" itemprop="description">
+					<f:format.html>{addressItem.teaser}</f:format.html>
+				</div>
+			</f:if>
+			
+			
+			<f:if condition="{addressItem.relatedLinks}">
+					<!-- Related links -->
+					<div class="address-related address-related-links card mb-4">
+						<div class="card-body">
+							<h4 class="card-title">
+								Links
+							</h4>
+							<ul>
+								<f:for each="{addressItem.relatedLinks}" as="relatedLink">
+									<li>
+										<f:link.typolink parameter="{relatedLink.uri}" >{f:if(condition: relatedLink.title, then: relatedLink.title)}</f:link.typolink>
+										<f:if condition="{relatedLink.description}"><span class="link-description">{relatedLink.description}</span></f:if>
+									</li>
+								</f:for>
+							</ul>
+						</div>
+					</div>
+				</f:if>
+
+
+			<div class="address-text-wrap">
+				<f:format.html>{addressItem.bodytext}</f:format.html>
+			</div>
+
+
+			<f:if condition="{settings.backPid}">
+				<!-- Link Back -->
+				<div class="address-backlink-wrap">
+					<f:link.page pageUid="{settings.backPid}">
+						<f:translate key="back-link" />
+					</f:link.page>
+				</div>
+			</f:if>
+
+
+			<!-- related things -->
+			<div class="address-related-wrap">
+
+
+
+				<f:if condition="{addressItem.relatedFiles}">
+					<!-- related files -->
+					<div class="address-related address-related-files">
+						<h4>
+							<f:translate key="related-files" />
+						</h4>
+						<ul>
+							<f:for each="{addressItem.relatedFiles}" as="relatedFile">
+								<li>
+									<span class="address-related-files-link">
+										<a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+											{f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+										</a>
+									</span>
+									<span class="address-related-files-size">
+										{relatedFile.originalResource.size -> f:format.bytes()}
+									</span>
+								</li>
+							</f:for>
+						</ul>
+					</div>
+				</f:if>
+
+				
+			</div>
+		</f:then>
+		<f:else>
+
+		</f:else>
+	</f:if>
+</f:section>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address">
+		<header/>
+		<body>
+			<trans-unit id="search-text" xml:space="preserve">
+				<source>There are %1$s results for &quot;%2$s&quot;.</source>
+			</trans-unit>
+			<trans-unit id="search-start" xml:space="preserve">
+				<source>Start search</source>
+			</trans-unit>
+			<trans-unit id="search-noresult" xml:space="preserve">
+				<source>No address found.</source>
+			</trans-unit>
+			<trans-unit id="search-subject" xml:space="preserve">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="search-minimumDate" xml:space="preserve">
+				<source>Minimum Date</source>
+			</trans-unit>
+			<trans-unit id="search-maximumDate" xml:space="preserve">
+				<source>Maximum Date</source>
+			</trans-unit>
+			<trans-unit id="more-link" xml:space="preserve">
+				<source>Read more</source>
+			</trans-unit>
+			<trans-unit id="back-link" xml:space="preserve">
+				<source>Back</source>
+			</trans-unit>
+			<trans-unit id="related-address" xml:space="preserve">
+				<source>Related Address</source>
+			</trans-unit>
+			<trans-unit id="related-files" xml:space="preserve">
+				<source>Related Files</source>
+			</trans-unit>
+			<trans-unit id="related-links" xml:space="preserve">
+				<source>Related Links</source>
+			</trans-unit>
+			<trans-unit id="author" xml:space="preserve">
+				<source>created by %s</source>
+			</trans-unit>
+			<trans-unit id="author_simple" xml:space="preserve">
+				<source>created by</source>
+			</trans-unit>
+			<trans-unit id="paginate_overall" xml:space="preserve">
+				<source>Page %s of %s.</source>
+			</trans-unit>
+			<trans-unit id="paginate_next" xml:space="preserve">
+				<source>Next</source>
+			</trans-unit>
+			<trans-unit id="paginate_previous" xml:space="preserve">
+				<source>Previous</source>
+			</trans-unit>
+			<trans-unit id="categories" xml:space="preserve">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tags" xml:space="preserve">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="entry" xml:space="preserve">
+				<source>entry</source>
+			</trans-unit>
+			<trans-unit id="entries" xml:space="preserve">
+				<source>entries</source>
+			</trans-unit>
+			<trans-unit id="list_noaddressfound" xml:space="preserve">
+				<source>No address available.</source>
+			</trans-unit>
+			<trans-unit id="list_nocategoriesfound" xml:space="preserve">
+				<source>No categories available.</source>
+			</trans-unit>
+			<trans-unit id="addressNotFound" xml:space="preserve">
+				<source>The address record is not available anymore.</source>
+			</trans-unit>
+			<trans-unit id="btn.detail_page">
+				<source>More information</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

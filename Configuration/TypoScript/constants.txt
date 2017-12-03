@@ -1,0 +1,21 @@
+plugin.tx_address {
+
+
+	view {
+		# cat=plugin.tx_address/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:address/Resources/Private/Templates/
+		# cat=plugin.tx_address/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:address/Resources/Private/Partials/
+		# cat=plugin.tx_address/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:address/Resources/Private/Layouts/
+	}
+
+
+	contact {
+
+		# cat=plugin.tx_address/enable; type=int; label=Page ID of the contact page
+		pagePid =
+
+	}
+
+}

@@ -1,0 +1,84 @@
+
+renderingOptions:
+  submitButtonLabel: Senden
+identifier: addresscontact
+label: Kontakt
+type: Form
+prototypeName: address
+finishers:
+  -
+    options:
+      subject: 'Kontakt via Formular'
+      recipientName: ''
+      senderAddress: noreply@3242443.de
+      senderName: ''
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: 'true'
+      translation:
+        language: ''
+    identifier: EmailToAddress
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'previous Page'
+      nextButtonLabel: 'next Page'
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        defaultValue: ''
+        type: ContactLabel
+        identifier: contactlabel
+        label: 'Contact label'
+        properties:
+          hideInEmail: 'true'
+      -
+        defaultValue: ''
+        identifier: name
+        label: Name
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Name
+            required: required
+          cleverreachField: name
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        identifier: email
+        label: Email
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'E-Mail Adresse'
+            required: required
+          cleverreachField: email
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: Test
+        type: Textarea
+        identifier: textarea-1
+        label: Mitteilung
+      -
+        type: Checkbox
+        identifier: checkbox-1
+        label: 'Ich möchte eine Kopie dieser Nachricht erhalten'
+        properties:
+          hideInEmail: 'true'
+      -
+        defaultValue: ''
+        type: Hidden
+        identifier: addressUid
+        label: AddressUid
+        properties:
+          hideInEmail: 'true'

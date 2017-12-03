@@ -1,0 +1,17 @@
+plugin.tx_form {
+
+    view {
+
+        templateRootPaths.90 = EXT:address/Resources/Private/Templates/Form/
+        partialRootPaths.90 = EXT:address/Resources/Private/Partials/Form/
+    }
+
+    settings {
+        yamlConfigurations {
+            90 = EXT:address/Configuration/Yaml/BaseSetup.yaml
+            91 = EXT:address/Configuration/Yaml/Forms/Contact.yaml
+        }
+    }
+
+}
+
