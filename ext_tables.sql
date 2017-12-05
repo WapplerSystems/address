@@ -61,6 +61,7 @@ CREATE TABLE tx_address_domain_model_address (
 	url text,
 	type varchar(100) NOT NULL DEFAULT '0',
 	academic_title varchar(20) DEFAULT '',
+	append_academic_title tinyint(4) DEFAULT '0' NOT NULL,
 	teaser text,
 	bodytext text,
 	tags int(11) DEFAULT '0' NOT NULL,

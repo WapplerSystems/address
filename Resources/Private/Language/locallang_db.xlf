@@ -60,6 +60,9 @@
 			<trans-unit id="tx_address_domain_model_address.academic_title" xml:space="preserve">
 				<source>Academic title</source>
 			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.append_academic_title" xml:space="preserve">
+				<source>Append academic title</source>
+			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.phone" xml:space="preserve">
 				<source>Phone</source>
 			</trans-unit>

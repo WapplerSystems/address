@@ -201,8 +201,7 @@ $tx_address_domain_model_address = [
         ],
         'academic_title' => [
             'exclude' => false,
-            'l10n_display' => 'defaultAsReadonly',
-            'l10n_mode' => 'exclude',
+            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.academic_title',
             'config' => [
                 'type' => 'input',
@@ -210,10 +209,19 @@ $tx_address_domain_model_address = [
                 'eval' => '',
             ]
         ],
+        'append_academic_title' => [
+            'exclude' => true,
+            'l10n_mode' => 'exclude',
+            'l10n_display' => 'defaultAsReadonly',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.append_academic_title',
+            'config' => [
+                'type' => 'check',
+                'default' => 0
+            ]
+        ],
         'position' => [
             'exclude' => false,
-            'l10n_display' => 'defaultAsReadonly',
-            'l10n_mode' => 'exclude',
+            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.position',
             'config' => [
                 'type' => 'input',
@@ -888,7 +896,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'address, building, --linebreak--, longitude, latitude,',
         ],
         'palettePerson' => [
-            'showitem' => 'first_name, middle_name, last_name,--linebreak--,academic_title, position,birthday,',
+            'showitem' => 'first_name, middle_name, last_name,--linebreak--,academic_title, append_academic_title, position,birthday,',
         ],
         'paletteNavtitle' => [
             'showitem' => 'alternative_title,path_segment',
