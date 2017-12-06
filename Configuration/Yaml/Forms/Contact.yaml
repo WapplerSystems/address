@@ -20,6 +20,11 @@ finishers:
       translation:
         language: ''
     identifier: EmailToAddress
+  -
+    options:
+      pageUid: '1'
+      additionalParameters: ''
+    identifier: Redirect
 renderables:
   -
     renderingOptions:
