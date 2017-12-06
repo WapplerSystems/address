@@ -199,6 +199,12 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 
     /**
+     * @var int
+     */
+    protected $appendAcademicTitle;
+
+
+    /**
      * @var string
      */
     protected $title;
@@ -1125,6 +1131,21 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->title = $title;
     }
 
+    /**
+     * @return int
+     */
+    public function getAppendAcademicTitle(): int
+    {
+        return $this->appendAcademicTitle;
+    }
+
+    /**
+     * @param int $appendAcademicTitle
+     */
+    public function setAppendAcademicTitle(int $appendAcademicTitle)
+    {
+        $this->appendAcademicTitle = $appendAcademicTitle;
+    }
 
 
 }
