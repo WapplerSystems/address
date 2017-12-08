@@ -6,7 +6,7 @@ $boot = function () {
         'WapplerSystems.address',
         'Pi1',
         [
-            'Address' => 'list,detail,dateMenu,searchForm,searchResult',
+            'Address' => 'list,detail,searchForm,searchResult',
             'Category' => 'list',
             'Tag' => 'list',
         ],
@@ -65,7 +65,9 @@ $boot = function () {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('  <INCLUDE_TYPOSCRIPT: source="DIR:EXT:address/Configuration/TSconfig/Tours" extensions="ts">');
     }
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TSconfig/ContentElementWizard.txt">');
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/ContentElementWizard.txt">
+    ');
 
     /* ===========================================================================
         Hooks
