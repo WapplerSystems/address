@@ -899,6 +899,24 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->contentElements = $contentElements;
     }
 
+
+    /**
+     * Get id list of content elements
+     *
+     * @return string
+     */
+    public function getContentElementIdList()
+    {
+        $idList = [];
+        $contentElements = $this->getContentElements();
+        if ($contentElements) {
+            foreach ($this->getContentElements() as $contentElement) {
+                $idList[] = $contentElement->getUid();
+            }
+        }
+        return implode(',', $idList);
+    }
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
