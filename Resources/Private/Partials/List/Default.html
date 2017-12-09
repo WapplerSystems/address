@@ -11,7 +11,7 @@
 	<div class="header">
 		<h3>
 			<a2:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
-				<span>{addressItem.title}</span>
+				<span><f:render partial="Title" arguments="{addressItem:addressItem}" /></span>
 			</a2:link>
 		</h3>
 	</div>

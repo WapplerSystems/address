@@ -7,7 +7,12 @@ namespace WapplerSystems\Address\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Fluid\View\TemplateView;
 use WapplerSystems\Address\Domain\Model\Address;
+use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
+use WapplerSystems\Address\Domain\Model\Dto\Search;
 use WapplerSystems\Address\Utility\Cache;
 use WapplerSystems\Address\Utility\Page;
 use WapplerSystems\Address\Utility\TypoScript;
@@ -43,11 +48,6 @@ class AddressController extends AddressBaseController
      */
     protected $tagRepository;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-     */
-    protected $configurationManager;
-
 
     /** @var array */
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
@@ -82,17 +82,18 @@ class AddressController extends AddressBaseController
      *
      * @param array $settings
      * @param string $class optional class which must be an instance of \WapplerSystems\Address\Domain\Model\Dto\AddressDemand
-     * @return \WapplerSystems\Address\Domain\Model\Dto\AddressDemand
+     * @return AddressDemand
+     * @throws \UnexpectedValueException
      */
     protected function createDemandObjectFromSettings(
         $settings,
-        $class = 'WapplerSystems\\Address\\Domain\\Model\\Dto\\AddressDemand'
+        $class = AddressDemand::class
     ) {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
-        /* @var $demand \WapplerSystems\Address\Domain\Model\Dto\AddressDemand */
+        /* @var $demand AddressDemand */
         $demand = $this->objectManager->get($class, $settings);
-        if (!$demand instanceof \WapplerSystems\Address\Domain\Model\Dto\AddressDemand) {
+        if (!$demand instanceof AddressDemand) {
             throw new \UnexpectedValueException(
                 sprintf('The demand object must be an instance of \WapplerSystems\\Address\\Domain\\Model\\Dto\\AddressDemand, but %s given!',
                     $class),
@@ -131,9 +132,10 @@ class AddressController extends AddressBaseController
     /**
      * Overwrites a given demand object by an propertyName =>  $propertyValue array
      *
-     * @param \WapplerSystems\Address\Domain\Model\Dto\AddressDemand $demand
+     * @param AddressDemand $demand
      * @param array $overwriteDemand
-     * @return \WapplerSystems\Address\Domain\Model\Dto\AddressDemand
+     * @return AddressDemand
+     * @throws \InvalidArgumentException
      */
     protected function overwriteDemandObject($demand, $overwriteDemand)
     {
@@ -142,11 +144,11 @@ class AddressController extends AddressBaseController
         }
 
         foreach ($overwriteDemand as $propertyName => $propertyValue) {
-            if (in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
+            if (\in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
                 continue;
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
-                \TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+                ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
         }
         return $demand;
@@ -156,13 +158,15 @@ class AddressController extends AddressBaseController
      * Output a list view of address
      *
      * @param array $overwriteDemand
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      */
     public function listAction(array $overwriteDemand = null)
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ($overwriteDemand !== null && (int)$this->settings['disableOverrideDemand'] !== 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
         $addressRecords = $this->addressRepository->findDemanded($demand);
@@ -175,7 +179,7 @@ class AddressController extends AddressBaseController
 
         if ($demand->getCategories() !== '') {
             $categoriesList = $demand->getCategories();
-            if (!is_array($categoriesList)) {
+            if (!\is_array($categoriesList)) {
                 $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
             }
             if (!empty($categoriesList)) {
@@ -188,7 +192,7 @@ class AddressController extends AddressBaseController
             if (!is_array($tagList)) {
                 $tagList = GeneralUtility::trimExplode(',', $tagList);
             }
-            if (!empty($tagList)) {
+            if (null !== $tagList) {
                 $assignedValues['tags'] = $this->tagRepository->findByIdList($tagList);
             }
         }
@@ -201,11 +205,16 @@ class AddressController extends AddressBaseController
     /**
      * Single view of a address record
      *
-     * @param \WapplerSystems\Address\Domain\Model\Address $address address item
+     * @param Address $address address item
      * @param int $currentPage current page for optional pagination
      * @return void
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
-    public function detailAction(\WapplerSystems\Address\Domain\Model\Address $address = null, $currentPage = 1)
+    public function detailAction(Address $address = null, $currentPage = 1)
     {
         if ($address === null) {
             $previewAddressId = ((int)$this->settings['singleAddress'] > 0) ? $this->settings['singleAddress'] : 0;
@@ -224,7 +233,7 @@ class AddressController extends AddressBaseController
         }
 
         if (is_a($address,
-                'WapplerSystems\\Address\\Domain\\Model\\Address') && $this->settings['detail']['checkPidOfAddressRecord']
+                Address::class) && $this->settings['detail']['checkPidOfAddressRecord']
         ) {
             $address = $this->checkPidOfAddressRecord($address);
         }
@@ -249,21 +258,22 @@ class AddressController extends AddressBaseController
         $this->view->assignMultiple($assignedValues);
 
         Page::setRegisterProperties($this->settings['detail']['registerProperties'], $address);
-        if ($address !== null && is_a($address, 'WapplerSystems\\Address\\Domain\\Model\\Address')) {
+        if ($address !== null && is_a($address, Address::class)) {
             Cache::addCacheTagsByAddressRecords([$address]);
         }
     }
-
 
 
     /**
      * Checks if the address pid could be found in the startingpoint settings of the detail plugin and
      * if the pid could not be found it return NULL instead of the address object.
      *
-     * @param \WapplerSystems\Address\Domain\Model\Address $address
-     * @return NULL|\WapplerSystems\Address\Domain\Model\Address
+     * @param Address $address
+     * @return NULL|Address
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
-    protected function checkPidOfAddressRecord(\WapplerSystems\Address\Domain\Model\Address $address)
+    protected function checkPidOfAddressRecord(Address $address)
     {
         $allowedStoragePages = GeneralUtility::trimExplode(
             ',',
@@ -306,22 +316,23 @@ class AddressController extends AddressBaseController
     /**
      * Display the search form
      *
-     * @param \WapplerSystems\Address\Domain\Model\Dto\Search $search
+     * @param Search $search
      * @param array $overwriteDemand
+     * @throws \UnexpectedValueException
      */
     public function searchFormAction(
-        \WapplerSystems\Address\Domain\Model\Dto\Search $search = null,
+        Search $search = null,
         array $overwriteDemand = []
     ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ((int)$this->settings['disableOverrideDemand'] !== 1 && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
-        if (is_null($search)) {
-            $search = $this->objectManager->get(\WapplerSystems\Address\Domain\Model\Dto\Search::class);
+        if (null === $search) {
+            $search = $this->objectManager->get(Search::class);
         }
         $demand->setSearch($search);
 
@@ -339,23 +350,22 @@ class AddressController extends AddressBaseController
     /**
      * Displays the search result
      *
-     * @param \WapplerSystems\Address\Domain\Model\Dto\Search $search
+     * @param Search $search
      * @param array $overwriteDemand
      */
     public function searchResultAction(
-        \WapplerSystems\Address\Domain\Model\Dto\Search $search = null,
+        Search $search = null,
         array $overwriteDemand = []
     ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ($overwriteDemand !== null && (int)$this->settings['disableOverrideDemand'] !== 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
-        if (!is_null($search)) {
+        if ($search !== null) {
             $search->setFields($this->settings['search']['fields']);
-            $search->setDateField($this->settings['dateField']);
         }
         $demand->setSearch($search);
 
@@ -406,20 +416,21 @@ class AddressController extends AddressBaseController
     /**
      * Injects the Configuration Manager and is initializing the framework settings
      *
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+     * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+     * @throws \InvalidArgumentException
      */
     public function injectConfigurationManager(
-        \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
+        ConfigurationManagerInterface $configurationManager
     ) {
         $this->configurationManager = $configurationManager;
 
         $tsSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             'address',
             'address_pi1'
         );
         $originalSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
 
         $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
@@ -433,7 +444,7 @@ class AddressController extends AddressBaseController
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
             foreach ($stdWrapProperties as $key) {
-                if (is_array($typoScriptArray[$key . '.'])) {
+                if (\is_array($typoScriptArray[$key . '.'])) {
                     $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
                         $originalSettings[$key],
                         $typoScriptArray[$key . '.']
@@ -448,7 +459,7 @@ class AddressController extends AddressBaseController
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
         }
 
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'])) {
+        if (\is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'])) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'] as $_funcRef) {
                 $_params = [
                     'originalSettings' => $originalSettings,
@@ -465,9 +476,9 @@ class AddressController extends AddressBaseController
      * Injects a view.
      * This function is for testing purposes only.
      *
-     * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
+     * @param TemplateView $view the view to inject
      */
-    public function setView(\TYPO3\CMS\Fluid\View\TemplateView $view)
+    public function setView(TemplateView $view)
     {
         $this->view = $view;
     }
