@@ -21,8 +21,8 @@ if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('news')) {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference',
         $newSysFileReferenceColumns);
 
-    // add special address palette
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'addressPalette',
-        'showinpreview');
-
 }
+
+// add special address palette
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'addressPalette',
+    'showinpreview');
