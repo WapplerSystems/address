@@ -9,6 +9,8 @@ namespace WapplerSystems\Address\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * Address model
  */
@@ -259,11 +261,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function __construct()
     {
-        $this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->categories = new ObjectStorage();
+        $this->contentElements = new ObjectStorage();
+        $this->relatedLinks = new ObjectStorage();
+        $this->media = new ObjectStorage();
+        $this->relatedFiles = new ObjectStorage();
     }
 
 
@@ -291,7 +293,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get categories
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Category>
+     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Category>
      */
     public function getCategories()
     {
@@ -316,7 +318,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set categories
      *
-     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
+     * @param  ObjectStorage $categories
      */
     public function setCategories($categories)
     {
@@ -336,7 +338,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related address
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
+     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      */
     public function getRelated()
     {
@@ -346,7 +348,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set related from
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Address> $relatedFrom
+     * @param ObjectStorage<\WapplerSystems\Address\Domain\Model\Address> $relatedFrom
      */
     public function setRelatedFrom($relatedFrom)
     {
@@ -356,7 +358,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related from
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
+     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      */
     public function getRelatedFrom()
     {
@@ -378,50 +380,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $items;
     }
 
-    /**
-     * Return related from items sorted by datetime
-     *
-     * @return array
-     */
-    public function getAllRelatedSorted()
-    {
-        $all = [];
-        $itemsRelated = $this->getRelated();
-        if ($itemsRelated) {
-            $all = array_merge($all, $itemsRelated->toArray());
-        }
-
-        $itemsRelatedFrom = $this->getRelatedFrom();
-        if ($itemsRelatedFrom) {
-            $all = array_merge($all, $itemsRelatedFrom->toArray());
-        }
-        $all = array_unique($all);
-
-        if (count($all) > 0) {
-            usort($all, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
-        }
-        return $all;
-    }
-
-    /**
-     * Return related items sorted by datetime
-     *
-     * @return array
-     */
-    public function getRelatedSorted()
-    {
-        $items = $this->getRelated();
-        if ($items) {
-            $items = $items->toArray();
-            usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
-        }
-        return $items;
-    }
 
     /**
      * Set related addresses
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $related related addresses
+     * @param ObjectStorage $related related addresses
      */
     public function setRelated($related)
     {
@@ -431,7 +394,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related links
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
+     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
      */
     public function getRelatedLinks()
     {
@@ -441,7 +404,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get FAL related files
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
+     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
      */
     public function getRelatedFiles()
     {
@@ -451,7 +414,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set FAL related files
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $relatedFiles FAL related files
+     * @param ObjectStorage $relatedFiles FAL related files
      */
     public function setRelatedFiles($relatedFiles)
     {
@@ -466,7 +429,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function addRelatedFile(FileReference $file)
     {
         if ($this->getRelatedFiles() === null) {
-            $this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+            $this->relatedFiles = new ObjectStorage();
         }
         $this->getRelatedFiles()->attach($file);
     }
@@ -474,7 +437,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set related links
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Link> $relatedLinks related links relation
+     * @param ObjectStorage<\WapplerSystems\Address\Domain\Model\Link> $relatedLinks related links relation
      */
     public function setRelatedLinks($relatedLinks)
     {
@@ -549,7 +512,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function addRelatedLink(Link $relatedLink)
     {
         if ($this->relatedLinks === null) {
-            $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+            $this->relatedLinks = new ObjectStorage();
         }
         $this->relatedLinks->attach($relatedLink);
     }
@@ -558,9 +521,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set Fal media relation
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $media
+     * @param ObjectStorage $media
      */
-    public function setMedia(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $media)
+    public function setMedia(ObjectStorage $media)
     {
         $this->media = $media;
     }
@@ -573,7 +536,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function addMedia(FileReference $media)
     {
         if ($this->getMedia() === null) {
-            $this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+            $this->media = new ObjectStorage();
         }
         $this->media->attach($media);
     }
@@ -582,6 +545,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Get the Fal media items
      *
      * @return array
+     * @throws \InvalidArgumentException
      */
     public function getMediaPreviews()
     {
@@ -601,6 +565,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Get all media elements which are not tagged as preview
      *
      * @return array
+     * @throws \InvalidArgumentException
      */
     public function getMediaNonPreviews()
     {
@@ -667,7 +632,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get Tags
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
     public function getTags()
     {
@@ -677,7 +642,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set Tags
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
+     * @param ObjectStorage $tags tags
      */
     public function setTags($tags)
     {
@@ -884,7 +849,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
     public function getContentElements()
     {
@@ -892,7 +857,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $contentElements
+     * @param ObjectStorage $contentElements
      */
     public function setContentElements($contentElements)
     {
@@ -918,7 +883,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
     public function getMedia()
     {
@@ -1165,5 +1130,42 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->appendAcademicTitle = $appendAcademicTitle;
     }
 
+    /**
+     * @return bool
+     */
+    public function getIsPerson() {
+        return (int)$this->type === self::TYPE_PERSON;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsCompany() {
+        return (int)$this->type === self::TYPE_COMPANY;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHasRelatedCompany() {
+        $items = $this->getRelated();
+        /** @var Address $item */
+        foreach ($items as $item) {
+            if ($item->getIsCompany()) return true;
+        }
+        return false;
+    }
+
+    /**
+     * @return null|Address
+     */
+    public function getRelatedCompany() {
+        $items = $this->getRelated();
+        /** @var Address $item */
+        foreach ($items as $item) {
+            if ($item->getIsCompany()) return $item;
+        }
+        return null;
+    }
 
 }

@@ -106,7 +106,16 @@
 
 
 					<p><b><f:translate key="hdl.address">Address</f:translate></b><br />
-					<f:format.nl2br>{addressItem.address}</f:format.nl2br>
+						<f:if condition="{addressItem.address}">
+							<f:then>
+								<f:format.nl2br>{addressItem.address}</f:format.nl2br>
+							</f:then>
+							<f:else>
+								<f:if condition="{addressItem.isPerson} && {addressItem.hasRelatedCompany}">
+									<f:format.nl2br>{addressItem.relatedCompany.address}</f:format.nl2br>
+								</f:if>
+							</f:else>
+						</f:if>
 					</p>
 
 
