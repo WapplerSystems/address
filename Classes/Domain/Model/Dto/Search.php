@@ -30,13 +30,22 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $fields;
 
+    /**
+     * @var int
+     */
+    protected $distance;
 
     /**
-     * Field using for date queries
-     *
      * @var string
      */
-    protected $dateField;
+    protected $location;
+
+
+    /**
+     * @var array
+     */
+    protected $settings = [];
+
 
     /**
      * Get the subject
@@ -77,6 +86,58 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->fields = $fields;
     }
+
+
+    /**
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param string $location
+     */
+    public function setLocation(string $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @param int $distance
+     */
+    public function setDistance(int $distance)
+    {
+        $this->distance = $distance;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSettings(): array
+    {
+        return $this->settings;
+    }
+
+    /**
+     * @param array $settings
+     */
+    public function setSettings(array $settings)
+    {
+        $this->settings = $settings;
+    }
+
+
+
 
 
 }

@@ -9,7 +9,6 @@ namespace WapplerSystems\Address\ViewHelpers\Widget\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Utility\DebugUtility;
 
 /**
  * Paginate controller to create the pagination.

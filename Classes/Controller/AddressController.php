@@ -189,7 +189,7 @@ class AddressController extends AddressBaseController
 
         if ($demand->getTags() !== '') {
             $tagList = $demand->getTags();
-            if (!is_array($tagList)) {
+            if (!\is_array($tagList)) {
                 $tagList = GeneralUtility::trimExplode(',', $tagList);
             }
             if (null !== $tagList) {
@@ -208,6 +208,7 @@ class AddressController extends AddressBaseController
      * @param Address $address address item
      * @param int $currentPage current page for optional pagination
      * @return void
+     * @throws \UnexpectedValueException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
@@ -269,7 +270,7 @@ class AddressController extends AddressBaseController
      * if the pid could not be found it return NULL instead of the address object.
      *
      * @param Address $address
-     * @return NULL|Address
+     * @return null|Address
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
@@ -283,7 +284,7 @@ class AddressController extends AddressBaseController
             ),
             true
         );
-        if (count($allowedStoragePages) > 0 && !in_array($address->getPid(), $allowedStoragePages)) {
+        if (\count($allowedStoragePages) > 0 && !in_array($address->getPid(), $allowedStoragePages)) {
             $this->signalSlotDispatcher->dispatch(
                 __CLASS__,
                 'checkPidOfAddressRecordFailedInDetailAction',
@@ -318,6 +319,7 @@ class AddressController extends AddressBaseController
      *
      * @param Search $search
      * @param array $overwriteDemand
+     * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
      */
     public function searchFormAction(
@@ -334,6 +336,7 @@ class AddressController extends AddressBaseController
         if (null === $search) {
             $search = $this->objectManager->get(Search::class);
         }
+        $search->setSettings($this->settings);
         $demand->setSearch($search);
 
         $assignedValues = [
@@ -352,6 +355,8 @@ class AddressController extends AddressBaseController
      *
      * @param Search $search
      * @param array $overwriteDemand
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      */
     public function searchResultAction(
         Search $search = null,
@@ -367,10 +372,11 @@ class AddressController extends AddressBaseController
         if ($search !== null) {
             $search->setFields($this->settings['search']['fields']);
         }
+        $search->setSettings($this->settings);
         $demand->setSearch($search);
 
         $assignedValues = [
-            'address' => $this->addressRepository->findDemanded($demand),
+            'addresses' => $this->addressRepository->findDemanded($demand),
             'overwriteDemand' => $overwriteDemand,
             'search' => $search,
             'demand' => $demand,

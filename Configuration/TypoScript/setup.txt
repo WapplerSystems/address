@@ -72,6 +72,11 @@ plugin.tx_address {
 		# --------------
 		search {
 			fields = first_name,last_name,title
+
+			distances {
+				10 = 10km
+				20 = 20km
+			}
 		}
 
 		# --------------
@@ -161,6 +166,10 @@ plugin.tx_address {
 				apiKey = {$plugin.tx_address.settings.googlemaps.javascript.apiKey}
 
 				apiUrl = {$plugin.tx_address.settings.googlemaps.javascript.apiUrl}
+			}
+
+			geocode {
+				apiUrl = {$plugin.tx_address.settings.googlemaps.geocode.apiUrl}
 			}
 
 		}

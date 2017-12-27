@@ -10,16 +10,16 @@
 		<f:if condition="{search}">
 			<f:if condition="{addresses}">
 				<f:then>
-					<div class="count-msg">
-						<f:translate key="search-text" arguments="{0:'{f:count(subject:address)}',1:search.subject}" />
+					<div class="alert alert-info">
+						<f:translate key="search-text" arguments="{0:'{f:count(subject:addresses)}',1:search.subject}" />
 					</div>
 					<f:for each="{addresses}" as="addressItem">
-						<f:render partial="List/Item" arguments="{addressItem: addressItem, settings:settings, className:className, view:'list'}" />
+						<f:render partial="List/{f:if(condition:settings.templateLayout,then:settings.templateLayout,else:'Default')}" arguments="{addressItem: addressItem, settings:settings, className:className, view:'list'}" />
 					</f:for>
 				</f:then>
 				<f:else>
-					<div class="no-address-found">
-						<f:translate key="search-noresult" />
+					<div class="no-address-found alert alert-info">
+						<f:translate key="msg.searchNoResult" />
 					</div>
 				</f:else>
 			</f:if>

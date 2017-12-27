@@ -9,10 +9,10 @@
 			<trans-unit id="search-start" xml:space="preserve">
 				<source>Start search</source>
 			</trans-unit>
-			<trans-unit id="search-noresult" xml:space="preserve">
+			<trans-unit id="msg.searchNoResult" xml:space="preserve">
 				<source>No address found.</source>
 			</trans-unit>
-			<trans-unit id="search-subject" xml:space="preserve">
+			<trans-unit id="lbl.searchSubject" xml:space="preserve">
 				<source>Text</source>
 			</trans-unit>
 			<trans-unit id="search-minimumDate" xml:space="preserve">
@@ -74,6 +74,12 @@
 			</trans-unit>
 			<trans-unit id="btn.detailPage">
 				<source>More information</source>
+			</trans-unit>
+			<trans-unit id="lbl.searchLocation">
+				<source>Location</source>
+			</trans-unit>
+			<trans-unit id="hdl.search">
+				<source>Search</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -7,14 +7,25 @@
 
 <f:section name="content">
 	<div class="Address-search-form">
+		<h5><f:translate key="hdl.search" /></h5>
 		<f:form object="{search}" name="search" pageUid="{settings.listPid}">
 			<fieldset>
 				<div class="form-group">
-					<label for="address-subject"><f:translate key="search-subject" /></label>
-					<f:form.textfield id="address-subject" property="subject" class="form-control"/>
+					<f:form.textfield placeholder="{f:translate(key:'lbl.searchSubject')}" id="address-subject" property="subject" class="form-control"/>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-10">
+						<f:form.textfield placeholder="{f:translate(key:'lbl.searchLocation')}" id="address-location" property="location" class="form-control"/>
+					</div>
+					<div class="form-group col-md-2">
+						<f:form.select property="distance" options="{settings.search.distances}" class="form-control" />
+					</div>
 				</div>
 
-				<f:form.submit value="{f:translate(key:'search-start')}" class="btn btn-default"/>
+				<div class="form-group">
+					<f:form.submit value="{f:translate(key:'search-start')}" class="btn btn-default"/>
+
+				</div>
 			</fieldset>
 		</f:form>
 	</div>

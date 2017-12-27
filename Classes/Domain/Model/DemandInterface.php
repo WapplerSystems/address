@@ -13,4 +13,13 @@ namespace WapplerSystems\Address\Domain\Model;
  */
 interface DemandInterface
 {
+
+    public function getSearch();
+
+    public function getOrder();
+
+    public function getOrderByAllowed();
+
+    public function getTopAddressFirst();
+
 }

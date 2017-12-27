@@ -32,6 +32,12 @@ plugin.tx_address {
 
 			}
 
+			geocode {
+
+				# cat=plugin.tx_address/settings/c; type=string; label=Google Maps Api URL
+				apiUrl = http://maps.google.com/maps/api/geocode/json
+			}
+
 		}
 
 

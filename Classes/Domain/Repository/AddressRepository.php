@@ -8,10 +8,13 @@ namespace WapplerSystems\Address\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Statement;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
+use WapplerSystems\Address\Map\Encoder;
 use WapplerSystems\Address\Service\CategoryService;
-use WapplerSystems\Address\Utility\ConstraintHelper;
 use WapplerSystems\Address\Utility\Validation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -93,6 +96,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
@@ -130,28 +134,28 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
         }
 
         // top address
-        if ($demand->getTopAddressRestriction() == 1) {
+        if ($demand->getTopAddressRestriction() === 1) {
             $constraints['topAddress1'] = $query->equals('istopaddress', 1);
-        } elseif ($demand->getTopAddressRestriction() == 2) {
+        } elseif ($demand->getTopAddressRestriction() === 2) {
             $constraints['topAddress2'] = $query->equals('istopaddress', 0);
         }
 
         // storage page
-        if ($demand->getStoragePage() != 0) {
+        if ($demand->getStoragePage() !== 0) {
             $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
             $constraints['pid'] = $query->in('pid', $pidList);
         }
 
         // Tags
         $tags = $demand->getTags();
-        if ($tags && is_string($tags)) {
+        if ($tags && \is_string($tags)) {
             $tagList = explode(',', $tags);
 
             $subConstraints = [];
             foreach ($tagList as $singleTag) {
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }
-            if (count($subConstraints) > 0) {
+            if (\count($subConstraints) > 0) {
                 $constraints['tags'] = $query->logicalOr($subConstraints);
             }
         }
@@ -185,7 +189,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
 
         // Clean not used constraints
         foreach ($constraints as $key => $value) {
-            if (is_null($value)) {
+            if (null === $value) {
                 unset($constraints[$key]);
             }
         }
@@ -272,14 +276,15 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
     }
 
 
-
     /**
      * Get the search constraints
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
      * @return array
+     * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
     {
@@ -296,20 +301,85 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
             $searchConstraints = [];
 
-            if (count($searchFields) === 0) {
+            if (\count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
 
             foreach ($searchFields as $field) {
-                if (!empty($searchSubject)) {
-                    $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
-                }
+                $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
             }
 
-            if (count($searchConstraints)) {
+            if (\count($searchConstraints)) {
                 $constraints[] = $query->logicalOr($searchConstraints);
             }
         }
+
+        $searchLocation = $searchObject->getLocation();
+        $searchDistance = $searchObject->getDistance();
+
+        $longitude = 0.0;
+        $latitude = 0.0;
+
+        if ($searchDistance > 0 && \strlen($searchLocation) > 0) {
+
+            /** @var Encoder $encoder */
+            $encoder = GeneralUtility::makeInstance(Encoder::class, $searchObject->getSettings());
+
+            try {
+                $latlng = $encoder->getLatLngByAddress($searchLocation,'DE');
+                if ($latlng !== null) {
+                    $latitude = number_format($latlng->getLatitude(), 8);
+                    $longitude = number_format($latlng->getLongitude(), 8);
+                }
+            } catch (\Exception $ex) {
+
+            }
+        }
+
+
+        if ($longitude > 0 && $latitude > 0) {
+
+            /** @var ConnectionPool $connectionPool */
+            $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+            $connection = $connectionPool->getConnectionForTable('tx_address_domain_model_address');
+
+            $earthRadius = 6368;
+            $lon = $longitude / 180 * M_PI;
+            $lat = $latitude / 180 * M_PI;
+
+            /** @var Statement $statement */
+            $statement = $this->objectManager->get(
+                Statement::class,
+                'SELECT uid, (
+			' . $earthRadius . ' * SQRT(2*(1-cos(RADIANS(latitude)) *
+			 cos(' . $lat . ') * (sin(RADIANS(longitude)) *
+			 sin(' . $lon . ') + cos(RADIANS(longitude)) *
+			 cos(' . $lon . ')) - sin(RADIANS(latitude)) * sin(' . $lat . ')))) AS Distance 
+			 FROM tx_address_domain_model_address ' .
+                ' WHERE longitude <> 0 Having Distance <= ' . $searchDistance .
+                ' ORDER BY Distance ASC',
+                $connection
+            );
+            try {
+                $statement->execute();
+                $addressUids = $statement->fetchAll();
+
+                $uids = array();
+                foreach ($addressUids as $result) {
+                    $uids[] = $result['uid'];
+                }
+                if (\count($uids) > 0) {
+                    $constraints[] = $query->in('uid', $uids);
+                } else {
+                    // no uids found -> no end results
+                    $constraints[] = $query->equals('uid', -1);
+                }
+
+            } catch (DBALException $e) {
+            }
+
+        }
+
 
         return $constraints;
     }
