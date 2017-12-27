@@ -21,10 +21,10 @@
 			<trans-unit id="search-maximumDate" xml:space="preserve">
 				<source>Maximum Date</source>
 			</trans-unit>
-			<trans-unit id="more-link" xml:space="preserve">
-				<source>Read more</source>
+			<trans-unit id="btn.details" xml:space="preserve">
+				<source>View details</source>
 			</trans-unit>
-			<trans-unit id="back-link" xml:space="preserve">
+			<trans-unit id="btn.back" xml:space="preserve">
 				<source>Back</source>
 			</trans-unit>
 			<trans-unit id="related-address" xml:space="preserve">
@@ -72,7 +72,7 @@
 			<trans-unit id="addressNotFound" xml:space="preserve">
 				<source>The address record is not available anymore.</source>
 			</trans-unit>
-			<trans-unit id="btn.detail_page">
+			<trans-unit id="btn.detailPage">
 				<source>More information</source>
 			</trans-unit>
 		</body>

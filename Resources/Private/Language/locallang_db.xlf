@@ -84,14 +84,18 @@
 			<trans-unit id="tx_address_domain_model_address.building" xml:space="preserve">
 				<source>Building</source>
 			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.city" xml:space="preserve">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.zip" xml:space="preserve">
+				<source>Postal code</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
+				<source>Country</source>
+			</trans-unit>
+
 			<trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve">
 				<source>Address</source>
-			</trans-unit>
-			<trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">
-				<source>Longitude</source>
-			</trans-unit>
-			<trans-unit id="tx_address_domain_model_address.latitude" xml:space="preserve">
-				<source>Latitude</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.type.I.1" xml:space="preserve">
 				<source>Person</source>
@@ -99,6 +103,15 @@
 			<trans-unit id="tx_address_domain_model_address.type.I.2" xml:space="preserve">
 				<source>Company</source>
 			</trans-unit>
+
+
+			<trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">
+				<source>Longitude</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.latitude" xml:space="preserve">
+				<source>Latitude</source>
+			</trans-unit>
+
 			<trans-unit id="tx_address_domain_model_address.media" xml:space="preserve">
 				<source>Media file</source>
 			</trans-unit>

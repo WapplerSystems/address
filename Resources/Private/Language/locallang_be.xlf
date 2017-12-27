@@ -7,7 +7,7 @@
 				<source>Address system</source>
 			</trans-unit>
 			<trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
-				<source>Versatile address system</source>
+				<source>Address system</source>
 			</trans-unit>
 			<trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
@@ -178,13 +178,13 @@
 				<source>2</source>
 			</trans-unit>
 			<trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
-				<source>PageId for single address display</source>
+				<source>Page ID for single address display</source>
 			</trans-unit>
 			<trans-unit id="flexforms_additional.backPid" xml:space="preserve">
-				<source>PageId to return to</source>
+				<source>Page ID to return to</source>
 			</trans-unit>
 			<trans-unit id="flexforms_additional.listPid" xml:space="preserve">
-				<source>PageId for list display</source>
+				<source>Page ID for list display</source>
 			</trans-unit>
 			<trans-unit id="flexforms_additional.limit" xml:space="preserve">
 				<source>Max records displayed</source>

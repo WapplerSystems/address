@@ -1,67 +1,34 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-	  xmlns:a2="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
+	  xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
 	  data-namespace-typo3-fluid="true">
 <!--
 	=====================
 		Partials/List/Item.html
 -->
-<div class="address address-{addressItem.type}{f:if(condition: addressItem.istopaddress, then: ' topaddress')} {a2:categoryNames(address:addressItem,prefix:'address-cat-')} ">
-	<a2:excludeDisplayedAddress addressItem="{addressItem}"/>
+<div class="address address-{addressItem.type}{f:if(condition: addressItem.istopaddress, then: ' topaddress')} {ad:categoryNames(address:addressItem,prefix:'address-cat-')} mb-3">
+	<ad:excludeDisplayedAddress addressItem="{addressItem}"/>
 	<!-- header -->
 	<div class="header">
-		<h3>
-			<a2:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
+		<h5>
+			<ad:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
 				<span><f:render partial="Title" arguments="{addressItem:addressItem}" /></span>
-			</a2:link>
-		</h3>
+			</ad:link>
+		</h5>
 	</div>
 
-	<f:if condition="{addressItem.mediaPreviews}">
-		<!-- media preview element -->
-		<f:then>
-			<div class="address-img-wrap">
-				<a2:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
-					<f:alias map="{mediaElement: '{addressItem.mediaPreviews.0}'}">
-						<f:if condition="{mediaElement.originalResource.type} == 2">
-							<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
-						</f:if>
-						<f:if condition="{mediaElement.originalResource.type} == 4">
-							<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>
-						</f:if>
-						<f:if condition="{mediaElement.originalResource.type} == 5">
-							<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
-						</f:if>
-					</f:alias>
-				</a2:link>
-			</div>
-		</f:then>
-		<f:else>
-			<f:if condition="{settings.displayDummyIfNoMedia}">
-				<div class="address-img-wrap">
-					<span class="no-media-element">
-						<a2:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
-							<f:image src="{settings.list.media.dummyImage}" title="" alt="" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
-						</a2:link>
-					</span>
-				</div>
-			</f:if>
-		</f:else>
-	</f:if>
+
+	<f:render partial="List/Media/Container" arguments="{addressItem:addressItem, mediaElement: addressItem.mediaPreviews.0, settings:settings}" />
 
 
 	<p>
-		{addressItem.phone}
-		{addressItem.fax}
+		<f:if condition="{addressItem.phone}"><i class="fa fa-phone c-gray" aria-hidden="true"></i> {addressItem.phone}<br /></f:if>
+		<f:if condition="{addressItem.fax}"><i class="fa fa-fax c-gray" aria-hidden="true"></i> {addressItem.fax}</f:if>
 	</p>
-	<f:format.nl2br>{addressItem.address}</f:format.nl2br>
 
 
 	<f:if condition="{addressItem.detailPid}">
-
-		<p><f:link.page class="internal" pageUid="{addressItem.detailPid}"><f:translate key="btn.detail_page" /></f:link.page></p>
+		<p><f:link.page class="internal" pageUid="{addressItem.detailPid}"><f:translate key="btn.detailPage" /></f:link.page></p>
 	</f:if>
-
-
 
 
 </div>

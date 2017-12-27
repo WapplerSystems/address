@@ -279,7 +279,7 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.latitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null',
+                'eval' => 'null,trim,WapplerSystems\\Address\\Evaluation\\Double6Evaluator',
                 'default' => null,
             ]
         ],
@@ -290,7 +290,7 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.longitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null',
+                'eval' => 'null,trim,WapplerSystems\\Address\\Evaluation\\Double6Evaluator',
                 'default' => null,
             ]
         ],
@@ -304,6 +304,38 @@ $tx_address_domain_model_address = [
                 'rows' => 3,
             ]
         ],
+        'city' => [
+            'exclude' => true,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.city',
+            'config' => [
+                'type' => 'input',
+            ]
+        ],
+        'zip' => [
+            'exclude' => true,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.zip',
+            'config' => [
+                'type' => 'input',
+            ]
+        ],
+        'region' => [
+            'exclude' => true,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.region',
+            'config' => [
+                'type' => 'input',
+            ]
+        ],
+        'country' => [
+            'exclude' => true,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.country',
+            'config' => [
+                'type' => 'input',
+            ]
+        ],
         'building' => [
             'exclude' => true,
             'l10n_display' => 'defaultAsReadonly',
@@ -314,6 +346,22 @@ $tx_address_domain_model_address = [
                 'size' => 30,
                 'eval' => '',
             ]
+        ],
+        'inline_map' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.inline_map',
+            'config' => [
+                'type' => 'user',
+                'userFunc' => 'WapplerSystems\\Address\\Utility\\LocationUtility->render',
+                'parameters' => [
+                    'longitude' => 'longitude',
+                    'latitude' => 'latitude',
+                    'city' => 'city',
+                    'zip' => 'zip',
+                    'country' => 'country',
+                    'address' => 'address',
+                ],
+            ],
         ],
         'bodytext' => [
             'exclude' => false,
@@ -893,7 +941,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'phone, fax, --linebreak--, email, direct_contact,',
         ],
         'paletteLocation' => [
-            'showitem' => 'address, building, --linebreak--, longitude, latitude,',
+            'showitem' => 'address, building, --linebreak--, zip, city, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
         ],
         'palettePerson' => [
             'showitem' => 'first_name, middle_name, last_name,--linebreak--,academic_title, append_academic_title, position,birthday,',

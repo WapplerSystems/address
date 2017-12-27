@@ -1,15 +1,22 @@
-<!-- categories -->
-<span class="address-list-category" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-	<f:for each="{categories}" as="category">
-		<f:if condition="{category.shortcut}">
-			<f:then>
-				<f:link.page pageUid="{category.shortcut}">
-					{category.title}
-				</f:link.page>
-			</f:then>
-			<f:else>
-				{category.title}
-			</f:else>
-		</f:if>
-	</f:for>
-</span>
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+	<!-- categories -->
+	<i class="fa fa-tags" aria-hidden="true"></i>
+
+	<span class="address-list-category">
+
+		<f:for each="{categories}" as="category" iteration="iterator">
+
+			<f:if condition="{category.shortcut}">
+				<f:then>
+					<f:link.page pageUid="{category.shortcut}">
+						{category.title}
+					</f:link.page>
+				</f:then>
+				<f:else>{category.title}</f:else>
+			</f:if>
+			<f:if condition="!{iterator.isLast}">,</f:if>
+		</f:for>
+
+	</span>
+</html>

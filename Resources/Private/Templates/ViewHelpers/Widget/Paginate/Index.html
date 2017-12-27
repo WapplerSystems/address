@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-	  xmlns:a2="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
+	  xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
 	  data-namespace-typo3-fluid="true">
 
 <f:if condition="{configuration.insertAbove}">
@@ -18,15 +18,15 @@
 			<f:if condition="{pagination.previousPage}">
 				<f:if condition="{pagination.previousPage} > 1">
 					<f:then>
-						<a2:headerData><link rel="prev" href="{f:widget.uri(arguments: {currentPage: pagination.previousPage}) -> f:format.htmlentities()}" /></a2:headerData>
+						<ad:headerData><link rel="prev" href="{f:widget.uri(arguments: {currentPage: pagination.previousPage}) -> f:format.htmlentities()}" /></ad:headerData>
 					</f:then>
 					<f:else>
-						<a2:headerData><link rel="prev" href="{f:widget.uri() -> f:format.htmlentities()}" /></a2:headerData>
+						<ad:headerData><link rel="prev" href="{f:widget.uri() -> f:format.htmlentities()}" /></ad:headerData>
 					</f:else>
 				</f:if>
 			</f:if>
 			<f:if condition="{pagination.nextPage}">
-				<a2:headerData><link rel="next" href="{f:widget.uri(arguments: {currentPage: pagination.nextPage}) -> f:format.htmlentities()}" /></a2:headerData>
+				<ad:headerData><link rel="next" href="{f:widget.uri(arguments: {currentPage: pagination.nextPage}) -> f:format.htmlentities()}" /></ad:headerData>
 			</f:if>
 		</f:if>
 

@@ -26,9 +26,14 @@
 				<target>Kontakt</target>
 			</trans-unit>
 
-			<trans-unit id="btn.detail_page">
+			<trans-unit id="btn.detailPage">
 				<target>Mehr Informationen</target>
 			</trans-unit>
+			<trans-unit id="btn.details">
+				<target>Details anzeigen</target>
+			</trans-unit>
+
+
 
 		</body>
 	</file>

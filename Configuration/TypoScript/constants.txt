@@ -18,4 +18,26 @@ plugin.tx_address {
 
 	}
 
+	settings {
+
+		googlemaps {
+
+			javascript {
+
+				# cat=plugin.tx_address/settings/a; type=string; label=Google Maps Api Key: Please visit: https://console.developers.google.com/ Create a project for your site -> Activate Google Maps JavaScript API -> Create an authorization for that API and copy the Api key here.
+				apiKey =
+
+				# cat=plugin.tx_address/settings/b; type=text+; label=URL to Google Maps API: Default is current version
+				apiUrl = //maps.google.com/maps/api/js?v=3.29
+
+			}
+
+		}
+
+
+
+
+
+	}
+
 }

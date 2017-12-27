@@ -10,7 +10,7 @@
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array (
+$EM_CONF[$_EXTKEY] = [
   'title' => 'Address list',
   'description' => 'Address extension, based on extbase & fluid.',
   'category' => 'fe',
@@ -21,18 +21,18 @@ $EM_CONF[$_EXTKEY] = array (
   'author_company' => 'WapplerSystems',
   'version' => '0.1.0',
   'constraints' => 
-  array (
+  [
     'depends' => 
-    array (
+    [
       'typo3' => '8.7.1-8.7.99',
-    ),
+    ],
     'conflicts' => 
-    array (
-    ),
+    [
+    ],
     'suggests' => 
-    array (
-    ),
-  ),
+    [
+    ],
+  ],
   'createDirs' => NULL,
   'clearcacheonload' => true,
-);
+];
