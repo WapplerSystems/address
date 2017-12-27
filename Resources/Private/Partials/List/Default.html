@@ -52,6 +52,8 @@
 						<i class="d-flex fa fa-location-arrow c-gray mr-2 mt-1" aria-hidden="true"></i>
 						<div class="media-body">
 							<f:format.nl2br>{addressItem.address}</f:format.nl2br>
+							<f:if condition="{addressItem.zip}"><br />{addressItem.zip}</f:if>
+							<f:if condition="{addressItem.city}">{addressItem.city}</f:if>
 						</div>
 					</div>
 				</f:if>
@@ -88,10 +90,10 @@
 					<f:if condition="{addressItem.tags}">
 						<!-- Tags -->
 						<span class="address-list-tags">
-					<f:for each="{addressItem.tags}" as="tag">
-						{tag.title}
-					</f:for>
-				</span>
+							<f:for each="{addressItem.tags}" as="tag">
+								{tag.title}
+							</f:for>
+						</span>
 					</f:if>
 
 				</p>

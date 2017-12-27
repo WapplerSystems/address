@@ -227,6 +227,22 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
+    protected $city;
+
+    /**
+     * @var string
+     */
+    protected $zip;
+
+    /**
+     * @var string
+     */
+    protected $country;
+
+
+    /**
+     * @var string
+     */
     protected $position;
 
 
@@ -234,6 +250,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $phone;
+
 
     /**
      * @var string
@@ -1129,6 +1146,57 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->appendAcademicTitle = $appendAcademicTitle;
     }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity(string $city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * @param string $zip
+     */
+    public function setZip(string $zip)
+    {
+        $this->zip = $zip;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+    }
+
+
+
 
     /**
      * @return bool
