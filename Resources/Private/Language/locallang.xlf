@@ -3,10 +3,10 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address">
 		<header/>
 		<body>
-			<trans-unit id="search-text" xml:space="preserve">
-				<source>There are %1$s results for &quot;%2$s&quot;.</source>
+			<trans-unit id="msg.searchResultText" xml:space="preserve">
+				<source>There are %1$s results for %2$s.</source>
 			</trans-unit>
-			<trans-unit id="search-start" xml:space="preserve">
+			<trans-unit id="btn.searchStart" xml:space="preserve">
 				<source>Start search</source>
 			</trans-unit>
 			<trans-unit id="msg.searchNoResult" xml:space="preserve">

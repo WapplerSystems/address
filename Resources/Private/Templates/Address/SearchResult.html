@@ -11,7 +11,7 @@
 			<f:if condition="{addresses}">
 				<f:then>
 					<div class="alert alert-info">
-						<f:translate key="search-text" arguments="{0:'{f:count(subject:addresses)}',1:search.subject}" />
+						<f:translate key="msg.searchResultText" arguments="{0:'{f:count(subject:addresses)}',1:search.subject}" />
 					</div>
 					<f:for each="{addresses}" as="addressItem">
 						<f:render partial="List/{f:if(condition:settings.templateLayout,then:settings.templateLayout,else:'Default')}" arguments="{addressItem: addressItem, settings:settings, className:className, view:'list'}" />
