@@ -58,12 +58,13 @@ $boot = function () {
         Add TSconfig
     =========================================================================== */
     // For linkvalidator
+    /*
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
     }
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('guide')) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('  <INCLUDE_TYPOSCRIPT: source="DIR:EXT:address/Configuration/TSconfig/Tours" extensions="ts">');
-    }
+    }*/
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
         '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/ContentElementWizard.txt">
