@@ -46,7 +46,7 @@ $tx_address_domain_model_address = [
         'thumbnail' => 'media',
     ],
     'interface' => [
-        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,title,teaser,bodytext,datetime,archive,categories,related,type,keywords,media,url,is_top_address,related_files,related_links,content_elements,tags,path_segment,alternative_title,related_files,detail_pid'
+        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,title,teaser,bodytext,archive,categories,related,type,keywords,media,url,istopaddress,related_files,related_links,content_elements,tags,path_segment,alternative_title,related_files,detail_pid'
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -386,15 +386,6 @@ $tx_address_domain_model_address = [
                 ],
             ]
         ],
-        'datetime' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.datetime',
-            'config' => [
-                'type' => 'input',
-                'size' => 16,
-                'eval' => 'datetime' . ($configuration->getDateTimeRequired() ? ',required' : ''),
-            ]
-        ],
         'archive' => [
             'exclude' => true,
             'l10n_display' => 'defaultAsReadonly',
@@ -553,7 +544,7 @@ $tx_address_domain_model_address = [
                 'softref' => 'typolink'
             ]
         ],
-        'is_top_address' => [
+        'istopaddress' => [
             'exclude' => true,
             'l10n_mode' => 'exclude',
             'l10n_display' => 'defaultAsReadonly',
@@ -935,7 +926,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'archive,',
         ],
         'paletteCore' => [
-            'showitem' => 'type, sys_language_uid, hidden, is_top_address,',
+            'showitem' => 'type, sys_language_uid, hidden, istopaddress,',
         ],
         'paletteContact' => [
             'showitem' => 'phone, fax, --linebreak--, email, direct_contact,',

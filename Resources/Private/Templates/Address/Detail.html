@@ -29,7 +29,7 @@
 				<f:render partial="Detail/Opengraph" arguments="{addressItem: addressItem, settings:settings}" />
 			</ad:format.nothing>
 			<f:if condition="{settings.detail.showPrevNext}">
-				<ad:simplePrevNext pidList="{addressItem.pid}" address="{addressItem}" as="paginated" sortField="datetime">
+				<ad:simplePrevNext pidList="{addressItem.pid}" address="{addressItem}" as="paginated" >
 					<f:if condition="{paginated}">
 						<ul class="pager">
 							<f:if condition="{paginated.prev}">

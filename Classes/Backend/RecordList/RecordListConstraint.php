@@ -70,25 +70,6 @@ class RecordListConstraint
             }
         }
 
-        // time constraint low
-        if (isset($arguments['timeRestriction']) && !empty($arguments['timeRestriction'])) {
-            try {
-                $limit = ConstraintHelper::getTimeRestrictionLow($arguments['timeRestriction']);
-                $parameters['where'][] = 'datetime >=' . $limit;
-            } catch (\Exception $e) {
-                // @todo add flash message
-            }
-        }
-
-        // time constraint high
-        if (isset($arguments['timeRestrictionHigh']) && !empty($arguments['timeRestrictionHigh'])) {
-            try {
-                $limit = ConstraintHelper::getTimeRestrictionHigh($arguments['timeRestrictionHigh']);
-                $parameters['where'][] = 'datetime <=' . $limit;
-            } catch (\Exception $e) {
-                // @todo add flash message
-            }
-        }
 
         // categories
         if (isset($arguments['selectedCategories']) && is_array($arguments['selectedCategories'])) {

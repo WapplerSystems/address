@@ -55,7 +55,7 @@ CREATE TABLE tx_address_domain_model_address (
 	latitude decimal(8,6) DEFAULT NULL,
 	longitude decimal(9,6) DEFAULT NULL,
   gender varchar(1) DEFAULT '' NOT NULL,
-	is_top_address tinyint(4) DEFAULT '0' NOT NULL,
+	istopaddress tinyint(4) DEFAULT '0' NOT NULL,
 	archive int(11) DEFAULT '0' NOT NULL,
 	direct_contact tinyint(1) DEFAULT '0' NOT NULL,
 	url text,
@@ -213,7 +213,7 @@ CREATE TABLE tx_address_domain_model_address_tag_mm (
 # Table structure for table 'be_users'
 #
 CREATE TABLE be_users (
-	tx_address_categorymounts varchar(255) DEFAULT '' NOT NULL,
+	tx_address_categorymounts varchar(255) DEFAULT '' NOT NULL
 );
 
 #

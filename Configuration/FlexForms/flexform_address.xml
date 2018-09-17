@@ -84,6 +84,10 @@
 										<numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.title</numIndex>
 										<numIndex index="1">title</numIndex>
 									</numIndex>
+									<numIndex index="5">
+										<numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.manual</numIndex>
+										<numIndex index="1">sorting</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>

@@ -81,6 +81,9 @@
 			<trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
 				<source>Title</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
+				<source>Manuell</source>
+			</trans-unit>
 			<trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
 			</trans-unit>

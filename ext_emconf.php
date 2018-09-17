@@ -19,7 +19,7 @@ $EM_CONF[$_EXTKEY] = [
   'state' => 'stable',
   'clearCacheOnLoad' => 1,
   'author_company' => 'WapplerSystems',
-  'version' => '0.1.0',
+  'version' => '0.1.1',
   'constraints' => 
   [
     'depends' => 

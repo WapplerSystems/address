@@ -88,12 +88,9 @@ class ItemsProcFunc
                 $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
                 // check for selected action
                 if (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-                } elseif (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Tag')) {
-                    $this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
+                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByCategory'];
                 } else {
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'];
+                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByAddress'];
                 }
             }
         }
@@ -106,7 +103,7 @@ class ItemsProcFunc
             array_push($config['items'], ['', '']);
 
             $newItemArray = GeneralUtility::trimExplode(',', $newItems, true);
-            $languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
+            $languageKey = 'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
             foreach ($newItemArray as $item) {
                 // label: if empty, key (=field) is used
                 $label = $this->getLanguageService()->sL($languageKey . $item);
@@ -142,24 +139,24 @@ class ItemsProcFunc
      */
     public function user_switchableControllerActions(array &$config)
     {
-        if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
-            $configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
+        if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['switchableControllerActions']['list'])) {
+            $configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['switchableControllerActions']['list'];
             switch ($configuration) {
                 case 1:
-                    $this->removeActionFromList($config, 'News->list');
+                    $this->removeActionFromList($config, 'Address->list');
                     break;
                 case 2:
-                    $this->removeActionFromList($config, 'News->list;News->detail');
+                    $this->removeActionFromList($config, 'Address->list;Address->detail');
                     break;
                 default:
             }
         }
 
         // Add additional actions
-        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
-            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
+        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['switchableControllerActions']['newItems'])
+            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['switchableControllerActions']['newItems'])
         ) {
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['switchableControllerActions']['newItems'] as $key => $label) {
                 array_push($config['items'], [$this->getLanguageService()->sL($label), $key, '']);
             }
         }
@@ -204,18 +201,18 @@ class ItemsProcFunc
 
         // if any language is available
         if (count($languages) > 0) {
-            $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">
+            $html = '<select name="data[addressoverlay]" id="field_addressoverlay" class="form-control">
 						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value')) . '</option>';
 
             foreach ($languages as $language) {
-                $selected = ((int)$GLOBALS['BE_USER']->uc['newsoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';
+                $selected = ((int)$GLOBALS['BE_USER']->uc['addressoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';
                 $html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
             }
 
             $html .= '</select>';
         } else {
             $html .= htmlspecialchars($this->getLanguageService()->sL(
-                'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available')
+                'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available')
             );
         }
 
