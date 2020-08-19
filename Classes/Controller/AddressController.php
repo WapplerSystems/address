@@ -17,7 +17,6 @@ use WapplerSystems\Address\Utility\Cache;
 use WapplerSystems\Address\Utility\Page;
 use WapplerSystems\Address\Utility\TypoScript;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
 /**
  * Controller of address records
@@ -32,19 +31,16 @@ class AddressController extends AddressBaseController
 
     /**
      * @var \WapplerSystems\Address\Domain\Repository\AddressRepository
-     * @inject
      */
     protected $addressRepository;
 
     /**
      * @var \WapplerSystems\Address\Domain\Repository\CategoryRepository
-     * @inject
      */
     protected $categoryRepository;
 
     /**
      * @var \WapplerSystems\Address\Domain\Repository\TagRepository
-     * @inject
      */
     protected $tagRepository;
 
@@ -53,6 +49,29 @@ class AddressController extends AddressBaseController
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
 
 
+    /**
+     * @param \WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository
+     */
+    public function injectAddressRepository(\WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository)
+    {
+        $this->addressRepository = $addressRepository;
+    }
+
+    /**
+     * @param \WapplerSystems\Address\Domain\Repository\CategoryRepository $categoryRepository
+     */
+    public function injectCategoryRepository(\WapplerSystems\Address\Domain\Repository\CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
+    /**
+     * @param \WapplerSystems\Address\Domain\Repository\TagRepository $tagRepository
+     */
+    public function injectTagRepository(\WapplerSystems\Address\Domain\Repository\TagRepository $tagRepository)
+    {
+        $this->tagRepository = $tagRepository;
+    }
 
     /**
      * Initializes the current action

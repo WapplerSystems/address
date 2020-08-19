@@ -291,25 +291,3 @@ TYPO3:
                             20:
                               value: 'html'
                               label: 'formEditor.elements.Form.finisher.EmailToSender.editor.format.2'
-
-
-                        100:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.header.label'
-                        200:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.subject.label'
-                        500:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.senderAddress.label'
-                          fieldExplanationText: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.senderAddress.fieldExplanationText'
-                        600:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.senderName.label'
-                          fieldExplanationText: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.senderName.fieldExplanationText'
-                        700:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.replyToAddress.label'
-                        800:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.carbonCopyAddress.label'
-                        900:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.blindCarbonCopyAddress.label'
-                        1000:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.format.label'
-                        1100:
-                          label: 'formEditor.elements.Form.finisher.EmailToReceiver.editor.attachUploads.label'

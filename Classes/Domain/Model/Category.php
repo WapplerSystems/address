@@ -8,6 +8,9 @@ namespace WapplerSystems\Address\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+
+
 /**
  * Category Model
  */

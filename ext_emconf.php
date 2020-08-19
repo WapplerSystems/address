@@ -11,28 +11,22 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-  'title' => 'Address list',
-  'description' => 'Address extension, based on extbase & fluid.',
-  'category' => 'fe',
-  'author' => 'Sven Wappler',
-  'author_email' => 'typo3YYYY@wappler.systems',
-  'state' => 'stable',
-  'clearCacheOnLoad' => 1,
-  'author_company' => 'WapplerSystems',
-  'version' => '0.1.1',
-  'constraints' => 
-  [
-    'depends' => 
-    [
-      'typo3' => '8.7.1-8.7.99',
+    'title' => 'Address list',
+    'description' => 'Address extension, based on extbase & fluid.',
+    'category' => 'fe',
+    'author' => 'Sven Wappler',
+    'author_email' => 'typo3YYYY@wappler.systems',
+    'state' => 'stable',
+    'clearCacheOnLoad' => 1,
+    'author_company' => 'WapplerSystems',
+    'version' => '0.2.0',
+    'constraints' => [
+        'depends' => [
+            'typo3' => '9.5.0-10.6.99',
+        ],
+        'conflicts' => [],
+        'suggests' => [],
     ],
-    'conflicts' => 
-    [
-    ],
-    'suggests' => 
-    [
-    ],
-  ],
-  'createDirs' => NULL,
-  'clearcacheonload' => true,
+    'createDirs' => NULL,
+    'clearcacheonload' => true,
 ];

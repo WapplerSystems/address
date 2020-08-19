@@ -10,6 +10,9 @@ namespace WapplerSystems\Address\Domain\Model;
  */
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
+
 
 /**
  * Address model

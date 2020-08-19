@@ -42,17 +42,6 @@ $boot = function () {
         'className' => \WapplerSystems\Address\Xclass\InlineRecordContainerForAddress::class,
     ];
 
-    /* ===========================================================================
-        Custom cache, done with the caching framework
-    =========================================================================== */
-    if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_address_category'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_address_category'] = [];
-    }
-    // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
-    // and overrides the default variable frontend of 4.6
-    if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_address_category']['frontend'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_address_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\StringFrontend::class;
-    }
 
     /* ===========================================================================
         Add TSconfig
@@ -69,6 +58,11 @@ $boot = function () {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
         '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/ContentElementWizard.txt">
     ');
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/Page/config.tsconfig">
+    ');
+
 
     /* ===========================================================================
         Hooks
