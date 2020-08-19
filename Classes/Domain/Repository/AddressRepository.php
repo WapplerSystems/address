@@ -8,16 +8,17 @@ namespace WapplerSystems\Address\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Statement;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 use WapplerSystems\Address\Map\Encoder;
 use WapplerSystems\Address\Service\CategoryService;
 use WapplerSystems\Address\Utility\Validation;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Address repository with all the callable functionality
@@ -141,7 +142,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
         }
 
         // storage page
-        if ($demand->getStoragePage() !== 0) {
+        if ($demand->getStoragePage() !== '') {
             $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
             $constraints['pid'] = $query->in('pid', $pidList);
         }
@@ -179,12 +180,19 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
         // Hide id list
         $hideIdList = $demand->getHideIdList();
         if ($hideIdList) {
-            $constraints['excludeAlreadyDisplayedAddress'] = $query->logicalNot(
+            $constraints['hideIdInList'] = $query->logicalNot(
                 $query->in(
                     'uid',
                     GeneralUtility::intExplode(',', $hideIdList)
                 )
             );
+        }
+
+        // Clean not used constraints
+        foreach ($constraints as $key => $value) {
+            if (null === $value) {
+                unset($constraints[$key]);
+            }
         }
 
         // Clean not used constraints
@@ -237,20 +245,28 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      *
      * @param string $importSource import source
      * @param int $importId import id
-     * @return \WapplerSystems\Address\Domain\Model\Address
+     * @param bool $asArray return result as array
+     * @return \WapplerSystems\Address\Domain\Model\Address|array
      */
-    public function findOneByImportSourceAndImportId($importSource, $importId)
+    public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
         $query->getQuerySettings()->setIgnoreEnableFields(true);
 
-        return $query->matching(
+        $result = $query->matching(
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute()->getFirst();
+            ))->execute($asArray);
+        if ($asArray) {
+            if (isset($result[0])) {
+                return $result[0];
+            }
+            return [];
+        }
+        return $result->getFirst();
     }
 
     /**
@@ -364,7 +380,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
                 $statement->execute();
                 $addressUids = $statement->fetchAll();
 
-                $uids = array();
+                $uids = [];
                 foreach ($addressUids as $result) {
                     $uids[] = $result['uid'];
                 }

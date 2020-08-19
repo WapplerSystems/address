@@ -11,12 +11,6 @@ config.tx_extbase.persistence.classes {
     WapplerSystems\Address\Domain\Model\TtContent {
         mapping {
             tableName = tt_content
-            columns {
-                altText.mapOnProperty = altText
-                titleText.mapOnProperty = titleText
-                colPos.mapOnProperty = colPos
-                CType.mapOnProperty = CType
-            }
         }
     }
 

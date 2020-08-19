@@ -8,8 +8,10 @@ namespace WapplerSystems\Address\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\Category;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use WapplerSystems\Address\Domain\Model\Address;
 
 /**
@@ -18,7 +20,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  *
  *
  */
-class CategoryNamesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class CategoryNamesViewHelper extends AbstractViewHelper
 {
 
     /**

@@ -7,7 +7,10 @@ namespace WapplerSystems\Address\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use WapplerSystems\Address\Domain\Model\Address;
@@ -16,7 +19,6 @@ use WapplerSystems\Address\Domain\Model\Dto\Search;
 use WapplerSystems\Address\Utility\Cache;
 use WapplerSystems\Address\Utility\Page;
 use WapplerSystems\Address\Utility\TypoScript;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Controller of address records
@@ -94,6 +96,8 @@ class AddressController extends AddressBaseController
                 $cacheTagsSet = true;
             }
         }
+
+        $this->categoryRepository->setRespectSysLanguageInFindInList((bool)$this->settings['respectSysLanguageInFindInList']);
     }
 
     /**
@@ -430,7 +434,7 @@ class AddressController extends AddressBaseController
         if ($this->arguments->hasArgument('search')) {
             $propertyMappingConfiguration = $this->arguments['search']->getPropertyMappingConfiguration();
             $propertyMappingConfiguration->allowAllProperties();
-            $propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+            $propertyMappingConfiguration->setTypeConverterOption(PersistentObjectConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         }
     }
 
@@ -464,6 +468,7 @@ class AddressController extends AddressBaseController
         }
 
         // Use stdWrap for given defined settings
+        /*
         if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
             $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
@@ -476,7 +481,7 @@ class AddressController extends AddressBaseController
                     );
                 }
             }
-        }
+        }*/
 
         // start override
         if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {

@@ -8,10 +8,11 @@ namespace WapplerSystems\Address\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use WapplerSystems\Address\Domain\Model\Address;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use WapplerSystems\Address\Domain\Model\Address;
 
 /**
  * ViewHelper to exclude address items in other plugins
@@ -26,7 +27,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * </output>
  *
  */
-class ExcludeDisplayedAddressViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper implements CompilableInterface
+class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 

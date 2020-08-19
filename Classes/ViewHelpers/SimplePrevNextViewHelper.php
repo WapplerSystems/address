@@ -8,8 +8,10 @@ namespace WapplerSystems\Address\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use WapplerSystems\Address\Domain\Model\Address;
+
 use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use WapplerSystems\Address\Domain\Model\Address;
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -48,7 +50,7 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
  * </output>
  *
  */
-class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class SimplePrevNextViewHelper extends AbstractViewHelper
 {
 
     /** @var \TYPO3\CMS\Core\Database\DatabaseConnection */

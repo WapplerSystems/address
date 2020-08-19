@@ -8,8 +8,10 @@ namespace WapplerSystems\Address\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
  * ViewHelper to render meta tags
@@ -30,7 +32,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <meta name="keywords" content="address 1, address 2" />
  * </output>
  */
-class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class MetaTagViewHelper extends AbstractTagBasedViewHelper
 {
 
     /**

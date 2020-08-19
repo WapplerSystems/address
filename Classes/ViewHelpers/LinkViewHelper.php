@@ -8,10 +8,12 @@ namespace WapplerSystems\Address\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use WapplerSystems\Address\Domain\Model\Address;
+
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use WapplerSystems\Address\Domain\Model\Address;
 
 /**
  * ViewHelper to render links from address records to detail view or page
@@ -44,7 +46,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * </output>
  *
  */
-class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class LinkViewHelper extends AbstractTagBasedViewHelper
 {
 
     /**

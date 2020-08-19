@@ -2,6 +2,8 @@
 
 namespace WapplerSystems\Address\ViewHelpers\Widget;
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /**
  * This file is part of the "address" Extension for TYPO3 CMS.
  *
@@ -41,21 +43,25 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
     }
 
     /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('objects', QueryResultInterface::class, 'Objects to auto-complete', true);
+        $this->registerArgument('as', 'string', 'Property to fill', true);
+        $this->registerArgument('configuration', 'array', 'Configuration', false, ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true]);
+        $this->registerArgument('initial', 'array', 'Initial configuration', false, []);
+    }
+
+    /**
      * Render everything
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
-     * @param string $as
-     * @param mixed $configuration
-     * @param array $initial
      * @internal param array $initial
      * @return string
      */
-    public function render(
-        \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects,
-        $as,
-        $configuration = ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true],
-        $initial = []
-    ) {
+    public function render()
+    {
         return $this->initiateSubRequest();
     }
 }

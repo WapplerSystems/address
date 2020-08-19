@@ -8,12 +8,15 @@ namespace WapplerSystems\Address\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use WapplerSystems\Address\Domain\Model\Address;
+
+use Bitmotion\NawSecuredl\Core\ObjectManager;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\ImageService;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use WapplerSystems\Address\Domain\Model\Address;
 
 class RenderMediaViewHelper extends AbstractViewHelper
 {
@@ -64,7 +67,8 @@ class RenderMediaViewHelper extends AbstractViewHelper
      */
     private function renderImage($image)
     {
-        $imageService = $this->objectManager->get(ImageService::class);
+        $objManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $imageService = $objManager->get(ImageService::class);
 
         $crop = $image->getProperty('crop');
         $processingInstructions = [
