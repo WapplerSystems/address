@@ -11,14 +11,13 @@ namespace WapplerSystems\Address\ViewHelpers;
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
  * ViewHelper to render meta tags
  *
  * # Example: Basic Example: Address title as og:title meta tag
  * <code>
- * <n:metaTag property="og:title" content="{addressItem.title}" />
+ * <ad:metaTag property="og:title" content="{addressItem.title}" />
  * </code>
  * <output>
  * <meta property="og:title" content="TYPO3 is awesome" />
@@ -26,13 +25,32 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
  *
  * # Example: Force the attribute "name"
  * <code>
- * <n:metaTag name="keywords" content="{addressItem.keywords}" />
+ * <ad:metaTag name="keywords" content="{addressItem.keywords}" />
  * </code>
  * <output>
  * <meta name="keywords" content="address 1, address 2" />
  * </output>
  */
-class MetaTagViewHelper extends AbstractTagBasedViewHelper
+/**
+ * ViewHelper to render meta tags
+ *
+ * # Example: Basic Example: News title as og:title meta tag
+ * <code>
+ * <ad:metaTag property="og:title" content="{newsItem.title}" />
+ * </code>
+ * <output>
+ * <meta property="og:title" content="TYPO3 is awesome" />
+ * </output>
+ *
+ * # Example: Force the attribute "name"
+ * <code>
+ * <ad:metaTag name="keywords" content="{newsItem.keywords}" />
+ * </code>
+ * <output>
+ * <meta name="keywords" content="news 1, news 2" />
+ * </output>
+ */
+class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**
@@ -49,16 +67,29 @@ class MetaTagViewHelper extends AbstractTagBasedViewHelper
         $this->registerTagAttribute('property', 'string', 'Property of meta tag');
         $this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
         $this->registerTagAttribute('content', 'string', 'Content of meta tag');
+        $this->registerArgument('useCurrentDomain', 'boolean', 'Use current domain', false, false);
+        $this->registerArgument('forceAbsoluteUrl', 'boolean', 'Force absolut domain', false, false);
     }
 
     /**
      * Renders a meta tag
-     *
-     * @param bool $useCurrentDomain If set, current domain is used
-     * @param bool $forceAbsoluteUrl If set, absolute url is forced
+
      */
-    public function render($useCurrentDomain = false, $forceAbsoluteUrl = false)
+    public function render()
     {
+        // Skip if current record is part of tt_content CType shortcut
+        if (!empty($GLOBALS['TSFE']->recordRegister)
+            && is_array($GLOBALS['TSFE']->recordRegister)
+            && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
+            && !empty($GLOBALS['TSFE']->currentRecord)
+            && strpos($GLOBALS['TSFE']->currentRecord, 'tx_news_domain_model_news:') !== false
+        ) {
+            return;
+        }
+
+        $useCurrentDomain = $this->arguments['useCurrentDomain'];
+        $forceAbsoluteUrl = $this->arguments['forceAbsoluteUrl'];
+
         // set current domain
         if ($useCurrentDomain) {
             $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
@@ -66,8 +97,8 @@ class MetaTagViewHelper extends AbstractTagBasedViewHelper
 
         // prepend current domain
         if ($forceAbsoluteUrl) {
-            $path = $this->arguments['content'];
-            if (!GeneralUtility::isFirstPartOfStr($path, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
+            $parsedPath = parse_url($this->arguments['content']);
+            if (is_array($parsedPath) && !isset($parsedPath['host'])) {
                 $this->tag->addAttribute('content',
                     rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
                     . '/'
@@ -78,7 +109,11 @@ class MetaTagViewHelper extends AbstractTagBasedViewHelper
 
         if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
             $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-            $pageRenderer->addMetaTag($this->tag->render());
+            if ($this->tag->hasAttribute('property')) {
+                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('property'), $this->tag->getAttribute('content'));
+            } elseif ($this->tag->hasAttribute('name')) {
+                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('name'), $this->tag->getAttribute('content'));
+            }
         }
     }
 }

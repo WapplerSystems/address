@@ -19,7 +19,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * # Example: Basic Example
  * # Description: Render the content of the VH as page title
  * <code>
- *    <n:titleTag>{addressItem.title}</n:titleTag>
+ *    <ad:titleTag>{addressItem.title}</n:titleTag>
  * </code>
  * <output>
  *    <title>TYPO3 is awesome</title>

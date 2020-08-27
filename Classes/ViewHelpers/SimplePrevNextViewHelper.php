@@ -20,19 +20,19 @@ use WapplerSystems\Address\Domain\Model\Address;
  * # Example: Basic example
  * <code>
  *
- * <n:simplePrevNext pidList="{addressItem.pid}" address="{addressItem}" as="paginated" sortField="datetime">
+ * <ad:simplePrevNext pidList="{addressItem.pid}" address="{addressItem}" as="paginated" sortField="datetime">
  *    <f:if condition="{paginated}">
  *        <ul class="prev-next">
  *            <f:if condition="{paginated.prev}">
  *                <li class="previous">
- *                    <n:link addressItem="{paginated.prev}" settings="{settings}">
+ *                    <ad:link addressItem="{paginated.prev}" settings="{settings}">
  *                        {paginated.prev.title}
  *                    </n:link>
  *                </li>
  *            </f:if>
  *            <f:if condition="{paginated.next}">
  *                <li class="next">
- *                    <n:link addressItem="{paginated.next}" settings="{settings}" class="next">
+ *                    <ad:link addressItem="{paginated.next}" settings="{settings}" class="next">
  *                        {paginated.next.title}
  *                    </n:link>
  *                </li>

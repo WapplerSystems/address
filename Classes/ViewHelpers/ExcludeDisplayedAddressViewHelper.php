@@ -20,7 +20,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  * # Example: Basic example
  *
  * <code>
- * <n:excludeDisplayedAddress addressItem="{addressItem}" />
+ * <ad:excludeDisplayedAddress addressItem="{addressItem}" />
  * </code>
  * <output>
  * None

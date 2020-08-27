@@ -2,6 +2,8 @@
 
 namespace WapplerSystems\Address\ViewHelpers\Format;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * This file is part of the "address" Extension for TYPO3 CMS.
  *
@@ -14,8 +16,8 @@ namespace WapplerSystems\Address\ViewHelpers\Format;
  *
  * # Example: Basic example
  * <code>
- * <n:format.nothing>
- *    <n:titleTag>{addressItem.title}</n:titleTag>
+ * <ad:format.nothing>
+ *    <ad:titleTag>{addressItem.title}</n:titleTag>
  *    Fobar
  * </n:format.nothing>
  * </code>
@@ -24,7 +26,7 @@ namespace WapplerSystems\Address\ViewHelpers\Format;
  * </output>
  *
  */
-class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class NothingViewHelper extends AbstractViewHelper
 {
     /**
      * @var bool

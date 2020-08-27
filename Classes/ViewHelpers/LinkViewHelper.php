@@ -20,7 +20,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  *
  * # Example: Basic link
  * <code>
- * <n:link addressItem="{addressItem}" settings="{settings}">
+ * <ad:link addressItem="{addressItem}" settings="{settings}">
  *    {addressItem.title}
  * </n:link>
  * </code>
@@ -31,7 +31,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  * # Example: Set an additional attribute
  * # Description: Available: class, dir, id, lang, style, title, accesskey, tabindex, onclick
  * <code>
- * <n:link addressItem="{addressItem}" settings="{settings}" class="a-link-class">fo</n:link>
+ * <ad:link addressItem="{addressItem}" settings="{settings}" class="a-link-class">fo</n:link>
  * </code>
  * <output>
  * <a href="link" class="a-link-class">fo</n:link>
@@ -39,7 +39,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  *
  * # Example: Return the link only
  * <code>
- * <n:link addressItem="{addressItem}" settings="{settings}" uriOnly="1" />
+ * <ad:link addressItem="{addressItem}" settings="{settings}" uriOnly="1" />
  * </code>
  * <output>
  * The uri is returned
@@ -56,7 +56,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
     /**
      * @var \WapplerSystems\Address\Service\SettingsService
-     * @inject
      */
     protected $pluginSettingsService;
 
@@ -71,6 +70,14 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
     /** @var $cObj ContentObjectRenderer */
     protected $cObj;
+
+    /**
+     * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     */
+    public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
+    {
+        $this->pluginSettingsService = $pluginSettingsService;
+    }
 
 
     public function initializeArguments()
