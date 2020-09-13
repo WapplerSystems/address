@@ -355,6 +355,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
 
         if ($longitude > 0 && $latitude > 0) {
 
+
             /** @var ConnectionPool $connectionPool */
             $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
             $connection = $connectionPool->getConnectionForTable('tx_address_domain_model_address');
@@ -363,17 +364,23 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
             $lon = $longitude / 180 * M_PI;
             $lat = $latitude / 180 * M_PI;
 
-            /** @var Statement $statement */
-            $statement = $this->objectManager->get(
-                Statement::class,
-                'SELECT uid, (
+            $sql = 'SELECT uid, (
 			' . $earthRadius . ' * SQRT(2*(1-cos(RADIANS(latitude)) *
 			 cos(' . $lat . ') * (sin(RADIANS(longitude)) *
 			 sin(' . $lon . ') + cos(RADIANS(longitude)) *
 			 cos(' . $lon . ')) - sin(RADIANS(latitude)) * sin(' . $lat . ')))) AS Distance 
 			 FROM tx_address_domain_model_address ' .
-                ' WHERE longitude <> 0 Having Distance <= ' . $searchDistance .
-                ' ORDER BY Distance ASC',
+                ' WHERE longitude <> 0 ';
+            /*
+            if ($category !== null) {
+                $sql .= ' JOIN sys_category_record_mm ON sys_category_record_mm.uid_foreign = tx_address_domain_model_address.uid WHERE sys_category_record_mm.tablenames = "tx_address_domain_model_address" AND sys_category_record_mm.fieldname = "categories" AND sys_category_record_mm.uid_local = '.$category->getUid();
+            }*/
+            $sql .= ' Having Distance <= ' . $searchDistance . ' ORDER BY Distance ASC';
+
+            /** @var Statement $statement */
+            $statement = $this->objectManager->get(
+                Statement::class,
+                $sql,
                 $connection
             );
             try {
