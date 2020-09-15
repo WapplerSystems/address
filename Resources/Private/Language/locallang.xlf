@@ -13,7 +13,7 @@
 				<source>No address found.</source>
 			</trans-unit>
 			<trans-unit id="lbl.searchSubject" xml:space="preserve">
-				<source>Text</source>
+				<source>Keyword</source>
 			</trans-unit>
 			<trans-unit id="search-minimumDate" xml:space="preserve">
 				<source>Minimum Date</source>
