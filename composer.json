@@ -1,5 +1,5 @@
 {
-  "name": "svewap/address",
+  "name": "wapplersystems/address",
   "type": "typo3-cms-extension",
   "description": "Address extension, based on extbase & fluid for TYPO3 CMS",
   "keywords": [
