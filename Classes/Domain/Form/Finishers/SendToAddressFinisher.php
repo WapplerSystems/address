@@ -34,9 +34,20 @@ class SendToAddressFinisher extends AbstractFinisher
 
     /**
      * @var \WapplerSystems\Address\Domain\Repository\AddressRepository
-     * @inject
      */
     protected $addressRepository;
+
+
+    /**
+     * Inject the category repository
+     *
+     * @param \WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository
+     */
+    public function injectCategoryRepository(\WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository)
+    {
+        $this->addressRepository = $addressRepository;
+    }
+
 
     /**
      * @var array
