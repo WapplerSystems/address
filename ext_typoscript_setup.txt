@@ -35,7 +35,6 @@ module.tx_form {
     settings {
         yamlConfigurations {
             90 = EXT:address/Configuration/Yaml/BaseSetup.yaml
-            91 = EXT:address/Configuration/Yaml/Forms/Contact.yaml
         }
     }
 }
