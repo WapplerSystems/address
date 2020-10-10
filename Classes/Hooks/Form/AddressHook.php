@@ -29,32 +29,32 @@ class AddressHook
      * @param \TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime
      * @param \TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface $renderable
      * @return void
+     * @throws RenderingException
+     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
     public function beforeRendering(\TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime, \TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface $renderable)
     {
-
         $param = GeneralUtility::_GP('tx_address_pi1');
 
-        if (!is_array($param)) return;
+        $addressUid = $formRuntime->getFormState()->getFormValue('addressUid') ?? $param['address'] ?? null;
+
+        if ($addressUid === null) return;
 
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $repository = $objectManager->get(AddressRepository::class);
 
-        $address = $repository->findByUid((int)$param['address']);
+        $address = $repository->findByUid((int)$addressUid);
         if (!$address) {
             throw new RenderingException('Address not found.', 13273242424);
         }
 
-        if (is_array($param) && $renderable->getIdentifier() === 'addressUid' && (int)$param['address'] > 0) {
-            $formRuntime->getFormState()->setFormValue('addressUid',(int)$param['address']);
+        if (is_array($param) && $renderable->getIdentifier() === 'addressUid') {
+            $formRuntime->getFormState()->setFormValue('addressUid',(int)$addressUid);
         }
 
-        if (is_array($param) && $renderable->getIdentifier() === 'contactlabel' && (int)$param['address'] > 0) {
-
+        if (is_array($param) && $renderable->getIdentifier() === 'contactlabel') {
             $formRuntime->getFormState()->setFormValue('contactlabel',$address->getName());
-
         }
-
 
     }
 

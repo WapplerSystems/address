@@ -4,6 +4,12 @@
 
 	<h3><f:translate key="LLL:EXT:address/Resources/Private/Language/locallang.xml:lbl.contactTo">Contact to</f:translate> <ad:form.value property="{element.identifier}" /></h3>
 
+	<f:form.hidden
+			property="{element.identifier}"
+			id="{element.uniqueIdentifier}"
+			class="{element.properties.elementClassAttribute}"
+			additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+	/>
 
 </formvh:renderRenderable>
 </html>
