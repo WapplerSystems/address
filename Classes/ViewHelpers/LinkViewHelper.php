@@ -72,9 +72,9 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     protected $cObj;
 
     /**
-     * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @param \WapplerSystems\Address\Service\SettingsService $pluginSettingsService
      */
-    public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
+    public function injectSettingsService(\WapplerSystems\Address\Service\SettingsService $pluginSettingsService)
     {
         $this->pluginSettingsService = $pluginSettingsService;
     }
