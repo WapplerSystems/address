@@ -1,5 +1,5 @@
 #
-# Table structure for table 'tt_address'
+# Table structure for table 'tx_address_domain_model_address'
 #
 CREATE TABLE tx_address_domain_model_address
 (

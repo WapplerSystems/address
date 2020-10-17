@@ -118,7 +118,7 @@ class AddressController extends AddressBaseController
         $demand = $this->objectManager->get($class, $settings);
         if (!$demand instanceof AddressDemand) {
             throw new \UnexpectedValueException(
-                sprintf('The demand object must be an instance of \WapplerSystems\\Address\\Domain\\Model\\Dto\\AddressDemand, but %s given!',
+                sprintf('The demand object must be an instance of \\WapplerSystems\\Address\\Domain\\Model\\Dto\\AddressDemand, but %s given!',
                     $class),
                 1423157953);
         }
@@ -231,7 +231,6 @@ class AddressController extends AddressBaseController
      * @param Address $address address item
      * @param int $currentPage current page for optional pagination
      * @return void
-     * @throws \UnexpectedValueException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
