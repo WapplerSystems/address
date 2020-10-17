@@ -38,19 +38,19 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Category>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $categories;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $related;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedFrom;
 
@@ -58,13 +58,13 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal related files
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedFiles;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedLinks;
 
@@ -92,7 +92,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal media items
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $media;
 
@@ -115,13 +115,13 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\TtContent>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $contentElements;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Tag>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $tags;
 

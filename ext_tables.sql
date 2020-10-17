@@ -66,7 +66,7 @@ CREATE TABLE tx_address_domain_model_address
     teaser                text,
     bodytext              text,
     tags                  int(11)          DEFAULT '0' NOT NULL,
-    detail_pid            int(11)          DEFAULT NULL,
+    detail_pid            int(11)          DEFAULT '0' NOT NULL,
 
     related_links         tinytext,
     related               int(11)          DEFAULT '0' NOT NULL,

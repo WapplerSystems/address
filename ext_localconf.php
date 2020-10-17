@@ -26,12 +26,7 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['address'] =
         \WapplerSystems\Address\Hooks\DataHandler::class;
 
-    // Hide content elements in page module for 7
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list.inc']['makeQueryArray']['address'] =
-        \WapplerSystems\Address\Hooks\Backend\RecordListQueryHook::class;
-    // Hide content elements in page module for 8
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Recordlist\\RecordList\\DatabaseRecordList']['buildQueryParameters'][]
-        = \WapplerSystems\Address\Hooks\Backend\RecordListQueryHook8::class;
+
 
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['address'] =
@@ -43,17 +38,6 @@ $boot = function () {
     ];
 
 
-    /* ===========================================================================
-        Add TSconfig
-    =========================================================================== */
-    // For linkvalidator
-    /*
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
-    }
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('guide')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('  <INCLUDE_TYPOSCRIPT: source="DIR:EXT:address/Configuration/TSconfig/Tours" extensions="ts">');
-    }*/
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
         '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/ContentElementWizard.txt">
@@ -84,6 +68,14 @@ $boot = function () {
             'defaultLifetime' => 0,
         ]
     ];
+
+
+    if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'])) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'] = [
+            'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
+            'backend'  => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
+        ];
+    }
 
     if (class_exists(\WapplerSystems\Address\Utility\ClassLoader::class)) {
         \WapplerSystems\Address\Utility\ClassLoader::registerAutoloader();

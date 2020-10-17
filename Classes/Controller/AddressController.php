@@ -394,9 +394,9 @@ class AddressController extends AddressBaseController
 
         if ($search !== null) {
             $search->setFields($this->settings['search']['fields']);
+            $search->setSettings($this->settings);
+            $demand->setSearch($search);
         }
-        $search->setSettings($this->settings);
-        $demand->setSearch($search);
 
         $assignedValues = [
             'addresses' => $this->addressRepository->findDemanded($demand),

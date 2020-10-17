@@ -69,13 +69,13 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
 
     /**
      * @var \WapplerSystems\Address\Domain\Model\Category
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $parentcategory;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $images;
 

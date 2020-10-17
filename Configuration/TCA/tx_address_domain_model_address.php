@@ -794,17 +794,16 @@ $tx_address_domain_model_address = [
                 'type' => 'group',
                 'internal_type' => 'db',
                 'allowed' => 'pages',
-                'foreign_table' => 'pages',
-                'foreign_sortby' => 'sorting',
-                'minitems' => 0,
-                'maxitems' => 1,
                 'size' => 1,
+                'maxitems' => 1,
+                'show_thumbs' => 1,
+                'default' => 0,
                 'wizards' => [
                     'suggest' => [
                         'type' => 'suggest',
                         'default' => [
-                            'searchWholePhrase' => true,
-                        ],
+                            'searchWholePhrase' => true
+                        ]
                     ],
                 ],
             ]
