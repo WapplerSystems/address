@@ -40,7 +40,7 @@
     }
   },
   "replace": {
-    "address": "self.version",
+    "svewap/address": "self.version",
     "typo3-ter/address": "self.version"
   },
   "config": {
