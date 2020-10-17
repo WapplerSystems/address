@@ -12,7 +12,7 @@
 
 #### Installation using Composer
 
-The recommended way to install the extension is by using (Composer)[1]. In your Composer based TYPO3 project root, just do `composer require svewap/address`. 
+The recommended way to install the extension is by using (Composer)[1]. In your Composer based TYPO3 project root, just do `composer require wapplersystems/address`. 
 
 #### Installation as extension from TYPO3 Extension Repository (TER)
 
