@@ -4,7 +4,7 @@ services:
     autoconfigure: true
     public: false
 
-  news.cache:
+  address.cache:
     class: TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
     # We can not use CacheManager, as it can not be
     # injected/instantiated during ext_localconf.php loading
