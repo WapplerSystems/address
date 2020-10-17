@@ -10,8 +10,6 @@ namespace WapplerSystems\Address\Domain\Model;
  */
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
-use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
 
 
 /**
@@ -172,60 +170,50 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $email = '';
 
-
     /**
      * @var string
      */
     protected $url;
-
 
     /**
      * @var string
      */
     protected $firstName;
 
-
     /**
      * @var string
      */
     protected $lastName;
-
 
     /**
      * @var string
      */
     protected $middleName;
 
-
     /**
      * @var string
      */
     protected $academicTitle;
-
 
     /**
      * @var int
      */
     protected $appendAcademicTitle;
 
-
     /**
      * @var string
      */
     protected $title;
-
 
     /**
      * @var string
      */
     protected $address;
 
-
     /**
      * @var string
      */
     protected $building;
-
 
     /**
      * @var string
@@ -242,30 +230,20 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $country;
 
-
     /**
      * @var string
      */
     protected $position;
-
 
     /**
      * @var string
      */
     protected $phone;
 
-
     /**
      * @var string
      */
     protected $fax;
-
-
-    /**
-     * @var string
-     */
-    protected $externalurl;
-
 
     /**
      * @var int
@@ -273,11 +251,8 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $detailPid;
 
 
-
     /**
      * Initialize categories and media relation
-     *
-     * @return \WapplerSystems\Address\Domain\Model\Address
      */
     public function __construct()
     {
@@ -1068,22 +1043,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTeaser($teaser)
     {
         $this->teaser = $teaser;
-    }
-
-    /**
-     * @return string
-     */
-    public function getExternalurl()
-    {
-        return $this->externalurl;
-    }
-
-    /**
-     * @param string $externalurl
-     */
-    public function setExternalurl($externalurl)
-    {
-        $this->externalurl = $externalurl;
     }
 
     /**

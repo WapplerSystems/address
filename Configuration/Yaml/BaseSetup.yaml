@@ -194,7 +194,9 @@ TYPO3:
                   50: 'EXT:address/Resources/Private/Templates/Form/'
                 partialRootPaths:
                   50: 'EXT:address/Resources/Private/Partials/Form/'
-
+                translation:
+                  translationFiles:
+                    110: 'EXT:address/Resources/Private/Language/form.xlf'
 
               formEditor:
 

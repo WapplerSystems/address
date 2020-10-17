@@ -69,12 +69,20 @@ $boot = function () {
         ]
     ];
 
+
     if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'])) {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'] = [
             'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
             'backend'  => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
         ];
     }
+
+    if (class_exists(\WapplerSystems\Address\Utility\ClassLoader::class)) {
+        \WapplerSystems\Address\Utility\ClassLoader::registerAutoloader();
+    }
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] =
+        \WapplerSystems\Address\Utility\ClassCacheManager::class . '->reBuild';
+
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\WapplerSystems\Address\Backend\FormDataProvider\AddressRowInitializeNew::class] = [
         'depends' => [
