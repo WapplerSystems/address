@@ -100,7 +100,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal media items with showinpreview set
      *
      * @var array
-     * @transient
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
     protected $mediaPreviews;
 
@@ -108,7 +108,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal media items with showinpreview not set
      *
      * @var array
-     * @transient
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
     protected $mediaNonPreviews;
 
