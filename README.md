@@ -6,6 +6,7 @@
 - Frontend template variant based on Twitter Bootstrap (v4)
 - Circumference search / Radius search
 - Different types of records with different fields: Address, company, person
+- Flexible layouts in each plugins. Addable via TSconfig.
 
 ## Usage
 
