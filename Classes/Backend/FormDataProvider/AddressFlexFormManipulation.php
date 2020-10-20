@@ -28,7 +28,7 @@ class AddressFlexFormManipulation implements FormDataProviderInterface
             'dateField'
         ],
         'additional' => [
-            'limit', 'offset', 'hidePagination', 'topNewsFirst', 'listPid', 'list.paginate.itemsPerPage'
+            'limit', 'offset', 'hidePagination', 'topAddressFirst', 'listPid', 'list.paginate.itemsPerPage'
         ],
         'template' => [ 'cropMaxCharacters' ],
     ];

@@ -1,57 +1,38 @@
 <?php
+namespace WapplerSystems\Address\Backend\Form\Element;
 
-namespace WapplerSystems\Address\Utility;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2011 Xavier Perseguers <xavier@causal.ch>, Causal
- *  (c) 2015 Marc Hirdes <hirdes@clicsktorm.de>, clickstorm GmbH
- *  (c) 2017 Sven Wappler <typo3YYYY@wappler.systems>, WapplerSystems
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
-
-/**
- * Google map.
- *
- * @package address
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
- */
+use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Frontend\Page\PageRepository;
-use TYPO3\CMS\Core\TypoScript\ExtendedTemplateService;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-class LocationUtility {
+class MapElement extends AbstractFormElement
+{
+
 
     /**
      * Renders the Google map.
      *
-     * @param array $PA
-     * @param \TYPO3\CMS\Backend\Form\FormEngine $pObj
-     * @return string
+     * @return array
      */
-    public function render(array &$PA, $pObj) {
+    public function render() {
+        $languageService = $this->getLanguageService();
+
+        $table = $this->data['tableName'];
+        $fieldName = $this->data['fieldName'];
+        $row = $this->data['databaseRow'];
+        $parameterArray = $this->data['parameterArray'];
+        $resultArray = $this->initializeResultArray();
+
+        $itemValue = $parameterArray['itemFormElValue'];
+        $config = $parameterArray['fieldConf']['config'];
+
         $version = VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
-        $settings = $this->loadTS($PA['row']['pid']);
-        $pluginSettings = $settings['plugin.']['tx_address.']['settings.'];
+        $pluginSettings = $this->getTypoScriptSettings();
+
 
         $googleMapsLibrary = $pluginSettings['googlemaps']['javascript']['apiUrl'] ?
             htmlentities($pluginSettings['googlemaps']['javascript']['apiUrl']) :
@@ -62,12 +43,12 @@ class LocationUtility {
         }
 
         $out = [];
-        $latitude = (float)$PA['row'][$PA['parameters']['latitude']];
-        $longitude = (float)$PA['row'][$PA['parameters']['longitude']];
-        $address = $PA['row'][$PA['parameters']['address']];
-        $city = $PA['row'][$PA['parameters']['city']];
-        $country = $PA['row'][$PA['parameters']['country']];
-        $zip = $PA['row'][$PA['parameters']['zip']];
+        $latitude = (float)$row[$config['parameters']['latitude']];
+        $longitude = (float)$row[$config['parameters']['longitude']];
+        $address = $row[$config['parameters']['address']];
+        $city = $row[$config['parameters']['city']];
+        $country = $row[$config['parameters']['country']];
+        $zip = $row[$config['parameters']['zip']];
 
         $address = preg_replace("/[\n\r]/",' ',$address);
 
@@ -75,7 +56,7 @@ class LocationUtility {
         if ($city) $address .= ', '.$city;
         if ($country) $address .= ', '.$country;
 
-        $baseElementId = $PA['itemFormElID'] ?? $PA['table'] . '_map';
+        $baseElementId = $PA['itemFormElID'] ?? $table . '_map';
         $addressId = $baseElementId . '_address';
         $mapId = $baseElementId . '_map';
 
@@ -83,8 +64,8 @@ class LocationUtility {
             $latitude = 0;
             $longitude = 0;
         };
-        $dataPrefix = 'data[' . $PA['table'] . '][' . $PA['row']['uid'] . ']';
-        $controlPrefix = 'control[active][' . $PA['table'] . '][' . $PA['row']['uid'] . ']';
+        $dataPrefix = 'data[' . $table . '][' . $row['uid'] . ']';
+        $controlPrefix = 'control[active][' . $table . '][' . $row['uid'] . ']';
         $latitudeField = $dataPrefix . '[' . $PA['parameters']['latitude'] . ']';
         $latitudeControlField = $controlPrefix . '[' . $PA['parameters']['latitude'] . ']';
         $longitudeField = $dataPrefix . '[' . $PA['parameters']['longitude'] . ']';
@@ -95,22 +76,22 @@ class LocationUtility {
         $updateJs = "TBE_EDITOR.fieldChanged('%s','%s','%s','%s');";
         $updateLatitudeJs = sprintf(
             $updateJs,
-            $PA['table'],
-            $PA['row']['uid'],
+            $table,
+            $row['uid'],
             $PA['parameters']['latitude'],
             $latitudeField
         );
         $updateLongitudeJs = sprintf(
             $updateJs,
-            $PA['table'],
-            $PA['row']['uid'],
+            $table,
+            $row['uid'],
             $PA['parameters']['longitude'],
             $longitudeField
         );
         $updateAddressJs = sprintf(
             $updateJs,
-            $PA['table'],
-            $PA['row']['uid'],
+            $table,
+            $row['uid'],
             $PA['parameters']['address'],
             $addressField
         );
@@ -313,27 +294,37 @@ EOT;
         $out[] = '<div id="' . $baseElementId . '">';
         $out[] = '
             <input id="' . $addressId . '" type="textbox" value="' . $address . '" style="width:300px">
-            <input type="button" value="Update" onclick="TxAddress.codeAddress()">
+            <input type="button" value="'.$this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang.xlf:btn.update').'" onclick="TxAddress.codeAddress()">
         ';
         $out[] = '<div id="' . $mapId . '" style="height:400px;margin:10px 0;width:400px"></div>';
         $out[] = '</div>'; // id=$baseElementId
 
-        return implode('', $out);
+        $resultArray = [];
+        $resultArray['html'] = implode('', $out);
+
+        return $resultArray;
     }
 
-    protected function loadTS($pageUid) {
-        $sysPageObj = GeneralUtility::makeInstance(
-            PageRepository::class
-        );
-        $rootLine = $sysPageObj->getRootLine($pageUid);
-        $TSObj = GeneralUtility::makeInstance(
-            ExtendedTemplateService::class
-        );
-        $TSObj->tt_track = 0;
-        $TSObj->init();
-        $TSObj->runThroughTemplates($rootLine);
-        $TSObj->generateConfig();
 
-        return $TSObj->setup;
+
+    /**
+     * @return LanguageService
+     */
+    protected function getLanguageService()
+    {
+        return $GLOBALS['LANG'];
     }
+
+
+    private function getTypoScriptSettings()
+    {
+        $tsArray = GeneralUtility::makeInstance(ObjectManager::class)
+            ->get(\WapplerSystems\Address\Configuration\ConfigurationManager::class)
+            ->getConfiguration(
+                ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+            );
+
+        return $tsArray['plugin.']['tx_address.']['settings.'];
+    }
+
 }

@@ -25,7 +25,7 @@ class FormEngine
      *
      * @var string
      */
-    const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
+    const LLPATH = 'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:';
 
     /**
      * Pre-processing of the whole TCEform

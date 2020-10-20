@@ -81,6 +81,9 @@
 			<trans-unit id="hdl.search">
 				<source>Search</source>
 			</trans-unit>
+			<trans-unit id="btn.update">
+				<source>Update</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

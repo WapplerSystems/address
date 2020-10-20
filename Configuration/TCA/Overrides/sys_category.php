@@ -4,7 +4,7 @@ defined('TYPO3_MODE') or die();
 /**
  * Add extra fields to the sys_category record
  */
-$newSysCategoryColumns = [
+$addressSysCategoryColumns = [
     'pid' => [
         'label' => 'pid',
         'config' => [
@@ -139,7 +139,7 @@ $newSysCategoryColumns = [
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_category', $newSysCategoryColumns);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_category', $addressSysCategoryColumns);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category',
     '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options, images', '', 'before:description');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'single_pid', '',

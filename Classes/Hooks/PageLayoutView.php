@@ -8,6 +8,8 @@ namespace WapplerSystems\Address\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Core\Localization\LanguageService;
 use WapplerSystems\Address\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -15,9 +17,7 @@ use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
@@ -32,14 +32,14 @@ class PageLayoutView
      *
      * @var string
      */
-    const KEY = 'news';
+    const KEY = 'address';
 
     /**
      * Path to the locallang file
      *
      * @var string
      */
-    const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
+    const LLPATH = 'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:';
 
     /**
      * Max shown settings
@@ -105,20 +105,20 @@ class PageLayoutView
 
             if (is_array($this->flexformData)) {
                 switch ($actionTranslationKey) {
-                    case 'news_list':
+                    case 'address_list':
                         $this->getStartingPoint();
                         $this->getCategorySettings();
                         $this->getDetailPidSetting();
                         $this->getTimeRestrictionSetting();
                         $this->getTemplateLayoutSettings($params['row']['pid']);
                         $this->getArchiveSettings();
-                        $this->getTopAddresssRestrictionSetting();
+                        $this->getTopAddressRestrictionSetting();
                         $this->getOrderSettings();
                         $this->getOffsetLimitSettings();
                         $this->getListPidSetting();
                         $this->getTagRestrictionSetting();
                         break;
-                    case 'news_detail':
+                    case 'address_detail':
                         $this->getSingleAddressSettings();
                         $this->getDetailPidSetting();
                         $this->getTemplateLayoutSettings($params['row']['pid']);
@@ -614,11 +614,7 @@ class PageLayoutView
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Address/PageLayout');
-        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= VersionNumberUtility::convertVersionNumberToInteger('8.4')) {
-            $pageRenderer->addCssFile('EXT:address/Resources/Public/Css/Backend/PageLayoutView.css');
-        } else {
-            $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('address') . 'Resources/Public/Css/Backend/PageLayoutView.css');
-        }
+        $pageRenderer->addCssFile('EXT:address/Resources/Public/Css/Backend/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Backend/PageLayoutView.html'));
@@ -681,11 +677,9 @@ class PageLayoutView
     }
 
     /**
-     * Return language service instance
-     *
-     * @return \TYPO3\CMS\Lang\LanguageService
+     * @return \TYPO3\CMS\Core\Localization\LanguageService
      */
-    public function getLanguageService()
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

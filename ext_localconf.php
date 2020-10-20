@@ -15,9 +15,15 @@ $boot = function () {
         ]
     );
 
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1603209223] = [
+        'nodeName' => 'map',
+        'priority' => '10',
+        'class' => \WapplerSystems\Address\Backend\Form\Element\MapElement::class,
+    ];
+
     // Page module hook
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['address_pi1']['address'] =
-        \WapplerSystems\Address\Hooks\PageLayoutView::class . '->getExtensionSummary';
+    /*$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['address_pi1']['address'] =
+        \WapplerSystems\Address\Hooks\PageLayoutView::class . '->getExtensionSummary';*/
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['address_clearcache'] =
         \WapplerSystems\Address\Hooks\DataHandler::class . '->clearCachePostProc';

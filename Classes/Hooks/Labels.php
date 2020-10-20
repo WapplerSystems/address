@@ -31,7 +31,7 @@ class Labels
         $getVars = GeneralUtility::_GET();
         if (isset($getVars['route']) && $getVars['route'] === '/record/edit'
             && isset($getVars['edit']) && is_array($getVars['edit'])
-            && (isset($getVars['edit']['tt_content']) || isset($getVars['edit']['tx_news_domain_model_news']) || isset($getVars['edit']['sys_category']))
+            && (isset($getVars['edit']['tt_content']) || isset($getVars['edit']['tx_address_domain_model_address']) || isset($getVars['edit']['sys_category']))
         ) {
             $showTranslationInformation = true;
         }

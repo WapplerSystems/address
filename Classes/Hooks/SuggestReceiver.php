@@ -41,7 +41,7 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
             $javaScriptCode = '
         var value=' . $text . ';
         TYPO3.jQuery.ajax({
-			url : TYPO3.settings.ajaxUrls[\'news_tag\'] ,
+			url : TYPO3.settings.ajaxUrls[\'address_tag\'] ,
 			method: \'POST\',
 			data: {item:value,newsid:\'' . $uid . '\' },
 			complete:function(result) {

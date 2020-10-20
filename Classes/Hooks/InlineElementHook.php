@@ -63,7 +63,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array &$controlItems
     ) {
         if ($foreignTable === 'sys_file_reference' && !empty($childRecord['showinpreview'])) {
-            $label = $GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinpreview');
+            $label = $GLOBALS['LANG']->sL('LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_media.showinpreview');
             $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];
             $controlItems = $extraItem + $controlItems;
         }

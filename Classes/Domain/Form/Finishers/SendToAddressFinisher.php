@@ -2,7 +2,12 @@
 declare(strict_types=1);
 namespace WapplerSystems\Address\Domain\Form\Finishers;
 
-
+/**
+ * This file is part of the "address" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Form\Domain\Finishers\EmailFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;

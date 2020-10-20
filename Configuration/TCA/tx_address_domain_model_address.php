@@ -51,14 +51,14 @@ $tx_address_domain_model_address = [
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'special' => 'languages',
                 'items' => [
                     [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
                         -1,
                         'flags-multiple'
                     ],
@@ -69,7 +69,7 @@ $tx_address_domain_model_address = [
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -90,10 +90,17 @@ $tx_address_domain_model_address = [
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
             'config' => [
                 'type' => 'check',
-                'default' => 0
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                        'invertStateDisplay' => true
+                    ]
+                ],
             ]
         ],
         'pid' => [
@@ -122,25 +129,30 @@ $tx_address_domain_model_address = [
         ],
         'starttime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
                 'type' => 'input',
-                'size' => 16,
-                'eval' => 'datetime',
-                'default' => 0,
-            ]
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime,int',
+                'default' => 0
+            ],
+            'l10n_mode' => 'exclude',
+            'l10n_display' => 'defaultAsReadonly'
         ],
         'endtime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
                 'type' => 'input',
-                'size' => 16,
-                'eval' => 'datetime',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime,int',
                 'default' => 0,
-            ]
+                'range' => [
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
+                ]
+            ],
+            'l10n_mode' => 'exclude',
+            'l10n_display' => 'defaultAsReadonly'
         ],
         'title' => [
             'exclude' => false,
@@ -352,7 +364,7 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.inline_map',
             'config' => [
                 'type' => 'user',
-                'userFunc' => 'WapplerSystems\\Address\\Utility\\LocationUtility->render',
+                'renderType' => 'map',
                 'parameters' => [
                     'longitude' => 'longitude',
                     'latitude' => 'latitude',
@@ -364,27 +376,16 @@ $tx_address_domain_model_address = [
             ],
         ],
         'bodytext' => [
-            'exclude' => false,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel',
+            'l10n_mode' => 'prefixLangTitle',
+            'l10n_cat' => 'text',
+            'exclude' => 0,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.text',
             'config' => [
                 'type' => 'text',
-                'cols' => 30,
-                'rows' => 5,
-                'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
-                'wizards' => [
-                    'RTE' => [
-                        'notNewRecords' => 1,
-                        'RTEonly' => 1,
-                        'type' => 'script',
-                        'title' => 'Full screen Rich Text Editing',
-                        'icon' => 'actions-wizard-rte',
-                        'module' => [
-                            'name' => 'wizard_rte',
-                        ],
-                    ],
-                ],
-            ]
+                'cols' => 40,
+                'rows' => 6,
+                'enableRichtext' => true,
+            ],
         ],
         'archive' => [
             'exclude' => true,
@@ -466,7 +467,6 @@ $tx_address_domain_model_address = [
                 'readOnly' => 1,
             ]
         ],
-
         'related_links' => [
             'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
@@ -551,6 +551,7 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.istopaddress',
             'config' => [
                 'type' => 'check',
+                'renderType' => 'checkboxToggle',
                 'default' => 0
             ]
         ],
@@ -561,15 +562,24 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.direct_contact',
             'config' => [
                 'type' => 'check',
+                'renderType' => 'checkboxToggle',
                 'default' => 0
             ]
         ],
         'editlock' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_tca.xlf:editlock',
+            'displayCond' => 'HIDE_FOR_NON_ADMINS',
+            'l10n_mode' => 'exclude',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:editlock',
             'config' => [
-                'type' => 'check'
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
+                ],
             ]
         ],
         'content_elements' => [
@@ -714,39 +724,39 @@ $tx_address_domain_model_address = [
                     'foreign_types' => [
                         '0' => [
                             'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
+                        --palette--;;imageoverlayPalette,
+                        --palette--;;filePalette'
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
                             'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
+                        --palette--;;imageoverlayPalette,
+                        --palette--;;filePalette'
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                             'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
+                        --palette--;;imageoverlayPalette,
+                        --palette--;;filePalette'
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
                             'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
+                        --palette--;;imageoverlayPalette,
+                        --palette--;;filePalette'
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
                             'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
+                        --palette--;;imageoverlayPalette,
+                        --palette--;;filePalette'
                         ],
                         \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
                             'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
+                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
+                        --palette--;;imageoverlayPalette,
+                        --palette--;;filePalette'
                         ]
                     ]
                 ],
@@ -821,28 +831,28 @@ $tx_address_domain_model_address = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore,
-					
-					--palette--;;palettePerson,
-					--palette--;;paletteContact,
-					teaser,
-					bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
-					--palette--;;paletteArchive,
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
-				    --palette--;;paletteLocation,
+                    title,--palette--;;paletteCore,
+                    
+                    --palette--;;palettePerson,
+                    --palette--;;paletteContact,
+                    teaser,
+                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    --palette--;;paletteArchive,
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
+                    --palette--;;paletteLocation,
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
 
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tabs.relations,media,related_files,related_links,related,related_from,detail_pid,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.palettes.alternativeTitles;alternativeTitles,
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tabs.relations,media,related_files,related_links,related,related_from,detail_pid,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes,
                     notes,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // person
         '1' => [
@@ -855,33 +865,33 @@ $tx_address_domain_model_address = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					--palette--;;paletteCore,
-					
-					--palette--;;palettePerson,
-					--palette--;;paletteContact,
-					
-					teaser,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
-					--palette--;;paletteArchive,
-					bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
-					
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
-				    --palette--;;paletteLocation,
-				    related,
-					
+                    --palette--;;paletteCore,
+                    
+                    --palette--;;palettePerson,
+                    --palette--;;paletteContact,
+                    
+                    teaser,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+                    --palette--;;paletteArchive,
+                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
+                    --palette--;;paletteLocation,
+                    related,
+                    
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
 
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tabs.relations,media,related_files,related_links,related_from,detail_pid,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.palettes.alternativeTitles;alternativeTitles,
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tabs.relations,media,related_files,related_links,related_from,detail_pid,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes,
                     notes,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // company
         '2' => [
@@ -894,11 +904,11 @@ $tx_address_domain_model_address = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,
-					--palette--;;paletteCore,
-					--palette--;;paletteContact,
-					--palette--;;paletteDate,teaser,
-					bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    title,
+                    --palette--;;paletteCore,
+                    --palette--;;paletteContact,
+                    --palette--;;paletteDate,teaser,
+                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
                 
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                 --palette--;;paletteLocation,
@@ -907,17 +917,17 @@ $tx_address_domain_model_address = [
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
 
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
 
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tabs.relations,media,related_files,related_links,related,related_from,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.palettes.alternativeTitles;alternativeTitles,
-				--div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tabs.relations,media,related_files,related_links,related,related_from,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes,
                     notes,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
     ],
     'palettes' => [
@@ -941,8 +951,8 @@ $tx_address_domain_model_address = [
         ],
         'paletteAccess' => [
             'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
-					endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
-					--linebreak--,editlock,',
+                    endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
+                    --linebreak--,editlock,',
         ],
         'paletteMetatags' => [
             'showitem' => 'keywords,--linebreak--,description,',
