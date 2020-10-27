@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="address" target-language="pt-BR">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="address" target-language="pt-PT">
     <header/>
     <body>
       <trans-unit id="pi1_title" xml:space="preserve">
@@ -141,6 +141,9 @@
       <trans-unit id="flexforms_general.topAddressRestriction.2" xml:space="preserve">
 				<source>except Top Address records</source>
 			<target state="needs-translation">except Top Address records</target></trans-unit>
+      <trans-unit id="flexforms_general.selectedAddresses" xml:space="preserve">
+				<source>Show only selected address records</source>
+			<target state="needs-translation">Show only selected address records</target></trans-unit>
       <trans-unit id="flexforms_general.singleAddress" xml:space="preserve">
 				<source>Show a single address record</source>
 			<target state="needs-translation">Show a single address record</target></trans-unit>
