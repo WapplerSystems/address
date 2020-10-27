@@ -198,6 +198,17 @@ $tx_address_domain_model_address = [
                 'eval' => '',
             ]
         ],
+        'abbreviation' => [
+            'exclude' => false,
+            'l10n_display' => 'defaultAsReadonly',
+            'l10n_mode' => 'exclude',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.abbreviation',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => '',
+            ]
+        ],
         'birthday' => [
             'exclude' => false,
             'l10n_display' => 'defaultAsReadonly',
@@ -944,7 +955,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'address, building, --linebreak--, zip, city, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
         ],
         'palettePerson' => [
-            'showitem' => 'first_name, middle_name, last_name,--linebreak--,academic_title, append_academic_title, position,birthday,',
+            'showitem' => 'first_name, middle_name, last_name, abbreviation, --linebreak--,academic_title, append_academic_title, position,birthday,',
         ],
         'paletteNavtitle' => [
             'showitem' => 'alternative_title,path_segment',

@@ -193,6 +193,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
+    protected $abbreviation;
+
+    /**
+     * @var string
+     */
     protected $academicTitle;
 
     /**
@@ -359,6 +364,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->relatedFrom;
     }
+
 
     /**
      * Return related from items sorted by datetime
@@ -948,6 +954,24 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->academicTitle = $academicTitle;
     }
+
+    /**
+     * @return string
+     */
+    public function getAbbreviation()
+    {
+        return $this->abbreviation;
+    }
+
+    /**
+     * @param mixed $abbreviation
+     */
+    public function setAbbreviation($abbreviation): void
+    {
+        $this->abbreviation = $abbreviation;
+    }
+
+
 
     /**
      * @return string

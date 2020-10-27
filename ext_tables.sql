@@ -34,6 +34,7 @@ CREATE TABLE tx_address_domain_model_address
     last_name             tinytext,
     birthday              int(11)          DEFAULT NULL,
     email                 varchar(255)     DEFAULT ''  NOT NULL,
+    abbreviation          varchar(30)      DEFAULT ''  NOT NULL,
     phone                 varchar(30)      DEFAULT ''  NOT NULL,
     mobile                varchar(30)      DEFAULT ''  NOT NULL,
     www                   varchar(255)     DEFAULT ''  NOT NULL,
