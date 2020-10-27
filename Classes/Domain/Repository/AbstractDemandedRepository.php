@@ -9,6 +9,7 @@ namespace WapplerSystems\Address\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 
@@ -122,8 +123,12 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
                 'constraints' => &$constraints,
             ];
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
-                \TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
+                GeneralUtility::callUserFunction($reference, $params, $this);
             }
+        }
+
+        if ($demand->getIds()) {
+            $constraints[] = $query->in('uid', $demand->getIds());
         }
 
         if ($respectEnableFields === false) {

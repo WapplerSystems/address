@@ -22,4 +22,6 @@ interface DemandInterface
 
     public function getTopAddressFirst();
 
+    public function getIds();
+
 }

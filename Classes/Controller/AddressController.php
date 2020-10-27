@@ -123,6 +123,9 @@ class AddressController extends AddressBaseController
                 1423157953);
         }
 
+        if ($this->settings['selectedAddresses'] !== null && $this->settings['selectedAddresses'] !== '') {
+            $demand->setIds(explode(',',$this->settings['selectedAddresses']));
+        }
         $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
         $demand->setCategoryConjunction($settings['categoryConjunction']);
         $demand->setIncludeSubCategories($settings['includeSubCategories']);
@@ -192,6 +195,7 @@ class AddressController extends AddressBaseController
         if ($overwriteDemand !== null && (int)$this->settings['disableOverrideDemand'] !== 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
+
         $addressRecords = $this->addressRepository->findDemanded($demand);
 
         $assignedValues = [
@@ -200,9 +204,10 @@ class AddressController extends AddressBaseController
             'demand' => $demand,
         ];
 
+
         if ($demand->getCategories() !== '') {
             $categoriesList = $demand->getCategories();
-            if (!\is_array($categoriesList)) {
+            if (is_string($categoriesList)) {
                 $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
             }
             if (!empty($categoriesList)) {

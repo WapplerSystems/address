@@ -7,8 +7,9 @@ namespace WapplerSystems\Address\Domain\Model\Dto;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use WapplerSystems\Address\Domain\Model\DemandInterface;
+
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use WapplerSystems\Address\Domain\Model\DemandInterface;
 
 /**
  * Address Demand object which holds all information to get the correct address records.
@@ -87,6 +88,11 @@ class AddressDemand extends AbstractEntity implements DemandInterface
 
     /** @var string */
     protected $class = '';
+
+    /**
+     * @var array
+     */
+    protected $ids = [];
 
     /**
      * List of allowed types
@@ -554,4 +560,23 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     {
         $this->types = $types;
     }
+
+    /**
+     * @return array
+     */
+    public function getIds(): array
+    {
+        return $this->ids;
+    }
+
+    /**
+     * @param array $ids
+     */
+    public function setIds(array $ids): void
+    {
+        $this->ids = $ids;
+    }
+
+
+
 }

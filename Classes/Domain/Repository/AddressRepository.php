@@ -50,7 +50,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
             return $constraint;
         }
 
-        if (!is_array($categories)) {
+        if (is_string($categories)) {
             $categories = GeneralUtility::intExplode(',', $categories, true);
         }
         foreach ($categories as $category) {
