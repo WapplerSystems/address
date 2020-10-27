@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="address" target-language="pt-BR">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="address" target-language="pt-PT">
     <header/>
     <body>
       <trans-unit id="tx_address_domain_model_address.tabs.relations" xml:space="preserve">
@@ -48,6 +48,9 @@
       <trans-unit id="tx_address_domain_model_address.last_name" xml:space="preserve">
 				<source>Last name</source>
 			<target state="needs-translation">Last name</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.abbreviation" xml:space="preserve">
+				<source>Abbreviation</source>
+			<target state="needs-translation">Abbreviation</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.middle_name" xml:space="preserve">
 				<source>Middle name</source>
 			<target state="needs-translation">Middle name</target></trans-unit>
