@@ -21,6 +21,7 @@ use WapplerSystems\Address\Domain\Model\Dto\Search;
 use WapplerSystems\Address\Pagination\SortedArrayPaginator;
 use WapplerSystems\Address\Utility\Cache;
 use WapplerSystems\Address\Utility\Page;
+use WapplerSystems\Address\Utility\SortedArray;
 use WapplerSystems\Address\Utility\TypoScript;
 
 /**
@@ -201,23 +202,28 @@ class AddressController extends AddressBaseController
 
         $addressRecords = $this->addressRepository->findDemanded($demand);
 
-        if ($demand->getIds()) {
-            $paginator = new SortedArrayPaginator($addressRecords->toArray(), $demand->getIds(), $currentPage);
-        } else {
-            $paginator = new QueryResultPaginator($addressRecords, $currentPage);
-        }
-
-        $pagination = new SimplePagination($paginator);
-        $pages = range(1, $pagination->getLastPageNumber());
-
         $assignedValues = [
-            'paginator' => $paginator,
-            'pagination' => $pagination,
-            'pages' => $pages,
-            'addresses' => $addressRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
         ];
+
+        if ((int)$this->settings['hidePagination'] === 1) {
+            $assignedValues['addresses'] = new SortedArray($addressRecords->toArray(), $demand->getIds());
+        } else {
+            if ($demand->getIds()) {
+                $paginator = new SortedArrayPaginator($addressRecords->toArray(), $demand->getIds(), $currentPage);
+            } else {
+                $paginator = new QueryResultPaginator($addressRecords, $currentPage);
+            }
+            $pagination = new SimplePagination($paginator);
+            $pages = range(1, $pagination->getLastPageNumber());
+            $assignedValues = array_merge($assignedValues,[
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+                'pages' => $pages,
+                'addresses' => $paginator->getPaginatedItems(),
+            ]);
+        }
 
         if ($demand->getCategories() !== '') {
             $categoriesList = $demand->getCategories();
