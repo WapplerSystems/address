@@ -8,14 +8,17 @@ namespace WapplerSystems\Address\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use WapplerSystems\Address\Domain\Model\Address;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 use WapplerSystems\Address\Domain\Model\Dto\Search;
+use WapplerSystems\Address\Pagination\SortedArrayPaginator;
 use WapplerSystems\Address\Utility\Cache;
 use WapplerSystems\Address\Utility\Page;
 use WapplerSystems\Address\Utility\TypoScript;
@@ -163,7 +166,7 @@ class AddressController extends AddressBaseController
      * @return AddressDemand
      * @throws \InvalidArgumentException
      */
-    protected function overwriteDemandObject($demand, $overwriteDemand)
+    protected function overwriteDemandObject($demand, $overwriteDemand): AddressDemand
     {
         foreach ($this->ignoredSettingsForOverride as $property) {
             unset($overwriteDemand[$property]);
@@ -187,7 +190,7 @@ class AddressController extends AddressBaseController
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
      */
-    public function listAction(array $overwriteDemand = null)
+    public function listAction(array $overwriteDemand = null, int $currentPage = 1)
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -198,12 +201,23 @@ class AddressController extends AddressBaseController
 
         $addressRecords = $this->addressRepository->findDemanded($demand);
 
+        if ($demand->getIds()) {
+            $paginator = new SortedArrayPaginator($addressRecords->toArray(), $demand->getIds(), $currentPage);
+        } else {
+            $paginator = new QueryResultPaginator($addressRecords, $currentPage);
+        }
+
+        $pagination = new SimplePagination($paginator);
+        $pages = range(1, $pagination->getLastPageNumber());
+
         $assignedValues = [
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+            'pages' => $pages,
             'addresses' => $addressRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
         ];
-
 
         if ($demand->getCategories() !== '') {
             $categoriesList = $demand->getCategories();
