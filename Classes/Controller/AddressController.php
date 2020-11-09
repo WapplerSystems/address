@@ -187,9 +187,8 @@ class AddressController extends AddressBaseController
     /**
      * Output a list view of address
      *
-     * @param array $overwriteDemand
-     * @throws \InvalidArgumentException
-     * @throws \UnexpectedValueException
+     * @param array|null $overwriteDemand
+     * @param int $currentPage
      */
     public function listAction(array $overwriteDemand = null, int $currentPage = 1)
     {

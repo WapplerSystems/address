@@ -18,9 +18,10 @@ class TagController extends AddressController
     /**
      * List tags
      *
-     * @param array $overwriteDemand
+     * @param array|null $overwriteDemand
+     * @param int $currentPage
      */
-    public function listAction(array $overwriteDemand = null)
+    public function listAction(array $overwriteDemand = null, int $currentPage = 1)
     {
         // Default value is wrong for tags
         if ($this->settings['orderBy'] === 'datetime') {

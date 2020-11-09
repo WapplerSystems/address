@@ -33,9 +33,10 @@ class CategoryController extends AddressController
     /**
      * List categories
      *
-     * @param array $overwriteDemand
+     * @param array|null $overwriteDemand
+     * @param int $currentPage
      */
-    public function listAction(array $overwriteDemand = null)
+    public function listAction(array $overwriteDemand = null, int $currentPage = 1)
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
