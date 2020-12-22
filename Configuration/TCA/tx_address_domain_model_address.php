@@ -551,7 +551,7 @@ $tx_address_domain_model_address = [
             'config' => [
                 'type' => 'input',
                 'size' => 50,
-                'eval' => 'required',
+                'eval' => '',
                 'softref' => 'typolink'
             ]
         ],
@@ -949,7 +949,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'type, sys_language_uid, hidden, istopaddress,',
         ],
         'paletteContact' => [
-            'showitem' => 'phone, fax, --linebreak--, email, direct_contact,',
+            'showitem' => 'phone, fax, --linebreak--, email, url, direct_contact,',
         ],
         'paletteLocation' => [
             'showitem' => 'address, building, --linebreak--, zip, city, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
