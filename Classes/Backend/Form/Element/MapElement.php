@@ -56,7 +56,7 @@ class MapElement extends AbstractFormElement
         if ($city) $address .= ', '.$city;
         if ($country) $address .= ', '.$country;
 
-        $baseElementId = $PA['itemFormElID'] ?? $table . '_map';
+        $baseElementId = $config['itemFormElID'] ?? $table . '_map';
         $addressId = $baseElementId . '_address';
         $mapId = $baseElementId . '_map';
 
@@ -66,11 +66,11 @@ class MapElement extends AbstractFormElement
         };
         $dataPrefix = 'data[' . $table . '][' . $row['uid'] . ']';
         $controlPrefix = 'control[active][' . $table . '][' . $row['uid'] . ']';
-        $latitudeField = $dataPrefix . '[' . $PA['parameters']['latitude'] . ']';
-        $latitudeControlField = $controlPrefix . '[' . $PA['parameters']['latitude'] . ']';
-        $longitudeField = $dataPrefix . '[' . $PA['parameters']['longitude'] . ']';
-        $longitudeControlField = $controlPrefix . '[' . $PA['parameters']['longitude'] . ']';
-        $addressField = $dataPrefix . '[' . $PA['parameters']['address'] . ']';
+        $latitudeField = $dataPrefix . '[' . $config['parameters']['latitude'] . ']';
+        $latitudeControlField = $controlPrefix . '[' . $config['parameters']['latitude'] . ']';
+        $longitudeField = $dataPrefix . '[' . $config['parameters']['longitude'] . ']';
+        $longitudeControlField = $controlPrefix . '[' . $config['parameters']['longitude'] . ']';
+        $addressField = $dataPrefix . '[' . $config['parameters']['address'] . ']';
 
 
         $updateJs = "TBE_EDITOR.fieldChanged('%s','%s','%s','%s');";
@@ -78,21 +78,21 @@ class MapElement extends AbstractFormElement
             $updateJs,
             $table,
             $row['uid'],
-            $PA['parameters']['latitude'],
+            $config['parameters']['latitude'],
             $latitudeField
         );
         $updateLongitudeJs = sprintf(
             $updateJs,
             $table,
             $row['uid'],
-            $PA['parameters']['longitude'],
+            $config['parameters']['longitude'],
             $longitudeField
         );
         $updateAddressJs = sprintf(
             $updateJs,
             $table,
             $row['uid'],
-            $PA['parameters']['address'],
+            $config['parameters']['address'],
             $addressField
         );
 
@@ -182,7 +182,7 @@ TxAddress.codeAddress = function() {
                 var streetNumber='';
                 
                 // iterate through address_component array
-                TYPO3.jQuery.each(arrAddress, function (i, address_component) {
+                jQuery.each(arrAddress, function (i, address_component) {
                     if (address_component.types[0] == "route"){
                         route = address_component.long_name;
                     }
@@ -232,13 +232,13 @@ TxAddress.updateValue = function(fieldName, value, controlFieldName) {
     if(version < 7005000) {
         document[TBE_EDITOR.formname][fieldName + '_hr'].value = value;
     } else {
-        TYPO3.jQuery('[data-formengine-input-name="' + fieldName + '"]').val(value);
+        jQuery('[data-formengine-input-name="' + fieldName + '"]').val(value);
     }
     if (controlFieldName) {
-        TYPO3.jQuery('[id="' + controlFieldName + '"]').prop('checked',true);
-        TYPO3.jQuery('[name="' + controlFieldName + '"][type="hidden"]').val(1);
+        jQuery('[id="' + controlFieldName + '"]').prop('checked',true);
+        jQuery('[name="' + controlFieldName + '"][type="hidden"]').val(1);
         
-        TYPO3.jQuery('[name="' + controlFieldName + '"]').first().parent().parent().parent().removeClass('disabled');
+        jQuery('[name="' + controlFieldName + '"]').first().parent().parent().parent().removeClass('disabled');
     }
 }
 
@@ -324,7 +324,8 @@ EOT;
                 ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
             );
 
-        return $tsArray['plugin.']['tx_address.']['settings.'];
+        $config = $tsArray['plugin.']['tx_address.']['settings.'] ?? [];
+        return GeneralUtility::removeDotsFromTS($config);
     }
 
 }
