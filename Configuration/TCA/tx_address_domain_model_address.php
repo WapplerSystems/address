@@ -1,12 +1,9 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-// Extension manager configuration
-$configuration = \WapplerSystems\Address\Utility\EmConfiguration::getSettings();
+/** @var \WapplerSystems\Address\Domain\Model\Dto\EmConfiguration $configuration */
+$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\WapplerSystems\Address\Domain\Model\Dto\EmConfiguration::class);
 
-$teaserRteConfiguration = $configuration->getRteForTeaser() ? 'richtext:rte_transform[mode=ts_css]' : '';
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_address_domain_model_address');
 
 $tx_address_domain_model_address = [
     'ctrl' => [
@@ -293,6 +290,7 @@ $tx_address_domain_model_address = [
                 'type' => 'text',
                 'cols' => 60,
                 'rows' => 5,
+                'enableRichtext' => $configuration->getRteForTeaser(),
             ]
         ],
         'latitude' => [
@@ -693,10 +691,20 @@ $tx_address_domain_model_address = [
         'path_segment' => [
             'exclude' => true,
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.path_segment',
+            'displayCond' => 'VERSION:IS:false',
             'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'nospace,alphanum_x,lower,unique',
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => ['title','first_name','last_name'],
+                    'fieldSeparator' => '-',
+                    'replacements' => [
+                        '/' => '-'
+                    ],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => $configuration->getSlugBehaviour(),
+                'default' => ''
             ]
         ],
         'import_id' => [
@@ -833,19 +841,11 @@ $tx_address_domain_model_address = [
     'types' => [
         // default address
         '0' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
             'showitem' => 'l10n_parent, l10n_diffsource,
                     title,--palette--;;paletteCore,
-                    
                     --palette--;;palettePerson,
                     --palette--;;paletteContact,
+                    --palette--;;paletteSlug,
                     teaser,
                     bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
                     --palette--;;paletteArchive,
@@ -867,19 +867,12 @@ $tx_address_domain_model_address = [
         ],
         // person
         '1' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
             'showitem' => 'l10n_parent, l10n_diffsource,
                     --palette--;;paletteCore,
                     
                     --palette--;;palettePerson,
                     --palette--;;paletteContact,
+                    --palette--;;paletteSlug,
                     
                     teaser,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
@@ -906,19 +899,13 @@ $tx_address_domain_model_address = [
         ],
         // company
         '2' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
             'showitem' => 'l10n_parent, l10n_diffsource,
                     title,
                     --palette--;;paletteCore,
                     --palette--;;paletteContact,
-                    --palette--;;paletteDate,teaser,
+                    --palette--;;paletteDate,
+                    --palette--;;paletteSlug,
+                    teaser,
                     bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
                 
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
@@ -958,7 +945,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'first_name, middle_name, last_name, abbreviation, --linebreak--,academic_title, append_academic_title, position,birthday,',
         ],
         'paletteNavtitle' => [
-            'showitem' => 'alternative_title,path_segment',
+            'showitem' => 'alternative_title',
         ],
         'paletteAccess' => [
             'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
@@ -967,6 +954,11 @@ $tx_address_domain_model_address = [
         ],
         'paletteMetatags' => [
             'showitem' => 'keywords,--linebreak--,description,',
+        ],
+        'paletteSlug' => [
+            'showitem' => '
+                path_segment
+            ',
         ],
     ]
 ];

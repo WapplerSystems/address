@@ -1,6 +1,9 @@
 <?php
 namespace WapplerSystems\Address\Domain\Model\Dto;
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This file is part of the "address" Extension for TYPO3 CMS.
  *
@@ -19,8 +22,16 @@ class EmConfiguration
      *
      * @param array $configuration em configuration
      */
-    public function __construct(array $configuration)
+    public function __construct(array $configuration = [])
     {
+        if (empty($configuration)) {
+            try {
+                $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+                $configuration = $extensionConfiguration->get('address');
+            } catch (\Exception $exception) {
+                // do nothing
+            }
+        }
         foreach ($configuration as $key => $value) {
             if (property_exists(__CLASS__, $key)) {
                 $this->$key = $value;
@@ -97,10 +108,13 @@ class EmConfiguration
      */
     protected $resourceFolderImporter = '/address_import';
 
+    /** @var string */
+    protected $slugBehaviour = 'unique';
+
     /**
      * @return int
      */
-    public function getTagPid()
+    public function getTagPid(): int
     {
         return (int)$this->tagPid;
     }
@@ -109,7 +123,7 @@ class EmConfiguration
      *
      * @return bool
      */
-    public function getPrependAtCopy()
+    public function getPrependAtCopy(): bool
     {
         return (boolean)$this->prependAtCopy;
     }
@@ -117,7 +131,7 @@ class EmConfiguration
     /**
      * @return string
      */
-    public function getCategoryRestriction()
+    public function getCategoryRestriction(): string
     {
         return $this->categoryRestriction;
     }
@@ -127,7 +141,7 @@ class EmConfiguration
      *
      * @return bool
      */
-    public function getCategoryBeGroupTceFormsRestriction()
+    public function getCategoryBeGroupTceFormsRestriction(): bool
     {
         return (bool)$this->categoryBeGroupTceFormsRestriction;
     }
@@ -135,7 +149,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getContentElementRelation()
+    public function getContentElementRelation(): bool
     {
         return (boolean)$this->contentElementRelation;
     }
@@ -143,7 +157,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getContentElementPreview()
+    public function getContentElementPreview(): bool
     {
         return (bool)$this->contentElementPreview;
     }
@@ -151,7 +165,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getManualSorting()
+    public function getManualSorting(): bool
     {
         return (boolean)$this->manualSorting;
     }
@@ -159,7 +173,7 @@ class EmConfiguration
     /**
      * @return string
      */
-    public function getArchiveDate()
+    public function getArchiveDate(): string
     {
         return $this->archiveDate;
     }
@@ -167,7 +181,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getShowImporter()
+    public function getShowImporter(): bool
     {
         return (boolean)$this->showImporter;
     }
@@ -183,7 +197,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getShowAdministrationModule()
+    public function getShowAdministrationModule(): bool
     {
         return $this->showAdministrationModule;
     }
@@ -191,7 +205,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getRteForTeaser()
+    public function getRteForTeaser(): bool
     {
         return $this->rteForTeaser;
     }
@@ -199,7 +213,7 @@ class EmConfiguration
     /**
      * @return string
      */
-    public function getResourceFolderImporter()
+    public function getResourceFolderImporter(): string
     {
         return $this->resourceFolderImporter;
     }
@@ -207,7 +221,7 @@ class EmConfiguration
     /**
      * @return int
      */
-    public function getStorageUidImporter()
+    public function getStorageUidImporter(): int
     {
         return $this->storageUidImporter;
     }
@@ -215,7 +229,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getDateTimeNotRequired()
+    public function getDateTimeNotRequired(): bool
     {
         return (bool)$this->dateTimeNotRequired;
     }
@@ -223,7 +237,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getDateTimeRequired()
+    public function getDateTimeRequired(): bool
     {
         return !(bool)$this->dateTimeNotRequired;
     }
@@ -231,8 +245,13 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getHidePageTreeForAdministrationModule()
+    public function getHidePageTreeForAdministrationModule(): bool
     {
         return (bool)$this->hidePageTreeForAdministrationModule;
+    }
+
+    public function getSlugBehaviour(): string
+    {
+        return $this->slugBehaviour;
     }
 }
