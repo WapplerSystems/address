@@ -38,10 +38,10 @@ class ClassCacheManager
     {
         if ($classCache === null) {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
-            if (!$cacheManager->hasCache('news')) {
+            if (!$cacheManager->hasCache('address')) {
                 $cacheManager->setCacheConfigurations($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']);
             }
-            $this->classCache = $cacheManager->getCache('news');
+            $this->classCache = $cacheManager->getCache('address');
         } else {
             $this->classCache = $classCache;
         }
@@ -55,15 +55,15 @@ class ClassCacheManager
             throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
         }
 
-        if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
+        if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['classes'])) {
             return;
         }
 
-        foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'] as $key => $extensionsWithThisClass) {
+        foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['classes'] as $key => $extensionsWithThisClass) {
             $this->constructorLines = [];
             $extendingClassFound = false;
 
-            $path = ExtensionManagementUtility::extPath('news') . $classPath . $key . '.php';
+            $path = ExtensionManagementUtility::extPath('address') . $classPath . $key . '.php';
             if (!is_file($path)) {
                 throw new \Exception('Given file "' . $path . '" does not exist');
             }
@@ -85,7 +85,7 @@ class ClassCacheManager
             // If an extending class is found, the file is written and
             // added to the autoloader info
             if ($extendingClassFound) {
-                $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $key));
+                $cacheEntryIdentifier = 'tx_address_' . strtolower(str_replace('/', '_', $key));
                 try {
                     $this->classCache->set($cacheEntryIdentifier, $code);
                 } catch (\Exception $e) {

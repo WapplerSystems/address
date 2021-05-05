@@ -37,7 +37,7 @@ class FormEngine
      */
     public function getMainFields_preProcess($table, $row, $parentObject)
     {
-        if ($table !== 'tx_news_domain_model_news') {
+        if ($table !== 'tx_address_domain_model_address') {
             return;
         }
         if (!AccessControlService::userHasCategoryPermissionsForRecord($row)) {

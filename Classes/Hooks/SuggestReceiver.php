@@ -43,7 +43,7 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
         TYPO3.jQuery.ajax({
 			url : TYPO3.settings.ajaxUrls[\'address_tag\'] ,
 			method: \'POST\',
-			data: {item:value,newsid:\'' . $uid . '\' },
+			data: {item:value,addressid:\'' . $uid . '\' },
 			complete:function(result) {
 			    if (result.status == 200) {
                     var arr = result.responseText.split(\'-\');
@@ -62,7 +62,7 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
             $createNewRecord = [
                 'text' =>  '<div onclick="' . $link . '">
                                 <span class="suggest-label">' . htmlspecialchars($params['value']) . '</span><span class="suggest-uid"></span><br />
-								<span class="suggest-path">' . htmlspecialchars($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest2')) . '</span>
+								<span class="suggest-path">' . htmlspecialchars($GLOBALS['LANG']->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:tag_suggest2')) . '</span>
 							</div>',
                 'table' => 'tx_news_domain_model_tag',
                 'class' => 'suggest-noresults',

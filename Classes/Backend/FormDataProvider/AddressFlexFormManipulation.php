@@ -148,7 +148,7 @@ class AddressFlexFormManipulation implements FormDataProviderInterface
     {
         if ($result['tableName'] === 'tt_content'
             && $result['databaseRow']['CType'] === 'list'
-            && $result['databaseRow']['list_type'] === 'news_pi1'
+            && $result['databaseRow']['list_type'] === 'address_pi1'
             && is_array($result['processedTca']['columns']['pi_flexform']['config']['ds'])
         ) {
             $result = $this->updateFlexForms($result);
@@ -211,12 +211,12 @@ class AddressFlexFormManipulation implements FormDataProviderInterface
                 default:
             }
 
-            if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'])) {
+            if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Hooks/BackendUtility.php']['updateFlexforms'])) {
                 $params = [
                     'selectedView' => $selectedView,
                     'dataStructure' => &$dataStructure,
                 ];
-                foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] as $reference) {
+                foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Hooks/BackendUtility.php']['updateFlexforms'] as $reference) {
                     GeneralUtility::callUserFunction($reference, $params, $this);
                 }
             }
@@ -280,8 +280,8 @@ class AddressFlexFormManipulation implements FormDataProviderInterface
      */
     protected function enabledInTsConfig(array $result)
     {
-        if (isset($result['pageTsConfig']['tx_news.']['categoryRestrictionForFlexForms'])) {
-            return (bool)$result['pageTsConfig']['tx_news.']['categoryRestrictionForFlexForms'];
+        if (isset($result['pageTsConfig']['tx_address.']['categoryRestrictionForFlexForms'])) {
+            return (bool)$result['pageTsConfig']['tx_address.']['categoryRestrictionForFlexForms'];
         }
         return false;
     }

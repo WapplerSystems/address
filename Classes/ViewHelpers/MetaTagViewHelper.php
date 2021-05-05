@@ -36,7 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * # Example: Basic Example: News title as og:title meta tag
  * <code>
- * <ad:metaTag property="og:title" content="{newsItem.title}" />
+ * <ad:metaTag property="og:title" content="{addressItem.title}" />
  * </code>
  * <output>
  * <meta property="og:title" content="TYPO3 is awesome" />
@@ -44,10 +44,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * # Example: Force the attribute "name"
  * <code>
- * <ad:metaTag name="keywords" content="{newsItem.keywords}" />
+ * <ad:metaTag name="keywords" content="{addressItem.keywords}" />
  * </code>
  * <output>
- * <meta name="keywords" content="news 1, news 2" />
+ * <meta name="keywords" content="address 1, address 2" />
  * </output>
  */
 class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
