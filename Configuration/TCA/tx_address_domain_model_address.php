@@ -869,20 +869,20 @@ $tx_address_domain_model_address = [
         '1' => [
             'showitem' => 'l10n_parent, l10n_diffsource,
                     --palette--;;paletteCore,
-                    
+
                     --palette--;;palettePerson,
                     --palette--;;paletteContact,
                     --palette--;;paletteSlug,
-                    
+
                     teaser,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
                     --palette--;;paletteArchive,
                     bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
-                    
+
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                     --palette--;;paletteLocation,
                     related,
-                    
+
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
@@ -907,11 +907,11 @@ $tx_address_domain_model_address = [
                     --palette--;;paletteSlug,
                     teaser,
                     bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
-                
+
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                 --palette--;;paletteLocation,
-                
-                
+
+
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
 
@@ -939,7 +939,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'phone, fax, --linebreak--, email, direct_contact,',
         ],
         'paletteLocation' => [
-            'showitem' => 'address, building, --linebreak--, zip, city, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
+            'showitem' => 'address, building, --linebreak--, zip, city, region, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
         ],
         'palettePerson' => [
             'showitem' => 'first_name, middle_name, last_name, abbreviation, --linebreak--,academic_title, append_academic_title, position,birthday,',
