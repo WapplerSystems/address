@@ -27,6 +27,5 @@ $EM_CONF[$_EXTKEY] = [
         'conflicts' => [],
         'suggests' => [],
     ],
-    'createDirs' => NULL,
     'clearcacheonload' => true,
 ];

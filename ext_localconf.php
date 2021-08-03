@@ -46,7 +46,7 @@ $boot = function () {
 
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/ContentElementWizard.txt">
+        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/ContentElementWizard.tsconfig">
     ');
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
