@@ -181,14 +181,14 @@ plugin.tx_address {
 }
 
 # EXT:fluid_styled_content uses different constants
-[globalVar = LIT:0<{$styles.content.textmedia.maxW}]
+[{$styles.content.textmedia.maxW} > 0]
     plugin.tx_address.settings.detail.media.image.lightbox {
         enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
         class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
         width = {$styles.content.textmedia.linkWrap.width}
         height = {$styles.content.textmedia.linkWrap.height}
     }
-[global]
+[END]
 
 
 # Rendering of content elements in detail view
