@@ -36,7 +36,7 @@ class MapElement extends AbstractFormElement
 
         $googleMapsLibrary = $pluginSettings['googlemaps']['javascript']['apiUrl'] ?
             htmlentities($pluginSettings['googlemaps']['javascript']['apiUrl']) :
-            '//maps.google.com/maps/api/js?v=3.29';
+            '//maps.google.com/maps/api/js?v=weekly';
 
         if ($pluginSettings['googlemaps']['javascript']['apiKey']) {
             $googleMapsLibrary .= '&key=' . $pluginSettings['googlemaps']['javascript']['apiKey'];
@@ -66,11 +66,11 @@ class MapElement extends AbstractFormElement
         };
         $dataPrefix = 'data[' . $table . '][' . $row['uid'] . ']';
         $controlPrefix = 'control[active][' . $table . '][' . $row['uid'] . ']';
-        $latitudeField = $dataPrefix . '[' . $PA['parameters']['latitude'] . ']';
-        $latitudeControlField = $controlPrefix . '[' . $PA['parameters']['latitude'] . ']';
-        $longitudeField = $dataPrefix . '[' . $PA['parameters']['longitude'] . ']';
-        $longitudeControlField = $controlPrefix . '[' . $PA['parameters']['longitude'] . ']';
-        $addressField = $dataPrefix . '[' . $PA['parameters']['address'] . ']';
+        $latitudeField = $dataPrefix . '[' . $config['parameters']['latitude'] . ']';
+        $latitudeControlField = $controlPrefix . '[' . $config['parameters']['latitude'] . ']';
+        $longitudeField = $dataPrefix . '[' . $config['parameters']['longitude'] . ']';
+        $longitudeControlField = $controlPrefix . '[' . $config['parameters']['longitude'] . ']';
+        $addressField = $dataPrefix . '[' . $config['parameters']['address'] . ']';
 
 
         $updateJs = "TBE_EDITOR.fieldChanged('%s','%s','%s','%s');";
@@ -78,21 +78,21 @@ class MapElement extends AbstractFormElement
             $updateJs,
             $table,
             $row['uid'],
-            $PA['parameters']['latitude'],
+            $config['parameters']['latitude'],
             $latitudeField
         );
         $updateLongitudeJs = sprintf(
             $updateJs,
             $table,
             $row['uid'],
-            $PA['parameters']['longitude'],
+            $config['parameters']['longitude'],
             $longitudeField
         );
         $updateAddressJs = sprintf(
             $updateJs,
             $table,
             $row['uid'],
-            $PA['parameters']['address'],
+            $config['parameters']['address'],
             $addressField
         );
 
@@ -101,7 +101,7 @@ class MapElement extends AbstractFormElement
         $out[] = <<<EOT
 if (typeof TxAddress == 'undefined') TxAddress = {};
 
-String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g, ''); } 
+String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g, ''); }
 
 TxAddress.init = function() {
     TxAddress.origin = new google.maps.LatLng({$latitude}, {$longitude});
@@ -126,11 +126,11 @@ TxAddress.init = function() {
 
         // Update address
         TxAddress.reverseGeocode(TxAddress.marker.getPosition().lat(), TxAddress.marker.getPosition().lng());
-        
+
         // Update Position
         var position = document.getElementById("{$addressId}");
         position.value = lat + "," + lng;
-        
+
         // Tell TYPO3 that fields were updated
         TxAddress.positionChanged();
     });
@@ -147,7 +147,7 @@ TxAddress.refreshMap = function() {
 /***************************/
 TxAddress.codeAddress = function() {
     var address = document.getElementById("{$addressId}").value;
-    
+
     var lat = 0;
     var lng = 0;
     if (address.match(/^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/)) {
@@ -155,11 +155,11 @@ TxAddress.codeAddress = function() {
         lat = address.substr(0, address.lastIndexOf(',')).trim();
         lng = address.substr(address.lastIndexOf(',')+1).trim();
         position = new google.maps.LatLng(lat, lng);
-        
+
         // Update Map
         TxAddress.map.setCenter(position);
         TxAddress.marker.setPosition(position);
-        
+
         // Update visible fields
         TxAddress.updateValue('{$latitudeField}', lat, '{$latitudeControlField}');
         TxAddress.updateValue('{$longitudeField}', lng, '{$longitudeControlField}');
@@ -170,42 +170,42 @@ TxAddress.codeAddress = function() {
         TxAddress.geocoder.geocode({'address': address}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 // Get Position
-                
+
                 lat = results[0].geometry.location.lat().toFixed(6);
                 lng = results[0].geometry.location.lng().toFixed(6);
-                
+
                 var arrAddress = results[0].address_components;
                 var route='';
                 var locality='';
                 var country='';
                 var postalCode='';
                 var streetNumber='';
-                
+
                 // iterate through address_component array
-                TYPO3.jQuery.each(arrAddress, function (i, address_component) {
+                arrAddress.forEach(function (address_component) {
                     if (address_component.types[0] == "route"){
                         route = address_component.long_name;
                     }
                     if (address_component.types[0] == "locality"){
                         locality = address_component.long_name;
                     }
-                    if (address_component.types[0] == "country"){ 
+                    if (address_component.types[0] == "country"){
                         country = address_component.long_name;
                     }
-                    if (address_component.types[0] == "postal_code_prefix"){ 
+                    if (address_component.types[0] == "postal_code_prefix"){
                         postalCode = address_component.long_name;
                     }
-                    if (address_component.types[0] == "street_number"){ 
+                    if (address_component.types[0] == "street_number"){
                         streetNumber = address_component.long_name;
                     }
                 });
 
                 formatedAddress = route + ' ' +streetNumber;
-                
+
                 // Update Map
                 TxAddress.map.setCenter(results[0].geometry.location);
                 TxAddress.marker.setPosition(results[0].geometry.location);
-                
+
                 // Update fields
                 TxAddress.updateValue('{$latitudeField}', lat, '{$latitudeControlField}');
                 TxAddress.updateValue('{$longitudeField}', lng, '{$longitudeControlField}');
@@ -232,13 +232,13 @@ TxAddress.updateValue = function(fieldName, value, controlFieldName) {
     if(version < 7005000) {
         document[TBE_EDITOR.formname][fieldName + '_hr'].value = value;
     } else {
-        TYPO3.jQuery('[data-formengine-input-name="' + fieldName + '"]').val(value);
+        document.querySelector('[data-formengine-input-name="' + fieldName + '"]').value = value;
     }
     if (controlFieldName) {
-        TYPO3.jQuery('[id="' + controlFieldName + '"]').prop('checked',true);
-        TYPO3.jQuery('[name="' + controlFieldName + '"][type="hidden"]').val(1);
-        
-        TYPO3.jQuery('[name="' + controlFieldName + '"]').first().parent().parent().parent().removeClass('disabled');
+        document.getElementById(controlFieldName).checked = true;
+        document.querySelector('[name="' + controlFieldName + '"][type="hidden"]').value = 1;
+
+        document.querySelector('[name="' + controlFieldName + '"]').parentElement.parentElement.parentElement.parentElement.className.replace('disabled','');
     }
 }
 
@@ -259,7 +259,6 @@ TxAddress.reverseGeocode = function(latitude, longitude) {
     var latlng = new google.maps.LatLng(latitude, longitude);
     TxAddress.geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK && results[1]) {
-            console.debug(results[1]);
             TxAddress.updateValue('{$addressField}', results[1].formatted_address);
             TxAddress.positionChanged();
         }
@@ -268,7 +267,7 @@ TxAddress.reverseGeocode = function(latitude, longitude) {
 
 TxAddress.convertAddress = function(addressOld) {
     addressInput = document.getElementById("{$addressId}");
-    
+
     TxAddress.geocoder.geocode({'address':addressOld}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             TxAddress.map.setCenter(results[0].geometry.location);
@@ -281,7 +280,7 @@ TxAddress.convertAddress = function(addressOld) {
 
             // Update visible fields
             addressInput.value = addressOld;
-            
+
         } else {
             alert("Geocode was not successful for the following reason: " + status);
         }
@@ -324,7 +323,7 @@ EOT;
                 ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
             );
 
-        return $tsArray['plugin.']['tx_address.']['settings.'];
+        return GeneralUtility::removeDotsFromTS($tsArray['plugin.']['tx_address.']['settings.']);
     }
 
 }

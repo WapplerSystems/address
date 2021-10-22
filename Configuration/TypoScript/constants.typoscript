@@ -34,7 +34,7 @@ plugin.tx_address {
                 apiKey =
 
                 # cat=plugin.tx_address/settings/b; type=text+; label=URL to Google Maps API: Default is current version
-                apiUrl = //maps.google.com/maps/api/js?v=3.29
+                apiUrl = //maps.google.com/maps/api/js?v=weekly
 
             }
 

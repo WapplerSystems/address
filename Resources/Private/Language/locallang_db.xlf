@@ -93,6 +93,9 @@
 			<trans-unit id="tx_address_domain_model_address.zip" xml:space="preserve">
 				<source>Postal code</source>
 			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.region" xml:space="preserve">
+				<source>State/region</source>
+			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
 				<source>Country</source>
 			</trans-unit>

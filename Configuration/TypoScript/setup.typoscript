@@ -122,7 +122,7 @@ plugin.tx_address {
                     maxHeight =
                 }
 
-                dummyImage = typo3conf/ext/address/Resources/Public/Images/dummy-image.png
+                dummyImage = EXT:address/Resources/Public/Images/dummy-image.png
             }
 
             # Paginate configuration.
@@ -188,7 +188,7 @@ plugin.tx_address {
         width = {$styles.content.textmedia.linkWrap.width}
         height = {$styles.content.textmedia.linkWrap.height}
     }
-[global]
+[END]
 
 
 # Rendering of content elements in detail view
