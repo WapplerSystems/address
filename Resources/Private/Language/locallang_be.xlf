@@ -210,6 +210,9 @@
 			<trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve">
 				<source>Disable override demand</source>
 			</trans-unit>
+			<trans-unit id="flexforms_additional.disableMetaTags" xml:space="preserve">
+				<source>Disables setting of meta tags</source>
+			</trans-unit>
 			<trans-unit id="flexforms_additional.excludeAlreadyDisplayedAddress" xml:space="preserve">
 				<source>Exclude already displayed address</source>
 			</trans-unit>

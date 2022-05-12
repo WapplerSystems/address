@@ -1,34 +1,38 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-	  xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
-	  data-namespace-typo3-fluid="true">
+      xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 <!--
 	=====================
 		Partials/List/Item.html
 -->
 <div class="address address-{addressItem.type}{f:if(condition: addressItem.istopaddress, then: ' topaddress')} {ad:categoryNames(address:addressItem,prefix:'address-cat-')} mb-3">
-	<ad:excludeDisplayedAddress addressItem="{addressItem}"/>
-	<!-- header -->
-	<div class="header">
-		<h5>
-			<ad:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
-				<span><f:render partial="Title" arguments="{addressItem:addressItem}" /></span>
-			</ad:link>
-		</h5>
-	</div>
+    <ad:excludeDisplayedAddress addressItem="{addressItem}"/>
+    <!-- header -->
+    <div class="header">
+        <h5>
+            <ad:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
+                <span><f:render partial="Title" arguments="{addressItem:addressItem}"/></span>
+            </ad:link>
+        </h5>
+    </div>
 
 
-	<f:render partial="List/Media/Container" arguments="{addressItem:addressItem, mediaElement: addressItem.mediaPreviews.0, settings:settings}" />
+    <f:render partial="List/Media/Container" arguments="{addressItem:addressItem, mediaElement: addressItem.mediaPreviews.0, settings:settings}"/>
 
 
-	<p>
-		<f:if condition="{addressItem.phone}"><i class="fa fa-phone c-gray" aria-hidden="true"></i> {addressItem.phone}<br /></f:if>
-		<f:if condition="{addressItem.fax}"><i class="fa fa-fax c-gray" aria-hidden="true"></i> {addressItem.fax}</f:if>
-	</p>
+    <p>
+        <f:if condition="{addressItem.phone}"><i class="fa fa-phone c-gray" aria-hidden="true"></i> {addressItem.phone}<br/></f:if>
+        <f:if condition="{addressItem.fax}"><i class="fa fa-fax c-gray" aria-hidden="true"></i> {addressItem.fax}</f:if>
+    </p>
 
 
-	<f:if condition="{addressItem.detailPid}">
-		<p><f:link.page class="internal" pageUid="{addressItem.detailPid}"><f:translate key="btn.detailPage" /></f:link.page></p>
-	</f:if>
+    <f:if condition="{addressItem.detailPid}">
+        <p>
+            <f:link.page class="internal" pageUid="{addressItem.detailPid}">
+                <f:translate key="btn.detailPage"/>
+            </f:link.page>
+        </p>
+    </f:if>
 
 
 </div>

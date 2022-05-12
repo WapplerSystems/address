@@ -1,52 +1,61 @@
 plugin.tx_address {
 
 
-    view {
-        # cat=plugin.tx_address/file; type=string; label=Path to template root (FE)
-        templateRootPath = EXT:address/Resources/Private/Templates/
-        # cat=plugin.tx_address/file; type=string; label=Path to template partials (FE)
-        partialRootPath = EXT:address/Resources/Private/Partials/
-        # cat=plugin.tx_address/file; type=string; label=Path to template layouts (FE)
-        layoutRootPath = EXT:address/Resources/Private/Layouts/
+  view {
+    # cat=plugin.tx_address/file; type=string; label=Path to template root (FE)
+    templateRootPath = EXT:address/Resources/Private/Templates/
+    # cat=plugin.tx_address/file; type=string; label=Path to template partials (FE)
+    partialRootPath = EXT:address/Resources/Private/Partials/
+    # cat=plugin.tx_address/file; type=string; label=Path to template layouts (FE)
+    layoutRootPath = EXT:address/Resources/Private/Layouts/
+  }
+
+  opengraph {
+    site_name =
+
+    twitter {
+      card = summary
+      site =
+      creator =
+    }
+  }
+
+  contact {
+
+    # cat=plugin.tx_address/enable; type=int; label=Page ID of the contact page
+    pagePid =
+
+  }
+
+  settings {
+
+    backend {
+
+      # cat=plugin.tx_address/enable/b; type=boolean; label=Enable backend map
+      enableMap =
+    }
+
+    googlemaps {
+
+      javascript {
+
+        # cat=plugin.tx_address/settings/a; type=string; label=Google Maps Api Key: Please visit: https://console.developers.google.com/ Create a project for your site -> Activate Google Maps JavaScript API -> Create an authorization for that API and copy the Api key here.
+        apiKey =
+
+        # cat=plugin.tx_address/settings/b; type=text+; label=URL to Google Maps API: Default is current version
+        apiUrl = //maps.google.com/maps/api/js?v=weekly
+
+      }
+
+      geocode {
+
+        # cat=plugin.tx_address/settings/c; type=string; label=Google Maps Api URL
+        apiUrl = http://maps.google.com/maps/api/geocode/json
+      }
+
     }
 
 
-    contact {
-
-        # cat=plugin.tx_address/enable; type=int; label=Page ID of the contact page
-        pagePid =
-
-    }
-
-    settings {
-
-        backend {
-
-            # cat=plugin.tx_address/enable/b; type=boolean; label=Enable backend map
-            enableMap =
-        }
-
-        googlemaps {
-
-            javascript {
-
-                # cat=plugin.tx_address/settings/a; type=string; label=Google Maps Api Key: Please visit: https://console.developers.google.com/ Create a project for your site -> Activate Google Maps JavaScript API -> Create an authorization for that API and copy the Api key here.
-                apiKey =
-
-                # cat=plugin.tx_address/settings/b; type=text+; label=URL to Google Maps API: Default is current version
-                apiUrl = //maps.google.com/maps/api/js?v=weekly
-
-            }
-
-            geocode {
-
-                # cat=plugin.tx_address/settings/c; type=string; label=Google Maps Api URL
-                apiUrl = http://maps.google.com/maps/api/geocode/json
-            }
-
-        }
-
-
-    }
+  }
 
 }

@@ -2,224 +2,225 @@
 # FE-Plugin configuration for EXT:address
 # ==============================================
 plugin.tx_address {
-    mvc.callDefaultActionIfActionCantBeResolved = 1
+  mvc.callDefaultActionIfActionCantBeResolved = 1
 
-    view {
-        templateRootPaths {
-            0 = EXT:address/Resources/Private/Templates/
-            1 = {$plugin.tx_address.view.templateRootPath}
+  view {
+    templateRootPaths {
+      0 = EXT:address/Resources/Private/Templates/
+      1 = {$plugin.tx_address.view.templateRootPath}
+    }
+
+    partialRootPaths {
+      0 = EXT:address/Resources/Private/Partials/
+      1 = {$plugin.tx_address.view.partialRootPath}
+    }
+
+    layoutRootPaths {
+      0 = EXT:address/Resources/Private/Layouts/
+      1 = {$plugin.tx_address.view.layoutRootPath}
+    }
+
+    widget.WapplerSystems\Address\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:address/Resources/Private/Templates/
+  }
+
+
+  # ====================================
+  # Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
+  # ====================================
+  settings {
+
+    #Displays a dummy image if the address have no media items
+    displayDummyIfNoMedia = 1
+
+    # Output format
+    format = html
+
+    # general settings
+    overrideFlexformSettingsIfEmpty = cropMaxCharacters,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+    allowEmptyStringsForOverwriteDemand = 0
+
+    includeSubCategories = 0
+
+
+    detailPidDetermination = flexform, categories, default
+
+    defaultDetailPid = 0
+
+    link {
+      typesOpeningInNewWindow = 2
+      hrDate = 0
+      hrDate {
+        day = j
+        month = n
+        year = Y
+      }
+
+      skipControllerAndAction = 0
+    }
+
+    cropMaxCharacters = 150
+    orderBy = datetime
+    orderDirection = desc
+    topAddressFirst = 0
+    orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,categories.title
+
+    demandClass =
+
+
+    # --------------
+    #  Search
+    # --------------
+    search {
+      fields = first_name,last_name,title
+
+      distances {
+        10 = 10km
+        20 = 20km
+      }
+    }
+
+    # --------------
+    #  Detail
+    # --------------
+    detail {
+      errorHandling = showStandaloneTemplate,EXT:address/Resources/Private/Templates/Address/DetailNotFound.html,404
+      checkPidOfAddressRecord = 0
+      registerProperties = keywords,title
+      showPrevNext = 0
+
+      # media configuration
+      media {
+        image {
+          maxWidth = 282
+          maxHeight =
+
+          # Get lightbox settings from css_styled_content
+          lightbox {
+            enabled = {$styles.content.imgtext.linkWrap.lightboxEnabled}
+            class = {$styles.content.imgtext.linkWrap.lightboxCssClass}
+            width = {$styles.content.imgtext.linkWrap.width}
+            height = {$styles.content.imgtext.linkWrap.height}
+            rel = lightbox[myImageSet]
+          }
         }
 
-        partialRootPaths {
-            0 = EXT:address/Resources/Private/Partials/
-            1 = {$plugin.tx_address.view.partialRootPath}
+        video {
+          width = 282
+          height = 300
+        }
+      }
+    }
+
+    # --------------
+    #  List
+    # --------------
+    list {
+      # media configuration
+      media {
+        image {
+          maxWidth = 400
+          maxHeight =
         }
 
-        layoutRootPaths {
-            0 = EXT:address/Resources/Private/Layouts/
-            1 = {$plugin.tx_address.view.layoutRootPath}
-        }
+        dummyImage = EXT:address/Resources/Public/Images/dummy-image.png
+      }
 
-        widget.WapplerSystems\Address\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:address/Resources/Private/Templates/
+      # Paginate configuration.
+      paginate {
+        itemsPerPage = 10
+        insertAbove = 1
+        insertBelow = 1
+        templatePath =
+        prevNextHeaderTags = 1
+        maximumNumberOfLinks = 3
+      }
+
+    }
+
+    # Opengraph implementation
+    opengraph {
+      site_name = {$plugin.tx_address.opengraph.site_name}
+      type = article
+      admins =
+      email =
+      latitude =
+      longitude =
+      street-address =
+      locality =
+      region =
+      postal-code =
+      country-name =
+    }
+
+    contact {
+
+      pageId = {$plugin.tx_address.contact.pageId}
+
     }
 
 
-    # ====================================
-    # Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
-    # ====================================
-    settings {
+    googlemaps {
 
-        #Displays a dummy image if the address have no media items
-        displayDummyIfNoMedia = 1
+      javascript {
 
-        # Output format
-        format = html
+        apiKey = {$plugin.tx_address.settings.googlemaps.javascript.apiKey}
 
-        # general settings
-        overrideFlexformSettingsIfEmpty = cropMaxCharacters,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
-        allowEmptyStringsForOverwriteDemand = 0
+        apiUrl = {$plugin.tx_address.settings.googlemaps.javascript.apiUrl}
+      }
 
-        includeSubCategories = 0
+      geocode {
+        apiUrl = {$plugin.tx_address.settings.googlemaps.geocode.apiUrl}
+      }
 
-
-        detailPidDetermination = flexform, categories, default
-
-        defaultDetailPid = 0
-
-        link {
-            typesOpeningInNewWindow = 2
-            hrDate = 0
-            hrDate {
-                day = j
-                month = n
-                year = Y
-            }
-
-            skipControllerAndAction = 0
-        }
-
-        cropMaxCharacters = 150
-        orderBy = datetime
-        orderDirection = desc
-        topAddressFirst = 0
-        orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,categories.title
-
-        demandClass =
-
-
-        # --------------
-        #  Search
-        # --------------
-        search {
-            fields = first_name,last_name,title
-
-            distances {
-                10 = 10km
-                20 = 20km
-            }
-        }
-
-        # --------------
-        #  Detail
-        # --------------
-        detail {
-            errorHandling = showStandaloneTemplate,EXT:address/Resources/Private/Templates/Address/DetailNotFound.html,404
-            checkPidOfAddressRecord = 0
-            registerProperties = keywords,title
-            showPrevNext = 0
-
-            # media configuration
-            media {
-                image {
-                    maxWidth = 282
-                    maxHeight =
-
-                    # Get lightbox settings from css_styled_content
-                    lightbox {
-                        enabled = {$styles.content.imgtext.linkWrap.lightboxEnabled}
-                        class = {$styles.content.imgtext.linkWrap.lightboxCssClass}
-                        width = {$styles.content.imgtext.linkWrap.width}
-                        height = {$styles.content.imgtext.linkWrap.height}
-                        rel = lightbox[myImageSet]
-                    }
-                }
-
-                video {
-                    width = 282
-                    height = 300
-                }
-            }
-        }
-
-        # --------------
-        #  List
-        # --------------
-        list {
-            # media configuration
-            media {
-                image {
-                    maxWidth = 400
-                    maxHeight =
-                }
-
-                dummyImage = EXT:address/Resources/Public/Images/dummy-image.png
-            }
-
-            # Paginate configuration.
-            paginate {
-                itemsPerPage = 10
-                insertAbove = 1
-                insertBelow = 1
-                templatePath =
-                prevNextHeaderTags = 1
-                maximumNumberOfLinks = 3
-            }
-
-        }
-
-        # Opengraph implementation
-        opengraph {
-            site_name = {$plugin.tx_address.opengraph.site_name}
-            type = article
-            admins =
-            email =
-            latitude =
-            longitude =
-            street-address =
-            locality =
-            region =
-            postal-code =
-            country-name =
-        }
-
-        contact {
-
-            pageId = {$plugin.tx_address.contact.pageId}
-
-        }
-
-
-        googlemaps {
-
-            javascript {
-
-                apiKey = {$plugin.tx_address.settings.googlemaps.javascript.apiKey}
-
-                apiUrl = {$plugin.tx_address.settings.googlemaps.javascript.apiUrl}
-            }
-
-            geocode {
-                apiUrl = {$plugin.tx_address.settings.googlemaps.geocode.apiUrl}
-            }
-
-        }
-
-        backend {
-            enableMap = {$plugin.tx_address.settings.backend.enableMap}
-        }
     }
+
+    backend {
+      enableMap = {$plugin.tx_address.settings.backend.enableMap}
+    }
+  }
 }
 
 # EXT:fluid_styled_content uses different constants
 [{$styles.content.textmedia.maxW} > 0]
-    plugin.tx_address.settings.detail.media.image.lightbox {
-        enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
-        class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
-        width = {$styles.content.textmedia.linkWrap.width}
-        height = {$styles.content.textmedia.linkWrap.height}
-    }
+  plugin.tx_address.settings.detail.media.image.lightbox {
+    enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
+    class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
+    width = {$styles.content.textmedia.linkWrap.width}
+    height = {$styles.content.textmedia.linkWrap.height}
+  }
 [END]
 
 
 # Rendering of content elements in detail view
 lib.tx_address.contentElementRendering = RECORDS
 lib.tx_address.contentElementRendering {
-    tables = tt_content
-    source.current = 1
-    dontCheckPid = 1
+  tables = tt_content
+  source.current = 1
+  dontCheckPid = 1
 }
 
 # Rendering of addresses, displayed by "Insert Record" content element
 tt_content.shortcut.20.tables := addToList(tx_address_domain_model_address)
 tt_content.shortcut.20.conf.tx_address_domain_model_address = USER
 tt_content.shortcut.20.conf.tx_address_domain_model_address {
-    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-    extensionName = Address
-    pluginName = Pi1
-    vendorName = WapplerSystems
-    switchableControllerActions {
-        Address {
-            1 = detail
-        }
+  userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+  extensionName = Address
+  pluginName = Pi1
+  vendorName = WapplerSystems
+  switchableControllerActions {
+    Address {
+      1 = detail
     }
+  }
 
-    settings =< plugin.tx_address.settings
-    settings {
-        singleAddress.field = uid
-        useStdWrap = singleAddress
-        insertRecord = 1
-    }
+  settings =< plugin.tx_address.settings
+  settings {
+    singleAddress.field = uid
+    useStdWrap = singleAddress
+    insertRecord = 1
+  }
 }
+
 # For fluid_styled_content
 tt_content.shortcut.variables.shortcuts.tables := addToList(tx_address_domain_model_address)
 tt_content.shortcut.variables.shortcuts.conf.tx_address_domain_model_address < tt_content.shortcut.20.conf.tx_address_domain_model_address
@@ -229,24 +230,24 @@ tt_content.shortcut.variables.shortcuts.conf.tx_address_domain_model_address < t
 # ==============================================
 module.tx_address < plugin.tx_address
 module.tx_address {
-    settings.list.paginate.itemsPerPage = 25
+  settings.list.paginate.itemsPerPage = 25
 }
 
 # ==============================================
 # Persistence object mapping configuration
 # ==============================================
 config.tx_extbase.persistence.classes {
-    WapplerSystems\Address\Domain\Model\Address {
-        subclasses {
-            0 = WapplerSystems\Address\Domain\Model\AddressDefault
-        }
+  WapplerSystems\Address\Domain\Model\Address {
+    subclasses {
+      0 = WapplerSystems\Address\Domain\Model\AddressDefault
     }
+  }
 
-    WapplerSystems\Address\Domain\Model\AddressDefault {
-        mapping {
-            #recordType = 0
-            tableName = tx_address_domain_model_address
-        }
+  WapplerSystems\Address\Domain\Model\AddressDefault {
+    mapping {
+      #recordType = 0
+      tableName = tx_address_domain_model_address
     }
+  }
 
 }

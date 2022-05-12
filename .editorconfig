@@ -46,3 +46,6 @@ indent_size = 2
 # .htaccess
 [{_.htaccess,.htaccess}]
 indent_style = tab
+
+[*.xml]
+max_line_length = 180
