@@ -8,19 +8,19 @@
 		"address",
 		"addresses"
 	],
-	"homepage": "http://wappler.systems",
+	"homepage": "https://wappler.systems",
 	"authors": [
 		{
 			"name": "Sven Wappler",
 			"role": "Developer",
-			"homepage": "http://wappler.systems"
+			"homepage": "https://wappler.systems"
 		}
 	],
 	"license": [
 		"GPL-2.0-or-later"
 	],
 	"require": {
-		"typo3/cms-core": "^10.4.0"
+		"typo3/cms-core": "^11.5.0"
 	},
 	"suggest": {
 	},
@@ -39,18 +39,8 @@
 			"WapplerSystems\\Address\\Tests\\": "Tests"
 		}
 	},
-	"replace": {
-		"svewap/address": "self.version",
-		"typo3-ter/address": "self.version"
-	},
-	"config": {
-		"vendor-dir": ".Build/vendor",
-		"bin-dir": ".Build/bin"
-	},
 	"extra": {
 		"typo3/cms": {
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
-			"web-dir": ".Build/Web",
 			"extension-key": "address"
 		}
 	}
