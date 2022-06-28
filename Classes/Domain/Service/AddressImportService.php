@@ -11,6 +11,7 @@ namespace WapplerSystems\Address\Domain\Service;
 use WapplerSystems\Address\Domain\Model\FileReference;
 use WapplerSystems\Address\Domain\Model\Link;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Log\LogManager;
 
 /**
  * Address Import Service
@@ -48,7 +49,7 @@ class AddressImportService extends AbstractImportService
 
     public function __construct()
     {
-        $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
         $this->logger = $logger;
 
         parent::__construct();

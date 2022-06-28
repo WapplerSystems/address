@@ -1,4 +1,5 @@
 <?php
+
 namespace WapplerSystems\Address\Controller;
 
 /**
@@ -7,18 +8,21 @@ namespace WapplerSystems\Address\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use WapplerSystems\Address\Utility\EmConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
-use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Base controller
  *
  */
-class AddressBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class AddressBaseController extends ActionController
 {
 
     /**
@@ -40,12 +44,12 @@ class AddressBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      * @param ResponseInterface $response
      * @throws \Exception
      */
-    public function processRequest(RequestInterface $request, ResponseInterface $response)
+    public function processRequest(RequestInterface $request): ResponseInterface
     {
         try {
-            parent::processRequest($request, $response);
+            return parent::processRequest($request);
         } catch (\Exception $exception) {
-            $this->handleKnownExceptionsElseThrowAgain($exception);
+            return $this->handleKnownExceptionsElseThrowAgain($exception);
         }
     }
 
@@ -53,7 +57,7 @@ class AddressBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      * @param \Exception $exception
      * @throws \Exception
      */
-    private function handleKnownExceptionsElseThrowAgain(\Exception $exception)
+    private function handleKnownExceptionsElseThrowAgain(\Exception $exception): ResponseInterface
     {
         $previousException = $exception->getPrevious();
 
@@ -73,12 +77,10 @@ class AddressBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      *
      * @param string $configuration configuration what will be done
      * @throws \InvalidArgumentException
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws StopActionException
      * @throws \UnexpectedValueException
-     * @return string
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    protected function handleNoAddressFoundError($configuration)
+    protected function handleNoAddressFoundError($configuration): ?string
     {
         if (empty($configuration)) {
             return null;

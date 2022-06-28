@@ -11,13 +11,14 @@ namespace WapplerSystems\Address\Domain\Repository;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 
 /**
  * Abstract demanded repository
  *
  */
-abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implements \WapplerSystems\Address\Domain\Repository\DemandedRepositoryInterface
+abstract class AbstractDemandedRepository extends Repository implements DemandedRepositoryInterface
 {
 
     /**

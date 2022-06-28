@@ -6,12 +6,12 @@ $boot = function () {
         'WapplerSystems.address',
         'Pi1',
         [
-            'Address' => 'list,detail,searchForm,searchResult',
-            'Category' => 'list',
-            'Tag' => 'list',
+            \WapplerSystems\Address\Controller\AddressController::class => 'list,detail,searchForm,searchResult',
+            \WapplerSystems\Address\Controller\CategoryController::class => 'list',
+            \WapplerSystems\Address\Controller\TagController::class => 'list',
         ],
         [
-            'Address' => 'searchForm,searchResult',
+            \WapplerSystems\Address\Controller\AddressController::class => 'searchForm,searchResult',
         ]
     );
 

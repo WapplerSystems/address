@@ -39,9 +39,8 @@ class AccessControlService
         // If there are any categories with denied access, the user has no permission
         if (count(self::getAccessDeniedCategories($addressRecord))) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     /**

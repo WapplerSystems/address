@@ -15,6 +15,7 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use WapplerSystems\Address\Domain\Model\Address;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 use WapplerSystems\Address\Domain\Model\Dto\Search;
@@ -93,7 +94,7 @@ class AddressController extends AddressBaseController
             // We only want to set the tag once in one request, so we have to cache that statically if it has been done
             static $cacheTagsSet = false;
 
-            /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
+            /** @var $typoScriptFrontendController TypoScriptFrontendController */
             $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
                 $typoScriptFrontendController->addCacheTags(['tx_address']);
@@ -119,7 +120,7 @@ class AddressController extends AddressBaseController
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand AddressDemand */
-        $demand = $this->objectManager->get($class, $settings);
+        $demand = GeneralUtility::makeInstance($class, $settings);
         if (!$demand instanceof AddressDemand) {
             throw new \UnexpectedValueException(
                 sprintf('The demand object must be an instance of \\WapplerSystems\\Address\\Domain\\Model\\Dto\\AddressDemand, but %s given!',

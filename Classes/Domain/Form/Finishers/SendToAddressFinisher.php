@@ -37,16 +37,12 @@ class SendToAddressFinisher extends EmailFinisher
      * Get mail recipients
      *
      * @param string $listOption List option name
-     * @param string $singleAddressOption Single address option
-     * @param string|null $singleAddressNameOption Single address name
      * @return array
      *
      * @deprecated since TYPO3 v10.0, will be removed in TYPO3 v11.0.
      */
     protected function getRecipients(
         string $listOption,
-        string $singleAddressOption,
-        string $singleAddressNameOption = null
     ): array {
 
         $values = $this->finisherContext->getFormValues();

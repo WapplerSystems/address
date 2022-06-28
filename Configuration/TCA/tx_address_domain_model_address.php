@@ -1,8 +1,12 @@
 <?php
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use WapplerSystems\Address\Domain\Model\Dto\EmConfiguration;
+
 defined('TYPO3_MODE') or die();
 
-/** @var \WapplerSystems\Address\Domain\Model\Dto\EmConfiguration $configuration */
-$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\WapplerSystems\Address\Domain\Model\Dto\EmConfiguration::class);
+/** @var EmConfiguration $configuration */
+$configuration = GeneralUtility::makeInstance(EmConfiguration::class);
 
 
 $tx_address_domain_model_address = [

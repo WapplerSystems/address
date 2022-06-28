@@ -105,7 +105,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      */
     protected function isValidClassName($className)
     {
-        if (GeneralUtility::isFirstPartOfStr($className, 'WapplerSystems\\Address\\')) {
+        if (str_starts_with($className, 'WapplerSystems\\Address\\')) {
             $modifiedClassName = $this->changeClassName($className);
             if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['classes'][$modifiedClassName])) {
                 return true;

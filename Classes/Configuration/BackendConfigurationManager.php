@@ -11,10 +11,10 @@ use TYPO3\CMS\Extbase\Service\EnvironmentService;
 class BackendConfigurationManager extends \TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager
 {
 
-    public function __construct(ObjectManagerInterface $objectManager, TypoScriptService $typoScriptService, EnvironmentService $environmentService)
+    public function __construct(TypoScriptService $typoScriptService, EnvironmentService $environmentService)
     {
         if (version_compare(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getExtensionVersion('core'), '10.0', '>=')) {
-            parent::__construct($objectManager, $typoScriptService, $environmentService);
+            parent::__construct($typoScriptService, $environmentService);
         }
 
         // extract page id from returnUrl GET parameter

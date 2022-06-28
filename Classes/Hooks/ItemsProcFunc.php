@@ -87,7 +87,7 @@ class ItemsProcFunc
             if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
                 $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
                 // check for selected action
-                if (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
+                if (str_starts_with($selectedActionList, 'Category')) {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByCategory'];
                 } else {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByAddress'];
