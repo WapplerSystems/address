@@ -7,7 +7,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
+use WapplerSystems\Address\Configuration\ConfigurationManager;
 
 class MapElement extends AbstractFormElement
 {
@@ -317,13 +317,12 @@ EOT;
 
     private function getTypoScriptSettings()
     {
-        $tsArray = GeneralUtility::makeInstance(ObjectManager::class)
-            ->get(\WapplerSystems\Address\Configuration\ConfigurationManager::class)
+        $tsArray = GeneralUtility::makeInstance(ConfigurationManager::class)
             ->getConfiguration(
                 ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
             );
 
-        return GeneralUtility::removeDotsFromTS($tsArray['plugin.']['tx_address.']['settings.']);
+        return GeneralUtility::removeDotsFromTS($tsArray['plugin.']['tx_address.']['settings.'] ?? []);
     }
 
 }
