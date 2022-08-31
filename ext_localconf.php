@@ -76,7 +76,7 @@ $boot = function () {
     ];
 
 
-    if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'])) {
+    if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'] ?? null)) {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'] = [
             'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
             'backend'  => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
