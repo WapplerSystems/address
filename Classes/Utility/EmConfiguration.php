@@ -38,7 +38,7 @@ class EmConfiguration
      */
     public static function parseSettings()
     {
-        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['address']);
+        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['address'] ?? '');
 
         if (!is_array($settings)) {
             $settings = [];
