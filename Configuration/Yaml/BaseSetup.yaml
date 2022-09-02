@@ -1,3 +1,6 @@
+imports:
+  - { resource: "./Finishers/EmailToAddress.yaml" }
+
 TYPO3:
   CMS:
     Form:
@@ -39,64 +42,6 @@ TYPO3:
             dynamicRequireJsModules:
               additionalViewModelModules:
                 - 'TYPO3/CMS/Address/Backend/FormEditor/ViewModel'
-
-          finishersDefinition:
-            EmailToAddress:
-              implementationClassName: 'WapplerSystems\Address\Domain\Form\Finishers\SendToAddressFinisher'
-              FormEngine:
-                __inheritances:
-                  10: 'TYPO3.CMS.Form.mixins.FormEngineEmailMixin'
-                label: 'tt_content.finishersDefinition.EmailToReceiver.label'
-                elements:
-                  subject:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.subject.label'
-                  recipientName:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.recipientName.label'
-                  senderAddress:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.senderAddress.label'
-                  senderName:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.senderName.label'
-                  replyToAddress:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.replyToAddress.label'
-                  carbonCopyAddress:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.carbonCopyAddress.label'
-                  blindCarbonCopyAddress:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.blindCarbonCopyAddress.label'
-                  format:
-                    label: 'tt_content.finishersDefinition.EmailToReceiver.format.label'
-                  translation:
-                    language:
-                      label: 'tt_content.finishersDefinition.EmailToReceiver.language.label'
-                      config:
-                        type: select
-                        renderType: 'selectSingle'
-                        minitems: 1
-                        maxitems: 1
-                        size: 1
-                        items:
-                          10:
-                            0: 'tt_content.finishersDefinition.EmailToReceiver.language.1'
-                            1: 'default'
-              formEditor:
-                iconIdentifier: 't3-form-icon-finisher'
-                label: 'Email to address'
-                predefinedDefaults:
-                  options:
-                    subject: ''
-                    recipientName: ''
-                    senderAddress: ''
-                    senderName: ''
-                    replyToAddress: ''
-                    carbonCopyAddress: ''
-                    blindCarbonCopyAddress: ''
-                    format: 'html'
-                    attachUploads: true
-                    translation:
-                      language: ''
-              options:
-                templateName: '{@format}.html'
-                templateRootPaths:
-                  10: 'EXT:address/Resources/Private/Templates/Email/'
 
           formEngine:
             translationFile:
@@ -177,12 +122,19 @@ TYPO3:
 
 
             ContactLabel:
-              __inheritances:
-                10: 'TYPO3.CMS.Form.mixins.formElementMixins.BaseFormElementMixin'
               implementationClassName: 'TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement'
               renderingOptions:
                 templateName: 'ContactLabel'
               formEditor:
+                editors:
+                  100:
+                    identifier: header
+                    templateName: Inspector-FormElementHeaderEditor
+                  200:
+                    identifier: label
+                    templateName: Inspector-TextEditor
+                    label: formEditor.elements.BaseFormElementMixin.editor.label.label
+                    propertyPath: label
                 label: 'formEditor.elements.ContactLabel.label'
                 group: custom
                 groupSorting: 1200
