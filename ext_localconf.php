@@ -1,24 +1,50 @@
 <?php
+
+use TYPO3\CMS\Backend\Form\Container\InlineRecordContainer;
+use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew;
+use TYPO3\CMS\Core\Cache\Backend\FileBackend;
+use TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend;
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
+use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
+use TYPO3\CMS\Core\Imaging\IconRegistry;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use WapplerSystems\Address\Backend\Form\Element\MapElement;
+use WapplerSystems\Address\Backend\FormDataProvider\AddressRowInitializeNew;
+use WapplerSystems\Address\Command\AddressImportCommandController;
+use WapplerSystems\Address\Controller\AddressController;
+use WapplerSystems\Address\Controller\CategoryController;
+use WapplerSystems\Address\Controller\TagController;
+use WapplerSystems\Address\Hooks\DataHandler;
+use WapplerSystems\Address\Hooks\Form\AddressHook;
+use WapplerSystems\Address\Hooks\InlineElementHook;
+use WapplerSystems\Address\Updates\AddressSlugUpdater;
+use WapplerSystems\Address\Utility\ClassCacheManager;
+use WapplerSystems\Address\Utility\ClassLoader;
+use WapplerSystems\Address\Xclass\InlineRecordContainerForAddress;
+
 defined('TYPO3_MODE') or die();
 
 $boot = function () {
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'WapplerSystems.address',
         'Pi1',
         [
-            \WapplerSystems\Address\Controller\AddressController::class => 'list,detail,searchForm,searchResult',
-            \WapplerSystems\Address\Controller\CategoryController::class => 'list',
-            \WapplerSystems\Address\Controller\TagController::class => 'list',
+            AddressController::class => 'list,detail,searchForm,searchResult',
+            CategoryController::class => 'list',
+            TagController::class => 'list',
         ],
         [
-            \WapplerSystems\Address\Controller\AddressController::class => 'searchForm,searchResult',
+            AddressController::class => 'searchForm,searchResult',
         ]
     );
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1603209223] = [
         'nodeName' => 'map',
         'priority' => '10',
-        'class' => \WapplerSystems\Address\Backend\Form\Element\MapElement::class,
+        'class' => MapElement::class,
     ];
 
     // Page module hook
@@ -26,46 +52,38 @@ $boot = function () {
         \WapplerSystems\Address\Hooks\PageLayoutView::class . '->getExtensionSummary';*/
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['address_clearcache'] =
-        \WapplerSystems\Address\Hooks\DataHandler::class . '->clearCachePostProc';
+        DataHandler::class . '->clearCachePostProc';
 
     // Edit restriction for address records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['address'] =
-        \WapplerSystems\Address\Hooks\DataHandler::class;
+        DataHandler::class;
 
 
 
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['address'] =
-        \WapplerSystems\Address\Hooks\InlineElementHook::class;
+        InlineElementHook::class;
 
     // Xclass InlineRecordContainer
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Form\Container\InlineRecordContainer::class] = [
-        'className' => \WapplerSystems\Address\Xclass\InlineRecordContainerForAddress::class,
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][InlineRecordContainer::class] = [
+        'className' => InlineRecordContainerForAddress::class,
     ];
 
 
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/ContentElementWizard.tsconfig">
-    ');
+    ExtensionManagementUtility::addPageTSConfig(
+        "@import 'EXT:address/Configuration/TsConfig/ContentElementWizard.tsconfig'"
+    );
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:address/Configuration/TsConfig/Page/config.tsconfig">
-    ');
+    ExtensionManagementUtility::addPageTSConfig(
+        "@import 'EXT:address/Configuration/TsConfig/Page/config.tsconfig'"
+    );
 
-
-    /* ===========================================================================
-        Hooks
-    =========================================================================== */
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['address'] =
-            \WapplerSystems\Address\Hooks\RealUrlAutoConfiguration::class . '->addAddressConfig';
-    }
 
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address'] = [
-        'frontend' => \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
-        'backend' => \TYPO3\CMS\Core\Cache\Backend\FileBackend::class,
+        'frontend' => PhpFrontend::class,
+        'backend' => FileBackend::class,
         'groups' => [
             'all',
             'system',
@@ -78,24 +96,24 @@ $boot = function () {
 
     if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'] ?? null)) {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_geocoding'] = [
-            'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
-            'backend'  => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
+            'frontend' => VariableFrontend::class,
+            'backend'  => Typo3DatabaseBackend::class,
         ];
     }
 
-    if (class_exists(\WapplerSystems\Address\Utility\ClassLoader::class)) {
-        \WapplerSystems\Address\Utility\ClassLoader::registerAutoloader();
+    if (class_exists(ClassLoader::class)) {
+        ClassLoader::registerAutoloader();
     }
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] =
-        \WapplerSystems\Address\Utility\ClassCacheManager::class . '->reBuild';
+        ClassCacheManager::class . '->reBuild';
 
 
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\WapplerSystems\Address\Backend\FormDataProvider\AddressRowInitializeNew::class] = [
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][AddressRowInitializeNew::class] = [
         'depends' => [
-            \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
+            DatabaseRowInitializeNew::class,
         ]
     ];
-    \WapplerSystems\Address\Utility\ClassLoader::registerAutoloader();
+    ClassLoader::registerAutoloader();
 
     if (TYPO3_MODE === 'BE') {
         $icons = [
@@ -107,26 +125,26 @@ $boot = function () {
             'ext-address-tag' => 'address_domain_model_tag.svg',
             'ext-address-link' => 'address_domain_model_link.svg'
         ];
-        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+        $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
         foreach ($icons as $identifier => $path) {
             $iconRegistry->registerIcon(
                 $identifier,
-                \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+                SvgIconProvider::class,
                 ['source' => 'EXT:address/Resources/Public/Icons/' . $path]
             );
         }
     }
 
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \WapplerSystems\Address\Command\AddressImportCommandController::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = AddressImportCommandController::class;
 
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('form')) {
+    if (ExtensionManagementUtility::isLoaded('form')) {
 
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['beforeRendering'][1506563222] = \WapplerSystems\Address\Hooks\Form\AddressHook::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['beforeRendering'][1506563222] = AddressHook::class;
 
     }
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['addressSlug']
-        = \WapplerSystems\Address\Updates\AddressSlugUpdater::class;
+        = AddressSlugUpdater::class;
 };
 
 $boot();

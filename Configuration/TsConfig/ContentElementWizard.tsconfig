@@ -1,13 +1,13 @@
 mod.wizards.newContentElement.wizardItems.plugins {
-	elements {
-		address {
-			iconIdentifier = ext-address-wizard-icon
-			title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pi1_title
-			description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
-			tt_content_defValues {
-				CType = list
-				list_type = address_pi1
-			}
-		}
-	}
+  elements {
+    address {
+      iconIdentifier = ext-address-wizard-icon
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:wizard.title.address
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
+      tt_content_defValues {
+        CType = list
+        list_type = address_pi1
+      }
+    }
+  }
 }

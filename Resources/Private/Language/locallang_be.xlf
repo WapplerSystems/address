@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="address">
-		<header/>
+		<header />
 		<body>
 			<trans-unit id="pi1_title" xml:space="preserve">
 				<source>Address system</source>
@@ -243,10 +243,10 @@
 			<trans-unit id="extmng.prependAtCopy" xml:space="preserve">
 				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+			<trans-unit id="extmng.categoryRestriction">
 				<source>Category restriction: Restrict the available categories in address records. PageTsConfig:
-				TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
-			</source>
+TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+				</source>
 			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
 				<source>Categories from current page</source>
@@ -391,7 +391,7 @@
 			</trans-unit>
 			<trans-unit id="administration.addressPidListing.description" xml:space="preserve">
 				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the address entries of the page.
-			</source>
+				</source>
 			</trans-unit>
 			<trans-unit id="administration.nolimit" xml:space="preserve">
 				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
@@ -466,6 +466,14 @@
 			</trans-unit>
 			<trans-unit id="hiddenContentElements.description">
 				<source>Content elements are hidden in sys folders of type "address"!</source>
+			</trans-unit>
+
+
+			<trans-unit id="wizard.title.address" xml:space="preserve">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="wizard.title.person" xml:space="preserve">
+				<source>Person</source>
 			</trans-unit>
 		</body>
 	</file>
