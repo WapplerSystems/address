@@ -11,7 +11,7 @@ TYPO3:
                 templateRootPaths:
                   10: 'EXT:address/Resources/Private/Templates/Email/'
               FormEngine:
-                label: 'tt_content.finishersDefinition.EmailToReceiver.label'
+                label: 'tt_content.finishersDefinition.EmailToAddress.label'
                 elements:
                   subject:
                     label: tt_content.finishersDefinition.EmailToReceiver.subject.label
