@@ -264,6 +264,17 @@ $tx_address_domain_model_address = [
                 'eval' => '',
             ]
         ],
+        'www' => [
+            'exclude' => false,
+            'l10n_display' => 'defaultAsReadonly',
+            'l10n_mode' => 'exclude',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.www',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => '',
+            ]
+        ],
         'fax' => [
             'exclude' => false,
             'l10n_display' => 'defaultAsReadonly',
@@ -940,7 +951,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'type, sys_language_uid, hidden, istopaddress,',
         ],
         'paletteContact' => [
-            'showitem' => 'phone, fax, --linebreak--, email, direct_contact,',
+            'showitem' => 'phone, fax, --linebreak--, email, direct_contact, --linebreak--, www,',
         ],
         'paletteLocation' => [
             'showitem' => 'address, building, --linebreak--, zip, city, region, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
