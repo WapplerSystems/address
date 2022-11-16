@@ -123,7 +123,13 @@ $boot = function () {
             'ext-address-type-person' => 'address_domain_model_address_person.svg',
             'ext-address-type-company' => 'address_domain_model_address_company.svg',
             'ext-address-tag' => 'address_domain_model_tag.svg',
-            'ext-address-link' => 'address_domain_model_link.svg'
+            'ext-address-link' => 'address_domain_model_link.svg',
+            'ext-address-contact-type-email' => 'address_domain_model_concact_email.svg',
+            'ext-address-contact-type-telephone' => 'address_domain_model_concact_telephone.svg',
+            'ext-address-contact-type-mobilephone' => 'address_domain_model_concact_mobilephone.svg',
+            'ext-address-contact-type-website' => 'address_domain_model_concact_website.svg',
+            'ext-address-contact-type-blog' => 'address_domain_model_concact_blog.svg',
+            'ext-address-contact-type-xing' => 'address_domain_model_concact_xing.svg',
         ];
         $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
         foreach ($icons as $identifier => $path) {

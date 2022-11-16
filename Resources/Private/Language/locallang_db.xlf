@@ -114,6 +114,53 @@
 			</trans-unit>
 
 
+			<trans-unit id="tx_address_domain_model_contact" xml:space="preserve">
+				<source>Contact</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type" xml:space="preserve">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.email" xml:space="preserve">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.telephone" xml:space="preserve">
+				<source>Telephone</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.mobilePhone" xml:space="preserve">
+				<source>Mobile phone</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.website" xml:space="preserve">
+				<source>Website</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.blog" xml:space="preserve">
+				<source>Blog</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.xing" xml:space="preserve">
+				<source>Xing</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
+				<source>LinkedIn</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.twitter" xml:space="preserve">
+				<source>Twitter</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
+				<source>Facebook</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
+				<source>Instagram</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
+				<source>Mastodon</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
+				<source>Threema</source>
+			</trans-unit>
+
+			<trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
+				<source>Content</source>
+			</trans-unit>
+
 			<trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">
 				<source>Longitude</source>
 			</trans-unit>
@@ -151,6 +198,11 @@
 			<trans-unit id="tx_address_domain_model_address.keywords.placeholder" xml:space="preserve">
 				<source>Keyword1, keyword2, keyword3</source>
 			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.contacts" xml:space="preserve">
+				<source>Contacts</source>
+			</trans-unit>
+
+
 			<trans-unit id="tx_address_domain_model_tag.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
 			</trans-unit>

@@ -852,6 +852,19 @@ $tx_address_domain_model_address = [
                 ],
             ]
         ],
+        'contacts' => [
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.contacts',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_address_domain_model_contact',
+                'foreign_field' => 'address',
+                'appearance' => [
+                    'showSynchronizationLink' => true,
+                    'showAllLocalizationLink' => true,
+                    'showPossibleLocalizationRecords' => true,
+                ],
+            ],
+        ],
     ],
     'types' => [
         // default address
@@ -951,7 +964,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'type, sys_language_uid, hidden, istopaddress,',
         ],
         'paletteContact' => [
-            'showitem' => 'phone, fax, --linebreak--, email, direct_contact, --linebreak--, www,',
+            'showitem' => 'contacts, --linebreak--, phone, fax, --linebreak--, email, direct_contact, --linebreak--, www,',
         ],
         'paletteLocation' => [
             'showitem' => 'address, building, --linebreak--, zip, city, region, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
