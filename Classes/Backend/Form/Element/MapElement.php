@@ -34,11 +34,11 @@ class MapElement extends AbstractFormElement
         $pluginSettings = $this->getTypoScriptSettings();
 
 
-        $googleMapsLibrary = $pluginSettings['googlemaps']['javascript']['apiUrl'] ?
+        $googleMapsLibrary = isset($pluginSettings['googlemaps']['javascript']['apiUrl']) ?
             htmlentities($pluginSettings['googlemaps']['javascript']['apiUrl']) :
             '//maps.google.com/maps/api/js?v=weekly';
 
-        if ($pluginSettings['googlemaps']['javascript']['apiKey']) {
+        if ($pluginSettings['googlemaps']['javascript']['apiKey'] ?? false) {
             $googleMapsLibrary .= '&key=' . $pluginSettings['googlemaps']['javascript']['apiKey'];
         }
 
