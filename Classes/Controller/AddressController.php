@@ -213,7 +213,7 @@ class AddressController extends AddressBaseController
             if ($demand->getIds()) {
                 $paginator = new SortedArrayPaginator($addressRecords->toArray(), $demand->getIds(), $currentPage);
             } else {
-                $paginator = new QueryResultPaginator($addressRecords, $currentPage, $this->settings['list']['paginate']['itemsPerPage'] ?? 10);
+                $paginator = new QueryResultPaginator($addressRecords, $currentPage, (int)($this->settings['list']['paginate']['itemsPerPage'] ?? 10));
             }
             $pagination = new SimplePagination($paginator);
             $pages = range(1, $pagination->getLastPageNumber());
