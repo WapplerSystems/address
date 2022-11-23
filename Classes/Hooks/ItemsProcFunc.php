@@ -35,27 +35,8 @@ class ItemsProcFunc
      */
     public function user_templateLayout(array &$config)
     {
-        $pageId = 0;
-        if (ExtensionManagementUtility::isLoaded('compatibility6')) {
-            if (StringUtility::beginsWith($config['row']['uid'], 'NEW')) {
-                $getVars = GeneralUtility::_GET('edit');
-                if (is_array($getVars) && isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
-                    $keys = array_keys($getVars['tt_content']);
-                    $firstKey = (int)$keys[0];
-                    if ($firstKey > 0) {
-                        $pageId = $firstKey;
-                    } else {
-                        $row = $this->getContentElementRow(abs($firstKey));
-                        $pageId = $row['pid'];
-                    }
-                }
-            } else {
-                $row = $this->getContentElementRow($config['row']['uid']);
-                $pageId = $row['pid'];
-            }
-        } else {
-            $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
-        }
+        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
+
 
         if ($pageId > 0) {
             $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
@@ -88,9 +69,9 @@ class ItemsProcFunc
                 $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
                 // check for selected action
                 if (str_starts_with($selectedActionList, 'Category')) {
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByCategory'];
+                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByCategory'] ?? null;
                 } else {
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByAddress'];
+                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByAddress'] ?? null;
                 }
             }
         }
