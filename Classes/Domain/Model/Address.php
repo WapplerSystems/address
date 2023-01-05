@@ -18,8 +18,8 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
-    const TYPE_PERSON = 1;
-    const TYPE_COMPANY = 2;
+    public const TYPE_PERSON = 1;
+    public const TYPE_COMPANY = 2;
 
     /**
      * @var bool
@@ -201,9 +201,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $academicTitle;
 
     /**
-     * @var int
+     * @var string
      */
-    protected $appendAcademicTitle;
+    protected $academicTitleSuffix;
 
     /**
      * @var string
@@ -968,6 +968,22 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
+    public function getAcademicTitleSuffix(): string
+    {
+        return $this->academicTitleSuffix;
+    }
+
+    /**
+     * @param string $academicTitleSuffix
+     */
+    public function setAcademicTitleSuffix(string $academicTitleSuffix): void
+    {
+        $this->academicTitleSuffix = $academicTitleSuffix;
+    }
+
+    /**
+     * @return string
+     */
     public function getAbbreviation()
     {
         return $this->abbreviation;
@@ -1128,22 +1144,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return int
-     */
-    public function getAppendAcademicTitle(): int
-    {
-        return $this->appendAcademicTitle;
-    }
-
-    /**
-     * @param int $appendAcademicTitle
-     */
-    public function setAppendAcademicTitle(int $appendAcademicTitle)
-    {
-        $this->appendAcademicTitle = $appendAcademicTitle;
-    }
-
-    /**
      * @return string
      */
     public function getCity()
@@ -1263,5 +1263,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->latitude = $latitude;
     }
+
+
 
 }
