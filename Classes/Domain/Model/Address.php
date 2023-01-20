@@ -178,6 +178,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
+    protected $www;
+
+    /**
+     * @var string
+     */
     protected $firstName;
 
     /**
@@ -858,6 +863,23 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->url = $url;
     }
+
+    /**
+     * @return string
+     */
+    public function getWww(): string
+    {
+        return $this->www;
+    }
+
+    /**
+     * @param string $www
+     */
+    public function setWww(string $www): void
+    {
+        $this->www = $www;
+    }
+
 
     /**
      * @return ObjectStorage
