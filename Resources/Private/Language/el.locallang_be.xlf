@@ -66,9 +66,6 @@
       <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
 				<source>Uid</source>
 			<target state="needs-translation">Uid</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve">
-				<source>Manual sorting</source>
-			<target state="needs-translation">Manual sorting</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
 				<source>Last edited</source>
 			<target state="needs-translation">Last edited</target></trans-unit>
@@ -79,11 +76,11 @@
 				<source>Given date/time</source>
 			<target state="needs-translation">Given date/time</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
-				<source>Title</source>
-			<target state="needs-translation">Title</target></trans-unit>
+				<source>Title / last name</source>
+			<target state="needs-translation">Title / last name</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
-				<source>Manuell</source>
-			<target state="needs-translation">Manuell</target></trans-unit>
+				<source>Manual</source>
+			<target state="needs-translation">Manual</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
 			<target state="needs-translation">Sort direction</target></trans-unit>
