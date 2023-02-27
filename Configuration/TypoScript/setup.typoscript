@@ -62,7 +62,7 @@ plugin.tx_address {
     orderBy = datetime
     orderDirection = desc
     topAddressFirst = 0
-    orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,categories.title
+    orderByAllowed = sorting,last_name,uid,title,teaser,author,tstamp,crdate,categories.title
 
     demandClass =
 

@@ -144,7 +144,11 @@ class AddressController extends AddressBaseController
         $demand->setHideIdList($settings['hideIdList']);
 
         if ($settings['orderBy']) {
-            $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
+            if ($settings['orderBy'] === 'title') {
+                $demand->setOrder('title ' . $settings['orderDirection'].',last_name ' . $settings['orderDirection']);
+            } else {
+                $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
+            }
         }
         $demand->setOrderByAllowed($settings['orderByAllowed']);
 

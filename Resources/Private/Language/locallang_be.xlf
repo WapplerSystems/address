@@ -66,9 +66,6 @@
 			<trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
 				<source>Uid</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve">
-				<source>Manual sorting</source>
-			</trans-unit>
 			<trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
 				<source>Last edited</source>
 			</trans-unit>
@@ -79,10 +76,10 @@
 				<source>Given date/time</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
-				<source>Title</source>
+				<source>Title / last name</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
-				<source>Manuell</source>
+				<source>Manual</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
