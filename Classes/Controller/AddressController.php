@@ -517,7 +517,7 @@ class AddressController extends AddressBaseController
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
         }
 
-        if (\is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'])) {
+        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'] ?? null)) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'] as $_funcRef) {
                 $_params = [
                     'originalSettings' => $originalSettings,
