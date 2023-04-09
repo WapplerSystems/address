@@ -193,6 +193,7 @@ $tx_address_domain_model_contact = [
                     ['LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_contact.type.instagram', 'instagram', 'ext-address-contact-type-instagram'],
                     ['LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_contact.type.mastodon', 'mastodon', 'ext-address-contact-type-mastodon'],
                     ['LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_contact.type.threema', 'threema', 'ext-address-contact-type-threema'],
+                    ['LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_contact.type.fax', 'fax', 'ext-address-contact-type-fax'],
                 ],
                 'showIconTable' => true,
                 'size' => 1,

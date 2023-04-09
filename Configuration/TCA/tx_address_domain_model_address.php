@@ -858,6 +858,7 @@ $tx_address_domain_model_address = [
                 'type' => 'inline',
                 'foreign_table' => 'tx_address_domain_model_contact',
                 'foreign_field' => 'address',
+                'foreign_sortby' => 'sorting',
                 'appearance' => [
                     'showSynchronizationLink' => true,
                     'showAllLocalizationLink' => true,

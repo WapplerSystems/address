@@ -258,12 +258,18 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var float
      */
-    protected $longitude = 0;
+    protected $longitude = 0.0;
 
     /**
      * @var float
      */
-    protected $latitude = 0;
+    protected $latitude = 0.0;
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Contact>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $contacts;
 
 
     /**
@@ -276,6 +282,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->relatedLinks = new ObjectStorage();
         $this->media = new ObjectStorage();
         $this->relatedFiles = new ObjectStorage();
+        $this->contacts = new ObjectStorage();
     }
 
 
@@ -373,22 +380,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getRelatedFrom()
     {
         return $this->relatedFrom;
-    }
-
-
-    /**
-     * Return related from items sorted by datetime
-     *
-     * @return array
-     */
-    public function getRelatedFromSorted()
-    {
-        $items = $this->getRelatedFrom();
-        if ($items) {
-            $items = $items->toArray();
-            usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
-        }
-        return $items;
     }
 
 
@@ -1262,6 +1253,52 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+    }
+
+    /**
+     * @return ObjectStorage
+     */
+    public function getContacts(): ObjectStorage
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @param ObjectStorage $contacts
+     */
+    public function setContacts(ObjectStorage $contacts): void
+    {
+        $this->contacts = $contacts;
+    }
+
+    /**
+     * get one contact by type, ordered by sorting
+     * @param string $type
+     * @return Contact|null
+     */
+    public function getContactByType(string $type) {
+        /** @var Contact $contact */
+        foreach ($this->contacts as $contact) {
+            if ($contact->getType() === $type) {
+                return $contact;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function getContactsByType(string $type) {
+        $contacts = [];
+        /** @var Contact $contact */
+        foreach ($this->contacts as $contact) {
+            if ($contact->getType() === $type) {
+                $contacts[] = $contact;
+            }
+        }
+        return $contacts;
     }
 
 }
