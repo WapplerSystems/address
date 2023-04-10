@@ -56,7 +56,10 @@ class SendToAddressFinisher extends EmailFinisher
             throw new FinisherException('No address found.', 132706567632);
         }
 
-        $recipientAddress = $address->getEmail();
+        $recipientAddress = $address->getFirstEmailAddress();
+        if ($recipientAddress === '') {
+            return [];
+        }
         $recipientName = $address->getName();
 
         $addresses = [];

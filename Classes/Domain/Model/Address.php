@@ -1301,4 +1301,12 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $contacts;
     }
 
+    public function getFirstEmailAddress(): string {
+        $contacts = $this->getContactsByType('email');
+        if (count($contacts) > 0) {
+            return $contacts[0]->getContent();
+        }
+        return '';
+    }
+
 }
