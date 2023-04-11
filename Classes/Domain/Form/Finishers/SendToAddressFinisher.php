@@ -45,25 +45,29 @@ class SendToAddressFinisher extends EmailFinisher
         string $listOption,
     ): array {
 
-        $values = $this->finisherContext->getFormValues();
+        $addresses = parent::getRecipients($listOption);
 
-        if ((int)$values['addressUid'] === 0) {
-            throw new FinisherException('No address given.', 132706567666);
+        if ($listOption === 'recipients') {
+
+            $values = $this->finisherContext->getFormValues();
+
+            if ((int)$values['addressUid'] === 0) {
+                throw new FinisherException('No address given.', 132706567666);
+            }
+
+            $address = $this->addressRepository->findByUid($values['addressUid']);
+            if ($address === null) {
+                throw new FinisherException('No address found.', 132706567632);
+            }
+
+            $recipientAddress = $address->getFirstEmailAddress();
+            if ($recipientAddress === '') {
+                return [];
+            }
+            $recipientName = $address->getName();
+
+            $addresses[] = new Address($recipientAddress, $recipientName);
         }
-
-        $address = $this->addressRepository->findByUid($values['addressUid']);
-        if ($address === null) {
-            throw new FinisherException('No address found.', 132706567632);
-        }
-
-        $recipientAddress = $address->getFirstEmailAddress();
-        if ($recipientAddress === '') {
-            return [];
-        }
-        $recipientName = $address->getName();
-
-        $addresses = [];
-        $addresses[] = new Address($recipientAddress, $recipientName);
         return $addresses;
     }
 
