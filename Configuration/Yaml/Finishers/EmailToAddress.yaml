@@ -2,7 +2,7 @@ TYPO3:
   CMS:
     Form:
       prototypes:
-        standard:
+        address:
           finishersDefinition:
             EmailToAddress:
               implementationClassName: WapplerSystems\Address\Domain\Form\Finishers\SendToAddressFinisher
