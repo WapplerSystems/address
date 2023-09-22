@@ -8,6 +8,9 @@ namespace WapplerSystems\Address\Domain\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
+use TYPO3\CMS\Core\Resource\File;
 use WapplerSystems\Address\Domain\Model\Category;
 use WapplerSystems\Address\Domain\Model\FileReference;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,11 +28,6 @@ class CategoryImportService extends AbstractImportService
      * @var \WapplerSystems\Address\Domain\Repository\CategoryRepository
      */
     protected $categoryRepository;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
-     */
-    protected $signalSlotDispatcher;
 
     public function __construct()
     {
@@ -49,15 +47,6 @@ class CategoryImportService extends AbstractImportService
         $this->categoryRepository = $categoryRepository;
     }
 
-    /**
-     * Inject SignalSlotDispatcher
-     *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     */
-    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
-    {
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
-    }
 
     /**
      * @param array $importArray
@@ -124,7 +113,7 @@ class CategoryImportService extends AbstractImportService
         if (is_null($category)) {
             $this->logger->info('Category is new');
 
-            $category = $this->objectManager->get(\WapplerSystems\Address\Domain\Model\Category::class);
+            $category = new Category();
             $this->categoryRepository->add($category);
         } else {
             $this->logger->info(sprintf('Category exists already with id "%s".', $category->getUid()));
@@ -165,12 +154,12 @@ class CategoryImportService extends AbstractImportService
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
         try {
             $newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
-        } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+        } catch (ResourceDoesNotExistException $exception) {
             $newImage = false;
         }
 
         // only proceed if image is found
-        if (!$newImage instanceof \TYPO3\CMS\Core\Resource\File) {
+        if (!$newImage instanceof File) {
             return;
         }
 
@@ -207,7 +196,7 @@ class CategoryImportService extends AbstractImportService
                 }
             }
 
-            $fileReference = $this->objectManager->get(\WapplerSystems\Address\Domain\Model\FileReference::class);
+            $fileReference = new FileReference();
             $fileReference->setFileUid($newImage->getUid());
             $fileReference->setPid($category->getPid());
             $category->addImage($fileReference);
@@ -273,7 +262,6 @@ class CategoryImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        $this->signalSlotDispatcher->dispatch('WapplerSystems\\Address\\Domain\\Service\\CategoryImportService', $signalName,
-            $signalArguments);
+
     }
 }

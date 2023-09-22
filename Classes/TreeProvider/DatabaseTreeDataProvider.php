@@ -34,7 +34,8 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
         \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent = null,
         $level = 0,
         $restriction = false
-    ) {
+    ): \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode
+    {
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         /**@param $node \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode */
         $node = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode::class);

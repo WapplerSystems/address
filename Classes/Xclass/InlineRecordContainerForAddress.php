@@ -26,7 +26,7 @@ class InlineRecordContainerForAddress extends InlineRecordContainer
      * @param string $ariaAttributesString HTML aria attributes for the collapse button
      * @return string
      */
-    protected function renderForeignRecordHeader(array $data, string $ariaAttributesString)
+    protected function renderForeignRecordHeader(array $data, string $ariaAttributesString): string
     {
         $languageService = $this->getLanguageService();
         $inlineConfig = $data['inlineParentConfig'];

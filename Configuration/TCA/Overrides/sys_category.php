@@ -1,5 +1,4 @@
 <?php
-defined('TYPO3_MODE') or die();
 
 /**
  * Add extra fields to the sys_category record

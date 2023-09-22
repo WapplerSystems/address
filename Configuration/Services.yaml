@@ -24,3 +24,9 @@ services:
   WapplerSystems\Address\Utility\ClassLoader:
     arguments: ['@address.cache', '@WapplerSystems\Address\Utility\ClassCacheManager']
     public: true
+
+  WapplerSystems\Address\Configuration\BackendConfigurationManager:
+    public: true
+    arguments:
+      $typoScriptCache: '@cache.typoscript'
+      $runtimeCache: '@cache.runtime'

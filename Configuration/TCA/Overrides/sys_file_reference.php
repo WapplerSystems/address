@@ -1,8 +1,9 @@
 <?php
-defined('TYPO3_MODE') or die();
 
 
-if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('news')) {
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+if (!ExtensionManagementUtility::isLoaded('news')) {
 
     /**
      * Add extra field showinpreview and some special address controls to sys_file_reference record
@@ -18,11 +19,11 @@ if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('news')) {
         ],
     ];
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference',
+    ExtensionManagementUtility::addTCAcolumns('sys_file_reference',
         $newSysFileReferenceColumns);
 
 }
 
 // add special address palette
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'addressPalette',
+ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'addressPalette',
     'showinpreview');

@@ -36,7 +36,7 @@ class ValueViewHelper extends AbstractFormFieldViewHelper
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
      * @api
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
     }

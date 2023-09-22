@@ -1,10 +1,12 @@
 <?php
-defined('TYPO3_MODE') or die();
 
 /***************
  * Plugin
  */
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
+ExtensionUtility::registerPlugin(
     'address',
     'Pi1',
     'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pi1_title'

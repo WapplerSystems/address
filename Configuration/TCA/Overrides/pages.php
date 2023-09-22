@@ -1,5 +1,4 @@
 <?php
-defined('TYPO3_MODE') or die();
 
 // Override address icon
 $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = [

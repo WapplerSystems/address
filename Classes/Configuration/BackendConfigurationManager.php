@@ -4,18 +4,26 @@ declare(strict_types = 1);
 namespace WapplerSystems\Address\Configuration;
 
 
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository;
+use TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateTreeBuilder;
+use TYPO3\CMS\Core\TypoScript\IncludeTree\Traverser\ConditionVerdictAwareIncludeTreeTraverser;
+use TYPO3\CMS\Core\TypoScript\Tokenizer\LossyTokenizer;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
-use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
-use TYPO3\CMS\Extbase\Service\EnvironmentService;
 
 class BackendConfigurationManager extends \TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager
 {
 
-    public function __construct(TypoScriptService $typoScriptService, EnvironmentService $environmentService)
-    {
-        if (version_compare(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getExtensionVersion('core'), '10.0', '>=')) {
-            parent::__construct($typoScriptService, $environmentService);
-        }
+    public function __construct(
+        private readonly TypoScriptService $typoScriptService,
+        private readonly PhpFrontend $typoScriptCache,
+        private readonly FrontendInterface $runtimeCache,
+        private readonly SysTemplateRepository $sysTemplateRepository,
+        private readonly SysTemplateTreeBuilder $treeBuilder,
+        private readonly LossyTokenizer $lossyTokenizer,
+        private readonly ConditionVerdictAwareIncludeTreeTraverser $includeTreeTraverserConditionVerdictAware,
+    ) {
 
         // extract page id from returnUrl GET parameter
         if (isset($_GET['returnUrl'])) {
@@ -24,6 +32,9 @@ class BackendConfigurationManager extends \TYPO3\CMS\Extbase\Configuration\Backe
             $pageId = $params['id'] ?? -1;
             if ($pageId !== -1) $this->currentPageId = (int)$pageId;
         }
+
+        parent::__construct($typoScriptService, $typoScriptCache, $runtimeCache, $sysTemplateRepository, $treeBuilder, $lossyTokenizer, $includeTreeTraverserConditionVerdictAware);
+
     }
 
 

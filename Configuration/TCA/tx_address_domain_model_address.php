@@ -3,7 +3,6 @@
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use WapplerSystems\Address\Domain\Model\Dto\EmConfiguration;
 
-defined('TYPO3_MODE') or die();
 
 /** @var EmConfiguration $configuration */
 $configuration = GeneralUtility::makeInstance(EmConfiguration::class);

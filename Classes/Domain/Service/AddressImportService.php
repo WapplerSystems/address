@@ -8,6 +8,8 @@ namespace WapplerSystems\Address\Domain\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use WapplerSystems\Address\Domain\Model\Address;
 use WapplerSystems\Address\Domain\Model\FileReference;
 use WapplerSystems\Address\Domain\Model\Link;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -37,10 +39,6 @@ class AddressImportService extends AbstractImportService
      */
     protected $categoryRepository;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
-     */
-    protected $signalSlotDispatcher;
 
     /**
      * @var array
@@ -77,15 +75,6 @@ class AddressImportService extends AbstractImportService
         $this->ttContentRepository = $ttContentRepository;
     }
 
-    /**
-     * Inject SignalSlotDispatcher
-     *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     */
-    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
-    {
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
-    }
 
     /**
      * @param array $importItem
@@ -104,7 +93,7 @@ class AddressImportService extends AbstractImportService
         }
 
         if ($address === null) {
-            $address = $this->objectManager->get(\WapplerSystems\Address\Domain\Model\Address::class);
+            $address = new Address();
             $this->addressRepository->add($address);
         } else {
             $this->logger->info(sprintf('Address exists already with id "%s".', $address->getUid()));

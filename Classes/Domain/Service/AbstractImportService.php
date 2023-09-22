@@ -14,10 +14,6 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
 {
     const UPLOAD_PATH = 'uploads/tx_address/';
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     */
-    protected $objectManager;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
@@ -44,15 +40,6 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
      */
     protected $logger;
 
-    /**
-     * Inject the object manager
-     *
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
-     */
-    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
-    {
-        $this->objectManager = $objectManager;
-    }
 
     /**
      * Inject Persistence Manager

@@ -25,11 +25,9 @@ use WapplerSystems\Address\Utility\ClassCacheManager;
 use WapplerSystems\Address\Utility\ClassLoader;
 use WapplerSystems\Address\Xclass\InlineRecordContainerForAddress;
 
-defined('TYPO3_MODE') or die();
-
 $boot = function () {
     ExtensionUtility::configurePlugin(
-        'WapplerSystems.address',
+        'address',
         'Pi1',
         [
             AddressController::class => 'list,detail,searchForm,searchResult',
@@ -115,6 +113,7 @@ $boot = function () {
     ];
     ClassLoader::registerAutoloader();
 
+    /*
     if (TYPO3_MODE === 'BE') {
         $icons = [
             'apps-pagetree-folder-contains-address' => 'ext-address-folder-tree.svg',
@@ -139,7 +138,7 @@ $boot = function () {
                 ['source' => 'EXT:address/Resources/Public/Icons/' . $path]
             );
         }
-    }
+    }*/
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = AddressImportCommandController::class;
 
