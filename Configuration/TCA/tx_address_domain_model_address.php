@@ -44,6 +44,7 @@ $tx_address_domain_model_address = [
         'iconfile' => 'EXT:address/Resources/Public/Icons/address_domain_model_address.svg',
         'searchFields' => 'uid,title,first_name,last_name',
         'thumbnail' => 'media',
+
     ],
     'interface' => [
         'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,title,teaser,bodytext,archive,categories,related,type,keywords,media,url,istopaddress,related_files,related_links,content_elements,tags,path_segment,alternative_title,related_files,detail_pid'
@@ -52,19 +53,7 @@ $tx_address_domain_model_address = [
         'sys_language_uid' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
-                        -1,
-                        'flags-multiple'
-                    ],
-                ],
-                'default' => 0,
-            ]
+            'config' => ['type' => 'language']
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -430,7 +419,6 @@ $tx_address_domain_model_address = [
                 'type' => 'select',
                 'renderType' => 'selectTree',
                 'treeConfig' => [
-                    'dataProvider' => \WapplerSystems\Address\TreeProvider\DatabaseTreeDataProvider::class,
                     'parentField' => 'parent',
                     'appearance' => [
                         'showHeader' => true,
@@ -737,89 +725,35 @@ $tx_address_domain_model_address = [
             'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.media',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'media',
-                [
-                    'appearance' => [
-                        'createNewRelationLinkTitle' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.media.add',
-                        'showPossibleLocalizationRecords' => true,
-                        'showRemovedLocalizationRecords' => true,
-                        'showAllLocalizationLink' => true,
-                        'showSynchronizationLink' => true
-                    ],
-                    'foreign_match_fields' => [
-                        'fieldname' => 'media',
-                        'tablenames' => 'tx_address_domain_model_address',
-                        'table_local' => 'sys_file',
-                    ],
-                    // custom configuration for displaying fields in the overlay/reference table
-                    // to use the addressPalette and imageoverlayPalette instead of the basicoverlayPalette
-                    'foreign_types' => [
-                        '0' => [
-                            'showitem' => '
-                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-                        --palette--;;imageoverlayPalette,
-                        --palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                            'showitem' => '
-                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-                        --palette--;;imageoverlayPalette,
-                        --palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                            'showitem' => '
-                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-                        --palette--;;imageoverlayPalette,
-                        --palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                            'showitem' => '
-                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-                        --palette--;;imageoverlayPalette,
-                        --palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                            'showitem' => '
-                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-                        --palette--;;imageoverlayPalette,
-                        --palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                            'showitem' => '
-                        --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
-                        --palette--;;imageoverlayPalette,
-                        --palette--;;filePalette'
-                        ]
-                    ]
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'common-image-types',
+                'appearance' => [
+                    'createNewRelationLinkTitle' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.media.add',
+                    'showPossibleLocalizationRecords' => true,
+                    'showRemovedLocalizationRecords' => true,
+                    'showAllLocalizationLink' => true,
+                    'showSynchronizationLink' => true
                 ],
-                $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
-            )
+            ],
         ],
         'related_files' => [
             'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.related_files',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'related_files',
-                [
-                    'appearance' => [
-                        'createNewRelationLinkTitle' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.related_files.add',
-                        'showPossibleLocalizationRecords' => true,
-                        'showRemovedLocalizationRecords' => true,
-                        'showAllLocalizationLink' => true,
-                        'showSynchronizationLink' => true
-                    ],
-                    'inline' => [
-                        'inlineOnlineMediaAddButtonStyle' => 'display:none'
-                    ],
-                    'foreign_match_fields' => [
-                        'fieldname' => 'related_files',
-                        'tablenames' => 'tx_address_domain_model_address',
-                        'table_local' => 'sys_file',
-                    ],
-                ]
-            )
+            'config' => [
+                'type' => 'file',
+                'appearance' => [
+                    'createNewRelationLinkTitle' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.related_files.add',
+                    'showPossibleLocalizationRecords' => true,
+                    'showRemovedLocalizationRecords' => true,
+                    'showAllLocalizationLink' => true,
+                    'showSynchronizationLink' => true
+                ],
+                'inline' => [
+                    'inlineOnlineMediaAddButtonStyle' => 'display:none'
+                ],
+            ]
         ],
         'notes' => [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes',

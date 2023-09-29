@@ -8,6 +8,7 @@ namespace WapplerSystems\Address\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use WapplerSystems\Address\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
@@ -36,8 +37,6 @@ class AddressRowInitializeNew implements FormDataProviderInterface
             return $result;
         }
 
-        $result = $this->setTagListingId($result);
-
         if ($result['command'] === 'new') {
             $result = $this->fillDateField($result);
         }
@@ -51,13 +50,8 @@ class AddressRowInitializeNew implements FormDataProviderInterface
      */
     protected function fillDateField(array $result)
     {
-        if ($this->emConfiguration->getDateTimeRequired()) {
-            $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
-        }
 
-        if (is_array($result['pageTsConfig']['tx_address.'])
-            && is_array($result['pageTsConfig']['tx_address.']['predefine.'])
-        ) {
+        if (is_array($result['pageTsConfig']['tx_address.']['predefine.'] ?? null)) {
             if (isset($result['pageTsConfig']['tx_address.']['predefine.']['author']) && (int)$result['pageTsConfig']['tx_address.']['predefine.']['author'] === 1) {
                 $result['databaseRow']['author'] = $GLOBALS['BE_USER']->user['realName'];
                 $result['databaseRow']['author_email'] = $GLOBALS['BE_USER']->user['email'];
@@ -75,25 +69,5 @@ class AddressRowInitializeNew implements FormDataProviderInterface
         return $result;
     }
 
-    /**
-     * @param array $result
-     * @return array
-     */
-    protected function setTagListingId(array $result)
-    {
-        if (!is_array($result['pageTsConfig']['tx_address.']) || !isset($result['pageTsConfig']['tx_address.']['tagPid'])) {
-            return $result;
-        }
-        $tagPid = (int)$result['pageTsConfig']['tx_address.']['tagPid'];
-        if ($tagPid <= 0) {
-            return $result;
-        }
 
-        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8006000) {
-            $result['processedTca']['columns']['tags']['config']['fieldControl']['listModule']['options']['pid'] = $tagPid;
-        } else {
-            $result['processedTca']['columns']['tags']['config']['wizards']['list']['params']['pid'] = $tagPid;
-        }
-        return $result;
-    }
 }

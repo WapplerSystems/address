@@ -229,22 +229,6 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getDateTimeNotRequired(): bool
-    {
-        return (bool)$this->dateTimeNotRequired;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getDateTimeRequired(): bool
-    {
-        return !(bool)$this->dateTimeNotRequired;
-    }
-
-    /**
-     * @return bool
-     */
     public function getHidePageTreeForAdministrationModule(): bool
     {
         return (bool)$this->hidePageTreeForAdministrationModule;

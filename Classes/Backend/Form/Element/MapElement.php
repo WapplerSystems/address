@@ -1,11 +1,11 @@
 <?php
+
 namespace WapplerSystems\Address\Backend\Form\Element;
 
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use WapplerSystems\Address\Configuration\ConfigurationManager;
 
@@ -18,7 +18,8 @@ class MapElement extends AbstractFormElement
      *
      * @return array
      */
-    public function render() {
+    public function render()
+    {
         $languageService = $this->getLanguageService();
 
         $table = $this->data['tableName'];
@@ -30,16 +31,18 @@ class MapElement extends AbstractFormElement
         $itemValue = $parameterArray['itemFormElValue'];
         $config = $parameterArray['fieldConf']['config'];
 
-        $version = VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
         $pluginSettings = $this->getTypoScriptSettings();
 
+        $googleMapsLibrary = '';
+        if ($pluginSettings['googlemaps']['javascript']['apiUrl'] ?? false) {
 
-        $googleMapsLibrary = $pluginSettings['googlemaps']['javascript']['apiUrl'] ?
-            htmlentities($pluginSettings['googlemaps']['javascript']['apiUrl']) :
-            '//maps.google.com/maps/api/js?v=weekly';
+            $googleMapsLibrary = $pluginSettings['googlemaps']['javascript']['apiUrl'] ?
+                htmlentities($pluginSettings['googlemaps']['javascript']['apiUrl']) :
+                '//maps.google.com/maps/api/js?v=weekly';
 
-        if ($pluginSettings['googlemaps']['javascript']['apiKey']) {
-            $googleMapsLibrary .= '&key=' . $pluginSettings['googlemaps']['javascript']['apiKey'];
+            if ($pluginSettings['googlemaps']['javascript']['apiKey'] ?? false) {
+                $googleMapsLibrary .= '&key=' . $pluginSettings['googlemaps']['javascript']['apiKey'];
+            }
         }
 
         $out = [];
@@ -50,11 +53,11 @@ class MapElement extends AbstractFormElement
         $country = $row[$config['parameters']['country']];
         $zip = $row[$config['parameters']['zip']];
 
-        $address = preg_replace("/[\n\r]/",' ',$address);
+        $address = preg_replace("/[\n\r]/", ' ', $address);
 
-        if ($zip) $address .= ', '.$zip;
-        if ($city) $address .= ', '.$city;
-        if ($country) $address .= ', '.$country;
+        if ($zip) $address .= ', ' . $zip;
+        if ($city) $address .= ', ' . $city;
+        if ($country) $address .= ', ' . $country;
 
         $baseElementId = $PA['itemFormElID'] ?? $table . '_map';
         $addressId = $baseElementId . '_address';
@@ -96,9 +99,10 @@ class MapElement extends AbstractFormElement
             $addressField
         );
 
-        $out[] = '<script type="text/javascript" src="' . $googleMapsLibrary . '"></script>';
-        $out[] = '<script type="text/javascript">';
-        $out[] = <<<EOT
+        if ($googleMapsLibrary !== '') {
+            $out[] = '<script type="text/javascript" src="' . $googleMapsLibrary . '"></script>';
+            $out[] = '<script type="text/javascript">';
+            $out[] = <<<EOT
 if (typeof TxAddress == 'undefined') TxAddress = {};
 
 String.prototype.trim = function() { return this.replace(/^\s+|\s+$/g, ''); }
@@ -227,13 +231,8 @@ TxAddress.positionChanged = function() {
 }
 
 TxAddress.updateValue = function(fieldName, value, controlFieldName) {
-    var version = {$version};
     document[TBE_EDITOR.formname][fieldName].value = value;
-    if(version < 7005000) {
-        document[TBE_EDITOR.formname][fieldName + '_hr'].value = value;
-    } else {
-        document.querySelector('[data-formengine-input-name="' + fieldName + '"]').value = value;
-    }
+    document.querySelector('[data-formengine-input-name="' + fieldName + '"]').value = value;
     if (controlFieldName) {
         document.getElementById(controlFieldName).checked = true;
         document.querySelector('[name="' + controlFieldName + '"][type="hidden"]').value = 1;
@@ -289,11 +288,13 @@ TxAddress.convertAddress = function(addressOld) {
 
 window.onload = TxAddress.init;
 EOT;
-        $out[] = '</script>';
+            $out[] = '</script>';
+        }
+
         $out[] = '<div id="' . $baseElementId . '">';
         $out[] = '
             <input id="' . $addressId . '" type="textbox" value="' . $address . '" style="width:300px">
-            <input type="button" value="'.$this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang.xlf:btn.update').'" onclick="TxAddress.codeAddress()">
+            <input type="button" value="' . $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang.xlf:btn.update') . '" onclick="TxAddress.codeAddress()">
         ';
         $out[] = '<div id="' . $mapId . '" style="height:400px;margin:10px 0;width:400px"></div>';
         $out[] = '</div>'; // id=$baseElementId
@@ -303,7 +304,6 @@ EOT;
 
         return $resultArray;
     }
-
 
 
     /**

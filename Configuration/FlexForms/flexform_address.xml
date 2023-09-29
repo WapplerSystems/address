@@ -161,7 +161,6 @@
                                 <renderMode>tree</renderMode>
                                 <renderType>selectTree</renderType>
                                 <treeConfig>
-                                    <dataProvider>WapplerSystems\Address\TreeProvider\DatabaseTreeDataProvider</dataProvider>
                                     <parentField>parent</parentField>
                                     <appearance>
                                         <maxLevels>99</maxLevels>
