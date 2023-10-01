@@ -156,7 +156,7 @@ $tx_address_domain_model_contact = [
             'config' => [
                 'type' => 'input',
                 'size' => 60,
-                'eval' => '',
+                'eval' => 'trim',
             ]
         ],
         'type' => [

@@ -9,6 +9,8 @@ namespace WapplerSystems\Address\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use WapplerSystems\Address\Service\SlugService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
@@ -17,6 +19,7 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 /**
  * Migrate empty slugs
  */
+#[UpgradeWizard('addressSlugUpdater')]
 class AddressSlugUpdater implements UpgradeWizardInterface
 {
     const TABLE = 'tx_address_domain_model_address';

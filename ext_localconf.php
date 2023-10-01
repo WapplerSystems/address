@@ -113,32 +113,6 @@ $boot = function () {
     ];
     ClassLoader::registerAutoloader();
 
-    /*
-    if (TYPO3_MODE === 'BE') {
-        $icons = [
-            'apps-pagetree-folder-contains-address' => 'ext-address-folder-tree.svg',
-            'ext-address-wizard-icon' => 'plugin_wizard.svg',
-            'ext-address-type-default' => 'address_domain_model_address.svg',
-            'ext-address-type-person' => 'address_domain_model_address_person.svg',
-            'ext-address-type-company' => 'address_domain_model_address_company.svg',
-            'ext-address-tag' => 'address_domain_model_tag.svg',
-            'ext-address-link' => 'address_domain_model_link.svg',
-            'ext-address-contact-type-email' => 'address_domain_model_concact_email.svg',
-            'ext-address-contact-type-telephone' => 'address_domain_model_concact_telephone.svg',
-            'ext-address-contact-type-mobilephone' => 'address_domain_model_concact_mobilephone.svg',
-            'ext-address-contact-type-website' => 'address_domain_model_concact_website.svg',
-            'ext-address-contact-type-blog' => 'address_domain_model_concact_blog.svg',
-            'ext-address-contact-type-xing' => 'address_domain_model_concact_xing.svg',
-        ];
-        $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
-        foreach ($icons as $identifier => $path) {
-            $iconRegistry->registerIcon(
-                $identifier,
-                SvgIconProvider::class,
-                ['source' => 'EXT:address/Resources/Public/Icons/' . $path]
-            );
-        }
-    }*/
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = AddressImportCommandController::class;
 
@@ -148,8 +122,6 @@ $boot = function () {
 
     }
 
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['addressSlug']
-        = AddressSlugUpdater::class;
 };
 
 $boot();

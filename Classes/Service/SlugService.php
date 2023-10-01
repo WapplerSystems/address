@@ -43,7 +43,7 @@ class SlugService
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
-            ->execute()->fetchColumn(0);
+            ->executeQuery()->fetchOne();
 
         return $elementCount;
     }
@@ -63,13 +63,13 @@ class SlugService
         $statement = $queryBuilder->select('*')
             ->from('tx_address_domain_model_address')
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
-            ->execute();
-        while ($record = $statement->fetch()) {
+            ->executeQuery();
+        while ($record = $statement->fetchAssociative()) {
             $slug = $this->slugService->generate($record, $record['pid']);
             if ($slug !== '') {
                 /** @var QueryBuilder $queryBuilder */
@@ -83,7 +83,7 @@ class SlugService
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
-                $queryBuilder->execute();
+                $queryBuilder->executeStatement();
             }
         }
 
@@ -95,18 +95,23 @@ class SlugService
      * @param string $slug
      * @return string
      */
-    protected function getUniqueValue(int $uid, string $slug): string
+    protected function getUniqueValue(int $uid, int $languageId, string $slug): string
     {
-        $statement = $this->getUniqueCountStatement($uid, $slug);
-        if ($statement->fetchColumn()) {
-            for ($counter = 1; $counter <= 100; $counter++) {
+        $queryBuilder = $this->getUniqueCountStatement($uid, $languageId, $slug);
+        // For as long as records with the test-value existing, try again (with incremented numbers appended)
+        $statement = $queryBuilder->prepare();
+        $result = $statement->executeQuery();
+        if ($result->fetchOne()) {
+            for ($counter = 0; $counter <= 100; $counter++) {
+                $result->free();
                 $newSlug = $slug . '-' . $counter;
                 $statement->bindValue(1, $newSlug);
-                $statement->execute();
-                if (!$statement->fetchColumn()) {
+                $result = $statement->executeQuery();
+                if (!$result->fetchOne()) {
                     break;
                 }
             }
+            $result->free();
         }
 
         return $newSlug ?? $slug;
@@ -115,7 +120,7 @@ class SlugService
     /**
      * @param int $uid
      * @param string $slug
-     * @return \Doctrine\DBAL\Driver\Statement|int
+     * @return QueryBuilder
      */
     protected function getUniqueCountStatement(int $uid, string $slug)
     {
@@ -134,7 +139,7 @@ class SlugService
                     $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
                 ),
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
-            )->execute();
+            );
     }
 
 }

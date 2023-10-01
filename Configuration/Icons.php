@@ -19,4 +19,16 @@ return [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_tag.svg',
     ],
+    'ext-address-contact-type-telephone' => [
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_content_telephone.svg',
+    ],
+    'ext-address-contact-type-email' => [
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_content_email.svg',
+    ],
+    'ext-address-contact-type-mobilephone' => [
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_content_mobilephone.svg',
+    ],
 ];
