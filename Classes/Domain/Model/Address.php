@@ -18,38 +18,38 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
-    const TYPE_PERSON = 1;
-    const TYPE_COMPANY = 2;
+    public const TYPE_PERSON = 1;
+    public const TYPE_COMPANY = 2;
 
     /**
      * @var bool
      */
-    protected $hidden;
+    protected bool $hidden;
 
     /**
      * @var bool
      */
-    protected $deleted;
+    protected bool $deleted;
 
     /**
      * @var string
      */
-    protected $bodytext;
+    protected string $bodytext;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Category>
+     * @var ObjectStorage<Category>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $categories;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
+     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $related;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
+     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedFrom;
@@ -57,13 +57,13 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Fal related files
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
+     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedFiles;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
+     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedLinks;
@@ -91,7 +91,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Fal media items
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
+     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $media;
@@ -114,13 +114,13 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\TtContent>
+     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\TtContent>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $contentElements;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Tag>
+     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Tag>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $tags;
@@ -136,24 +136,24 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $editlock;
 
     /**
-     * @var string
+     * @var int
      */
-    protected $importId;
+    protected int $importId;
 
     /**
      * @var string
      */
-    protected $importSource;
+    protected string $importSource;
 
     /**
      * @var int
      */
-    protected $sorting;
+    protected int $sorting;
 
     /**
      * @var int
      */
-    protected $isTopAddress;
+    protected int $isTopAddress;
 
     /**
      * @var \DateTime
@@ -266,10 +266,16 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $latitude = 0.0;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\Contact>
+     * @var ObjectStorage<Contact>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $contacts;
+
+
+    /**
+     * @var \DateTime
+     */
+    protected $starttime;
 
 
     /**
@@ -287,21 +293,19 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 
     /**
-     * Get bodytext
      *
      * @return string
      */
-    public function getBodytext()
+    public function getBodytext(): string
     {
         return $this->bodytext;
     }
 
     /**
-     * Set bodytext
      *
      * @param string $bodytext main content
      */
-    public function setBodytext($bodytext)
+    public function setBodytext($bodytext): void
     {
         $this->bodytext = $bodytext;
     }
@@ -310,7 +314,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get categories
      *
-     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Category>
+     * @return ObjectStorage<Category>
      */
     public function getCategories()
     {
@@ -716,17 +720,12 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \DateTime
      */
-    public function getStarttime()
+    public function getStarttime(): \DateTime
     {
         return $this->starttime;
     }
 
-    /**
-     * Set start time
-     *
-     * @param int $starttime start time
-     */
-    public function setStarttime($starttime)
+    public function setStarttime(\DateTime $starttime)
     {
         $this->starttime = $starttime;
     }
@@ -737,7 +736,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int
      */
-    public function getImportId()
+    public function getImportId(): int
     {
         return $this->importId;
     }
@@ -747,7 +746,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param int $importId import id
      */
-    public function setImportId($importId)
+    public function setImportId(int $importId): void
     {
         $this->importId = $importId;
     }
@@ -757,7 +756,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int
      */
-    public function getSorting()
+    public function getSorting(): int
     {
         return $this->sorting;
     }
@@ -767,7 +766,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param int $sorting sorting
      */
-    public function setSorting($sorting)
+    public function setSorting(int $sorting): void
     {
         $this->sorting = $sorting;
     }
@@ -777,7 +776,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param  string $importSource
      */
-    public function setImportSource($importSource)
+    public function setImportSource(string $importSource): void
     {
         $this->importSource = $importSource;
     }
@@ -787,7 +786,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getImportSource()
+    public function getImportSource(): string
     {
         return $this->importSource;
     }

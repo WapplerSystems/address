@@ -10,7 +10,9 @@ namespace WapplerSystems\Address\Domain\Repository;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 
@@ -37,24 +39,24 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
+     * @param QueryInterface $query
      * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     * @return ConstraintInterface[]
      * @abstract
      */
     abstract protected function createConstraintsFromDemand(
-        \TYPO3\CMS\Extbase\Persistence\QueryInterface $query,
+        QueryInterface $query,
         DemandInterface $demand
-    );
+    ): array;
 
     /**
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     * @return ConstraintInterface[]
      * @abstract
      */
-    abstract protected function createOrderingsFromDemand(DemandInterface $demand);
+    abstract protected function createOrderingsFromDemand(DemandInterface $demand): array;
 
     /**
      * Returns the objects of this repository matching the demand.
@@ -68,7 +70,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 
-        return $query->execute();
+        return $query->executeQuery();
     }
 
     /**
@@ -101,9 +103,9 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
+     * @return QueryInterface
      */
-    protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    protected function generateQuery(DemandInterface $demand, bool $respectEnableFields = true, bool $disableLanguageOverlayMode = false): QueryInterface
     {
         $query = $this->createQuery();
 

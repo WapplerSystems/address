@@ -26,19 +26,21 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
     protected function createConstraintsFromDemand(
         QueryInterface $query,
         DemandInterface $demand
-    ) {
+    ): array
+    {
+        return [];
     }
 
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
+        return [];
     }
 
     /**
-     * @see https://github.com/georgringer/news/issues/900
      * @var bool
      * @deprecated should be set default once 9+10 is only
      */
-    protected $respectSysLanguageInFindInList = false;
+    protected bool $respectSysLanguageInFindInList = false;
 
 
     /**

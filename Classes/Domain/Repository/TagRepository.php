@@ -8,6 +8,8 @@ namespace WapplerSystems\Address\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 use WapplerSystems\Address\Utility\Validation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -24,10 +26,10 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
      *
      * @param array $idList list of id s
      * @param array $ordering ordering
-     * @param string $startingPoint starting point uid or comma separated list
-     * @return QueryInterface
+     * @param string|null $startingPoint starting point uid or comma separated list
+     * @return array|QueryResultInterface|object[]
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
+    public function findByIdList(array $idList, array $ordering = [], string $startingPoint = null): array|QueryResultInterface
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823596);
@@ -60,7 +62,7 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
      * @param DemandInterface $demand
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      */
-    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
 
@@ -92,7 +94,7 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
      * @param DemandInterface $demand
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      */
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
         $orderings = [];
 

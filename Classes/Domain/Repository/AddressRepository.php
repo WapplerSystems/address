@@ -9,11 +9,14 @@ namespace WapplerSystems\Address\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Statement;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use WapplerSystems\Address\Domain\Model\Address;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 use WapplerSystems\Address\Map\Encoder;
@@ -23,7 +26,7 @@ use WapplerSystems\Address\Utility\Validation;
 /**
  * Address repository with all the callable functionality
  */
-class AddressRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDemandedRepository
+class AddressRepository extends AbstractDemandedRepository
 {
 
     /**
@@ -31,17 +34,18 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      * a given list of categories and a junction string
      *
      * @param QueryInterface $query
-     * @param  array $categories
+     * @param  array|string $categories
      * @param  string $conjunction
      * @param  bool $includeSubCategories
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
+     * @return ConstraintInterface|null
      */
     protected function createCategoryConstraint(
         QueryInterface $query,
         $categories,
         $conjunction,
         $includeSubCategories = false
-    ) {
+    ): ?ConstraintInterface
+    {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -97,13 +101,13 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
-     * @throws \UnexpectedValueException
+     * @return array<ConstraintInterface>
+     *@throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @throws InvalidQueryException
      */
-    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         /** @var AddressDemand $demand */
         $constraints = [];
@@ -209,9 +213,9 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return array<ConstraintInterface>
      */
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
         $orderings = [];
         if ($demand->getTopAddressFirst()) {
@@ -224,7 +228,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
             if (!empty($orderList)) {
                 // go through every order statement
                 foreach ($orderList as $orderItem) {
-                    list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
+                    [$orderField, $ascDesc] = GeneralUtility::trimExplode(' ', $orderItem, true);
                     // count == 1 means that no direction is given
                     if ($ascDesc) {
                         $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
@@ -246,9 +250,9 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      * @param string $importSource import source
      * @param int $importId import id
      * @param bool $asArray return result as array
-     * @return \WapplerSystems\Address\Domain\Model\Address|array
+     * @return Address|null
      */
-    public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
+    public function findOneByImportSourceAndImportId(string $importSource, int $importId, bool $asArray = false): ?Address
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -264,7 +268,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
             if (isset($result[0])) {
                 return $result[0];
             }
-            return [];
+            return null;
         }
         return $result->getFirst();
     }
@@ -275,9 +279,9 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      *
      * @param int $uid id of record
      * @param bool $respectEnableFields if set to false, hidden records are shown
-     * @return \WapplerSystems\Address\Domain\Model\Address
+     * @return Address|null
      */
-    public function findByUid($uid, $respectEnableFields = true)
+    public function findByUid($uid, bool $respectEnableFields = true): ?Address
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -300,7 +304,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
      * @return array
      * @throws \InvalidArgumentException
      * @throws \UnexpectedValueException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @throws InvalidQueryException
      */
     protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
     {
@@ -368,7 +372,7 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
 			' . $earthRadius . ' * SQRT(2*(1-cos(RADIANS(latitude)) *
 			 cos(' . $lat . ') * (sin(RADIANS(longitude)) *
 			 sin(' . $lon . ') + cos(RADIANS(longitude)) *
-			 cos(' . $lon . ')) - sin(RADIANS(latitude)) * sin(' . $lat . ')))) AS Distance 
+			 cos(' . $lon . ')) - sin(RADIANS(latitude)) * sin(' . $lat . ')))) AS Distance
 			 FROM tx_address_domain_model_address ' .
                 ' WHERE longitude <> 0 ';
             /*
@@ -383,27 +387,33 @@ class AddressRepository extends \WapplerSystems\Address\Domain\Repository\Abstra
                 $sql,
                 $connection
             );
-            try {
-                $statement->execute();
-                $addressUids = $statement->fetchAll();
 
-                $uids = [];
-                foreach ($addressUids as $result) {
-                    $uids[] = $result['uid'];
-                }
-                if (\count($uids) > 0) {
-                    $constraints[] = $query->in('uid', $uids);
-                } else {
-                    // no uids found -> no end results
-                    $constraints[] = $query->equals('uid', -1);
-                }
+            $addressUids = $statement->executeQuery()->fetchAllAssociative();
 
-            } catch (DBALException $e) {
+            $uids = [];
+            foreach ($addressUids as $result) {
+                $uids[] = $result['uid'];
+            }
+            if (\count($uids) > 0) {
+                $constraints[] = $query->in('uid', $uids);
+            } else {
+                // no uids found -> no end results
+                $constraints[] = $query->equals('uid', -1);
             }
 
         }
-
-
         return $constraints;
+    }
+
+
+    public function findAllInPids(array $pids): array|QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->matching(
+            $query->in('pid', $pids)
+        );
+
+        return $query->execute();
     }
 }

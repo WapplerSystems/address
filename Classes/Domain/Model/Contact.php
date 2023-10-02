@@ -17,17 +17,17 @@ class Contact extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * @var string
      */
-    protected $type;
+    protected string $type;
 
     /**
      * @var string
      */
-    protected $content;
+    protected string $content;
 
     /**
      * @var int
      */
-    protected $sorting;
+    protected int $sorting;
 
 
     /**
