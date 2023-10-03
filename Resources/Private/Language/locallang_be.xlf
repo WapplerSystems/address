@@ -9,6 +9,57 @@
 			<trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Address system</source>
 			</trans-unit>
+			<trans-unit id="plugin.address_list.title" xml:space="preserve">
+				<source>List addresses with detail view</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_list.description" xml:space="preserve">
+				<source>Display of addresses chosen by various optional properties like storage page, categories,...
+					Plugin is capable of displaying the detail view as well.</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_list_sticky.title" xml:space="preserve">
+				<source>Sticky address list view</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_list_sticky.description" xml:space="preserve">
+				<source>Display of addresses chosen by various optional properties like storage page, categories,...</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_detail.title" xml:space="preserve">
+				<source>Address detail view</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_detail.description" xml:space="preserve">
+				<source>Display the detail view of an address</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_search_form.title" xml:space="preserve">
+				<source>Search form</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_search_form.description" xml:space="preserve">
+				<source>Display a search form to let users search within addresses</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_search_result.title" xml:space="preserve">
+				<source>Search result</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_search_result.description" xml:space="preserve">
+				<source>Display the result of the search</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_selected_list.title" xml:space="preserve">
+				<source>Selected list of addresses</source>
+			</trans-unit>
+			<trans-unit id="plugin.address_selected_list.description" xml:space="preserve">
+				<source>Display a manually picked list of addresses.</source>
+			</trans-unit>
+			<trans-unit id="plugin.category_list.title" xml:space="preserve">
+				<source>Category menu</source>
+			</trans-unit>
+			<trans-unit id="plugin.category_list.description" xml:space="preserve">
+				<source>Display a menu of categories. The menu can be used to filter a list view dynamically.</source>
+			</trans-unit>
+			<trans-unit id="plugin.tag_list.title" xml:space="preserve">
+				<source>Tag list</source>
+			</trans-unit>
+			<trans-unit id="plugin.tag_list.description" xml:space="preserve">
+				<source>Display a list of tags. The list can be used to filter a list view dynamically.</source>
+			</trans-unit>
+
+
 			<trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
 			</trans-unit>

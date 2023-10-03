@@ -6,10 +6,7 @@ use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
-use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
-use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use WapplerSystems\Address\Backend\Form\Element\MapElement;
 use WapplerSystems\Address\Backend\FormDataProvider\AddressRowInitializeNew;
@@ -20,23 +17,88 @@ use WapplerSystems\Address\Controller\TagController;
 use WapplerSystems\Address\Hooks\DataHandler;
 use WapplerSystems\Address\Hooks\Form\AddressHook;
 use WapplerSystems\Address\Hooks\InlineElementHook;
-use WapplerSystems\Address\Updates\AddressSlugUpdater;
 use WapplerSystems\Address\Utility\ClassCacheManager;
 use WapplerSystems\Address\Utility\ClassLoader;
 use WapplerSystems\Address\Xclass\InlineRecordContainerForAddress;
 
-$boot = function () {
+$boot = static function (): void {
+
     ExtensionUtility::configurePlugin(
-        'address',
-        'Pi1',
+        'Address',
+        'AddressList',
         [
-            AddressController::class => 'list,detail,searchForm,searchResult',
-            CategoryController::class => 'list',
-            TagController::class => 'list',
+            AddressController::class => 'list,detail',
+        ],
+        [],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'AddressListSticky',
+        [
+            AddressController::class => 'list',
+        ],
+        [],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'AddressDetail',
+        [
+            AddressController::class => 'detail',
+        ],
+        [],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'AddressSelectedList',
+        [
+            AddressController::class => 'selectedList',
+        ],
+        [],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'AddressSearchForm',
+        [
+            AddressController::class => 'searchForm',
         ],
         [
-            AddressController::class => 'searchForm,searchResult',
-        ]
+            AddressController::class => 'searchForm',
+        ],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'AddressSearchResult',
+        [
+            AddressController::class => 'searchResult',
+        ],
+        [
+            AddressController::class => 'searchResult',
+        ],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'CategoryList',
+        [
+            CategoryController::class => 'list',
+        ],
+        [],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'TagList',
+        [
+            TagController::class => 'list',
+        ],
+        [],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1603209223] = [

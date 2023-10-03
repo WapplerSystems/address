@@ -1,13 +1,79 @@
-mod.wizards.newContentElement.wizardItems.plugins {
+mod.wizards.newContentElement.wizardItems.ext-address {
+  header = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pi1_title
+  after = common
   elements {
-    address {
-      iconIdentifier = ext-address-wizard-icon
-      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:wizard.title.address
-      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
+    address_list {
+      iconIdentifier = ext-address-plugin-address-list
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_list.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_list.description
       tt_content_defValues {
-        CType = list
-        list_type = address_pi1
+        CType = address_addresslist
+      }
+    }
+
+    address_list_sticky {
+      iconIdentifier = ext-address-plugin-address-list-sticky
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_list_sticky.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_list_sticky.description
+      tt_content_defValues {
+        CType = address_addressliststicky
+      }
+    }
+
+    address_detail {
+      iconIdentifier = ext-address-plugin-detail
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_detail.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_detail.description
+      tt_content_defValues {
+        CType = address_addressdetail
+      }
+    }
+
+    address_selectedlist {
+      iconIdentifier = ext-address-plugin-address-selected-list
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_selected_list.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_selected_list.description
+      tt_content_defValues {
+        CType = address_addressselectedlist
+      }
+    }
+
+    categorylist {
+      iconIdentifier = ext-address-plugin-category-list
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.category_list.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.category_list.description
+      tt_content_defValues {
+        CType = address_categorylist
+      }
+    }
+
+    address_searchform {
+      iconIdentifier = ext-address-plugin-address-search-form
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_search_form.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_search_form.description
+      tt_content_defValues {
+        CType = address_addresssearchform
+      }
+    }
+
+    address_searchresult {
+      iconIdentifier = ext-address-plugin-address-search-result
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_search_result.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.address_search_result.description
+      tt_content_defValues {
+        CType = address_addresssearchresult
+      }
+    }
+
+    taglist {
+      iconIdentifier = ext-address-plugin-tag-list
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.tag_list.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.tag_list.description
+      tt_content_defValues {
+        CType = address_taglist
       }
     }
   }
+
+  show = *
 }
