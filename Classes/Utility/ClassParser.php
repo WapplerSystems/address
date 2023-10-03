@@ -1,21 +1,22 @@
 <?php
 
-namespace WapplerSystems\Address\Utility;
-
-/**
+/*
  * This file is part of the "address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace WapplerSystems\Address\Utility;
+
 class ClassParser
 {
     private $classes = [];
     private $extends = [];
     private $implements = [];
 
-    const STATE_CLASS_HEAD = 100001;
-    const STATE_FUNCTION_HEAD = 100002;
+    public const STATE_CLASS_HEAD = 100001;
+    public const STATE_FUNCTION_HEAD = 100002;
 
     public function getClasses()
     {
@@ -27,7 +28,7 @@ class ClassParser
         return array_shift($this->classes);
     }
 
-    public function getClassesImplementing($interface)
+    public function getClassesImplementing($interface): array
     {
         $implementers = [];
         if (isset($this->implements[$interface])) {
@@ -38,7 +39,7 @@ class ClassParser
         return $implementers;
     }
 
-    public function getClassesExtending($class)
+    public function getClassesExtending($class): array
     {
         $extenders = [];
         if (isset($this->extends[$class])) {
@@ -49,17 +50,21 @@ class ClassParser
         return $extenders;
     }
 
-    public function parse($file)
+    public function parse($file): void
     {
         $file = realpath($file);
         $tokens = token_get_all(file_get_contents($file));
         $classes = [];
+        $clsc = 0;
 
         $si = null;
         $depth = 0;
         $mod = [];
         $doc = null;
         $state = null;
+        $inFunction = false;
+        $functionName = '';
+        $lastLine = 0;
         foreach ($tokens as $idx => &$token) {
             if (is_array($token)) {
                 switch ($token[0]) {
@@ -97,16 +102,19 @@ class ClassParser
                                     'name' => $token[1],
                                     'modifiers' => $mod,
                                     'doc' => $doc,
-                                    'start' => $token[2]
+                                    'start' => $token[2],
                                 ];
                                 break;
                             case T_FUNCTION:
                                 $state = self::STATE_FUNCTION_HEAD;
                                 $clsc = count($classes);
                                 if ($depth > 0 && $clsc) {
+                                    $inFunction = true;
+                                    $functionName = $token[1];
                                     $classes[$clsc - 1]['functions'][$token[1]] = [
                                         'modifiers' => $mod,
-                                        'doc' => $doc
+                                        'doc' => $doc,
+                                        'start' => $token[2],
                                     ];
                                 }
                                 break;
@@ -118,6 +126,7 @@ class ClassParser
                         }
                         break;
                 }
+                $lastLine = $token[2];
             } else {
                 switch ($token) {
                     case '{':
@@ -126,6 +135,13 @@ class ClassParser
                     case '}':
                         $depth--;
                         break;
+                }
+
+                if ($token === '}') {
+                    if ($inFunction) {
+                        $classes[$clsc - 1]['functions'][$functionName]['end'] = $lastLine;
+                        $inFunction = false;
+                    }
                 }
 
                 switch ($token) {
