@@ -898,7 +898,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'type, sys_language_uid, hidden, istopaddress,',
         ],
         'paletteContact' => [
-            'showitem' => 'contacts, --linebreak--, phone, fax, --linebreak--, email, direct_contact, --linebreak--, www,',
+            'showitem' => 'contacts, --linebreak--, direct_contact,',
         ],
         'paletteLocation' => [
             'showitem' => 'address, building, --linebreak--, zip, city, region, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
