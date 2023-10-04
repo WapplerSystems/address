@@ -23,7 +23,7 @@ class TagController extends AddressController
      * @param array|null $overwriteDemand
      * @param int $currentPage
      */
-    public function listAction(array $overwriteDemand = null, int $currentPage = 1)
+    public function listAction(array $overwriteDemand = null, int $currentPage = 1): \Psr\Http\Message\ResponseInterface
     {
         // Default value is wrong for tags
         if ($this->settings['orderBy'] === 'datetime') {
@@ -46,5 +46,7 @@ class TagController extends AddressController
         $event = $this->eventDispatcher->dispatch(new TagListActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+
+        return $this->htmlResponse();
     }
 }
