@@ -20,8 +20,8 @@ use WapplerSystems\Address\Domain\Model\Address;
  *
  * # Example: Basic link
  * <code>
- * <ad:link addressItem="{addressItem}" settings="{settings}">
- *    {addressItem.title}
+ * <ad:link address="{address}" settings="{settings}">
+ *    {address.title}
  * </n:link>
  * </code>
  * <output>
@@ -31,7 +31,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  * # Example: Set an additional attribute
  * # Description: Available: class, dir, id, lang, style, title, accesskey, tabindex, onclick
  * <code>
- * <ad:link addressItem="{addressItem}" settings="{settings}" class="a-link-class">fo</n:link>
+ * <ad:link address="{address}" settings="{settings}" class="a-link-class">fo</n:link>
  * </code>
  * <output>
  * <a href="link" class="a-link-class">fo</n:link>
@@ -39,7 +39,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  *
  * # Example: Return the link only
  * <code>
- * <ad:link addressItem="{addressItem}" settings="{settings}" uriOnly="1" />
+ * <ad:link address="{address}" settings="{settings}" uriOnly="1" />
  * </code>
  * <output>
  * The uri is returned
@@ -84,7 +84,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     {
         parent::initializeArguments();
         $this->registerUniversalTagAttributes();
-        $this->registerArgument('addressItem', Address::class, 'address item', true);
+        $this->registerArgument('address', Address::class, 'address item', true);
         $this->registerArgument('settings', 'array', 'Settings', false, []);
         $this->registerArgument('uriOnly', 'bool', 'url only', false, false);
         $this->registerArgument('configuration', 'array', 'configuration', false, []);
@@ -100,24 +100,24 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      */
     public function render()
     {
-        /** @var Address $addressItem */
-        $addressItem = $this->arguments['addressItem'];
+        /** @var Address $address */
+        $address = $this->arguments['address'];
         $settings = $this->arguments['settings'];
         $uriOnly = $this->arguments['uriOnly'];
         $configuration = $this->arguments['configuration'];
         $content = $this->arguments['content'];
 
-        $tsSettings = (array)$this->pluginSettingsService->getSettings();
+        $tsSettings = $this->pluginSettingsService->getSettings();
         ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
 
         $this->init();
 
-        if (is_null($addressItem)) {
+        if (is_null($address)) {
             return $this->renderChildren();
         }
 
 
-        $configuration = $this->getLinkToAddressItem($addressItem, $tsSettings, $configuration);
+        $configuration = $this->getLinkToAddressItem($address, $tsSettings, $configuration);
 
         $url = $this->cObj->typoLink_URL($configuration);
         if ($uriOnly) {
@@ -148,13 +148,13 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /**
      * Generate the link configuration for the link to the address item
      *
-     * @param Address $addressItem
+     * @param Address $address
      * @param array $tsSettings
      * @param array $configuration
      * @return array
      */
     protected function getLinkToAddressItem(
-        Address $addressItem,
+        Address $address,
         $tsSettings,
         array $configuration = []
     ) {
@@ -170,7 +170,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
             foreach ($detailPidDeterminationMethods as $determinationMethod) {
                 if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
-                    if ($detailPid = call_user_func([$this, $callback], $tsSettings, $addressItem)) {
+                    if ($detailPid = call_user_func([$this, $callback], $tsSettings, $address)) {
                         break;
                     }
                 }
@@ -182,44 +182,28 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             $configuration['parameter'] = $detailPid;
         }
 
-        $configuration['useCacheHash'] = $GLOBALS['TSFE']->sys_page->versioningPreview ? 0 : 1;
-        $configuration['additionalParams'] .= '&tx_address_pi1[address]=' . $this->getAddressId($addressItem);
+        $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_news_pi1[news]=' . $this->getAddressId($address);
+        $configuration['additionalParams'] .= '&tx_address_pi1[address]=' . $this->getAddressId($address);
 
         if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
             $configuration['additionalParams'] .= '&tx_address_pi1[controller]=Address' .
                 '&tx_address_pi1[action]=detail';
         }
 
-        // Add date as human readable
-        if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
-            $dateTime = $addressItem->getDatetime();
-
-            if (!is_null($dateTime)) {
-                if (!empty($tsSettings['link']['hrDate']['day'])) {
-                    $configuration['additionalParams'] .= '&tx_address_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
-                }
-                if (!empty($tsSettings['link']['hrDate']['month'])) {
-                    $configuration['additionalParams'] .= '&tx_address_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
-                }
-                if (!empty($tsSettings['link']['hrDate']['year'])) {
-                    $configuration['additionalParams'] .= '&tx_address_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
-                }
-            }
-        }
         return $configuration;
     }
 
     /**
-     * @param Address $addressItem
+     * @param Address $address
      * @return int
      */
-    protected function getAddressId(Address $addressItem)
+    protected function getAddressId(Address $address)
     {
-        $uid = $addressItem->getUid();
+        $uid = $address->getUid();
         // If a user is logged in and not in live workspace
         if ($GLOBALS['BE_USER'] && $GLOBALS['BE_USER']->workspace > 0) {
             $record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord('tx_address_domain_model_address',
-                $addressItem->getUid());
+                $address->getUid());
             if ($record['uid']) {
                 $uid = $record['uid'];
             }
@@ -243,14 +227,14 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * Gets detailPid from categories of the given address item. First will be return.
      *
      * @param  array $settings
-     * @param  Address $addressItem
+     * @param  Address $address
      * @return int
      */
-    protected function getDetailPidFromCategories($settings, $addressItem)
+    protected function getDetailPidFromCategories($settings, $address)
     {
         $detailPid = 0;
-        if ($addressItem->getCategories()) {
-            foreach ($addressItem->getCategories() as $category) {
+        if ($address->getCategories()) {
+            foreach ($address->getCategories() as $category) {
                 if ($detailPid = (int)$category->getSinglePid()) {
                     break;
                 }
@@ -263,10 +247,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * Gets detailPid from defaultDetailPid setting
      *
      * @param  array $settings
-     * @param  Address $addressItem
+     * @param  Address $address
      * @return int
      */
-    protected function getDetailPidFromDefaultDetailPid($settings, $addressItem)
+    protected function getDetailPidFromDefaultDetailPid($settings, $address)
     {
         return (int)$settings['defaultDetailPid'];
     }
@@ -275,10 +259,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * Gets detailPid from flexform of current plugin.
      *
      * @param  array $settings
-     * @param  Address $addressItem
+     * @param  Address $address
      * @return int
      */
-    protected function getDetailPidFromFlexform($settings, $addressItem)
+    protected function getDetailPidFromFlexform($settings, $address)
     {
         return (int)$settings['detailPid'];
     }

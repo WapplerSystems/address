@@ -1,4 +1,5 @@
 <?php
+
 namespace WapplerSystems\Address\Controller;
 
 /**
@@ -8,10 +9,15 @@ namespace WapplerSystems\Address\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use GeorgRinger\NumberedPagination\NumberedPagination;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -19,10 +25,16 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use WapplerSystems\Address\Domain\Model\Address;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 use WapplerSystems\Address\Domain\Model\Dto\Search;
-use WapplerSystems\Address\Pagination\SortedArrayPaginator;
+use WapplerSystems\Address\Domain\Repository\AddressRepository;
+use WapplerSystems\Address\Domain\Repository\CategoryRepository;
+use WapplerSystems\Address\Domain\Repository\TagRepository;
+use WapplerSystems\Address\Event\AddressDetailActionEvent;
+use WapplerSystems\Address\Event\AddressListActionEvent;
+use WapplerSystems\Address\Pagination\QueryResultPaginator;
+use WapplerSystems\Address\Seo\AddressTitleProvider;
 use WapplerSystems\Address\Utility\Cache;
+use WapplerSystems\Address\Utility\ClassCacheManager;
 use WapplerSystems\Address\Utility\Page;
-use WapplerSystems\Address\Utility\SortedArray;
 use WapplerSystems\Address\Utility\TypoScript;
 
 /**
@@ -36,58 +48,35 @@ class AddressController extends AddressBaseController
     const SIGNAL_ADDRESS_SEARCHFORM_ACTION = 'searchFormAction';
     const SIGNAL_ADDRESS_SEARCHRESULT_ACTION = 'searchResultAction';
 
-    /**
-     * @var \WapplerSystems\Address\Domain\Repository\AddressRepository
-     */
-    protected $addressRepository;
-
-    /**
-     * @var \WapplerSystems\Address\Domain\Repository\CategoryRepository
-     */
-    protected $categoryRepository;
-
-    /**
-     * @var \WapplerSystems\Address\Domain\Repository\TagRepository
-     */
-    protected $tagRepository;
-
 
     /** @var array */
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
 
-
     /**
-     * @param \WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository
+     * Original settings without any magic done by stdWrap and skipping empty values
+     *
+     * @var array
      */
-    public function injectAddressRepository(\WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository)
+    protected $originalSettings = [];
+
+
+    public function __construct(readonly AddressRepository $addressRepository,
+                                readonly CategoryRepository $categoryRepository,
+                                readonly TagRepository $tagRepository)
     {
-        $this->addressRepository = $addressRepository;
     }
 
-    /**
-     * @param \WapplerSystems\Address\Domain\Repository\CategoryRepository $categoryRepository
-     */
-    public function injectCategoryRepository(\WapplerSystems\Address\Domain\Repository\CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
-    /**
-     * @param \WapplerSystems\Address\Domain\Repository\TagRepository $tagRepository
-     */
-    public function injectTagRepository(\WapplerSystems\Address\Domain\Repository\TagRepository $tagRepository)
-    {
-        $this->tagRepository = $tagRepository;
-    }
 
     /**
      * Initializes the current action
      *
      */
-    public function initializeAction()
+    public function initializeAction(): void
     {
+        GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
+        $this->buildSettings();
         if (isset($this->settings['format'])) {
-            $this->request->setFormat($this->settings['format']);
+            $this->request = $this->request->withFormat($this->settings['format']);
         }
         // Only do this in Frontend Context
         if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
@@ -101,8 +90,6 @@ class AddressController extends AddressBaseController
                 $cacheTagsSet = true;
             }
         }
-
-        $this->categoryRepository->setRespectSysLanguageInFindInList((bool)$this->settings['respectSysLanguageInFindInList']);
     }
 
     /**
@@ -116,7 +103,8 @@ class AddressController extends AddressBaseController
     protected function createDemandObjectFromSettings(
         $settings,
         $class = AddressDemand::class
-    ) {
+    )
+    {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand AddressDemand */
@@ -129,19 +117,20 @@ class AddressController extends AddressBaseController
         }
 
         if ($this->settings['selectedAddresses'] !== null && $this->settings['selectedAddresses'] !== '') {
-            $demand->setIds(explode(',',$this->settings['selectedAddresses']));
+            $demand->setIds(explode(',', $this->settings['selectedAddresses']));
         }
         $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
         $demand->setCategoryConjunction($settings['categoryConjunction']);
         $demand->setIncludeSubCategories($settings['includeSubCategories']);
-        $demand->setTags($settings['tags']);
+        if ($settings['tags'] !== '') {
+            // TODO
+            $demand->setTags($settings['tags']);
+        }
 
         $demand->setTopAddressRestriction($settings['topAddressRestriction']);
-        $demand->setTimeRestriction($settings['timeRestriction']);
-        $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
         $demand->setArchiveRestriction($settings['archiveRestriction']);
         $demand->setExcludeAlreadyDisplayedAddress($settings['excludeAlreadyDisplayedAddress']);
-        $demand->setHideIdList($settings['hideIdList']);
+        $demand->setHideIdList($settings['hideIdList'] ?? '');
 
         if ($settings['orderBy']) {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
@@ -150,8 +139,8 @@ class AddressController extends AddressBaseController
 
         $demand->setTopAddressFirst($settings['topAddressFirst']);
 
-        $demand->setLimit($settings['limit']);
-        $demand->setOffset($settings['offset']);
+        $demand->setLimit((int)$settings['limit']);
+        $demand->setOffset((int)$settings['offset']);
 
         $demand->setSearchFields($settings['search']['fields']);
 
@@ -189,10 +178,14 @@ class AddressController extends AddressBaseController
      * Output a list view of address
      *
      * @param array|null $overwriteDemand
-     * @param int $currentPage
      */
-    public function listAction(array $overwriteDemand = null, int $currentPage = 1)
+    public function listAction(array $overwriteDemand = null): ResponseInterface
     {
+        $possibleRedirect = $this->forwardToDetailActionWhenRequested();
+        if ($possibleRedirect) {
+            return $possibleRedirect;
+        }
+
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -203,51 +196,42 @@ class AddressController extends AddressBaseController
         $addressRecords = $this->addressRepository->findDemanded($demand);
 
         $assignedValues = [
+            'addresses' => $addressRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
+            'categories' => null,
+            'tags' => null,
+            'settings' => $this->settings,
         ];
 
-        if ((int)$this->settings['hidePagination'] === 1) {
-            $assignedValues['addresses'] = new SortedArray($addressRecords->toArray(), $demand->getIds());
-        } else {
-            if ($demand->getIds()) {
-                $paginator = new SortedArrayPaginator($addressRecords->toArray(), $demand->getIds(), $currentPage);
-            } else {
-                $paginator = new QueryResultPaginator($addressRecords, $currentPage, $this->settings['list']['paginate']['itemsPerPage'] ?? 10);
-            }
-            $pagination = new SimplePagination($paginator);
-            $pages = range(1, $pagination->getLastPageNumber());
-            $assignedValues = array_merge($assignedValues,[
-                'paginator' => $paginator,
-                'pagination' => $pagination,
-                'pages' => $pages,
-                'addresses' => $paginator->getPaginatedItems(),
-            ]);
+        if (count($demand->getCategories()) > 0) {
+            $assignedValues['categories'] = $this->categoryRepository->findByIdList($demand->getCategories());
         }
 
-        if ($demand->getCategories() !== '') {
-            $categoriesList = $demand->getCategories();
-            if (is_string($categoriesList)) {
-                $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
-            }
-            if (!empty($categoriesList)) {
-                $assignedValues['categories'] = $this->categoryRepository->findByIdList($categoriesList);
-            }
+        if ($demand->getTags() !== null && count($demand->getTags()) > 0) {
+            $assignedValues['tags'] = $this->tagRepository->findByIdList($demand->getTags());
         }
+        $event = $this->eventDispatcher->dispatch(new AddressListActionEvent($this, $assignedValues, $this->request));
+        $this->view->assignMultiple($event->getAssignedValues());
 
-        if ($demand->getTags() !== '') {
-            $tagList = $demand->getTags();
-            if (!\is_array($tagList)) {
-                $tagList = GeneralUtility::trimExplode(',', $tagList);
-            }
-            if (null !== $tagList) {
-                $assignedValues['tags'] = $this->tagRepository->findByIdList($tagList);
-            }
-        }
-        $assignedValues = $this->emitActionSignal('AddressController', self::SIGNAL_ADDRESS_LIST_ACTION, $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        // pagination
+        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $event->getAssignedValues()['addresses'], $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
+
+        $this->view->assign('pagination', [
+            'currentPage' => $currentPage,
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+        ]);
 
         Cache::addPageCacheTagsByDemandObject($demand);
+        return $this->htmlResponse();
     }
 
     /**
@@ -257,12 +241,8 @@ class AddressController extends AddressBaseController
      * @param int $currentPage current page for optional pagination
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
-    public function detailAction(Address $address = null, $currentPage = 1)
+    public function detailAction(Address $address = null, $currentPage = 1): ResponseInterface
     {
         if ($address === null) {
             $previewAddressId = ((int)$this->settings['singleAddress'] > 0) ? $this->settings['singleAddress'] : 0;
@@ -302,13 +282,31 @@ class AddressController extends AddressBaseController
             'demand' => $demand,
         ];
 
-        $assignedValues = $this->emitActionSignal('AddressController', self::SIGNAL_ADDRESS_DETAIL_ACTION, $assignedValues);
+        $event = $this->eventDispatcher->dispatch(new AddressDetailActionEvent($this, $assignedValues, $this->request));
+        $assignedValues = $event->getAssignedValues();
+
         $this->view->assignMultiple($assignedValues);
 
-        Page::setRegisterProperties($this->settings['detail']['registerProperties'], $address);
-        if ($address !== null && is_a($address, Address::class)) {
+        if ($address !== null) {
+            Page::setRegisterProperties($this->settings['detail']['registerProperties'] ?? false, $address);
             Cache::addCacheTagsByAddressRecords([$address]);
+            Cache::addCacheTagsByAddressRecords($address->getRelated()->toArray());
+
+            if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue'] ?? false) {
+                $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
+                $providerClass = $providerConfiguration['provider'] ?? AddressTitleProvider::class;
+
+                /** @var AddressTitleProvider $provider */
+                $provider = GeneralUtility::makeInstance($providerClass);
+                $provider->setTitleByAddress($address, $providerConfiguration);
+            }
+        } elseif (isset($this->settings['detail']['errorHandling'])) {
+            $errorResponse = $this->handleNoAddressFoundError($this->settings['detail']['errorHandling'] ?? '');
+            if ($errorResponse) {
+                return $errorResponse;
+            }
         }
+        return $this->htmlResponse();
     }
 
 
@@ -371,8 +369,9 @@ class AddressController extends AddressBaseController
      */
     public function searchFormAction(
         Search $search = null,
-        array $overwriteDemand = []
-    ) {
+        array  $overwriteDemand = []
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -407,8 +406,9 @@ class AddressController extends AddressBaseController
      */
     public function searchResultAction(
         Search $search = null,
-        array $overwriteDemand = []
-    ) {
+        array  $overwriteDemand = []
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -462,69 +462,6 @@ class AddressController extends AddressBaseController
         }
     }
 
-    /***************************************************************************
-     * helper
-     **********************/
-
-    /**
-     * Injects the Configuration Manager and is initializing the framework settings
-     *
-     * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
-     * @throws \InvalidArgumentException
-     */
-    public function injectConfigurationManager(
-        ConfigurationManagerInterface $configurationManager
-    ) {
-        $this->configurationManager = $configurationManager;
-
-        $tsSettings = $this->configurationManager->getConfiguration(
-            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
-            'address',
-            'address_pi1'
-        );
-        $originalSettings = $this->configurationManager->getConfiguration(
-            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
-        );
-
-        $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
-        foreach ($propertiesNotAllowedViaFlexForms as $property) {
-            $originalSettings[$property] = $tsSettings['settings'][$property];
-        }
-
-        // Use stdWrap for given defined settings
-        /*
-        if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
-            $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-            $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
-            $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
-            foreach ($stdWrapProperties as $key) {
-                if (\is_array($typoScriptArray[$key . '.'])) {
-                    $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
-                        $originalSettings[$key],
-                        $typoScriptArray[$key . '.']
-                    );
-                }
-            }
-        }*/
-
-        // start override
-        if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
-            $typoScriptUtility = GeneralUtility::makeInstance(TypoScript::class);
-            $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
-        }
-
-        if (\is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'])) {
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'] as $_funcRef) {
-                $_params = [
-                    'originalSettings' => $originalSettings,
-                    'tsSettings' => $tsSettings,
-                ];
-                $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
-            }
-        }
-
-        $this->settings = $originalSettings;
-    }
 
     /**
      * Injects a view.
@@ -536,4 +473,107 @@ class AddressController extends AddressBaseController
     {
         $this->view = $view;
     }
+
+
+    public function buildSettings(): void
+    {
+        $tsSettings = $this->configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
+            'news',
+            'news_pi1'
+        );
+        $originalSettings = $this->configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+        );
+
+        $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
+        foreach ($propertiesNotAllowedViaFlexForms as $property) {
+            $originalSettings[$property] = ($tsSettings['settings'] ?? [])[$property] ?? ($originalSettings[$property] ?? '');
+        }
+        $this->originalSettings = $originalSettings;
+
+        // Use stdWrap for given defined settings
+
+        if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
+            $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
+            $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
+            $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
+            foreach ($stdWrapProperties as $key) {
+                if (is_array($typoScriptArray[$key . '.'] ?? null)) {
+                    $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
+                        $typoScriptArray[$key] ?? '',
+                        $typoScriptArray[$key . '.']
+                    );
+                }
+            }
+        }
+
+        // start override
+        if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
+            $typoScriptUtility = GeneralUtility::makeInstance(TypoScript::class);
+            $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
+        }
+
+        foreach ($hooks = ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Controller/AddressController.php']['overrideSettings'] ?? []) as $_funcRef) {
+            $_params = [
+                'originalSettings' => $originalSettings,
+                'tsSettings' => $tsSettings,
+            ];
+            $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
+        }
+
+        $this->settings = $originalSettings;
+    }
+
+    /**
+     * When list action is called along with a news argument, we forward to detail action.
+     */
+    protected function forwardToDetailActionWhenRequested(): ?ForwardResponse
+    {
+        if (!$this->isActionAllowed('detail')
+            || !$this->request->hasArgument('address')
+        ) {
+            return null;
+        }
+
+        $forwardResponse = new ForwardResponse('detail');
+        return $forwardResponse->withArguments(['address' => $this->request->getArgument('address')]);
+    }
+
+    /**
+     * Checks whether an action is enabled in switchableControllerActions configuration
+     *
+     * @param string $action
+     * @return bool
+     */
+    protected function isActionAllowed(string $action): bool
+    {
+        $frameworkConfiguration = $this->configurationManager->getConfiguration($this->configurationManager::CONFIGURATION_TYPE_FRAMEWORK);
+        // @extensionScannerIgnoreLine
+        $allowedActions = $frameworkConfiguration['controllerConfiguration']['Address']['actions'] ?? [];
+
+        return \in_array($action, $allowedActions, true);
+    }
+
+
+    /**
+     * @param $paginationClass
+     * @param int $maximumNumberOfLinks
+     * @param $paginator
+     * @return \#o#Э#A#M#C\GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
+     */
+    protected function getPagination($paginationClass, int $maximumNumberOfLinks, $paginator)
+    {
+        if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
+            $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+        } elseif (class_exists(SlidingWindowPagination::class) && $paginationClass === SlidingWindowPagination::class && $maximumNumberOfLinks) {
+            $pagination = GeneralUtility::makeInstance(SlidingWindowPagination::class, $paginator, $maximumNumberOfLinks);
+        } elseif (class_exists($paginationClass)) {
+            $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
+        } else {
+            $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
+        }
+        return $pagination;
+    }
+
 }

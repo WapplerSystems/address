@@ -9,9 +9,11 @@ namespace WapplerSystems\Address\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use WapplerSystems\Address\Seo\AddressTitleProvider;
 
 /**
  * ViewHelper to render the page title
@@ -40,10 +42,19 @@ class TitleTagViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ) {
+        // Skip if current record is part of tt_content CType shortcut
+        if (!empty($GLOBALS['TSFE']->recordRegister)
+            && is_array($GLOBALS['TSFE']->recordRegister)
+            && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
+            && !empty($GLOBALS['TSFE']->currentRecord)
+            && strpos($GLOBALS['TSFE']->currentRecord, 'tx_address_domain_model_address:') !== false
+        ) {
+            return;
+        }
+
         $content = trim($renderChildrenClosure());
         if (!empty($content)) {
-            $GLOBALS['TSFE']->altPageTitle = $content;
-            $GLOBALS['TSFE']->indexedDocTitle = $content;
+            GeneralUtility::makeInstance(AddressTitleProvider::class)->setTitle($content);
         }
     }
 }

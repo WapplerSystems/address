@@ -20,7 +20,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  * # Example: Basic example
  *
  * <code>
- * <ad:excludeDisplayedAddress addressItem="{addressItem}" />
+ * <ad:excludeDisplayedAddress address="{address}" />
  * </code>
  * <output>
  * None
@@ -37,7 +37,7 @@ class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
     public function initializeArguments()
     {
         parent::initializeArguments();
-        $this->registerArgument('addressItem', Address::class, 'address item', true);
+        $this->registerArgument('address', Address::class, 'address record', true);
     }
 
     /**
@@ -50,8 +50,8 @@ class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ) {
-        $addressItem = $arguments['addressItem'];
-        $uid = $addressItem->getUid();
+        $address = $arguments['address'];
+        $uid = $address->getUid();
 
         if (empty($GLOBALS['EXT']['address']['alreadyDisplayed'])) {
             $GLOBALS['EXT']['address']['alreadyDisplayed'] = [];
@@ -59,7 +59,7 @@ class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
         $GLOBALS['EXT']['address']['alreadyDisplayed'][$uid] = $uid;
 
         // Add localized uid as well
-        $originalUid = (int)$addressItem->_getProperty('_localizedUid');
+        $originalUid = (int)$address->_getProperty('_localizedUid');
         if ($originalUid > 0) {
             $GLOBALS['EXT']['address']['alreadyDisplayed'][$originalUid] = $originalUid;
         }

@@ -3,7 +3,7 @@
 
 $EM_CONF['address'] = [
     'title' => 'Address list',
-    'description' => 'Address extension with multiple contact types per address',
+    'description' => 'Address extension with multiple contact types per address. Code is based on news extension.',
     'category' => 'fe',
     'author' => 'Sven Wappler',
     'author_email' => 'typo3YYYY@wappler.systems',

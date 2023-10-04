@@ -139,6 +139,15 @@ $boot = static function (): void {
         "@import 'EXT:address/Configuration/TsConfig/Page/config.tsconfig'"
     );
 
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    config.pageTitleProviders {
+        address {
+            provider = WapplerSystems\Address\Seo\AddressTitleProvider
+            before = altPageTitle,record,seo
+        }
+    }
+'));
+
 
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address'] = [

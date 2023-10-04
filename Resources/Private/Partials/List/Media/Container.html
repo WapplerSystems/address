@@ -4,7 +4,7 @@
 <f:if condition="{addressItem.mediaPreviews}">
 	<f:then>
 		<div class="address-img-wrap mb-3">
-			<ad:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
+			<ad:link address="{addressItem}" settings="{settings}" title="{addressItem.title}">
 				<f:alias map="{mediaElement: '{addressItem.mediaPreviews.0}'}">
 
 					<f:if condition="{mediaElement.originalResource.type} == 2">
@@ -27,7 +27,7 @@
 	<f:else>
 		<f:if condition="{settings.displayDummyIfNoMedia}">
 			<div class="address-img-wrap mb-3">
-				<ad:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
+				<ad:link address="{addressItem}" settings="{settings}" title="{addressItem.title}">
 					<f:image class="img-fluid img-thumbnail" src="{settings.list.media.dummyImage}" title="" alt=""
 							 maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
 							 maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>

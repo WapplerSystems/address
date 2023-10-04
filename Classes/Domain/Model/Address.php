@@ -151,9 +151,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected int $sorting;
 
     /**
-     * @var int
+     * @var bool
      */
-    protected int $isTopAddress;
+    protected bool $isTopAddress = false;
 
     /**
      * @var \DateTime
@@ -163,12 +163,12 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var bool
      */
-    protected $directContact = false;
+    protected bool $directContact = false;
 
     /**
      * @var string
      */
-    protected $email = '';
+    protected string $email = '';
 
     /**
      * @var string
@@ -620,7 +620,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return bool
      */
-    public function getIsTopAddress()
+    public function getIsTopAddress(): bool
     {
         return $this->isTopAddress;
     }
@@ -630,7 +630,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param bool $isTopAddress top address flag
      */
-    public function setIsTopAddress($isTopAddress)
+    public function setIsTopAddress(bool $isTopAddress): void
     {
         $this->isTopAddress = $isTopAddress;
     }

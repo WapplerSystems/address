@@ -9,6 +9,7 @@ namespace WapplerSystems\Address\Domain\Model\Dto;
  */
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 
 /**
@@ -20,35 +21,27 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * @var array
      */
-    protected $categories;
+    protected array $categories = [];
 
     /**
      * @var string
      */
-    protected $categoryConjunction;
+    protected string $categoryConjunction = '';
 
     /**
      * @var bool
      */
-    protected $includeSubCategories = false;
+    protected bool $includeSubCategories = false;
 
 
 
-    /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage */
+    /** @var ObjectStorage|null */
     protected $tags;
 
     /**
      * @var string
      */
-    protected $archiveRestriction;
-
-    /**
-     * @var string
-     */
-    protected $timeRestriction = null;
-
-    /** @var string */
-    protected $timeRestrictionHigh = null;
+    protected string $archiveRestriction;
 
     /** @var int */
     protected $topAddressRestriction;
@@ -56,50 +49,50 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /** @var string */
     protected $searchFields;
 
-    /** @var \WapplerSystems\Address\Domain\Model\Dto\Search */
+    /** @var Search|null */
     protected $search;
 
     /** @var string */
-    protected $order;
+    protected string $order = '';
 
     /** @var string */
-    protected $orderByAllowed;
+    protected string $orderByAllowed = '';
 
     /** @var bool */
-    protected $topAddressFirst;
+    protected bool $topAddressFirst = false;
 
     /** @var int */
     protected $storagePage;
 
     /** @var int */
-    protected $limit;
+    protected int $limit;
 
     /** @var int */
-    protected $offset;
+    protected int $offset;
 
     /** @var bool */
-    protected $excludeAlreadyDisplayedAddress;
+    protected bool $excludeAlreadyDisplayedAddress;
 
     /** @var string */
-    protected $hideIdList;
+    protected string $hideIdList;
 
     /** @var string */
-    protected $action = '';
+    protected string $action = '';
 
     /** @var string */
-    protected $class = '';
+    protected string $class = '';
 
     /**
      * @var array
      */
-    protected $ids = [];
+    protected array $ids = [];
 
     /**
      * List of allowed types
      *
      * @var array
      */
-    protected $types = [];
+    protected array $types = [];
 
     /**
      * Set archive settings
@@ -118,7 +111,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getArchiveRestriction()
+    public function getArchiveRestriction(): string
     {
         return $this->archiveRestriction;
     }
@@ -129,7 +122,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param array $categories categories
      * @return AddressDemand
      */
-    public function setCategories($categories)
+    public function setCategories(array $categories): AddressDemand
     {
         $this->categories = $categories;
         return $this;
@@ -140,7 +133,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return array
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }
@@ -151,7 +144,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $categoryConjunction
      * @return AddressDemand
      */
-    public function setCategoryConjunction($categoryConjunction)
+    public function setCategoryConjunction($categoryConjunction): AddressDemand
     {
         $this->categoryConjunction = $categoryConjunction;
         return $this;
@@ -162,7 +155,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getCategoryConjunction()
+    public function getCategoryConjunction(): string
     {
         return $this->categoryConjunction;
     }
@@ -171,16 +164,16 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * Get include sub categories
      * @return bool
      */
-    public function getIncludeSubCategories()
+    public function getIncludeSubCategories(): bool
     {
-        return (boolean)$this->includeSubCategories;
+        return $this->includeSubCategories;
     }
 
     /**
      * @param bool $includeSubCategories
      * @return AddressDemand
      */
-    public function setIncludeSubCategories($includeSubCategories)
+    public function setIncludeSubCategories($includeSubCategories): AddressDemand
     {
         $this->includeSubCategories = $includeSubCategories;
         return $this;
@@ -190,9 +183,9 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * Get Tags
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage|null
      */
-    public function getTags()
+    public function getTags(): ?ObjectStorage
     {
         return $this->tags;
     }
@@ -200,56 +193,12 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * Set Tags
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
+     * @param ObjectStorage $tags tags
      * @return AddressDemand
      */
-    public function setTags($tags)
+    public function setTags(ObjectStorage $tags): AddressDemand
     {
         $this->tags = $tags;
-        return $this;
-    }
-
-    /**
-     * Set time limit low, either integer or string
-     *
-     * @param mixed $timeRestriction
-     * @return AddressDemand
-     */
-    public function setTimeRestriction($timeRestriction)
-    {
-        $this->timeRestriction = $timeRestriction;
-        return $this;
-    }
-
-    /**
-     * Get time limit low
-     *
-     * @return mixed
-     */
-    public function getTimeRestriction()
-    {
-        return $this->timeRestriction;
-    }
-
-    /**
-     * Get time limit high
-     *
-     * @return mixed
-     */
-    public function getTimeRestrictionHigh()
-    {
-        return $this->timeRestrictionHigh;
-    }
-
-    /**
-     * Set time limit high
-     *
-     * @param mixed $timeRestrictionHigh
-     * @return AddressDemand
-     */
-    public function setTimeRestrictionHigh($timeRestrictionHigh)
-    {
-        $this->timeRestrictionHigh = $timeRestrictionHigh;
         return $this;
     }
 
@@ -281,7 +230,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $orderByAllowed allowed fields for ordering
      * @return AddressDemand
      */
-    public function setOrderByAllowed($orderByAllowed)
+    public function setOrderByAllowed($orderByAllowed): AddressDemand
     {
         $this->orderByAllowed = $orderByAllowed;
         return $this;
@@ -303,7 +252,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param bool $topAddressFirst respect top address flag
      * @return AddressDemand
      */
-    public function setTopAddressFirst($topAddressFirst)
+    public function setTopAddressFirst($topAddressFirst): AddressDemand
     {
         $this->topAddressFirst = $topAddressFirst;
         return $this;
@@ -325,7 +274,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $searchFields search fields
      * @return $this
      */
-    public function setSearchFields($searchFields)
+    public function setSearchFields($searchFields): AddressDemand
     {
         $this->searchFields = $searchFields;
         return $this;
@@ -347,7 +296,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $topAddressRestriction top address settings
      * @return AddressDemand
      */
-    public function setTopAddressRestriction($topAddressRestriction)
+    public function setTopAddressRestriction($topAddressRestriction): AddressDemand
     {
         $this->topAddressRestriction = $topAddressRestriction;
         return $this;
@@ -369,7 +318,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $storagePage storage page list
      * @return AddressDemand
      */
-    public function setStoragePage($storagePage)
+    public function setStoragePage($storagePage): AddressDemand
     {
         $this->storagePage = $storagePage;
         return $this;
@@ -380,7 +329,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getStoragePage()
+    public function getStoragePage(): int|string
     {
         return $this->storagePage;
     }
@@ -392,7 +341,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param int $limit limit
      * @return AddressDemand
      */
-    public function setLimit($limit)
+    public function setLimit(int $limit): AddressDemand
     {
         $this->limit = (int)$limit;
         return $this;
@@ -403,7 +352,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return int
      */
-    public function getLimit()
+    public function getLimit(): int
     {
         return $this->limit;
     }
@@ -414,9 +363,9 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param int $offset offset
      * @return AddressDemand
      */
-    public function setOffset($offset)
+    public function setOffset(int $offset): AddressDemand
     {
-        $this->offset = (int)$offset;
+        $this->offset = $offset;
         return $this;
     }
 
@@ -425,7 +374,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return int
      */
-    public function getOffset()
+    public function getOffset(): int
     {
         return $this->offset;
     }
@@ -434,9 +383,9 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * Get search object
      *
-     * @return \WapplerSystems\Address\Domain\Model\Dto\Search
+     * @return Search|null
      */
-    public function getSearch()
+    public function getSearch(): ?Search
     {
         return $this->search;
     }
@@ -444,10 +393,10 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * Set search object
      *
-     * @param \WapplerSystems\Address\Domain\Model\Dto\Search $search search object
+     * @param Search $search search object
      * @return AddressDemand
      */
-    public function setSearch($search = null)
+    public function setSearch(Search $search = null): AddressDemand
     {
         $this->search = $search;
         return $this;
@@ -459,9 +408,9 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param bool $excludeAlreadyDisplayedAddress
      * @return AddressDemand
      */
-    public function setExcludeAlreadyDisplayedAddress($excludeAlreadyDisplayedAddress)
+    public function setExcludeAlreadyDisplayedAddress(bool $excludeAlreadyDisplayedAddress): AddressDemand
     {
-        $this->excludeAlreadyDisplayedAddress = (bool)$excludeAlreadyDisplayedAddress;
+        $this->excludeAlreadyDisplayedAddress = $excludeAlreadyDisplayedAddress;
         return $this;
     }
 
@@ -470,7 +419,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return bool
      */
-    public function getExcludeAlreadyDisplayedAddress()
+    public function getExcludeAlreadyDisplayedAddress(): bool
     {
         return $this->excludeAlreadyDisplayedAddress;
     }
@@ -478,7 +427,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * @return string
      */
-    public function getHideIdList()
+    public function getHideIdList(): string
     {
         return $this->hideIdList;
     }
@@ -487,7 +436,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $hideIdList
      * @return AddressDemand
      */
-    public function setHideIdList($hideIdList)
+    public function setHideIdList(string $hideIdList): AddressDemand
     {
         $this->hideIdList = $hideIdList;
         return $this;
@@ -496,7 +445,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * @return string
      */
-    public function getAction()
+    public function getAction(): string
     {
         return $this->action;
     }
@@ -505,7 +454,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $action
      * @return AddressDemand
      */
-    public function setAction($action)
+    public function setAction(string $action): AddressDemand
     {
         $this->action = $action;
         return $this;
@@ -514,7 +463,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     /**
      * @return string
      */
-    public function getClass()
+    public function getClass(): string
     {
         return $this->class;
     }
@@ -523,7 +472,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $class
      * @return AddressDemand
      */
-    public function setClass($class)
+    public function setClass(string $class): AddressDemand
     {
         $this->class = $class;
         return $this;
@@ -534,7 +483,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param string $controller
      * @return AddressDemand
      */
-    public function setActionAndClass($action, $controller)
+    public function setActionAndClass(string $action, string $controller): AddressDemand
     {
         $this->action = $action;
         $this->class = $controller;
@@ -546,7 +495,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return array
      */
-    public function getTypes()
+    public function getTypes(): array
     {
         return $this->types;
     }
@@ -556,7 +505,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @param array $types
      */
-    public function setTypes($types)
+    public function setTypes($types): void
     {
         $this->types = $types;
     }

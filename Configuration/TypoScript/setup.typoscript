@@ -109,6 +109,12 @@ plugin.tx_address {
           height = 300
         }
       }
+
+      pageTitle = 1
+      pageTitle {
+        provider = WapplerSystems\Address\Seo\NewsTitleProvider
+        properties = alternativeTitle,title
+      }
     }
 
     # --------------

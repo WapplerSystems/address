@@ -1,6 +1,8 @@
 <?php
 namespace WapplerSystems\Address\Controller;
 
+use WapplerSystems\Address\Event\TagListActionEvent;
+
 /**
  * This file is part of the "address" Extension for TYPO3 CMS.
  *
@@ -41,7 +43,8 @@ class TagController extends AddressController
             'demand' => $demand,
         ];
 
-        $assignedValues = $this->emitActionSignal('TagController', self::SIGNAL_TAG_LIST_ACTION, $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new TagListActionEvent($this, $assignedValues, $this->request));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 }

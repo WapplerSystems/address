@@ -1,6 +1,11 @@
 <?php
 namespace WapplerSystems\Address\Controller;
 
+use WapplerSystems\Address\Domain\Repository\AddressRepository;
+use WapplerSystems\Address\Domain\Repository\CategoryRepository;
+use WapplerSystems\Address\Domain\Repository\TagRepository;
+use WapplerSystems\Address\Event\CategoryListActionEvent;
+
 /**
  * This file is part of the "address" Extension for TYPO3 CMS.
  *
@@ -15,20 +20,6 @@ class CategoryController extends AddressController
 {
     const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
 
-    /**
-     * @var \WapplerSystems\Address\Domain\Repository\CategoryRepository
-     */
-    protected $categoryRepository;
-
-    /**
-     * Inject a category repository to enable DI
-     *
-     * @param \WapplerSystems\Address\Domain\Repository\CategoryRepository $categoryRepository
-     */
-    public function injectCategoryRepository(\WapplerSystems\Address\Domain\Repository\CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
 
     /**
      * List categories
@@ -58,8 +49,8 @@ class CategoryController extends AddressController
             'demand' => $demand,
         ];
 
-        $assignedValues = $this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION,
-            $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new CategoryListActionEvent($this, $assignedValues, $this->request));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 }

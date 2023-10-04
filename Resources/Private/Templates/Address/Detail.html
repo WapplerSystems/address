@@ -34,14 +34,14 @@
 						<ul class="pager">
 							<f:if condition="{paginated.prev}">
 								<li class="previous">
-									<ad:link addressItem="{paginated.prev}" settings="{settings}">
+									<ad:link address="{paginated.prev}" settings="{settings}">
 										<span aria-hidden="true">&larr; </span>{paginated.prev.title}
 									</ad:link>
 								</li>
 							</f:if>
 							<f:if condition="{paginated.next}">
 								<li class="next">
-									<ad:link addressItem="{paginated.next}" settings="{settings}" class="next">
+									<ad:link address="{paginated.next}" settings="{settings}" class="next">
 										{paginated.next.title} <span aria-hidden="true"> &rarr;</span>
 									</ad:link>
 								</li>
@@ -137,8 +137,8 @@
 
 
 			<f:render partial="Detail/Map" arguments="{addressItem: addressItem, settings:settings}" />
-			
-			
+
+
 			<f:if condition="{addressItem.relatedLinks}">
 				<!-- Related links -->
 				<div class="address-related address-related-links card mb-4">

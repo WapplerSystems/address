@@ -11,6 +11,7 @@ namespace WapplerSystems\Address\Domain\Repository;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -23,17 +24,10 @@ use WapplerSystems\Address\Domain\Model\DemandInterface;
 abstract class AbstractDemandedRepository extends Repository implements DemandedRepositoryInterface
 {
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
-     */
-    protected $storageBackend;
 
-    /**
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-     */
-    public function injectStorageBackend(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-    ) {
-        $this->storageBackend = $storageBackend;
+    public function __construct(readonly BackendInterface $storageBackend)
+    {
+        parent::__construct();
     }
 
     /**
@@ -70,7 +64,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 
-        return $query->executeQuery();
+        return $query->execute();
     }
 
     /**
@@ -84,7 +78,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
-        $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+        $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();
@@ -118,14 +112,14 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
         $constraints = $this->createConstraintsFromDemand($query, $demand);
 
         // Call hook functions for additional constraints
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'])) {
+        if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] ?? []) {
             $params = [
                 'demand' => $demand,
                 'respectEnableFields' => &$respectEnableFields,
                 'query' => $query,
                 'constraints' => &$constraints,
             ];
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
+            foreach ($hooks as $reference) {
                 GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }
@@ -142,7 +136,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         if (!empty($constraints)) {
             $query->matching(
-                $query->logicalAnd($constraints)
+                $query->logicalAnd(...array_values($constraints))
             );
         }
 

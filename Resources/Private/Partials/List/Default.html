@@ -5,14 +5,14 @@
 	=====================
 		Partials/List/Item.html
 -->
-<div class="address address-{addressItem.type}{f:if(condition: addressItem.istopaddress, then: ' topaddress')} mb-4">
-    <ad:excludeDisplayedAddress addressItem="{addressItem}"/>
+<div class="address address-{address.type}{f:if(condition: address.istopaddress, then: ' topaddress')} mb-4">
+    <ad:excludeDisplayedAddress address="{address}"/>
 
     <div class="row">
         <div class="col-md-4">
 
 
-            <f:render partial="List/Media/Container" arguments="{addressItem:addressItem, mediaElement: addressItem.mediaPreviews.0, settings:settings}"/>
+            <f:render partial="List/Media/Container" arguments="{address:address, mediaElement: address.mediaPreviews.0, settings:settings}"/>
 
 
         </div>
@@ -21,8 +21,8 @@
             <!-- header -->
             <div class="address--list-header address--header">
                 <h3>
-                    <ad:link addressItem="{addressItem}" settings="{settings}" title="{addressItem.title}">
-                        <span><f:render partial="Title" arguments="{addressItem:addressItem}"/></span>
+                    <ad:link address="{address}" settings="{settings}" title="{address.title}">
+                        <span><f:render partial="Title" arguments="{address:address}"/></span>
                     </ad:link>
                 </h3>
             </div>
@@ -30,30 +30,30 @@
 
             <div class="address--list-details mb-3">
 
-                <f:if condition="{addressItem.phone}">
+                <f:if condition="{address.phone}">
                     <div class="media">
                         <i class="d-flex fa fa-phone c-gray mr-2 mt-1" aria-hidden="true"></i>
                         <div class="media-body">
-                            {addressItem.phone}
+                            {address.phone}
                         </div>
                     </div>
                 </f:if>
-                <f:if condition="{addressItem.fax}">
+                <f:if condition="{address.fax}">
                     <div class="media">
                         <i class="d-flex fa fa-fax c-gray mr-2 mt-1" aria-hidden="true"></i>
                         <div class="media-body">
-                            {addressItem.fax}
+                            {address.fax}
                         </div>
                     </div>
                 </f:if>
 
-                <f:if condition="{addressItem.address}">
+                <f:if condition="{address.address}">
                     <div class="media">
                         <i class="d-flex fa fa-location-arrow c-gray mr-2 mt-1" aria-hidden="true"></i>
                         <div class="media-body">
-                            <f:format.nl2br>{addressItem.address}</f:format.nl2br>
-                            <f:if condition="{addressItem.zip}"><br/>{addressItem.zip}</f:if>
-                            <f:if condition="{addressItem.city}">{addressItem.city}</f:if>
+                            <f:format.nl2br>{address.address}</f:format.nl2br>
+                            <f:if condition="{address.zip}"><br/>{address.zip}</f:if>
+                            <f:if condition="{address.city}">{address.city}</f:if>
                         </div>
                     </div>
                 </f:if>
@@ -63,17 +63,17 @@
             <!-- teaser -->
             <div class="teaser-text">
                 <ad:removeMediaTags>
-                    <f:if condition="{addressItem.teaser}">
+                    <f:if condition="{address.teaser}">
                         <f:then>
-                            <div>{addressItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</div>
+                            <div>{address.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</div>
                         </f:then>
                         <f:else>
-                            <div>{addressItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</div>
+                            <div>{address.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</div>
                         </f:else>
                     </f:if>
                 </ad:removeMediaTags>
 
-                <ad:link addressItem="{addressItem}" settings="{settings}" class="btn btn-outline-primary" title="{addressItem.title}">
+                <ad:link address="{address}" settings="{settings}" class="btn btn-outline-primary" title="{address.title}">
                     <f:translate key="btn.details"/>
                 </ad:link>
             </div>
@@ -82,15 +82,15 @@
             <div class="footer">
                 <p>
 
-                    <f:if condition="{addressItem.firstCategory}">
+                    <f:if condition="{address.firstCategory}">
                         <!-- first category -->
-                        <span class="address-list-category">{addressItem.firstCategory.title}</span>
+                        <span class="address-list-category">{address.firstCategory.title}</span>
                     </f:if>
 
-                    <f:if condition="{addressItem.tags}">
+                    <f:if condition="{address.tags}">
                         <!-- Tags -->
                         <span class="address-list-tags">
-							<f:for each="{addressItem.tags}" as="tag">
+							<f:for each="{address.tags}" as="tag">
 								{tag.title}
 							</f:for>
 						</span>
