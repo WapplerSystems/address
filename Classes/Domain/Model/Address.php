@@ -275,7 +275,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var \DateTime
      */
-    protected $starttime;
+    protected ?\DateTime $starttime = null;
 
 
     /**
@@ -718,9 +718,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get start time
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getStarttime(): \DateTime
+    public function getStarttime(): ?\DateTime
     {
         return $this->starttime;
     }
