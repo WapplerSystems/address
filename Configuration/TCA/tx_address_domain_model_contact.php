@@ -206,7 +206,7 @@ $tx_address_domain_model_contact = [
     ],
     'palettes' => [
         'paletteCore' => [
-            'showitem' => 'type, content, sys_language_uid, hidden,',
+            'showitem' => 'type, content, sys_language_uid,',
         ],
         'paletteAccess' => [
             'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
