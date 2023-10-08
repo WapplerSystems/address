@@ -406,7 +406,7 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.archive',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
+                'renderType' => 'inputDateTime',
                 'eval' => $configuration->getArchiveDate(),
                 'default' => 0
             ]

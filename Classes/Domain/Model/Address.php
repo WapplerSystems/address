@@ -24,17 +24,17 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var bool
      */
-    protected bool $hidden;
+    protected bool $hidden = false;
 
     /**
      * @var bool
      */
-    protected bool $deleted;
+    protected bool $deleted = false;
 
     /**
      * @var string
      */
-    protected string $bodytext;
+    protected string $bodytext = '';
 
     /**
      * @var ObjectStorage<Category>
@@ -71,22 +71,22 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected $type;
+    protected string $type = '';
 
     /**
      * @var string
      */
-    protected $keywords;
+    protected string $keywords = '';
 
     /**
      * @var string
      */
-    protected $description;
+    protected string $description = '';
 
     /**
      * @var string
      */
-    protected $teaser;
+    protected string $teaser = '';
 
     /**
      * Fal media items
@@ -128,7 +128,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected $pathSegment;
+    protected string $pathSegment = '';
 
     /**
      * @var int
@@ -698,9 +698,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get deleted flag
      *
-     * @return int
+     * @return bool
      */
-    public function getDeleted()
+    public function getDeleted(): bool
     {
         return $this->deleted;
     }
@@ -708,9 +708,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set deleted flag
      *
-     * @param int $deleted deleted flag
+     * @param bool $deleted deleted flag
      */
-    public function setDeleted($deleted)
+    public function setDeleted(bool $deleted)
     {
         $this->deleted = $deleted;
     }
