@@ -116,20 +116,20 @@ class AddressController extends AddressBaseController
                 1423157953);
         }
 
-        if ($this->settings['selectedAddresses'] !== null && $this->settings['selectedAddresses'] !== '') {
+        if (($this->settings['selectedAddresses'] ?? '') !== '') {
             $demand->setIds(explode(',', $this->settings['selectedAddresses']));
         }
-        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
-        $demand->setCategoryConjunction($settings['categoryConjunction']);
-        $demand->setIncludeSubCategories($settings['includeSubCategories']);
-        if ($settings['tags'] !== '') {
+        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'] ?? '', true));
+        $demand->setCategoryConjunction($settings['categoryConjunction'] ?? '');
+        $demand->setIncludeSubCategories($settings['includeSubCategories'] ?? '');
+        if (($settings['tags'] ?? '') !== '') {
             // TODO
             $demand->setTags($settings['tags']);
         }
 
-        $demand->setTopAddressRestriction($settings['topAddressRestriction']);
-        $demand->setArchiveRestriction($settings['archiveRestriction']);
-        $demand->setExcludeAlreadyDisplayedAddress($settings['excludeAlreadyDisplayedAddress']);
+        $demand->setTopAddressRestriction($settings['topAddressRestriction'] ?? '');
+        $demand->setArchiveRestriction($settings['archiveRestriction'] ?? '');
+        $demand->setExcludeAlreadyDisplayedAddress($settings['excludeAlreadyDisplayedAddress'] ?? '');
         $demand->setHideIdList($settings['hideIdList'] ?? '');
 
         if ($settings['orderBy']) {
@@ -139,10 +139,10 @@ class AddressController extends AddressBaseController
 
         $demand->setTopAddressFirst($settings['topAddressFirst']);
 
-        $demand->setLimit((int)$settings['limit']);
-        $demand->setOffset((int)$settings['offset']);
+        $demand->setLimit((int)($settings['limit'] ?? 0));
+        $demand->setOffset((int)($settings['offset'] ?? 0));
 
-        $demand->setSearchFields($settings['search']['fields']);
+        $demand->setSearchFields($settings['search']['fields'] ?? '');
 
         $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
             $settings['recursive']));

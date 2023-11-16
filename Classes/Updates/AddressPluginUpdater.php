@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the "news" Extension for TYPO3 CMS.
+ * This file is part of the "address" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -15,6 +15,7 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
+use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
@@ -25,44 +26,44 @@ class AddressPluginUpdater implements UpgradeWizardInterface
 {
     private const MIGRATION_SETTINGS = [
         [
-            'switchableControllerActions' => 'News->list;News->detail',
-            'targetListType' => 'news_pi1',
+            'switchableControllerActions' => 'Address->list;Address->detail',
+            'targetListType' => 'address_pi1',
         ],
         [
-            'switchableControllerActions' => 'News->list',
-            'targetListType' => 'news_newsliststicky',
+            'switchableControllerActions' => 'Address->list',
+            'targetListType' => 'address_addressliststicky',
         ],
         [
-            'switchableControllerActions' => 'News->selectedList',
-            'targetListType' => 'news_newsselectedlist',
+            'switchableControllerActions' => 'Address->selectedList',
+            'targetListType' => 'address_addressselectedlist',
         ],
         [
-            'switchableControllerActions' => 'News->detail',
-            'targetListType' => 'news_newsdetail',
+            'switchableControllerActions' => 'Address->detail',
+            'targetListType' => 'address_addressdetail',
         ],
         [
-            'switchableControllerActions' => 'News->dateMenu',
-            'targetListType' => 'news_newsdatemenu',
+            'switchableControllerActions' => 'Address->dateMenu',
+            'targetListType' => 'address_addressdatemenu',
         ],
         [
-            'switchableControllerActions' => 'News->searchForm',
-            'targetListType' => 'news_newssearchform',
+            'switchableControllerActions' => 'Address->searchForm',
+            'targetListType' => 'address_addresssearchform',
         ],
         [
-            'switchableControllerActions' => 'News->searchResult',
-            'targetListType' => 'news_newssearchresult',
+            'switchableControllerActions' => 'Address->searchResult',
+            'targetListType' => 'address_addresssearchresult',
         ],
         [
             'switchableControllerActions' => 'Category->list',
-            'targetListType' => 'news_categorylist',
+            'targetListType' => 'address_categorylist',
         ],
         [
             'switchableControllerActions' => 'Tag->list',
-            'targetListType' => 'news_taglist',
+            'targetListType' => 'address_taglist',
         ],
         [
-            'switchableControllerActions' => 'News->month',
-            'targetListType' => 'eventnews_newsmonth',
+            'switchableControllerActions' => 'Address->month',
+            'targetListType' => 'eventaddress_addressmonth',
         ],
     ];
 
@@ -76,12 +77,12 @@ class AddressPluginUpdater implements UpgradeWizardInterface
 
     public function getIdentifier(): string
     {
-        return 'txNewsPluginUpdater';
+        return 'txAddressPluginUpdater';
     }
 
     public function getTitle(): string
     {
-        return 'EXT:news: Migrate plugins';
+        return 'EXT:address: Migrate plugins';
     }
 
     public function getDescription(): string
@@ -165,7 +166,7 @@ class AddressPluginUpdater implements UpgradeWizardInterface
             ->where(
                 $queryBuilder->expr()->eq(
                     'list_type',
-                    $queryBuilder->createNamedParameter('news_pi1')
+                    $queryBuilder->createNamedParameter('address_pi1')
                 )
             )
             ->executeQuery()

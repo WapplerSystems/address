@@ -112,8 +112,8 @@ plugin.tx_address {
 
       pageTitle = 1
       pageTitle {
-        provider = WapplerSystems\Address\Seo\NewsTitleProvider
-        properties = alternativeTitle,title
+        provider = WapplerSystems\Address\Seo\AddressTitleProvider
+        properties = title,name
       }
     }
 
