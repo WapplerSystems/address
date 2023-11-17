@@ -27,31 +27,31 @@ class AddressPluginUpdater implements UpgradeWizardInterface
     private const MIGRATION_SETTINGS = [
         [
             'switchableControllerActions' => 'Address->list;Address->detail',
-            'targetListType' => 'address_pi1',
+            'targetListType' => 'address_listanddetail',
         ],
         [
             'switchableControllerActions' => 'Address->list',
-            'targetListType' => 'address_addressliststicky',
+            'targetListType' => 'address_liststicky',
         ],
         [
             'switchableControllerActions' => 'Address->selectedList',
-            'targetListType' => 'address_addressselectedlist',
+            'targetListType' => 'address_selectedlist',
         ],
         [
             'switchableControllerActions' => 'Address->detail',
-            'targetListType' => 'address_addressdetail',
+            'targetListType' => 'address_detail',
         ],
         [
             'switchableControllerActions' => 'Address->dateMenu',
-            'targetListType' => 'address_addressdatemenu',
+            'targetListType' => 'address_datemenu',
         ],
         [
             'switchableControllerActions' => 'Address->searchForm',
-            'targetListType' => 'address_addresssearchform',
+            'targetListType' => 'address_searchform',
         ],
         [
             'switchableControllerActions' => 'Address->searchResult',
-            'targetListType' => 'address_addresssearchresult',
+            'targetListType' => 'address_searchresult',
         ],
         [
             'switchableControllerActions' => 'Category->list',
@@ -60,10 +60,6 @@ class AddressPluginUpdater implements UpgradeWizardInterface
         [
             'switchableControllerActions' => 'Tag->list',
             'targetListType' => 'address_taglist',
-        ],
-        [
-            'switchableControllerActions' => 'Address->month',
-            'targetListType' => 'eventaddress_addressmonth',
         ],
     ];
 

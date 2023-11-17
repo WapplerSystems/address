@@ -1,29 +1,29 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:layout name="General" />
+<f:layout name="General"/>
 <!--
 	=====================
 		Templates/Address/SearchResult.html
 -->
 
 <f:section name="content">
-	<div class="address-search-result">
-		<f:if condition="{search}">
-			<f:if condition="{addresses}">
-				<f:then>
-					<div class="alert alert-info">
-						<f:translate key="msg.searchResultText" arguments="{0:'{f:count(subject:addresses)}',1:search.subject}" />
-					</div>
-					<f:for each="{addresses}" as="addressItem">
-						<f:render partial="List/{f:if(condition:settings.templateLayout,then:settings.templateLayout,else:'Default')}" arguments="{addressItem: addressItem, settings:settings, className:className, view:'list'}" />
-					</f:for>
-				</f:then>
-				<f:else>
-					<div class="no-address-found alert alert-info">
-						<f:translate key="msg.searchNoResult" />
-					</div>
-				</f:else>
-			</f:if>
-		</f:if>
-	</div>
+    <div class="address-search-result">
+        <f:if condition="{search}">
+            <f:if condition="{addresses}">
+                <f:then>
+                    <div class="alert alert-info">
+                        <f:translate key="msg.searchResultText" arguments="{0:'{f:count(subject:addresses)}',1:search.subject}"/>
+                    </div>
+                    <f:for each="{addresses}" as="address">
+                        <f:render partial="List/{f:if(condition:settings.templateLayout,then:settings.templateLayout,else:'Default')}" arguments="{address: address, settings:settings, className:className, view:'list'}"/>
+                    </f:for>
+                </f:then>
+                <f:else>
+                    <div class="no-address-found alert alert-info">
+                        <f:translate key="msg.searchNoResult"/>
+                    </div>
+                </f:else>
+            </f:if>
+        </f:if>
+    </div>
 </f:section>
 </html>

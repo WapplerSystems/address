@@ -25,10 +25,6 @@ class TagController extends AddressController
      */
     public function listAction(array $overwriteDemand = null, int $currentPage = 1): \Psr\Http\Message\ResponseInterface
     {
-        // Default value is wrong for tags
-        if ($this->settings['orderBy'] === 'datetime') {
-            unset($this->settings['orderBy']);
-        }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);

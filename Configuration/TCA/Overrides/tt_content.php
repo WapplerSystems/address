@@ -7,7 +7,7 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 
 
-$pluginConfig = ['address_list', 'address_list_sticky', 'address_detail', 'address_search_form', 'address_search_result', 'address_selected_list', 'category_list', 'tag_list'];
+$pluginConfig = ['list_and_detail', 'list', 'detail', 'search_form', 'search_result', 'category_list', 'tag_list', 'map'];
 foreach ($pluginConfig as $pluginName) {
     $pluginNameForLabel = $pluginName;
     ExtensionUtility::registerPlugin(
@@ -19,7 +19,7 @@ foreach ($pluginConfig as $pluginName) {
     );
 
     $contentTypeName = 'address_' . str_replace('_', '', $pluginName);
-    $flexformFileName = in_array($pluginNameForLabel, ['address_search_result', 'address_list_sticky'], true) ? 'address_list' : $pluginNameForLabel;
+    $flexformFileName = in_array($pluginNameForLabel, ['search_result', 'list'], true) ? 'address_list' : $pluginNameForLabel;
 
     ExtensionManagementUtility::addPiFlexFormValue(
         '*',

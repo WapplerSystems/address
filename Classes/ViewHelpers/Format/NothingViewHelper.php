@@ -17,7 +17,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * # Example: Basic example
  * <code>
  * <ad:format.nothing>
- *    <ad:titleTag>{addressItem.title}</n:titleTag>
+ *    <ad:titleTag>{address.title}</n:titleTag>
  *    Fobar
  * </n:format.nothing>
  * </code>

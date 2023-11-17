@@ -1,11 +1,11 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:if condition="{addressItem.type} == 1">
+<f:if condition="{address.type} == 1">
     <f:then>
-        {addressItem.academicTitle} {addressItem.firstName} {addressItem.lastName}
+        {address.academicTitle} {address.firstName} {address.lastName}
     </f:then>
     <f:else>
-        {addressItem.title}
+        {address.title}
     </f:else>
 </f:if>
 

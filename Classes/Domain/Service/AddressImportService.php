@@ -136,7 +136,6 @@ class AddressImportService extends AbstractImportService
 
         $address->setType((string)$importItem['type']);
         $address->setKeywords($importItem['keywords']);
-        $address->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
         $address->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
         $contentElementUidArray = GeneralUtility::trimExplode(',', $importItem['content_elements'], true);
@@ -151,9 +150,6 @@ class AddressImportService extends AbstractImportService
 
         $address->setType($importItem['type']);
         $address->setKeywords($importItem['keywords']);
-
-        $address->setAuthor($importItem['author']);
-        $address->setAuthorEmail($importItem['author_email']);
 
         $address->setImportId($importItem['import_id']);
         $address->setImportSource($importItem['import_source']);

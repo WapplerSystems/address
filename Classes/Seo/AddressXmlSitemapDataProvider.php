@@ -57,7 +57,7 @@ class AddressXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
         $pids = !empty($this->config['pid']) ? GeneralUtility::intExplode(',', $this->config['pid']) : [];
         $lastModifiedField = $this->config['lastModifiedField'] ?? 'tstamp';
-        $sortField = $this->config['sortField'] ?? 'datetime';
+        $sortField = $this->config['sortField'] ?? 'sorting';
         $forGoogleAddress = $this->config['googleAddress'] ?? false;
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)

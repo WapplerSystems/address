@@ -59,7 +59,7 @@ plugin.tx_address {
     }
 
     cropMaxCharacters = 150
-    orderBy = datetime
+    orderBy = sorting
     orderDirection = desc
     topAddressFirst = 0
     orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,categories.title

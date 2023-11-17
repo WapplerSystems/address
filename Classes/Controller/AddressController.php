@@ -242,10 +242,10 @@ class AddressController extends AddressBaseController
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
      */
-    public function detailAction(Address $address = null, $currentPage = 1): ResponseInterface
+    public function detailAction(Address $address = null, int $currentPage = 1): ResponseInterface
     {
         if ($address === null) {
-            $previewAddressId = ((int)$this->settings['singleAddress'] > 0) ? $this->settings['singleAddress'] : 0;
+            $previewAddressId = (int)($this->settings['singleAddress'] ?? 0);
             if ($this->request->hasArgument('address_preview')) {
                 $previewAddressId = (int)$this->request->getArgument('address_preview');
             }
@@ -277,7 +277,7 @@ class AddressController extends AddressBaseController
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
         $assignedValues = [
-            'addressItem' => $address,
+            'address' => $address,
             'currentPage' => (int)$currentPage,
             'demand' => $demand,
         ];
@@ -316,8 +316,6 @@ class AddressController extends AddressBaseController
      *
      * @param Address $address
      * @return null|Address
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
     protected function checkPidOfAddressRecord(Address $address)
     {
@@ -479,8 +477,8 @@ class AddressController extends AddressBaseController
     {
         $tsSettings = $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
-            'news',
-            'news_pi1'
+            'address',
+            'address_pi1'
         );
         $originalSettings = $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS

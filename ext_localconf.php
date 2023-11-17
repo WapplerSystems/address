@@ -25,7 +25,7 @@ $boot = static function (): void {
 
     ExtensionUtility::configurePlugin(
         'Address',
-        'AddressList',
+        'ListAndDetail',
         [
             AddressController::class => 'list,detail',
         ],
@@ -34,7 +34,7 @@ $boot = static function (): void {
     );
     ExtensionUtility::configurePlugin(
         'Address',
-        'AddressListSticky',
+        'List',
         [
             AddressController::class => 'list',
         ],
@@ -43,7 +43,7 @@ $boot = static function (): void {
     );
     ExtensionUtility::configurePlugin(
         'Address',
-        'AddressDetail',
+        'Detail',
         [
             AddressController::class => 'detail',
         ],
@@ -52,16 +52,7 @@ $boot = static function (): void {
     );
     ExtensionUtility::configurePlugin(
         'Address',
-        'AddressSelectedList',
-        [
-            AddressController::class => 'selectedList',
-        ],
-        [],
-        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
-    );
-    ExtensionUtility::configurePlugin(
-        'Address',
-        'AddressSearchForm',
+        'SearchForm',
         [
             AddressController::class => 'searchForm',
         ],
@@ -72,7 +63,7 @@ $boot = static function (): void {
     );
     ExtensionUtility::configurePlugin(
         'Address',
-        'AddressSearchResult',
+        'SearchResult',
         [
             AddressController::class => 'searchResult',
         ],

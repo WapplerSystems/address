@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * # Example: Basic Example: Address title as og:title meta tag
  * <code>
- * <ad:metaTag property="og:title" content="{addressItem.title}" />
+ * <ad:metaTag property="og:title" content="{address.title}" />
  * </code>
  * <output>
  * <meta property="og:title" content="TYPO3 is awesome" />
@@ -25,7 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * # Example: Force the attribute "name"
  * <code>
- * <ad:metaTag name="keywords" content="{addressItem.keywords}" />
+ * <ad:metaTag name="keywords" content="{address.keywords}" />
  * </code>
  * <output>
  * <meta name="keywords" content="address 1, address 2" />
@@ -36,7 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * # Example: Basic Example: News title as og:title meta tag
  * <code>
- * <ad:metaTag property="og:title" content="{addressItem.title}" />
+ * <ad:metaTag property="og:title" content="{address.title}" />
  * </code>
  * <output>
  * <meta property="og:title" content="TYPO3 is awesome" />
@@ -44,7 +44,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * # Example: Force the attribute "name"
  * <code>
- * <ad:metaTag name="keywords" content="{addressItem.keywords}" />
+ * <ad:metaTag name="keywords" content="{address.keywords}" />
  * </code>
  * <output>
  * <meta name="keywords" content="address 1, address 2" />

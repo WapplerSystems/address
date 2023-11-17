@@ -1,11 +1,11 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
 	  xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:if condition="{addressItem.mediaPreviews}">
+<f:if condition="{address.mediaPreviews}">
 	<f:then>
 		<div class="address-img-wrap mb-3">
-			<ad:link address="{addressItem}" settings="{settings}" title="{addressItem.title}">
-				<f:alias map="{mediaElement: '{addressItem.mediaPreviews.0}'}">
+			<ad:link address="{address}" settings="{settings}" title="{address.title}">
+				<f:alias map="{mediaElement: '{address.mediaPreviews.0}'}">
 
 					<f:if condition="{mediaElement.originalResource.type} == 2">
 						<f:render partial="List/Media/Image"
@@ -27,7 +27,7 @@
 	<f:else>
 		<f:if condition="{settings.displayDummyIfNoMedia}">
 			<div class="address-img-wrap mb-3">
-				<ad:link address="{addressItem}" settings="{settings}" title="{addressItem.title}">
+				<ad:link address="{address}" settings="{settings}" title="{address.title}">
 					<f:image class="img-fluid img-thumbnail" src="{settings.list.media.dummyImage}" title="" alt=""
 							 maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
 							 maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>

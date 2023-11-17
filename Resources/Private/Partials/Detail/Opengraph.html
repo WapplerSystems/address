@@ -2,44 +2,44 @@
 	  xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
 	  data-namespace-typo3-fluid="true">
 
-<f:if condition="{addressItem.alternativeTitle}">
-	<f:then><ad:metaTag property="og:title" content="{addressItem.alternativeTitle}" /></f:then>
-	<f:else><ad:metaTag property="og:title" content="{addressItem.title}" /></f:else>
+<f:if condition="{address.alternativeTitle}">
+	<f:then><ad:metaTag property="og:title" content="{address.alternativeTitle}" /></f:then>
+	<f:else><ad:metaTag property="og:title" content="{address.title}" /></f:else>
 </f:if>
 <ad:metaTag property="og:type" content="{settings.opengraph.type}" />
 <ad:metaTag property="og:url" content="" useCurrentDomain="1" />
 <ad:metaTag property="og:site_name" content="{settings.opengraph.site_name}" />
-<f:if condition="{addressItem.firstPreview}">
+<f:if condition="{address.firstPreview}">
 	<ad:metaTag
 		property="og:image"
-		content="{f:uri.image(src:'{addressItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'500')}"
+		content="{f:uri.image(src:'{address.firstPreview.uid}', treatIdAsReference:1, maxWidth:'500')}"
 		forceAbsoluteUrl="1" />
 	<ad:metaTag property="og:image:width" content="{ad:imageSize(property:'width')}" />
 	<ad:metaTag property="og:image:height" content="{ad:imageSize(property:'height')}" />
 </f:if>
 
-<f:if condition="{addressItem.description}">
+<f:if condition="{address.description}">
 	<f:then>
-		<ad:metaTag name="description" content="{addressItem.description}" />
-		<ad:metaTag property="og:description" content="{addressItem.description}" />
+		<ad:metaTag name="description" content="{address.description}" />
+		<ad:metaTag property="og:description" content="{address.description}" />
 	</f:then>
 	<f:else>
-		<ad:metaTag name="description" content="{addressItem.teaser -> f:format.stripTags()}" />
-		<ad:metaTag property="og:description" content="{addressItem.teaser -> f:format.stripTags()}" />
+		<ad:metaTag name="description" content="{address.teaser -> f:format.stripTags()}" />
+		<ad:metaTag property="og:description" content="{address.teaser -> f:format.stripTags()}" />
 	</f:else>
 </f:if>
-<ad:metaTag name="keywords" content="{addressItem.keywords}" />
+<ad:metaTag name="keywords" content="{address.keywords}" />
 <ad:metaTag property="fb:admins" content="{settings.opengraph.admins}" />
 <ad:metaTag property="og:email" content="{settings.opengraph.email}" />
-<ad:metaTag property="og:phone_number" content="{addressItem.phone}" />
-<ad:metaTag property="og:fax_number" content="{addressItem.fax}" />
-<ad:metaTag property="og:latitude" content="{addressItem.latitude}" />
-<ad:metaTag property="og:longitude" content="{addressItem.longitude}" />
-<ad:metaTag property="og:street-address" content="{addressItem.address}" />
+<ad:metaTag property="og:phone_number" content="{address.phone}" />
+<ad:metaTag property="og:fax_number" content="{address.fax}" />
+<ad:metaTag property="og:latitude" content="{address.latitude}" />
+<ad:metaTag property="og:longitude" content="{address.longitude}" />
+<ad:metaTag property="og:street-address" content="{address.address}" />
 
 <ad:metaTag property="og:locality" content="{settings.opengraph.locality}" />
 <ad:metaTag property="og:region" content="{settings.opengraph.region}" />
-<ad:metaTag property="og:postal-code" content="{addressItem.zipcode}" />
+<ad:metaTag property="og:postal-code" content="{address.zipcode}" />
 <ad:metaTag property="og:country-name" content="{settings.opengraph.country-name}" />
 <f:if condition="{settings.opengraph.twitter.site}">
 	<ad:metaTag name="twitter:card" content="{settings.opengraph.twitter.card}" />

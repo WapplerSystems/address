@@ -1,33 +1,35 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:layout name="General" />
+<f:layout name="General"/>
 <!--
 	=====================
 		Templates/Address/SearchForm.html
 -->
 
 <f:section name="content">
-	<div class="Address-search-form">
-		<h5><f:translate key="hdl.search" /></h5>
-		<f:form object="{search}" name="search" pageUid="{settings.listPid}">
-			<fieldset>
-				<div class="form-group">
-					<f:form.textfield placeholder="{f:translate(key:'lbl.searchSubject')}" id="address-subject" property="subject" class="form-control"/>
-				</div>
-				<div class="form-row">
-					<div class="form-group col-md-10">
-						<f:form.textfield placeholder="{f:translate(key:'lbl.searchLocation')}" id="address-location" property="location" class="form-control"/>
-					</div>
-					<div class="form-group col-md-2">
-						<f:form.select property="distance" options="{settings.search.distances}" class="form-control" />
-					</div>
-				</div>
+    <div class="Address-search-form">
+        <h5>
+            <f:translate key="hdl.search"/>
+        </h5>
+        <f:form object="{search}" name="search" pageUid="{settings.listPid}">
+            <fieldset>
+                <div class="form-group">
+                    <f:form.textfield placeholder="{f:translate(key:'lbl.searchSubject')}" id="address-subject" property="subject" class="form-control"/>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <f:form.textfield placeholder="{f:translate(key:'lbl.searchLocation')}" id="address-location" property="location" class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <f:form.select property="distance" options="{settings.search.distances}" class="form-control"/>
+                    </div>
+                </div>
 
-				<div class="form-group">
-					<f:form.submit value="{f:translate(key:'btn.searchStart')}" class="btn btn-default"/>
+                <div class="form-group">
+                    <f:form.submit value="{f:translate(key:'btn.searchStart')}" class="btn btn-default"/>
 
-				</div>
-			</fieldset>
-		</f:form>
-	</div>
+                </div>
+            </fieldset>
+        </f:form>
+    </div>
 </f:section>
 </html>

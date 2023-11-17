@@ -173,97 +173,97 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected $url;
+    protected string $url;
 
     /**
      * @var string
      */
-    protected $firstName;
+    protected string $firstName;
 
     /**
      * @var string
      */
-    protected $lastName;
+    protected string $lastName;
 
     /**
      * @var string
      */
-    protected $middleName;
+    protected string $middleName;
 
     /**
      * @var string
      */
-    protected $abbreviation;
+    protected string $abbreviation;
 
     /**
      * @var string
      */
-    protected $academicTitle;
+    protected string $academicTitle;
 
     /**
      * @var int
      */
-    protected $appendAcademicTitle;
+    protected int $appendAcademicTitle;
 
     /**
      * @var string
      */
-    protected $title;
+    protected string $title;
 
     /**
      * @var string
      */
-    protected $address;
+    protected string $address;
 
     /**
      * @var string
      */
-    protected $building;
+    protected string $building;
 
     /**
      * @var string
      */
-    protected $city;
+    protected string $city;
 
     /**
      * @var string
      */
-    protected $zip;
+    protected string $zip;
 
     /**
      * @var string
      */
-    protected $country;
+    protected string $country;
 
     /**
      * @var string
      */
-    protected $position;
+    protected string $position;
 
     /**
      * @var string
      */
-    protected $phone;
+    protected string $phone;
 
     /**
      * @var string
      */
-    protected $fax;
+    protected string $fax;
 
     /**
      * @var int
      */
-    protected $detailPid;
+    protected int $detailPid;
 
     /**
      * @var float
      */
-    protected $longitude = 0.0;
+    protected float $longitude = 0.0;
 
     /**
      * @var float
      */
-    protected $latitude = 0.0;
+    protected float $latitude = 0.0;
 
     /**
      * @var ObjectStorage<Contact>

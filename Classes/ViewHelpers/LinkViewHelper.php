@@ -117,7 +117,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         }
 
 
-        $configuration = $this->getLinkToAddressItem($address, $tsSettings, $configuration);
+        $configuration = $this->getLinkToAddress($address, $tsSettings, $configuration);
 
         $url = $this->cObj->typoLink_URL($configuration);
         if ($uriOnly) {
@@ -153,7 +153,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param array $configuration
      * @return array
      */
-    protected function getLinkToAddressItem(
+    protected function getLinkToAddress(
         Address $address,
         $tsSettings,
         array $configuration = []

@@ -9,7 +9,14 @@ namespace WapplerSystems\Address\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Context\LanguageAspect;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use WapplerSystems\Address\Domain\Model\Address;
 
@@ -20,19 +27,19 @@ use WapplerSystems\Address\Domain\Model\Address;
  * # Example: Basic example
  * <code>
  *
- * <ad:simplePrevNext pidList="{addressItem.pid}" address="{addressItem}" as="paginated" sortField="datetime">
+ * <ad:simplePrevNext pidList="{address.pid}" address="{address}" as="paginated" sortField="sorting">
  *    <f:if condition="{paginated}">
  *        <ul class="prev-next">
  *            <f:if condition="{paginated.prev}">
  *                <li class="previous">
- *                    <ad:link addressItem="{paginated.prev}" settings="{settings}">
+ *                    <ad:link address="{paginated.prev}" settings="{settings}">
  *                        {paginated.prev.title}
  *                    </n:link>
  *                </li>
  *            </f:if>
  *            <f:if condition="{paginated.next}">
  *                <li class="next">
- *                    <ad:link addressItem="{paginated.next}" settings="{settings}" class="next">
+ *                    <ad:link address="{paginated.next}" settings="{settings}" class="next">
  *                        {paginated.next.title}
  *                    </n:link>
  *                </li>
@@ -52,10 +59,6 @@ use WapplerSystems\Address\Domain\Model\Address;
  */
 class SimplePrevNextViewHelper extends AbstractViewHelper
 {
-
-    /** @var \TYPO3\CMS\Core\Database\DatabaseConnection */
-    protected $databaseConnection;
-
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
     protected $dataMapper;
 
@@ -64,17 +67,12 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      */
     protected $escapeOutput = false;
 
-    public function __construct()
-    {
-        $this->databaseConnection = $GLOBALS['TYPO3_DB'];
-    }
-
     /**
      * Inject the DataMapper
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
      */
-    public function injectDataMapper(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper)
+    public function injectDataMapper(DataMapper $dataMapper): void
     {
         $this->dataMapper = $dataMapper;
     }
@@ -87,16 +85,16 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         parent::initializeArguments();
         $this->registerArgument('address', Address::class, 'address item', true);
         $this->registerArgument('pidList', 'string', 'pid list', false, '');
-        $this->registerArgument('sortField', 'string', 'sort field', false, 'datetime');
+        $this->registerArgument('sortField', 'string', 'sort field', false, 'sorting');
         $this->registerArgument('as', 'string', 'as', true);
-        $this->registerArgument('includeInternalType', 'boolean', 'Include internal address types');
-        $this->registerArgument('includeExternalType', 'bool', 'Include external address types');
+        $this->registerArgument('includeInternalType', 'boolean', 'Include internal address types', false, false);
+        $this->registerArgument('includeExternalType', 'bool', 'Include external address types', false, false);
     }
 
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         $neighbours = $this->getNeighbours($this->arguments['address'], $this->arguments['pidList'], $this->arguments['sortField']);
         $as = $this->arguments['as'];
@@ -115,8 +113,9 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * @param array $result
      * @return array
      */
-    protected function mapResultToObjects(array $result)
+    protected function mapResultToObjects(array $result): array
     {
+        $out = [];
         foreach ($result as $_id => $single) {
             $out[$_id] = $this->getObject($single['uid']);
         }
@@ -129,20 +128,24 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      *
      * @param int $id
      * @return mixed|null
+     * @throws AspectNotFoundException
      */
     protected function getObject($id)
     {
         $record = null;
 
-        $rawRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_address_domain_model_address',
-            'uid=' . (int)$id);
+        $rawRecord = $this->getRawRecord($id);
 
-        if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->sys_language_content > 0) {
+        /** @var LanguageAspect $languageAspect */
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+
+        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
+            // @extensionScannerIgnoreLine
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
                 'tx_address_domain_model_address',
                 $rawRecord,
-                $GLOBALS['TSFE']->sys_language_content,
-                $GLOBALS['TSFE']->sys_language_contentOL
+                $languageAspect->getContentId(),
+                $languageAspect->getLegacyOverlayType()
             );
             if (!is_null($overlay)) {
                 $rawRecord = $overlay;
@@ -158,63 +161,58 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     }
 
     /**
-     * Returns where clause for the address table
-     *
-     * @return string
-     */
-    protected function getEnableFieldsWhereClauseForTable()
-    {
-        $whereClause = '';
-        if (is_object($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']->sys_page)) {
-            $whereClause = $GLOBALS['TSFE']->sys_page->enableFields('tx_address_domain_model_address');
-        }
-
-        if ((bool)$this->arguments['includeInternalType'] === false) {
-            $whereClause .= ' AND tx_address_domain_model_address.type !="1"';
-        }
-        if ((bool)$this->arguments['includeExternalType'] === false) {
-            $whereClause .= ' AND tx_address_domain_model_address.type !="2"';
-        }
-
-        return $whereClause;
-    }
-
-    /**
      * @param Address $address
-     * @param $pidList
-     * @param $sortField
+     * @param string $pidList
+     * @param string $sortField
      * @return array
      */
-    protected function getNeighbours(Address $address, $pidList, $sortField)
+    protected function getNeighbours(Address $address, string $pidList, string $sortField): array
     {
         $data = [];
-        $pidList = empty($pidList) ? $address->getPid() : $pidList;
-        $tableName = 'tx_address_domain_model_address';
+        $pidList = empty($pidList) ? (string)$address->getPid() : $pidList;
+
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_address_domain_model_address');
 
         foreach (['prev', 'next'] as $label) {
-            $whereClause = 'sys_language_uid = 0 AND pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
-                . $this->getEnableFieldsWhereClauseForTable();
-            switch ($label) {
-                case 'prev':
-                    $selector = '<';
-                    $order = 'desc';
-                    break;
-                case 'next':
-                    $selector = '>';
-                    $order = 'asc';
+            $queryBuilder = $connection->createQueryBuilder();
+
+            $extraWhere = [
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($address->getUid(), \PDO::PARAM_INT)),
+            ];
+            if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
             }
+            if ((bool)($this->arguments['includeExternalType'] ?? false) === false) {
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
+            }
+
             $getter = 'get' . ucfirst($sortField) . '';
             if ($address->$getter() instanceof \DateTime) {
-                $whereClause .= sprintf(' AND %s %s %s', $sortField, $selector, $address->$getter()->getTimestamp());
+                if ($label === 'prev') {
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($address->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                } else {
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($address->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                }
             } else {
-                $whereClause .= sprintf(' AND %s %s "%s"', $sortField, $selector, $this->getDb()->quoteStr($address->$getter(), $tableName));
+                if ($label === 'prev') {
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($address->$getter(), \PDO::PARAM_STR));
+                } else {
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($address->$getter(), \PDO::PARAM_STR));
+                }
             }
-            $row = $this->getDb()->exec_SELECTgetSingleRow(
-                '*',
-                $tableName,
-                $whereClause,
-                '',
-                $sortField . ' ' . $order);
+
+            $row = $queryBuilder
+                ->select('*')
+                ->from('tx_address_domain_model_address')
+                ->where(
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
+                )
+                ->andWhere(...$extraWhere)
+                ->setMaxResults(1)
+                ->orderBy($sortField, $label === 'prev' ? 'desc' : 'asc')
+                ->executeQuery()->fetchAssociative();
             if (is_array($row)) {
                 $data[$label] = $row;
             }
@@ -223,10 +221,29 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @return DatabaseConnection
+     * @return QueryBuilder
      */
-    protected function getDb()
+    protected function getQueryBuilder(): QueryBuilder
     {
-        return $GLOBALS['TYPO3_DB'];
+        return GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_address_domain_model_address');
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    protected function getRawRecord(int $id): ?array
+    {
+        $queryBuilder = $this->getQueryBuilder();
+        $rawRecord = $queryBuilder
+            ->select('*')
+            ->from('tx_address_domain_model_address')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+            )
+            ->setMaxResults(1)
+            ->executeQuery()->fetchAssociative();
+        return $rawRecord;
     }
 }
