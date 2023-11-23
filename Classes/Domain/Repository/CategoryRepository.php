@@ -75,7 +75,7 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
      * Find categories by a given pid
      *
      * @param int $pid pid
-     * @return QueryInterface
+     * @return array|object[]|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findParentCategoriesByPid($pid)
     {
@@ -92,7 +92,7 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
      * Find category tree
      *
      * @param array $rootIdList list of id s
-     * @return QueryInterface|array
+     * @return array
      */
     public function findTree(array $rootIdList, $startingPoint = null)
     {
@@ -139,9 +139,9 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
      *
      * @param array $idList list of id s
      * @param array $ordering ordering
-     * @return QueryInterface
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface|object[]
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
+    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null): array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823597);
@@ -164,7 +164,7 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
 
         return $query->matching(
             $query->logicalAnd(
-                $conditions
+                ...$conditions
             ))->execute();
     }
 
@@ -204,7 +204,7 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
                         $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
                     )
-                    ->execute()->fetchAll();
+                    ->executeQuery()->fetchAllAssociative();
 
                 $idList = $this->replaceCategoryIds($idList, $rows);
             }

@@ -330,7 +330,7 @@ class AddressRepository extends AbstractDemandedRepository
             }
 
             if (\count($searchConstraints)) {
-                $constraints[] = $query->logicalOr($searchConstraints);
+                $constraints[] = $query->logicalOr(...$searchConstraints);
             }
         }
 
