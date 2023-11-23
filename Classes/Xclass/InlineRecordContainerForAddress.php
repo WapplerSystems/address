@@ -4,7 +4,6 @@ namespace WapplerSystems\Address\Xclass;
 
 use TYPO3\CMS\Backend\Form\Container\InlineRecordContainer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

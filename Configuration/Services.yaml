@@ -30,3 +30,8 @@ services:
     arguments:
       $typoScriptCache: '@cache.typoscript'
       $runtimeCache: '@cache.runtime'
+
+  WapplerSystems\Address\Backend\EventListener\PageContentPreviewRenderingEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'address/preview-rendering-ctype'

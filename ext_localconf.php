@@ -131,6 +131,16 @@ $boot = static function (): void {
     );
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    plugin {
+        tx_address_listanddetail.view.pluginNamespace = tx_address_pi1
+        tx_address_detail.view.pluginNamespace = tx_address_pi1
+        tx_address_list.view.pluginNamespace = tx_address_pi1
+        tx_address_categorylist.view.pluginNamespace = tx_address_pi1
+        tx_address_searchform.view.pluginNamespace = tx_address_pi1
+        tx_address_searchresult.view.pluginNamespace = tx_address_pi1
+        tx_address_taglist.view.pluginNamespace = tx_address_pi1
+        tx_address_map.view.pluginNamespace = tx_address_pi1
+    }
     config.pageTitleProviders {
         address {
             provider = WapplerSystems\Address\Seo\AddressTitleProvider
@@ -183,6 +193,16 @@ $boot = static function (): void {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['beforeRendering'][1506563222] = AddressHook::class;
 
     }
+
+    ExtensionManagementUtility::addTypoScriptSetup(
+        'module.tx_form {
+    settings {
+        yamlConfigurations {
+            90 = EXT:address/Configuration/Yaml/BaseSetup.yaml
+        }
+    }
+}'
+    );
 
 };
 

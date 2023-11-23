@@ -31,7 +31,7 @@ class AddressPluginUpdater implements UpgradeWizardInterface
         ],
         [
             'switchableControllerActions' => 'Address->list',
-            'targetListType' => 'address_liststicky',
+            'targetListType' => 'address_list',
         ],
         [
             'switchableControllerActions' => 'Address->selectedList',
@@ -40,10 +40,6 @@ class AddressPluginUpdater implements UpgradeWizardInterface
         [
             'switchableControllerActions' => 'Address->detail',
             'targetListType' => 'address_detail',
-        ],
-        [
-            'switchableControllerActions' => 'Address->dateMenu',
-            'targetListType' => 'address_datemenu',
         ],
         [
             'switchableControllerActions' => 'Address->searchForm',
@@ -123,6 +119,7 @@ class AddressPluginUpdater implements UpgradeWizardInterface
                 continue;
             }
             $allowedSettings = $this->getAllowedSettingsFromFlexForm($targetListType);
+
 
             // Remove flexform data which do not exist in flexform of new plugin
             foreach ($flexFormData['data'] as $sheetKey => $sheetData) {
@@ -215,7 +212,7 @@ class AddressPluginUpdater implements UpgradeWizardInterface
         $queryBuilder->update('tt_content')
             ->set('CType', $newCtype)
             ->set('list_type', '')
-            ->set('pi_flexform', $flexform)
+            //->set('pi_flexform', $flexform)
             ->where(
                 $queryBuilder->expr()->in(
                     'uid',

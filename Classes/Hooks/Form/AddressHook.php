@@ -3,7 +3,6 @@
 namespace WapplerSystems\Address\Hooks\Form;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Form\Domain\Exception\RenderingException;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
 use WapplerSystems\Address\Domain\Repository\AddressRepository;
@@ -30,7 +29,6 @@ class AddressHook
      * @param \TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface $renderable
      * @return void
      * @throws RenderingException
-     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
     public function beforeRendering(\TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime, \TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface $renderable)
     {
@@ -40,8 +38,7 @@ class AddressHook
 
         if ($addressUid === null) return;
 
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $repository = $objectManager->get(AddressRepository::class);
+        $repository = GeneralUtility::makeInstance(AddressRepository::class);
 
         $address = $repository->findByUid((int)$addressUid);
         if (!$address) {

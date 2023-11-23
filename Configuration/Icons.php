@@ -31,11 +31,11 @@ return [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_content_mobilephone.svg',
     ],
-    'ext-address-plugin-address-list' => [
+    'ext-address-plugin-list-and-detail' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
     ],
-    'ext-address-plugin-address-list-sticky' => [
+    'ext-address-plugin-list' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
     ],
@@ -43,19 +43,15 @@ return [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
     ],
-    'ext-address-plugin-address-selected-list' => [
-        'provider' => SvgIconProvider::class,
-        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
-    ],
     'ext-address-plugin-category-list' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
     ],
-    'ext-address-plugin-address-search-form' => [
+    'ext-address-plugin-search-form' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
     ],
-    'ext-address-plugin-address-search-result' => [
+    'ext-address-plugin-search-result' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
     ],

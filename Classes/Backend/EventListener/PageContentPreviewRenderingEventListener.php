@@ -1,173 +1,119 @@
 <?php
+declare(strict_types=1);
 
-namespace WapplerSystems\Address\Hooks;
+namespace WapplerSystems\Address\Backend\EventListener;
 
-/**
- * This file is part of the "address" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-
-use TYPO3\CMS\Core\Localization\LanguageService;
-use TYPO3\CMS\Core\Utility\DebugUtility;
-use WapplerSystems\Address\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Imaging\Icon;
-use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
-/**
- * Hook to display verbose information about pi1 plugin in Web>Page module
- *
- */
-class PageLayoutView
+final class PageContentPreviewRenderingEventListener
 {
 
     /**
-     * Extension key
-     *
-     * @var string
-     */
-    const KEY = 'address';
-
-    /**
-     * Path to the locallang file
-     *
-     * @var string
-     */
-    const LLPATH = 'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:';
-
-    /**
-     * Max shown settings
-     */
-    const SETTINGS_IN_PREVIEW = 7;
-
-    /**
      * Table information
-     *
-     * @var array
      */
-    public $tableData = [];
+    protected array $tableData = [];
+
+
+    protected array $addresses = [];
 
     /**
      * Flexform information
-     *
-     * @var array
      */
-    public $flexformData = [];
+    public array $flexformData = [];
 
-    /**
-     * @var IconFactory
-     */
-    protected $iconFactory;
 
-    /** @var TemplateLayout $templateLayoutsUtility */
-    protected $templateLayoutsUtility;
-
-    public function __construct()
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
-        $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
-        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-    }
-
-    /**
-     * Returns information about this extension's pi1 plugin
-     *
-     * @param array $params Parameters to the hook
-     * @return string Information about pi1 plugin
-     */
-    public function getExtensionSummary(array $params)
-    {
-        $actionTranslationKey = $result = '';
-
-        $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
-
-        if ($params['row']['list_type'] == self::KEY . '_pi1') {
-            $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
-
-            // if flexform data is found
-            $actions = $this->getFieldFromFlexform('switchableControllerActions');
-            if (!empty($actions)) {
-                $actionList = GeneralUtility::trimExplode(';', $actions);
-
-                // translate the first action into its translation
-                $actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
-                $actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
-
-                $header .= '<br><strong style="text-transform: uppercase">' . htmlspecialchars($actionTranslation) . '</strong>';
-            } else {
-                $header .= $this->generateCallout($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured'));
-            }
-
-            if (is_array($this->flexformData)) {
-                switch ($actionTranslationKey) {
-                    case 'list':
-                        $this->getStartingPoint();
-                        $this->getCategorySettings();
-                        $this->getDetailPidSetting();
-                        $this->getTimeRestrictionSetting();
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        $this->getArchiveSettings();
-                        $this->getTopAddressRestrictionSetting();
-                        $this->getOrderSettings();
-                        $this->getOffsetLimitSettings();
-                        $this->getListPidSetting();
-                        $this->getTagRestrictionSetting();
-                        break;
-                    case 'address_detail':
-                        $this->getSingleAddressSettings();
-                        $this->getDetailPidSetting();
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        break;
-                    case 'category_list':
-                        $this->getCategorySettings(false);
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        break;
-                    case 'tag_list':
-                        $this->getStartingPoint();
-                        $this->getListPidSetting();
-                        $this->getOrderSettings();
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        break;
-                    default:
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                }
-
-                if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['WapplerSystems\\Address\\Hooks\\PageLayoutView']['extensionSummary'])) {
-                    $params = [
-                        'action' => $actionTranslationKey
-                    ];
-                    foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['WapplerSystems\\Address\\Hooks\\PageLayoutView']['extensionSummary'] as $reference) {
-                        GeneralUtility::callUserFunction($reference, $params, $this);
-                    }
-                }
-
-                // for all views
-                $this->getOverrideDemandSettings();
-
-                $result = $this->renderSettingsAsTable($header, $params['row']['uid']);
-            }
+        if ($event->getTable() !== 'tt_content') {
+            return;
         }
 
-        return $result;
+        switch ($event->getRecord()['CType']) {
+            case 'address_list':
+
+
+                $event->setPreviewContent($this->getContent($event->getRecord()));
+        }
+
+    }
+
+    private function getContent(array $record): string
+    {
+
+        $flexformData = GeneralUtility::xml2array($record['pi_flexform']);
+        if (is_string($flexformData)) {
+            return 'ERROR: ' . htmlspecialchars($flexformData);
+        }
+        $this->flexformData = $flexformData;
+
+        return $this->getExtensionSummary($record);
+    }
+
+
+    /**
+     *
+     */
+    protected function getExtensionSummary(array $record)
+    {
+        switch ($record['CType']) {
+
+            case 'address_list':
+            case 'address_listanddetail':
+                $this->getStartingPoint();
+                $this->getCategorySettings();
+                $this->getDetailPidSetting();
+                $this->getTemplateLayoutSettings($record['pid']);
+                $this->getArchiveSettings();
+                $this->getTopAddressRestrictionSetting();
+                $this->getOrderSettings();
+                $this->getOffsetLimitSettings();
+                $this->getListPidSetting();
+                $this->getTagRestrictionSetting();
+                break;
+            case 'address_detail':
+                $this->getSingleAddressSettings();
+                $this->getDetailPidSetting();
+                $this->getTemplateLayoutSettings($record['pid']);
+                break;
+            case 'category_list':
+                $this->getCategorySettings(false);
+                $this->getTemplateLayoutSettings($record['pid']);
+                break;
+            case 'tag_list':
+                $this->getStartingPoint();
+                $this->getListPidSetting();
+                $this->getOrderSettings();
+                $this->getTemplateLayoutSettings($record['pid']);
+                break;
+            default:
+                $this->getTemplateLayoutSettings($record['pid']);
+        }
+
+        // for all views
+        $this->getOverrideDemandSettings();
+
+        return $this->renderSettingsAsTable($record['uid']);
     }
 
     /**
      * Render archive settings
      *
      */
-    public function getArchiveSettings()
+    protected function getArchiveSettings()
     {
         $archive = $this->getFieldFromFlexform('settings.archiveRestriction');
 
         if (!empty($archive)) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction'),
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction.' . $archive)
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.' . $archive)
             ];
         }
     }
@@ -189,18 +135,18 @@ class PageLayoutView
                 if (is_array($pageRecord)) {
                     $content = $this->getRecordData($addressRecord['uid'], 'tx_address_domain_model_address');
                 } else {
-                    $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
+                    $text = sprintf($this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.pageNotAvailable'),
                         $addressRecord['pid']);
                     $content = $this->generateCallout($text);
                 }
             } else {
-                $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.addressNotAvailable'),
+                $text = sprintf($this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.addressNotAvailable'),
                     $singleAddressRecord);
                 $content = $this->generateCallout($text);
             }
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.singleAddress'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.singleAddress'),
                 $content
             ];
         }
@@ -218,7 +164,7 @@ class PageLayoutView
             $content = $this->getRecordData($detailPid);
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.detailPid'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid'),
                 $content
             ];
         }
@@ -236,7 +182,7 @@ class PageLayoutView
             $content = $this->getRecordData($listPid);
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.listPid'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid'),
                 $content
             ];
         }
@@ -276,13 +222,13 @@ class PageLayoutView
                 $id = $record['uid'];
                 $currentPageId = (int)GeneralUtility::_GET('id');
                 $link = htmlspecialchars($this->getEditLink($record, $currentPageId));
-                $switchLabel = $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.switchToPage');
+                $switchLabel = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.switchToPage');
                 $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';
             } else {
                 $content .= $linkTitle;
             }
         } else {
-            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.recordNotAvailable'),
+            $text = sprintf($this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.recordNotAvailable'),
                 $id);
             $content = $this->generateCallout($text);
         }
@@ -298,7 +244,7 @@ class PageLayoutView
     {
         $orderField = $this->getFieldFromFlexform('settings.orderBy');
         if (!empty($orderField)) {
-            $text = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderBy.' . $orderField);
+            $text = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.' . $orderField);
 
             // Order direction (asc, desc)
             $orderDirection = $this->getOrderDirectionSetting();
@@ -313,7 +259,7 @@ class PageLayoutView
             }
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderBy'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy'),
                 $text
             ];
         }
@@ -330,7 +276,7 @@ class PageLayoutView
 
         $orderDirection = $this->getFieldFromFlexform('settings.orderDirection');
         if (!empty($orderDirection)) {
-            $text = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderDirection.' . $orderDirection);
+            $text = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.' . $orderDirection);
         }
 
         return $text;
@@ -346,7 +292,7 @@ class PageLayoutView
         $text = '';
         $topAddressSetting = (int)$this->getFieldFromFlexform('settings.topAddressFirst', 'additional');
         if ($topAddressSetting === 1) {
-            $text = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.topAddressFirst');
+            $text = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.topAddressFirst');
         }
 
         return $text;
@@ -367,7 +313,7 @@ class PageLayoutView
             }
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categories'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories'),
                 implode(', ', $categoriesOut)
             ];
 
@@ -375,9 +321,9 @@ class PageLayoutView
             if ($showCategoryMode) {
                 $categoryModeSelection = $this->getFieldFromFlexform('settings.categoryConjunction');
                 if (empty($categoryModeSelection)) {
-                    $categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
+                    $categoryMode = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.all');
                 } else {
-                    $categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
+                    $categoryMode = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.' . $categoryModeSelection);
                 }
 
                 if (count($categories) > 0 && empty($categoryModeSelection)) {
@@ -387,7 +333,7 @@ class PageLayoutView
                 }
 
                 $this->tableData[] = [
-                    $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction'),
+                    $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction'),
                     $categoryMode
                 ];
             }
@@ -395,7 +341,7 @@ class PageLayoutView
             $includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
             if ($includeSubcategories) {
                 $this->tableData[] = [
-                    $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories'),
+                    $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories'),
                     '<i class="fa fa-check"></i>'
                 ];
             }
@@ -419,7 +365,7 @@ class PageLayoutView
         }
 
         $this->tableData[] = [
-            $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.tags'),
+            $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags'),
             implode(', ', $categoryTitles)
         ];
     }
@@ -436,19 +382,19 @@ class PageLayoutView
 
         if ($offset) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.offset'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.offset'),
                 $offset
             ];
         }
         if ($limit) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.limit'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit'),
                 $limit
             ];
         }
         if ($hidePagination) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.hidePagination'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.hidePagination'),
                 '<i class="fa fa-check"></i>'
             ];
         }
@@ -463,8 +409,8 @@ class PageLayoutView
         $dateMenuField = $this->getFieldFromFlexform('settings.dateField');
 
         $this->tableData[] = [
-            $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField'),
-            $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField)
+            $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField'),
+            $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField.' . $dateMenuField)
         ];
     }
 
@@ -478,7 +424,7 @@ class PageLayoutView
 
         if (!empty($timeRestriction)) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestriction'),
                 htmlspecialchars($timeRestriction)
             ];
         }
@@ -486,7 +432,7 @@ class PageLayoutView
         $timeRestrictionHigh = $this->getFieldFromFlexform('settings.timeRestrictionHigh');
         if (!empty($timeRestrictionHigh)) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestrictionHigh'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestrictionHigh'),
                 htmlspecialchars($timeRestrictionHigh)
             ];
         }
@@ -501,8 +447,8 @@ class PageLayoutView
         $topAddressRestriction = (int)$this->getFieldFromFlexform('settings.topAddressRestriction');
         if ($topAddressRestriction > 0) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topAddressRestriction'),
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topAddressRestriction.' . $topAddressRestriction)
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.topAddressRestriction'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.topAddressRestriction.' . $topAddressRestriction)
             ];
         }
     }
@@ -529,7 +475,7 @@ class PageLayoutView
 
         if (!empty($title)) {
             $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_template.templateLayout'),
+                $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout'),
                 $this->getLanguageService()->sL($title)
             ];
         }
@@ -546,7 +492,7 @@ class PageLayoutView
         if ($field == 1) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(
-                    self::LLPATH . 'flexforms_additional.disableOverrideDemand'),
+                    'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand'),
                 '<i class="fa fa-check"></i>'
             ];
         }
@@ -606,27 +552,30 @@ class PageLayoutView
      * Render the settings as table for Web>Page module
      * System settings are displayed in mono font
      *
-     * @param string $header
      * @param int $recordUid
      * @return string
      */
-    protected function renderSettingsAsTable($header = '', $recordUid = 0)
+    protected function renderSettingsAsTable(int $recordUid = 0)
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Address/PageLayout');
-        $pageRenderer->addCssFile('EXT:address/Resources/Public/Css/Backend/PageLayoutView.css');
+        $pageRenderer->addCssFile('EXT:address/Resources/Public/CSS/Backend/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Backend/PageLayoutView.html'));
-        $view->assignMultiple([
-            'header' => $header,
-            'rows' => [
-                'above' => array_slice($this->tableData, 0, self::SETTINGS_IN_PREVIEW),
-                'below' => array_slice($this->tableData, self::SETTINGS_IN_PREVIEW)
-            ],
-            'id' => $recordUid
-        ]);
 
+        if ($this->addresses) {
+            $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Templates/Backend/ContentPreview/Addresses.html'));
+            $view->assignMultiple([
+                'addresses' => $this->addresses,
+                'id' => $recordUid
+            ]);
+        }
+        if ($this->tableData) {
+            $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Templates/Backend/ContentPreview/Parameters.html'));
+            $view->assignMultiple([
+                'rows' => $this->tableData,
+                'id' => $recordUid
+            ]);
+        }
         return $view->render();
     }
 
@@ -644,7 +593,7 @@ class PageLayoutView
         if (isset($flexform['data'])) {
             $flexform = $flexform['data'];
             if (is_array($flexform) && is_array($flexform[$sheet]) && is_array($flexform[$sheet]['lDEF'])
-                && is_array($flexform[$sheet]['lDEF'][$key]) && isset($flexform[$sheet]['lDEF'][$key]['vDEF'])
+                && is_array($flexform[$sheet]['lDEF'][$key] ?? null) && isset($flexform[$sheet]['lDEF'][$key]['vDEF'])
             ) {
                 return $flexform[$sheet]['lDEF'][$key]['vDEF'];
             }
@@ -684,13 +633,5 @@ class PageLayoutView
         return $GLOBALS['LANG'];
     }
 
-    /**
-     * Get the DocumentTemplate
-     *
-     * @return DocumentTemplate
-     */
-    protected function getDocumentTemplate()
-    {
-        return $GLOBALS['TBE_TEMPLATE'];
-    }
+
 }
