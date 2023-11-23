@@ -69,7 +69,7 @@ class AddressRepository extends AbstractDemandedRepository
                     }
                 }
                 if ($subCategoryConstraint) {
-                    $categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
+                    $categoryConstraints[] = $query->logicalOr(...$subCategoryConstraint);
                 }
             } else {
                 $categoryConstraints[] = $query->contains('categories', $category);
@@ -79,17 +79,17 @@ class AddressRepository extends AbstractDemandedRepository
         if ($categoryConstraints) {
             switch (strtolower($conjunction)) {
                 case 'or':
-                    $constraint = $query->logicalOr($categoryConstraints);
+                    $constraint = $query->logicalOr(...$categoryConstraints);
                     break;
                 case 'notor':
-                    $constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
+                    $constraint = $query->logicalNot($query->logicalOr(...$categoryConstraints));
                     break;
                 case 'notand':
-                    $constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
+                    $constraint = $query->logicalNot($query->logicalAnd(...$categoryConstraints));
                     break;
                 case 'and':
                 default:
-                    $constraint = $query->logicalAnd($categoryConstraints);
+                    $constraint = $query->logicalAnd(...$categoryConstraints);
             }
         }
 
@@ -161,14 +161,14 @@ class AddressRepository extends AbstractDemandedRepository
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }
             if (\count($subConstraints) > 0) {
-                $constraints['tags'] = $query->logicalOr($subConstraints);
+                $constraints['tags'] = $query->logicalOr(...$subConstraints);
             }
         }
 
         // Search
         $searchConstraints = $this->getSearchConstraints($query, $demand);
         if (!empty($searchConstraints)) {
-            $constraints['search'] = $query->logicalAnd($searchConstraints);
+            $constraints['search'] = $query->logicalAnd(...$searchConstraints);
         }
 
         // Exclude already displayed
