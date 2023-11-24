@@ -12,6 +12,7 @@ use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -65,10 +66,22 @@ class Page
             $register = [];
             foreach ($items as $item) {
                 $key = $prefix . ucfirst($item);
-                try {
-                    $register[$key] = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $item);
-                } catch (\Exception $e) {
-                    GeneralUtility::devLog($e->getMessage(), 'address', GeneralUtility::SYSLOG_SEVERITY_WARNING);
+                if (is_object($object)) {
+                    $getter = 'get' . ucfirst($item);
+                    try {
+                        $value = $object->$getter();
+                        if ($value instanceof \DateTime) {
+                            $value = $value->getTimestamp();
+                        }
+                        $register[$key] = $value;
+                    } catch (\Exception $e) {
+                        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+                        $logger->warning($e->getMessage());
+                    }
+                }
+                if (is_array($object)) {
+                    $value = $object[$item];
+                    $register[$key] = $value;
                 }
             }
             $cObj->cObjGetSingle('LOAD_REGISTER', $register);

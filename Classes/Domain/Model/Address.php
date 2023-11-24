@@ -208,7 +208,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected string $title;
+    protected string $title = '';
 
     /**
      * @var string
