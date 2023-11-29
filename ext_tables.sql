@@ -53,7 +53,7 @@ CREATE TABLE tx_address_domain_model_address
 	direct_contact        tinyint(1) DEFAULT '0' NOT NULL,
 	url                   text,
 	type                  varchar(100)  DEFAULT '0' NOT NULL,
-	academic_title        varchar(20)   DEFAULT '',
+	academic_title        varchar(25)   DEFAULT '',
 	append_academic_title tinyint(4) DEFAULT '0' NOT NULL,
 	teaser                text,
 	bodytext              text,
