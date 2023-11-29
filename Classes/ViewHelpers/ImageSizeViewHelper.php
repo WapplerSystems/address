@@ -46,7 +46,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
     ) {
         $value = 0;
         $tsfe = static::getTypoScriptFrontendController();
-        if (!is_null($tsfe)) {
+        if (!is_null($tsfe) && $tsfe->lastImageInfo !== null) {
             switch ($arguments['property']) {
                 case 'width':
                     $value = $tsfe->lastImageInfo[0];

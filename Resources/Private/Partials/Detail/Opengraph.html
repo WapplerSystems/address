@@ -12,7 +12,7 @@
 <f:if condition="{address.firstPreview}">
 	<ad:metaTag
 		property="og:image"
-		content="{f:uri.image(src:'{address.firstPreview.uid}', treatIdAsReference:1, maxWidth:'500')}"
+		content="{f:uri.image(image:address.firstPreview, maxWidth:'500')}"
 		forceAbsoluteUrl="1" />
 	<ad:metaTag property="og:image:width" content="{ad:imageSize(property:'width')}" />
 	<ad:metaTag property="og:image:height" content="{ad:imageSize(property:'height')}" />
