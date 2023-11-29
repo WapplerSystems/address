@@ -178,32 +178,32 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected string $firstName;
+    protected string $firstName = '';
 
     /**
      * @var string
      */
-    protected string $lastName;
+    protected string $lastName = '';
 
     /**
      * @var string
      */
-    protected string $middleName;
+    protected string $middleName = '';
 
     /**
      * @var string
      */
-    protected string $abbreviation;
+    protected string $abbreviation = '';
 
     /**
      * @var string
      */
-    protected string $academicTitle;
+    protected string $academicTitle = '';
 
     /**
-     * @var int
+     * @var bool
      */
-    protected int $appendAcademicTitle;
+    protected bool $appendAcademicTitle = false;
 
     /**
      * @var string
@@ -1118,17 +1118,17 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getAppendAcademicTitle(): int
+    public function getAppendAcademicTitle(): bool
     {
         return $this->appendAcademicTitle;
     }
 
     /**
-     * @param int $appendAcademicTitle
+     * @param bool $appendAcademicTitle
      */
-    public function setAppendAcademicTitle(int $appendAcademicTitle)
+    public function setAppendAcademicTitle(bool $appendAcademicTitle)
     {
         $this->appendAcademicTitle = $appendAcademicTitle;
     }
