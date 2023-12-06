@@ -68,6 +68,9 @@
       <trans-unit id="flexforms_tab.template" xml:space="preserve">
 				<source>Template</source>
 			<target state="needs-translation">Template</target></trans-unit>
+      <trans-unit id="flexforms_general.address" xml:space="preserve">
+				<source>Address</source>
+			<target state="needs-translation">Address</target></trans-unit>
       <trans-unit id="flexforms_general.mode" xml:space="preserve">
 				<source>What to display</source>
 			<target state="needs-translation">What to display</target></trans-unit>
