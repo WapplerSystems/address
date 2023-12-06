@@ -19,7 +19,6 @@
                             <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
                             <config>
                                 <type>select</type>
-                                <itemsProcFunc>WapplerSystems\Address\Hooks\ItemsProcFunc->user_orderBy</itemsProcFunc>
                                 <renderType>selectSingle</renderType>
                                 <items>
                                     <numIndex index="0" type="array">

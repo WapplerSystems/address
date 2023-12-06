@@ -10,9 +10,7 @@ namespace WapplerSystems\Address\Hooks;
  */
 use WapplerSystems\Address\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * Userfunc to render alternative label for media elements
@@ -23,9 +21,14 @@ class ItemsProcFunc
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
-    public function __construct()
-    {
-        $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
+    /**
+     * ItemsProcFunc constructor.
+     * @param TemplateLayout $templateLayout
+     */
+    public function __construct(
+        TemplateLayout $templateLayout
+    ) {
+        $this->templateLayoutsUtility = $templateLayout;
     }
 
     /**
@@ -33,40 +36,56 @@ class ItemsProcFunc
      *
      * @param array &$config configuration array
      */
-    public function user_templateLayout(array &$config)
+    public function user_templateLayout(array &$config): void
     {
-        $pageId = 0;
-        if (ExtensionManagementUtility::isLoaded('compatibility6')) {
-            if (StringUtility::beginsWith($config['row']['uid'], 'NEW')) {
-                $getVars = GeneralUtility::_GET('edit');
-                if (is_array($getVars) && isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
-                    $keys = array_keys($getVars['tt_content']);
-                    $firstKey = (int)$keys[0];
-                    if ($firstKey > 0) {
-                        $pageId = $firstKey;
-                    } else {
-                        $row = $this->getContentElementRow(abs($firstKey));
-                        $pageId = $row['pid'];
-                    }
-                }
-            } else {
-                $row = $this->getContentElementRow($config['row']['uid']);
-                $pageId = $row['pid'];
-            }
-        } else {
-            $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
-        }
+        $currentColPos = $config['flexParentDatabaseRow']['colPos'];
+        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
 
         if ($pageId > 0) {
             $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
+
+            $templateLayouts = $this->reduceTemplateLayouts($templateLayouts, $currentColPos);
             foreach ($templateLayouts as $layout) {
                 $additionalLayout = [
                     htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                    $layout[1]
+                    $layout[1],
                 ];
                 array_push($config['items'], $additionalLayout);
             }
         }
+    }
+
+    /**
+     * Reduce the template layouts by the ones that are not allowed in given colPos
+     *
+     * @param array $templateLayouts
+     * @param int $currentColPos
+     * @return array
+     */
+    protected function reduceTemplateLayouts($templateLayouts, $currentColPos): array
+    {
+        $currentColPos = (int)$currentColPos;
+        $restrictions = [];
+        $allLayouts = [];
+        foreach ($templateLayouts as $key => $layout) {
+            if (is_array($layout[0])) {
+                if (isset($layout[0]['allowedColPos']) && str_ends_with((string)$layout[1], '.')) {
+                    $layoutKey = substr($layout[1], 0, -1);
+                    $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
+                }
+            } else {
+                $allLayouts[$key] = $layout;
+            }
+        }
+        if (!empty($restrictions)) {
+            foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
+                if (!in_array($currentColPos, $restrictedColPosList, true)) {
+                    unset($allLayouts[$restrictedIdentifier]);
+                }
+            }
+        }
+
+        return $allLayouts;
     }
 
     /**
@@ -84,13 +103,16 @@ class ItemsProcFunc
             $flexformConfig = GeneralUtility::xml2array($row['pi_flexform']);
 
             // check if there is a flexform configuration
-            if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
-                $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
-                // check for selected action
-                if (str_starts_with($selectedActionList, 'Category')) {
+            if (isset($flexformConfig['data']['sDEF']['lDEF'])) {
+                $selectedPlugin = strtolower($row['CType']) ?? '';
+                // check for selected plugin
+                if ($selectedPlugin === 'address_categorylist') {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByCategory'];
+                } elseif ($selectedPlugin === 'address_taglist') {
+                    $this->removeNonValidOrderFields($config, 'tx_address_domain_model_tag');
+                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByTag'];
                 } else {
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByAddress'];
+                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByNews'];
                 }
             }
         }

@@ -6,11 +6,13 @@ namespace WapplerSystems\Address\Backend\EventListener;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use WapplerSystems\Address\Utility\TemplateLayout;
 
 final class PageContentPreviewRenderingEventListener
 {
@@ -29,17 +31,25 @@ final class PageContentPreviewRenderingEventListener
     public array $flexformData = [];
 
 
+    public function __construct(
+        readonly TemplateLayout $templateLayout,
+        readonly IconFactory    $iconFactory
+    )
+    {
+    }
+
+
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
+        $this->tableData = [];
+        $this->addresses = [];
+
         if ($event->getTable() !== 'tt_content') {
             return;
         }
 
-        switch ($event->getRecord()['CType']) {
-            case 'address_list':
-
-
-                $event->setPreviewContent($this->getContent($event->getRecord()));
+        if (str_starts_with($event->getRecord()['CType'], 'address_')) {
+            $event->setPreviewContent($this->getContent($event->getRecord()));
         }
 
     }
@@ -66,6 +76,7 @@ final class PageContentPreviewRenderingEventListener
 
             case 'address_list':
             case 'address_listanddetail':
+                $this->getListAddressSettings();
                 $this->getStartingPoint();
                 $this->getCategorySettings();
                 $this->getDetailPidSetting();
@@ -100,6 +111,41 @@ final class PageContentPreviewRenderingEventListener
         $this->getOverrideDemandSettings();
 
         return $this->renderSettingsAsTable($record['uid']);
+    }
+
+
+    protected function getListAddressSettings()
+    {
+        $addressRecords = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.selectedAddresses'), true);
+        if (count($addressRecords) > 0) {
+
+            foreach ($addressRecords as $id) {
+
+                $addressRecord = BackendUtilityCore::getRecord('tx_address_domain_model_address', $id);
+
+                if (is_array($addressRecord)) {
+                    $pageRecord = BackendUtilityCore::getRecord('pages', $addressRecord['pid']);
+
+                    if (is_array($pageRecord)) {
+                        $content = $this->getRecordData($addressRecord['uid'], 'tx_address_domain_model_address');
+                    } else {
+                        $text = sprintf($this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.pageNotAvailable'),
+                            $addressRecord['pid']);
+                        $content = $this->generateCallout($text);
+                    }
+                } else {
+                    $text = sprintf($this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.addressNotAvailable'),
+                        $addressRecord);
+                    $content = $this->generateCallout($text);
+                }
+
+                $this->tableData[] = [
+                    $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.address'),
+                    $content
+                ];
+
+            }
+        }
     }
 
     /**
@@ -465,7 +511,7 @@ final class PageContentPreviewRenderingEventListener
 
         // Find correct title by looping over all options
         if (!empty($field)) {
-            $layouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid);
+            $layouts = $this->templateLayout->getAvailableTemplateLayouts($pageUid);
             foreach ($layouts as $layout) {
                 if ((string)$layout[1] === (string)$field) {
                     $title = $layout[0];
@@ -560,23 +606,27 @@ final class PageContentPreviewRenderingEventListener
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addCssFile('EXT:address/Resources/Public/CSS/Backend/PageLayoutView.css');
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $content = '';
 
         if ($this->addresses) {
+            $view = GeneralUtility::makeInstance(StandaloneView::class);
             $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Templates/Backend/ContentPreview/Addresses.html'));
             $view->assignMultiple([
                 'addresses' => $this->addresses,
                 'id' => $recordUid
             ]);
+            $content .= $view->render();
         }
         if ($this->tableData) {
+            $view = GeneralUtility::makeInstance(StandaloneView::class);
             $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Templates/Backend/ContentPreview/Parameters.html'));
             $view->assignMultiple([
                 'rows' => $this->tableData,
                 'id' => $recordUid
             ]);
+            $content .= $view->render();
         }
-        return $view->render();
+        return $content;
     }
 
     /**

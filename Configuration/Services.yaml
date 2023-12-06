@@ -15,6 +15,7 @@ services:
 
   WapplerSystems\Address\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
 
 
   WapplerSystems\Address\Utility\ClassCacheManager:
@@ -35,3 +36,7 @@ services:
     tags:
       - name: event.listener
         identifier: 'address/preview-rendering-ctype'
+
+
+  WapplerSystems\Address\Hooks\ItemsProcFunc:
+    public: true

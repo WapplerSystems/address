@@ -1,7 +1,7 @@
 
 <table class="table table-condensed table-hover news-table">
     <tbody>
-    <f:for each="{params}" as="item">
+    <f:for each="{rows}" as="item">
         <tr>
             <th>{item.0 -> f:format.raw()}</th>
             <td>{item.1 -> f:format.raw()}</td>

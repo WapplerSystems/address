@@ -19,7 +19,7 @@ foreach ($pluginConfig as $pluginName) {
     );
 
     $contentTypeName = 'address_' . str_replace('_', '', $pluginName);
-    $flexformFileName = in_array($pluginNameForLabel, ['search_result', 'list'], true) ? 'address_list' : $pluginNameForLabel;
+    $flexformFileName = in_array($pluginNameForLabel, ['search_result', 'list'], true) ? 'list' : $pluginNameForLabel;
 
     ExtensionManagementUtility::addPiFlexFormValue(
         '*',
