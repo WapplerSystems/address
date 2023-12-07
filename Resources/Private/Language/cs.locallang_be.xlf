@@ -132,8 +132,11 @@
 				<source>Title</source>
 			<target state="needs-translation">Title</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
-				<source>Manuell</source>
-			<target state="needs-translation">Manuell</target></trans-unit>
+				<source>Manual</source>
+			<target state="needs-translation">Manual</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.selection" xml:space="preserve">
+				<source>Selection</source>
+			<target state="needs-translation">Selection</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
 			<target state="needs-translation">Sort direction</target></trans-unit>
