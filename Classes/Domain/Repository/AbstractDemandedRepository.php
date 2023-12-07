@@ -146,7 +146,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         // @todo consider moving this to a separate function as well
         if ($demand->getLimit() != null) {
-            $query->setLimit((int)$demand->getLimit());
+            $query->setLimit($demand->getLimit());
         }
 
         // @todo consider moving this to a separate function as well
@@ -154,7 +154,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
             if (!$query->getLimit()) {
                 $query->setLimit(PHP_INT_MAX);
             }
-            $query->setOffset((int)$demand->getOffset());
+            $query->setOffset($demand->getOffset());
         }
 
         return $query;
@@ -172,11 +172,10 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
             $query->matching(
-                $query->logicalAnd($constraints)
+                $query->logicalAnd(...$constraints)
             );
         }
 
-        $result = $query->execute();
-        return $result->count();
+        return $query->execute()->count();
     }
 }

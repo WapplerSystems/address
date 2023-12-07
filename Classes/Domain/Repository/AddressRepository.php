@@ -34,16 +34,16 @@ class AddressRepository extends AbstractDemandedRepository
      * a given list of categories and a junction string
      *
      * @param QueryInterface $query
-     * @param  array|string $categories
-     * @param  string $conjunction
-     * @param  bool $includeSubCategories
+     * @param array|string $categories
+     * @param string $conjunction
+     * @param bool $includeSubCategories
      * @return ConstraintInterface|null
      */
     protected function createCategoryConstraint(
         QueryInterface $query,
-        $categories,
-        $conjunction,
-        $includeSubCategories = false
+                       $categories,
+                       $conjunction,
+                       $includeSubCategories = false
     ): ?ConstraintInterface
     {
         $constraint = null;
@@ -102,7 +102,7 @@ class AddressRepository extends AbstractDemandedRepository
      * @param QueryInterface $query
      * @param DemandInterface $demand
      * @return array<ConstraintInterface>
-     *@throws \UnexpectedValueException
+     * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
      * @throws InvalidQueryException
@@ -229,6 +229,14 @@ class AddressRepository extends AbstractDemandedRepository
                 // go through every order statement
                 foreach ($orderList as $orderItem) {
                     [$orderField, $ascDesc] = GeneralUtility::trimExplode(' ', $orderItem, true);
+                    if ($orderField === 'selection') {
+                        $uids = '';
+                        foreach ($demand->getIds() as $id) {
+                            $uids .= ',' . $id;
+                        }
+                        $orderings['FIELD(uid ' . $uids . ')'] = QueryInterface::ORDER_ASCENDING;
+                        continue;
+                    }
                     // count == 1 means that no direction is given
                     if ($ascDesc) {
                         $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
@@ -346,7 +354,7 @@ class AddressRepository extends AbstractDemandedRepository
             $encoder = GeneralUtility::makeInstance(Encoder::class, $searchObject->getSettings());
 
             try {
-                $latlng = $encoder->getLatLngByAddress($searchLocation,'DE');
+                $latlng = $encoder->getLatLngByAddress($searchLocation, 'DE');
                 if ($latlng !== null) {
                     $latitude = number_format($latlng->getLatitude(), 8);
                     $longitude = number_format($latlng->getLongitude(), 8);

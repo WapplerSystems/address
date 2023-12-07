@@ -7,6 +7,7 @@ use TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use WapplerSystems\Address\Backend\Form\Element\MapElement;
 use WapplerSystems\Address\Backend\FormDataProvider\AddressRowInitializeNew;
@@ -14,6 +15,7 @@ use WapplerSystems\Address\Command\AddressImportCommandController;
 use WapplerSystems\Address\Controller\AddressController;
 use WapplerSystems\Address\Controller\CategoryController;
 use WapplerSystems\Address\Controller\TagController;
+use WapplerSystems\Address\Extbase\Persistence\Generic\Storage\Typo3DbQueryParserForAddress;
 use WapplerSystems\Address\Hooks\DataHandler;
 use WapplerSystems\Address\Hooks\Form\AddressHook;
 use WapplerSystems\Address\Hooks\InlineElementHook;
@@ -118,6 +120,9 @@ $boot = static function (): void {
     // Xclass InlineRecordContainer
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][InlineRecordContainer::class] = [
         'className' => InlineRecordContainerForAddress::class,
+    ];
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][Typo3DbQueryParser::class] = [
+        'className' => Typo3DbQueryParserForAddress::class,
     ];
 
 

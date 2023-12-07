@@ -48,11 +48,11 @@ final class QueryResultPaginator extends CustomAbstractPaginator
         return $this->paginatedQueryResult;
     }
 
-    protected function updatePaginatedItems(int $limit, int $offset): void
+    protected function updatePaginatedItems(int $itemsPerPage, int $offset): void
     {
         $this->paginatedQueryResult = $this->queryResult
             ->getQuery()
-            ->setLimit($limit)
+            ->setLimit($itemsPerPage)
             ->setOffset($offset)
             ->execute();
     }

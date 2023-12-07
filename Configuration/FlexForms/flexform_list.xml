@@ -37,6 +37,10 @@
                                         <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.manual</numIndex>
                                         <numIndex index="1">sorting</numIndex>
                                     </numIndex>
+                                    <numIndex index="6">
+                                        <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.selection</numIndex>
+                                        <numIndex index="1">selection</numIndex>
+                                    </numIndex>
                                 </items>
                             </config>
                         </TCEforms>

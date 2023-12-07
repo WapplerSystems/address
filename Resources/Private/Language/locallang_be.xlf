@@ -133,7 +133,10 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
-				<source>Manuell</source>
+				<source>Manual</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.orderBy.selection" xml:space="preserve">
+				<source>Selection</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
