@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace WapplerSystems\Address\Backend\EventListener;
 
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -652,27 +653,20 @@ final class PageContentPreviewRenderingEventListener
         return null;
     }
 
-    /**
-     * Build a backend edit link based on given record.
-     *
-     * @param array $row Current record row from database.
-     * @param int $currentPageUid current page uid
-     * @return string Link to open an edit window for record.
-     * @see \TYPO3\CMS\Backend\Utility\BackendUtilityCore::readPageAccess()
-     */
-    protected function getEditLink($row, $currentPageUid)
+    protected function getEditLink(array $row, int $currentPageUid): string
     {
         $editLink = '';
         $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
         $permsEdit = $localCalcPerms & Permission::PAGE_EDIT;
         if ($permsEdit) {
-            $returnUrl = BackendUtilityCore::getModuleUrl('web_layout', ['id' => $currentPageUid]);
-            $editLink = BackendUtilityCore::getModuleUrl('web_layout', [
+            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+            $returnUrl = $uriBuilder->buildUriFromRoute('web_layout', ['id' => $currentPageUid]);
+            $editLink = $uriBuilder->buildUriFromRoute('web_layout', [
                 'id' => $row['uid'],
-                'returnUrl' => $returnUrl
+                'returnUrl' => $returnUrl,
             ]);
         }
-        return $editLink;
+        return (string)$editLink;
     }
 
     /**
