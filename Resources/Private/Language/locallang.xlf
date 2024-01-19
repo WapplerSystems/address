@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="msg.searchResultText" xml:space="preserve">
-				<source>There are %1$s results for %2$s.</source>
+				<source>There are %1$s results for "%2$s".</source>
 			</trans-unit>
 			<trans-unit id="btn.searchStart" xml:space="preserve">
 				<source>Start search</source>
