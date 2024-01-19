@@ -141,8 +141,8 @@
 			<trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
 				<source>LinkedIn</source>
 			</trans-unit>
-			<trans-unit id="tx_address_domain_model_contact.type.twitter" xml:space="preserve">
-				<source>Twitter</source>
+			<trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve">
+				<source>X</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
 				<source>Facebook</source>
@@ -155,6 +155,9 @@
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
 				<source>Threema</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve">
+				<source>Fax</source>
 			</trans-unit>
 
 			<trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
