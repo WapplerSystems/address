@@ -8,6 +8,8 @@
 <div class="address address-{address.type}{f:if(condition: address.istopaddress, then: ' topaddress')} mb-4">
     <ad:excludeDisplayedAddress address="{address}"/>
 
+    <f:debug>{address}</f:debug>
+
     <div class="row">
         <div class="col-md-4">
 
@@ -30,22 +32,14 @@
 
             <div class="address--list-details mb-3">
 
-                <f:if condition="{address.phone}">
-                    <div class="media">
-                        <i class="d-flex fa fa-phone c-gray mr-2 mt-1" aria-hidden="true"></i>
-                        <div class="media-body">
-                            {address.phone}
-                        </div>
-                    </div>
-                </f:if>
-                <f:if condition="{address.fax}">
-                    <div class="media">
-                        <i class="d-flex fa fa-fax c-gray mr-2 mt-1" aria-hidden="true"></i>
-                        <div class="media-body">
-                            {address.fax}
-                        </div>
-                    </div>
-                </f:if>
+
+                <f:for as="contact" each="{ad:address.contacts(address:address, type:'email')}">
+                    <f:link.email email="{contact.content}">{contact.content}</f:link.email><br />
+                </f:for>
+                <f:for as="contact" each="{ad:address.contacts(address:address, type:'telephone')}">
+                    <i class="d-flex fa fa-phone c-gray mr-2 mt-1" aria-hidden="true"></i> {contact.content}<br />
+                </f:for>
+
 
                 <f:if condition="{address.address}">
                     <div class="media">
