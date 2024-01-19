@@ -138,9 +138,9 @@
       <trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
 				<source>LinkedIn</source>
 			<target state="needs-translation">LinkedIn</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.twitter" xml:space="preserve">
-				<source>Twitter</source>
-			<target state="needs-translation">Twitter</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve">
+				<source>X</source>
+			<target state="needs-translation">X</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
 				<source>Facebook</source>
 			<target state="needs-translation">Facebook</target></trans-unit>
@@ -153,6 +153,9 @@
       <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
 				<source>Threema</source>
 			<target state="needs-translation">Threema</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve">
+				<source>Fax</source>
+			<target state="needs-translation">Fax</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
 				<source>Content</source>
 			<target state="needs-translation">Content</target></trans-unit>
