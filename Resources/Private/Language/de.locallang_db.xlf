@@ -56,7 +56,7 @@
 			<target state="translated">Zweiter Vorname</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.position" xml:space="preserve">
 				<source>Position</source>
-			<target state="needs-translation">Position</target></trans-unit>
+			<target state="translated">Position</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.birthday" xml:space="preserve">
 				<source>Birthday</source>
 			<target state="translated">Geburtstag</target></trans-unit>
@@ -65,7 +65,7 @@
 			<target state="translated">Akademischer Titel</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.append_academic_title" xml:space="preserve">
 				<source>Append academic title</source>
-			<target state="needs-translation">Append academic title</target></trans-unit>
+			<target state="translated">Akademischen Titel anhängen</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.phone" xml:space="preserve">
 				<source>Phone</source>
 			<target state="translated">Telefon</target></trans-unit>
@@ -74,7 +74,7 @@
 			<target state="translated">Webseite</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.fax" xml:space="preserve">
 				<source>Fax</source>
-			<target state="needs-translation">Fax</target></trans-unit>
+			<target state="translated">Fax</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.email" xml:space="preserve">
 				<source>Email</source>
 			<target state="translated">E-Mail</target></trans-unit>
@@ -107,58 +107,58 @@
 			<target state="translated">Adresse</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.type.I.1" xml:space="preserve">
 				<source>Person</source>
-			<target state="needs-translation">Person</target></trans-unit>
+			<target state="translated">Person</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.type.I.2" xml:space="preserve">
 				<source>Company</source>
 			<target state="translated">Firma</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact" xml:space="preserve">
 				<source>Contact</source>
-			<target state="needs-translation">Contact</target></trans-unit>
+			<target state="translated">Kontakt</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type" xml:space="preserve">
 				<source>Type</source>
-			<target state="needs-translation">Type</target></trans-unit>
+			<target state="translated">Typ</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.email" xml:space="preserve">
 				<source>Email</source>
-			<target state="needs-translation">Email</target></trans-unit>
+			<target state="translated">E-Mail</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.telephone" xml:space="preserve">
 				<source>Telephone</source>
-			<target state="needs-translation">Telephone</target></trans-unit>
+			<target state="translated">Telefon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.mobilePhone" xml:space="preserve">
 				<source>Mobile phone</source>
-			<target state="needs-translation">Mobile phone</target></trans-unit>
+			<target state="translated">Mobiltelefon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.website" xml:space="preserve">
 				<source>Website</source>
-			<target state="needs-translation">Website</target></trans-unit>
+			<target state="translated">Website</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.blog" xml:space="preserve">
 				<source>Blog</source>
-			<target state="needs-translation">Blog</target></trans-unit>
+			<target state="translated">Blog</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.xing" xml:space="preserve">
 				<source>Xing</source>
-			<target state="needs-translation">Xing</target></trans-unit>
+			<target state="translated">Xing</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
 				<source>LinkedIn</source>
-			<target state="needs-translation">LinkedIn</target></trans-unit>
+			<target state="translated">LinkedIn</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve">
 				<source>X</source>
 			<target state="translated">X</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
 				<source>Facebook</source>
-			<target state="needs-translation">Facebook</target></trans-unit>
+			<target state="translated">Facebook</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
 				<source>Instagram</source>
-			<target state="needs-translation">Instagram</target></trans-unit>
+			<target state="translated">Instagram</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
 				<source>Mastodon</source>
-			<target state="needs-translation">Mastodon</target></trans-unit>
+			<target state="translated">Mastodon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
 				<source>Threema</source>
-			<target state="needs-translation">Threema</target></trans-unit>
+			<target state="translated">Threema</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve">
 				<source>Fax</source>
 			<target state="translated">Fax</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
 				<source>Content</source>
-			<target state="needs-translation">Content</target></trans-unit>
+			<target state="translated">Inhalt</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">
 				<source>Longitude</source>
 			<target state="translated">Längengrad</target></trans-unit>
@@ -197,10 +197,10 @@
 			<target state="translated">Schlüsselwort1, Schlüsselwort2, Schlüsselwort3</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.contacts" xml:space="preserve">
 				<source>Contacts</source>
-			<target state="needs-translation">Contacts</target></trans-unit>
+			<target state="translated">Kontakte</target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
+			<target state="translated"><![CDATA[<title>-Tag]]></target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.seo.seo_description" xml:space="preserve">
 				<source>Meta-Description</source>
 			<target state="translated">Meta-Beschreibung</target></trans-unit>
@@ -224,7 +224,7 @@
 			<target state="translated">Adressenkategorie Verweis</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
+			<target state="translated"><![CDATA[<title>-Tag]]></target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.seo.seo_description" xml:space="preserve">
 				<source>Meta-Description</source>
 			<target state="translated">Meta-Beschreibung</target></trans-unit>
@@ -245,7 +245,7 @@
 			<target state="translated">Beschreibung</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link.uri" xml:space="preserve">
 				<source>URL</source>
-			<target state="needs-translation">URL</target></trans-unit>
+			<target state="translated">URL</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link.uri.placeholder" xml:space="preserve">
 				<source>www.domain.org</source>
 			<target state="translated">www.domain.de</target></trans-unit>
