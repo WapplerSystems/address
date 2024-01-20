@@ -5,7 +5,7 @@
     <body>
       <trans-unit id="msg.searchResultText" xml:space="preserve">
 				<source>There are %1$s results for "%2$s".</source>
-			<target state="needs-translation">There are %1$s results for "%2$s".</target></trans-unit>
+			<target state="translated">Es liegen %1$s Ergebnisse für "%2$s" vor.</target></trans-unit>
       <trans-unit id="btn.searchStart" xml:space="preserve">
 				<source>Start search</source>
 			<target state="translated">Suche starten</target></trans-unit>
