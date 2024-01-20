@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address" target-language="da">
     <header/>
     <body>
-      <trans-unit id="msg.searchResultText" xml:space="preserve">
+      <trans-unit id="msg.searchResultText" xml:space="preserve" approved="yes">
 				<source>There are %1$s results for "%2$s".</source>
-			<target state="needs-translation">There are %1$s results for "%2$s".</target></trans-unit>
+			<target state="final">Der er %1$s resultater for "%2$s".</target></trans-unit>
       <trans-unit id="btn.searchStart" xml:space="preserve">
 				<source>Start search</source>
 			<target state="needs-translation">Start search</target></trans-unit>
