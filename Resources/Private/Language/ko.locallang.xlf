@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address" target-language="de">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address" target-language="ko">
     <header/>
     <body>
       <trans-unit id="msg.searchResultText" xml:space="preserve">
 				<source>There are %1$s results for "%2$s".</source>
-			<target state="translated">Es liegen %1$s Ergebnisse für "%2$s" vor.</target></trans-unit>
+			<target state="needs-translation">There are %1$s results for "%2$s".</target></trans-unit>
       <trans-unit id="btn.searchStart" xml:space="preserve">
 				<source>Start search</source>
-			<target state="translated">Suche starten</target></trans-unit>
+			<target state="needs-translation">Start search</target></trans-unit>
       <trans-unit id="msg.searchNoResult" xml:space="preserve">
 				<source>No address found.</source>
-			<target state="translated">Keine Adresse gefunden.</target></trans-unit>
+			<target state="needs-translation">No address found.</target></trans-unit>
       <trans-unit id="lbl.searchSubject" xml:space="preserve">
 				<source>Keyword</source>
-			<target state="translated">Suchbegriff</target></trans-unit>
+			<target state="needs-translation">Keyword</target></trans-unit>
       <trans-unit id="search-minimumDate" xml:space="preserve">
 				<source>Minimum Date</source>
-			<target state="translated">Datum (Untergrenze)</target></trans-unit>
+			<target state="needs-translation">Minimum Date</target></trans-unit>
       <trans-unit id="search-maximumDate" xml:space="preserve">
 				<source>Maximum Date</source>
-			<target state="translated">Datum (Obergrenze)</target></trans-unit>
+			<target state="needs-translation">Maximum Date</target></trans-unit>
       <trans-unit id="btn.details" xml:space="preserve">
 				<source>View details</source>
-			<target state="translated">Details anzeigen</target></trans-unit>
+			<target state="needs-translation">View details</target></trans-unit>
       <trans-unit id="btn.back" xml:space="preserve">
 				<source>Back</source>
-			<target state="translated">Zurück</target></trans-unit>
+			<target state="needs-translation">Back</target></trans-unit>
       <trans-unit id="related-address" xml:space="preserve">
 				<source>Related Address</source>
-			<target state="translated">Verknüpfte Adresse</target></trans-unit>
+			<target state="needs-translation">Related Address</target></trans-unit>
       <trans-unit id="related-files" xml:space="preserve">
 				<source>Related Files</source>
-			<target state="translated">Zugehörige Dateien</target></trans-unit>
+			<target state="needs-translation">Related Files</target></trans-unit>
       <trans-unit id="related-links" xml:space="preserve">
 				<source>Related Links</source>
-			<target state="translated">Weiterführende Links</target></trans-unit>
+			<target state="needs-translation">Related Links</target></trans-unit>
       <trans-unit id="author" xml:space="preserve">
 				<source>created by %s</source>
-			<target state="translated">erstellt von %s</target></trans-unit>
+			<target state="needs-translation">created by %s</target></trans-unit>
       <trans-unit id="author_simple" xml:space="preserve">
 				<source>created by</source>
-			<target state="translated">erstellt von</target></trans-unit>
+			<target state="needs-translation">created by</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve">
 				<source>Page %s of %s.</source>
-			<target state="translated">Seite %s von %s.</target></trans-unit>
+			<target state="needs-translation">Page %s of %s.</target></trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve">
 				<source>Next</source>
-			<target state="translated">Weiter</target></trans-unit>
+			<target state="needs-translation">Next</target></trans-unit>
       <trans-unit id="paginate_previous" xml:space="preserve">
 				<source>Previous</source>
-			<target state="translated">Zurück</target></trans-unit>
+			<target state="needs-translation">Previous</target></trans-unit>
       <trans-unit id="categories" xml:space="preserve">
 				<source>Categories</source>
-			<target state="translated">Kategorien</target></trans-unit>
+			<target state="needs-translation">Categories</target></trans-unit>
       <trans-unit id="tags" xml:space="preserve">
 				<source>Tags</source>
-			<target state="translated">Schlagworte</target></trans-unit>
+			<target state="needs-translation">Tags</target></trans-unit>
       <trans-unit id="entry" xml:space="preserve">
 				<source>entry</source>
-			<target state="translated">Eintrag</target></trans-unit>
+			<target state="needs-translation">entry</target></trans-unit>
       <trans-unit id="entries" xml:space="preserve">
 				<source>entries</source>
-			<target state="translated">Einträge</target></trans-unit>
+			<target state="needs-translation">entries</target></trans-unit>
       <trans-unit id="list_noaddressfound" xml:space="preserve">
 				<source>No address available.</source>
-			<target state="translated">Keine Adresse verfügbar.</target></trans-unit>
+			<target state="needs-translation">No address available.</target></trans-unit>
       <trans-unit id="list_nocategoriesfound" xml:space="preserve">
 				<source>No categories available.</source>
-			<target state="translated">Keine Kategorien verfügbar.</target></trans-unit>
+			<target state="needs-translation">No categories available.</target></trans-unit>
       <trans-unit id="addressNotFound" xml:space="preserve">
 				<source>The address record is not available anymore.</source>
-			<target state="translated">Der Adressdatensatz ist nicht mehr verfügbar.</target></trans-unit>
+			<target state="needs-translation">The address record is not available anymore.</target></trans-unit>
       <trans-unit id="btn.detailPage">
         <source>More information</source>
-        <target state="translated">Weitere Informationen</target>
+        <target state="needs-translation">More information</target>
       </trans-unit>
       <trans-unit id="lbl.searchLocation">
         <source>Location</source>
-        <target state="translated">Ort</target>
+        <target state="needs-translation">Location</target>
       </trans-unit>
       <trans-unit id="hdl.search">
         <source>Search</source>
-        <target state="translated">Suche</target>
+        <target state="needs-translation">Search</target>
       </trans-unit>
       <trans-unit id="btn.update">
         <source>Update</source>
-        <target state="translated">Aktualisieren</target>
+        <target state="needs-translation">Update</target>
       </trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve">
 				<source>Next</source>
-			<target state="translated">Weiter</target></trans-unit>
+			<target state="needs-translation">Next</target></trans-unit>
       <trans-unit id="paginate_previous" xml:space="preserve">
 				<source>Previous</source>
-			<target state="translated">Zurück</target></trans-unit>
+			<target state="needs-translation">Previous</target></trans-unit>
     </body>
   </file>
 </xliff>

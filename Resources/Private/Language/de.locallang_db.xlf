@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="address" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="tx_address_domain_model_address.tabs.relations" xml:space="preserve">
+				<source>Relations</source>
+			<target state="translated">Verknüpfungen</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address" xml:space="preserve">
+				<source>Address</source>
+			<target state="translated">Adresse</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.title" xml:space="preserve">
+				<source>Title</source>
+			<target state="translated">Titel</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.teaser" xml:space="preserve">
+				<source>Teaser</source>
+			<target state="translated">Kurzbeschreibung</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.datetime" xml:space="preserve">
+				<source>Date &amp; Time</source>
+			<target state="translated">Datum &amp; Zeit</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.archive" xml:space="preserve">
+				<source>Archive</source>
+			<target state="translated">Archiv</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.archive.placeholder" xml:space="preserve">
+				<source>Define when the address should be listed in the archive</source>
+			<target state="translated">Legen Sie fest, wann die Adresse im Archiv aufgeführt werden soll</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.categories" xml:space="preserve">
+				<source>Categories</source>
+			<target state="translated">Kategorien</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related" xml:space="preserve">
+				<source>Related address</source>
+			<target state="translated">Verknüpfte Adresse</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_from" xml:space="preserve">
+				<source>Related address (from)</source>
+			<target state="translated">Verknüpfte Adresse (von)</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_files" xml:space="preserve">
+				<source>Related files</source>
+			<target state="translated">Zugehörige Dateien</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_files.add" xml:space="preserve">
+				<source>Add related file</source>
+			<target state="translated">Datei hinzufügen</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_links" xml:space="preserve">
+				<source>Related links</source>
+			<target state="translated">Weiterführende Links</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.first_name" xml:space="preserve">
+				<source>First name</source>
+			<target state="translated">Vorname</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.last_name" xml:space="preserve">
+				<source>Last name</source>
+			<target state="translated">Nachname</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.abbreviation" xml:space="preserve">
+				<source>Abbreviation</source>
+			<target state="translated">Abkürzung</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.middle_name" xml:space="preserve">
+				<source>Middle name</source>
+			<target state="translated">Zweiter Vorname</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.position" xml:space="preserve">
+				<source>Position</source>
+			<target state="translated">Position</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.birthday" xml:space="preserve">
+				<source>Birthday</source>
+			<target state="translated">Geburtstag</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.academic_title" xml:space="preserve">
+				<source>Academic title</source>
+			<target state="translated">Akademischer Titel</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.append_academic_title" xml:space="preserve">
+				<source>Append academic title</source>
+			<target state="translated">Akademischen Titel anhängen</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.phone" xml:space="preserve">
+				<source>Phone</source>
+			<target state="translated">Telefon</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.www" xml:space="preserve">
+				<source>Website</source>
+			<target state="translated">Webseite</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.fax" xml:space="preserve">
+				<source>Fax</source>
+			<target state="translated">Fax</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.email" xml:space="preserve">
+				<source>Email</source>
+			<target state="translated">E-Mail</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.direct_contact" xml:space="preserve">
+				<source>Direct contactable</source>
+			<target state="translated">Direkt kontaktierbar</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.address" xml:space="preserve">
+				<source>Address</source>
+			<target state="translated">Adresse</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.detail_pid" xml:space="preserve">
+				<source>Detail page ID</source>
+			<target state="translated">Detailseiten-ID</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.building" xml:space="preserve">
+				<source>Building</source>
+			<target state="translated">Gebäude</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.city" xml:space="preserve">
+				<source>City</source>
+			<target state="translated">Stadt</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.zip" xml:space="preserve">
+				<source>Postal code</source>
+			<target state="translated">Postleitzahl</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.region" xml:space="preserve">
+				<source>State/region</source>
+			<target state="translated">Bundesland/Region</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
+				<source>Country</source>
+			<target state="translated">Land</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve">
+				<source>Address</source>
+			<target state="translated">Adresse</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.type.I.1" xml:space="preserve">
+				<source>Person</source>
+			<target state="translated">Person</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.type.I.2" xml:space="preserve">
+				<source>Company</source>
+			<target state="translated">Firma</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact" xml:space="preserve">
+				<source>Contact</source>
+			<target state="translated">Kontakt</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type" xml:space="preserve">
+				<source>Type</source>
+			<target state="translated">Typ</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.email" xml:space="preserve">
+				<source>Email</source>
+			<target state="translated">E-Mail</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.telephone" xml:space="preserve">
+				<source>Telephone</source>
+			<target state="translated">Telefon</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.mobilePhone" xml:space="preserve">
+				<source>Mobile phone</source>
+			<target state="translated">Mobiltelefon</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.website" xml:space="preserve">
+				<source>Website</source>
+			<target state="translated">Website</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.blog" xml:space="preserve">
+				<source>Blog</source>
+			<target state="translated">Blog</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.xing" xml:space="preserve">
+				<source>Xing</source>
+			<target state="translated">Xing</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
+				<source>LinkedIn</source>
+			<target state="translated">LinkedIn</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve">
+				<source>X</source>
+			<target state="translated">X</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
+				<source>Facebook</source>
+			<target state="translated">Facebook</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
+				<source>Instagram</source>
+			<target state="translated">Instagram</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
+				<source>Mastodon</source>
+			<target state="translated">Mastodon</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
+				<source>Threema</source>
+			<target state="translated">Threema</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve">
+				<source>Fax</source>
+			<target state="translated">Fax</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
+				<source>Content</source>
+			<target state="translated">Inhalt</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">
+				<source>Longitude</source>
+			<target state="translated">Längengrad</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.latitude" xml:space="preserve">
+				<source>Latitude</source>
+			<target state="translated">Breitengrad</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.media" xml:space="preserve">
+				<source>Media file</source>
+			<target state="translated">Mediendatei</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.media.add" xml:space="preserve">
+				<source>Add media file</source>
+			<target state="translated">Mediendatei hinzufügen</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_news" xml:space="preserve">
+				<source>Related address</source>
+			<target state="translated">Verknüpfte Adresse</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve">
+				<source>Top address</source>
+			<target state="translated">Priorisierte Adresse</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.content_elements" xml:space="preserve">
+				<source>Content elements</source>
+			<target state="translated">Inhaltselemente</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve">
+				<source>Tags</source>
+			<target state="translated">Schlagwörter</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags.add" xml:space="preserve">
+				<source>Add a new tag</source>
+			<target state="translated">Ein Schlagwort hinzufügen</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags.list" xml:space="preserve">
+				<source>List all tags</source>
+			<target state="translated">Alle Tags auflisten</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags.edit" xml:space="preserve">
+				<source>Edit tag</source>
+			<target state="translated">Tag bearbeiten</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.keywords.placeholder" xml:space="preserve">
+				<source>Keyword1, keyword2, keyword3</source>
+			<target state="translated">Schlüsselwort1, Schlüsselwort2, Schlüsselwort3</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.contacts" xml:space="preserve">
+				<source>Contacts</source>
+			<target state="translated">Kontakte</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target state="translated"><![CDATA[<title>-Tag]]></target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target state="translated">Meta-Beschreibung</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target state="translated">Überschrift (H1)</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.composeo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target state="translated">SEO Text-Abschnitt</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target state="translated">Suchmaschinenoptimierung (SEO)</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.image" xml:space="preserve">
+				<source>Image</source>
+			<target state="translated">Bild</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.single_pid" xml:space="preserve">
+				<source>Single-view page for address from this category</source>
+			<target state="translated">Einzelansichtseite für Adresse aus dieser Kategorie</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.shortcut" xml:space="preserve">
+				<source>Address category shortcut</source>
+			<target state="translated">Adressenkategorie Verweis</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target state="translated"><![CDATA[<title>-Tag]]></target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target state="translated">Meta-Beschreibung</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target state="translated">Überschrift (H1)</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target state="translated">SEO Text-Abschnitt</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link" xml:space="preserve">
+				<source>Address Link Element</source>
+			<target state="translated">Adressen-Link-Element</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.title" xml:space="preserve">
+				<source>Title</source>
+			<target state="translated">Titel</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.description" xml:space="preserve">
+				<source>Description</source>
+			<target state="translated">Beschreibung</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.uri" xml:space="preserve">
+				<source>URL</source>
+			<target state="translated">URL</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.uri.placeholder" xml:space="preserve">
+				<source>www.domain.org</source>
+			<target state="translated">www.domain.de</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target state="translated">Suchmaschinenoptimierung (SEO)</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag" xml:space="preserve">
+				<source>Address Tag</source>
+			<target state="translated">Adressen-Schlagwort</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.title" xml:space="preserve">
+				<source>Title</source>
+			<target state="translated">Titel</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_media.showinpreview" xml:space="preserve">
+				<source>Show in list views</source>
+			<target state="translated">In Listenansichten anzeigen</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.path_segment" xml:space="preserve">
+				<source>Speaking URL path segment</source>
+			<target state="translated">Sprechende URL Pfadabschnitt</target></trans-unit>
+      <trans-unit id="be_user.tx_address_categorymounts" xml:space="preserve">
+				<source>Address: Category restriction</source>
+			<target state="translated">Adresse: Kategoriebeschränkung</target></trans-unit>
+      <trans-unit id="notes" xml:space="preserve">
+				<source>Notes</source>
+			<target state="translated">Notizen</target></trans-unit>
+      <trans-unit id="location" xml:space="preserve">
+				<source>Location</source>
+			<target state="translated">Ort</target></trans-unit>
+    </body>
+  </file>
+</xliff>
