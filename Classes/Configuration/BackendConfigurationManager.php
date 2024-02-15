@@ -6,6 +6,7 @@ namespace WapplerSystems\Address\Configuration;
 
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository;
 use TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateTreeBuilder;
 use TYPO3\CMS\Core\TypoScript\IncludeTree\Traverser\ConditionVerdictAwareIncludeTreeTraverser;
@@ -23,6 +24,7 @@ class BackendConfigurationManager extends \TYPO3\CMS\Extbase\Configuration\Backe
         private readonly SysTemplateTreeBuilder $treeBuilder,
         private readonly LossyTokenizer $lossyTokenizer,
         private readonly ConditionVerdictAwareIncludeTreeTraverser $includeTreeTraverserConditionVerdictAware,
+        private readonly SiteFinder $siteFinder,
     ) {
 
         // extract page id from returnUrl GET parameter
@@ -33,7 +35,7 @@ class BackendConfigurationManager extends \TYPO3\CMS\Extbase\Configuration\Backe
             if ($pageId !== -1) $this->currentPageId = (int)$pageId;
         }
 
-        parent::__construct($typoScriptService, $typoScriptCache, $runtimeCache, $sysTemplateRepository, $treeBuilder, $lossyTokenizer, $includeTreeTraverserConditionVerdictAware);
+        parent::__construct($typoScriptService, $typoScriptCache, $runtimeCache, $sysTemplateRepository, $treeBuilder, $lossyTokenizer, $includeTreeTraverserConditionVerdictAware, $siteFinder);
 
     }
 
