@@ -117,6 +117,9 @@ final class PageContentPreviewRenderingEventListener
 
     protected function getListAddressSettings()
     {
+        if ($this->getFieldFromFlexform('settings.selectedAddresses') === null) {
+            return;
+        }
         $addressRecords = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.selectedAddresses'), true);
         if (count($addressRecords) > 0) {
 
