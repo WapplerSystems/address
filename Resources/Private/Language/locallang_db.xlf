@@ -85,7 +85,7 @@
 				<source>Address</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.detail_pid" xml:space="preserve">
-				<source>Detail page ID</source>
+				<source>Detail page</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.building" xml:space="preserve">
 				<source>Building</source>

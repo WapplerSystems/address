@@ -163,6 +163,16 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
                 true);
 
+            if ($detailPidDeterminationMethods[0] === 'record') {
+                $detailPid = $this->getDetailPidFromRecord($tsSettings, $address);
+                if ($detailPid !== 0) {
+                    $configuration['parameter'] = $detailPid;
+                    return $configuration;
+                }
+
+                unset($detailPidDeterminationMethods[0]);
+            }
+
             // if TS is not set, prefer flexform setting
             if (!isset($tsSettings['detailPidDetermination'])) {
                 $detailPidDeterminationMethods[] = 'flexform';
@@ -182,7 +192,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             $configuration['parameter'] = $detailPid;
         }
 
-        $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_news_pi1[news]=' . $this->getAddressId($address);
+        $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_address_pi1[address]=' . $this->getAddressId($address);
         $configuration['additionalParams'] .= '&tx_address_pi1[address]=' . $this->getAddressId($address);
 
         if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
@@ -230,7 +240,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param  Address $address
      * @return int
      */
-    protected function getDetailPidFromCategories($settings, $address)
+    protected function getDetailPidFromCategories(array $settings, Address $address)
     {
         $detailPid = 0;
         if ($address->getCategories()) {
@@ -250,9 +260,14 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param  Address $address
      * @return int
      */
-    protected function getDetailPidFromDefaultDetailPid($settings, $address)
+    protected function getDetailPidFromDefaultDetailPid(array $settings, Address $address)
     {
         return (int)$settings['defaultDetailPid'];
+    }
+
+    protected function getDetailPidFromRecord(array $settings, Address $address) : int
+    {
+        return $address->getDetailPid();
     }
 
     /**
@@ -262,7 +277,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param  Address $address
      * @return int
      */
-    protected function getDetailPidFromFlexform($settings, $address)
+    protected function getDetailPidFromFlexform(array $settings, Address $address)
     {
         return (int)$settings['detailPid'];
     }

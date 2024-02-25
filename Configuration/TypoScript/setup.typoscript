@@ -42,7 +42,7 @@ plugin.tx_address {
     includeSubCategories = 0
 
 
-    detailPidDetermination = flexform, categories, default
+    detailPidDetermination = record, flexform, categories, default
 
     defaultDetailPid = 0
 
