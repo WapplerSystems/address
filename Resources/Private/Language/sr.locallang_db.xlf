@@ -147,6 +147,15 @@
       <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
 				<source>Instagram</source>
 			<target state="needs-translation">Instagram</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.youtube" xml:space="preserve">
+				<source>YouTube</source>
+			<target state="needs-translation">YouTube</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.twitch" xml:space="preserve">
+				<source>Twitch</source>
+			<target state="needs-translation">Twitch</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.vimeo" xml:space="preserve">
+				<source>Vimeo</source>
+			<target state="needs-translation">Vimeo</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
 				<source>Mastodon</source>
 			<target state="needs-translation">Mastodon</target></trans-unit>
