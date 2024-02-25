@@ -67,6 +67,10 @@ return [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_content_xing.svg',
     ],
+    'ext-address-contact-type-facebook' => [
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_content_facebook.svg',
+    ],
     'ext-address-plugin-list-and-detail' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
