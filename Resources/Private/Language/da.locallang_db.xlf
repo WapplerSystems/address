@@ -84,9 +84,9 @@
       <trans-unit id="tx_address_domain_model_address.address" xml:space="preserve">
 				<source>Address</source>
 			<target state="needs-translation">Address</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_address.detail_pid" xml:space="preserve">
+      <trans-unit id="tx_address_domain_model_address.detail_pid" xml:space="preserve" approved="yes">
 				<source>Detail page</source>
-			<target state="needs-translation">Detail page</target></trans-unit>
+			<target state="final">Detaljeside</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.building" xml:space="preserve">
 				<source>Building</source>
 			<target state="needs-translation">Building</target></trans-unit>
