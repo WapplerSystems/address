@@ -85,8 +85,8 @@
 				<source>Address</source>
 			<target state="translated">Adresse</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.detail_pid" xml:space="preserve">
-				<source>Detail page ID</source>
-			<target state="translated">Detailseiten-ID</target></trans-unit>
+				<source>Detail page</source>
+			<target state="needs-translation">Detail page</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.building" xml:space="preserve">
 				<source>Building</source>
 			<target state="translated">Gebäude</target></trans-unit>
