@@ -267,7 +267,7 @@ class PageLayoutView
             $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
                 . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
                 . '</span> ';
-            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, '',
+            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, $record,
                 '+info,edit,history');
 
             $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
