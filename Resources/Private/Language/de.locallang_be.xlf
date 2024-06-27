@@ -152,7 +152,7 @@
 			<target state="translated">Nein</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
 				<source>Yes</source>
-			<target state="needs-translation">Yes</target></trans-unit>
+			<target state="translated">Ja</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve">
 				<source>Defined in TypoScript</source>
 			<target state="needs-translation">Defined in TypoScript</target></trans-unit>
