@@ -149,7 +149,7 @@
 			<target state="needs-translation">Allow preview of hidden records</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
 				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
+			<target state="translated">Nein</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
 				<source>Yes</source>
 			<target state="needs-translation">Yes</target></trans-unit>
