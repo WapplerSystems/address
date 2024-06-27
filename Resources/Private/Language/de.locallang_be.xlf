@@ -5,25 +5,25 @@
     <body>
       <trans-unit id="pi1_title" xml:space="preserve">
 				<source>Address system</source>
-			<target state="needs-translation">Address system</target></trans-unit>
+			<target state="translated">Adresssystem</target></trans-unit>
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Address system</source>
-			<target state="needs-translation">Address system</target></trans-unit>
+			<target state="translated">Adresssystem</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
-			<target state="needs-translation">Settings</target></trans-unit>
+			<target state="translated">Einstellungen</target></trans-unit>
       <trans-unit id="flexforms_tab.additional" xml:space="preserve">
 				<source>Additional</source>
-			<target state="needs-translation">Additional</target></trans-unit>
+			<target state="translated">Zusätzlich</target></trans-unit>
       <trans-unit id="flexforms_tab.template" xml:space="preserve">
 				<source>Template</source>
-			<target state="needs-translation">Template</target></trans-unit>
+			<target state="translated">Vorlage</target></trans-unit>
       <trans-unit id="flexforms_general.mode" xml:space="preserve">
 				<source>What to display</source>
-			<target state="needs-translation">What to display</target></trans-unit>
+			<target state="translated">Was soll angezeigt werden</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve">
 				<source>List view</source>
-			<target state="needs-translation">List view</target></trans-unit>
+			<target state="translated">Listenansicht</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
 				<source>List view (without overloading detail view)</source>
 			<target state="needs-translation">List view (without overloading detail view)</target></trans-unit>
@@ -173,13 +173,13 @@
 			<target state="needs-translation">Length of teaser (in chars)</target></trans-unit>
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
 				<source>Template Layout</source>
-			<target state="needs-translation">Template Layout</target></trans-unit>
+			<target state="translated">Vorlagenlayout</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>
 			<target state="needs-translation">1</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
 				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
+			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
 				<source>Page ID for single address display</source>
 			<target state="needs-translation">Page ID for single address display</target></trans-unit>
