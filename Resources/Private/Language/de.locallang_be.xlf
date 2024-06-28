@@ -101,28 +101,28 @@
 			<target state="translated">Archivierungsdatum</target></trans-unit>
       <trans-unit id="flexforms_general.categories" xml:space="preserve">
 				<source>Category selection</source>
-			<target state="needs-translation">Category selection</target></trans-unit>
+			<target state="translated">Kategorieauswahl</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
 				<source>Category mode</source>
 			<target state="needs-translation">Category mode</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve">
 				<source>Don't care, show all</source>
-			<target state="needs-translation">Don't care, show all</target></trans-unit>
+			<target state="translated">Nicht berücksichtigen, alles anzeigen</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve">
 				<source>Show items with selected categories (OR)</source>
-			<target state="needs-translation">Show items with selected categories (OR)</target></trans-unit>
+			<target state="translated">Zeige Nachrichten mit den ausgewählten Kategorien (ODER)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve">
 				<source>Show items with selected categories (AND)</source>
-			<target state="needs-translation">Show items with selected categories (AND)</target></trans-unit>
+			<target state="translated">Zeige Nachrichten mit den ausgewählten Kategorien (UND)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve">
 				<source>Do NOT show items with selected categories (AND)</source>
-			<target state="needs-translation">Do NOT show items with selected categories (AND)</target></trans-unit>
+			<target state="translated">Zeige Nachrichten mit den ausgewählten Kategorien NICHT (UND)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve">
 				<source>Do NOT show items with selected categories (OR)</source>
-			<target state="needs-translation">Do NOT show items with selected categories (OR)</target></trans-unit>
+			<target state="translated">Zeige Nachrichten mit den ausgewählten Kategorien NICHT (ODER)</target></trans-unit>
       <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
 				<source>Include subcategories</source>
-			<target state="needs-translation">Include subcategories</target></trans-unit>
+			<target state="translated">Unterkategorien einschließen</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
 				<source>Time limit (LOW): higher than given time</source>
 			<target state="needs-translation">Time limit (LOW): higher than given time</target></trans-unit>
@@ -161,7 +161,7 @@
 			<target state="needs-translation">Defined in TypoScript</target></trans-unit>
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
-			<target state="needs-translation">[no constraint]</target></trans-unit>
+			<target state="translated">[keine Einschränkung]</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
 				<source>Max width for media elements</source>
 			<target state="needs-translation">Max width for media elements</target></trans-unit>
@@ -176,7 +176,7 @@
 			<target state="translated">Vorlagenlayout</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
+			<target state="translated">1</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
 				<source>2</source>
 			<target state="translated">2</target></trans-unit>
