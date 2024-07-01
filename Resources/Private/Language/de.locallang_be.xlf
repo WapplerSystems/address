@@ -280,31 +280,31 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
 			<target state="needs-translation">Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</target></trans-unit>
       <trans-unit id="extmng.archiveDate.date" xml:space="preserve">
 				<source>Date</source>
-			<target state="needs-translation">Date</target></trans-unit>
+			<target state="translated">Datum</target></trans-unit>
       <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve">
 				<source>Date &amp; Time</source>
-			<target state="needs-translation">Date &amp; Time</target></trans-unit>
+			<target state="translated">Datum &amp; Zeit</target></trans-unit>
       <trans-unit id="extmng.showImporter" xml:space="preserve">
 				<source>Show importer:Backend module to import into address</source>
 			<target state="needs-translation">Show importer:Backend module to import into address</target></trans-unit>
       <trans-unit id="extmng.storageUidImporter" xml:space="preserve">
 				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
-			<target state="needs-translation">UID of storage to use when importing files/images:Default (fileadmin) storage is 1</target></trans-unit>
+			<target state="translated">UID Speicherort beim Importieren von Dateien/Bildern:Standard (fileadmin) Speicherort ist 1</target></trans-unit>
       <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve">
 				<source>In which folder should the importer save files/images (has to exist)</source>
-			<target state="needs-translation">In which folder should the importer save files/images (has to exist)</target></trans-unit>
+			<target state="translated">In welchem Ordner soll der Importer Dateien/Bilder speichern (muss vorhanden sein)</target></trans-unit>
       <trans-unit id="extmng.showAdministrationModule" xml:space="preserve">
 				<source>Show administration module:Backend module to administrate address records</source>
-			<target state="needs-translation">Show administration module:Backend module to administrate address records</target></trans-unit>
+			<target state="translated">Zeige Administrationsmodul:Falls aktiviert, ist ein Backendmodul sichtbar, in dem die Artikel administriert werden können.</target></trans-unit>
       <trans-unit id="extmng.rteForTeaser" xml:space="preserve">
 				<source>Enable a RTE for the teaser field.</source>
-			<target state="needs-translation">Enable a RTE for the teaser field.</target></trans-unit>
+			<target state="translated">Aktiviere den RTE für den Anreisser.</target></trans-unit>
       <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
 				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
-			<target state="needs-translation">Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</target></trans-unit>
+			<target state="translated">Datumsfeld als Pflichtfeld: Wenn gesetzt, ist das Datumsfeld kein Pflichtfeld mehr und wird nicht automatisch ausgefüllt, wenn ein neuer Datensatz erstellt wird.</target></trans-unit>
       <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
-			<target state="needs-translation">Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</target></trans-unit>
+			<target state="translated">Seitenbaum für das Administrationsmodul ausblenden: Um die Benutzerfreundlichkeit zu vereinfachen, verstecken Sie den Seitenbaum für das Administrationsmodul.</target></trans-unit>
       <trans-unit id="extmng.slugBehaviour" xml:space="preserve">
 				<source>Slug behaviour: uniqueInSite: The same slug can be used for address in different sites. Use this setting *only* if no address records are shared between sites. "unique" means that same address title will lead to different slug names.</source>
 			<target state="needs-translation">Slug behaviour: uniqueInSite: The same slug can be used for address in different sites. Use this setting *only* if no address records are shared between sites. "unique" means that same address title will lead to different slug names.</target></trans-unit>
