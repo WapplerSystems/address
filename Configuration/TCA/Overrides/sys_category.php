@@ -32,24 +32,17 @@ $addressSysCategoryColumns = [
         'exclude' => true,
         'l10n_mode' => 'mergeIfNotBlank',
         'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_category.image',
-        'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-            'images',
-            [
-                'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
-                    'showPossibleLocalizationRecords' => true,
-                    'showRemovedLocalizationRecords' => true,
-                    'showAllLocalizationLink' => true,
-                    'showSynchronizationLink' => true
-                ],
-                'foreign_match_fields' => [
-                    'fieldname' => 'images',
-                    'tablenames' => 'sys_category',
-                    'table_local' => 'sys_file',
-                ],
+        'config' => [
+            'type' => 'file',
+            'allowed' => 'common-image-types',
+            'appearance' => [
+                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                'showPossibleLocalizationRecords' => true,
+                'showRemovedLocalizationRecords' => true,
+                'showAllLocalizationLink' => true,
+                'showSynchronizationLink' => true
             ],
-            $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-        )
+        ],
     ],
     'single_pid' => [
         'exclude' => true,
