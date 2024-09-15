@@ -29,67 +29,67 @@
 			<target state="translated">Incluye todas las subcategorías de las categorías también seleccionadas.</target></trans-unit>
       <trans-unit id="settings.categoryConjunction.details" xml:space="preserve">
 				<source>&quot;Don't care&quot;: No category restriction is set. &quot;Show items with selected categories OR&quot;: A address records need to be related with at least one of the selected categories. &quot;Show selected categories AND&quot;. A address record need to be related to all selected categories. &quot;Do not show&quot; is the opposite of above.</source>
-			<target state="needs-translation">"Don't care": No category restriction is set. "Show items with selected categories OR": A address records need to be related with at least one of the selected categories. "Show selected categories AND". A address record need to be related to all selected categories. "Do not show" is the opposite of above.</target></trans-unit>
+			<target state="translated">«No te preocupes»: no se establece ninguna restricción de categoría. «Mostrar elementos con categorías OR seleccionadas»: una dirección de registros debe estar relacionado con al menos una de las categorías seleccionadas. «Mostrar las categorías AND seleccionadas». Un registro de dirección debe estar relacionado con todas las categorías seleccionadas. «No mostrar» es lo opuesto a lo anterior.</target></trans-unit>
       <trans-unit id="settings.archiveRestriction.description" xml:space="preserve">
 				<source>Choose between: 1) Show all address records, 2) Show only active address records, 3) Show only archived address records. The archive date is defined in each address record. If no archive date is set, the address record can't be archived.</source>
-			<target state="needs-translation">Choose between: 1) Show all address records, 2) Show only active address records, 3) Show only archived address records. The archive date is defined in each address record. If no archive date is set, the address record can't be archived.</target></trans-unit>
+			<target state="translated">Elija entre: 1) Mostrar todos los registros de dirección, 2) Mostrar sólo los registros de dirección activos, 3) Mostrar sólo los registros de dirección archivados. La fecha de archivo se define en cada registro de noticias. Si no se establece una fecha de archivador, el registro de noticias no puede ser archivado.</target></trans-unit>
       <trans-unit id="settings.timeRestriction.description" xml:space="preserve">
 				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only address items after the given time are shown.</source>
-			<target state="needs-translation">Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only address items after the given time are shown.</target></trans-unit>
+			<target state="translated">Establezca un límite de tiempo. Puede ser un número entero y significa segundos, p. ej., 86400 significa 1 día (60 * 60 * 24) o una cadena como «-4 días» o «-3 horas». ¡El signo «-» es importante! Solo se muestran las noticias que aparecen después de la hora indicada.</target></trans-unit>
       <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve">
 				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only address items before the given time are shown.</source>
-			<target state="needs-translation">Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only address items before the given time are shown.</target></trans-unit>
+			<target state="translated">Establezca un límite de tiempo. Esto puede ser un número entero y significa segundos, p. ej., 86400 significa 1 día (60 * 60 * 24) o una cadena como «-4 días» o «-3 horas». ¡El signo «-» es importante! Solo se muestran las direcciones que aparecen después de la hora indicada.</target></trans-unit>
       <trans-unit id="settings.topAddressRestriction.description" xml:space="preserve">
 				<source>A address record can be set as top address. Therefore it can be defined to show either all address records, only top address or only nontop address.</source>
-			<target state="needs-translation">A address record can be set as top address. Therefore it can be defined to show either all address records, only top address or only nontop address.</target></trans-unit>
+			<target state="translated">Un registro de dirección se puede establecer como dirección principal. Por lo tanto, puede definirse para mostrar todos los registros de dirección, solo las noticias más destacadas o solo las noticias no destacadas.</target></trans-unit>
       <trans-unit id="settings.singleAddress.description" xml:space="preserve">
 				<source>Display the selected single address record.</source>
-			<target state="needs-translation">Display the selected single address record.</target></trans-unit>
+			<target state="translated">Representa el registro de dirección único seleccionado.</target></trans-unit>
       <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve">
 				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
-			<target state="needs-translation">If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</target></trans-unit>
+			<target state="translated">Si está activado, también se representan los registros ocultos. Esto es necesario si desea obtener una vista previa de los registros ocultos. Tenga en cuenta que cualquier registro oculto en la página actual también se muestra.</target></trans-unit>
       <trans-unit id="settings.startingpoint.description" xml:space="preserve">
 				<source>Define the pages/sysfolders which hold the address records</source>
-			<target state="needs-translation">Define the pages/sysfolders which hold the address records</target></trans-unit>
+			<target state="translated">Definir las páginas/carpetas del sistema los cuales mantienen los registros de dirección</target></trans-unit>
       <trans-unit id="settings.recursive.description" xml:space="preserve">
 				<source>Select the recursion level of the startingpoint.</source>
-			<target state="needs-translation">Select the recursion level of the startingpoint.</target></trans-unit>
+			<target state="translated">Seleccione el nivel de recursión del punto de inicio.</target></trans-unit>
       <trans-unit id="settings.detailPid.description" xml:space="preserve">
 				<source>Select the page on which the detail view should be shown.</source>
-			<target state="needs-translation">Select the page on which the detail view should be shown.</target></trans-unit>
+			<target state="translated">Seleccione la página en la cual se debería mostrar la vista detallada.</target></trans-unit>
       <trans-unit id="settings.backPid.description" xml:space="preserve">
 				<source>Select the page which is used to return to on detail view.</source>
-			<target state="needs-translation">Select the page which is used to return to on detail view.</target></trans-unit>
+			<target state="translated">Seleccione la página la cual se utiliza para volver a la vista de detalle.</target></trans-unit>
       <trans-unit id="settings.listPid.description" xml:space="preserve">
 				<source>Select the page on which the list view is shown.</source>
-			<target state="needs-translation">Select the page on which the list view is shown.</target></trans-unit>
+			<target state="translated">Seleccione la página en la cual se muestra la vista del listado.</target></trans-unit>
       <trans-unit id="settings.limit.description" xml:space="preserve">
 				<source>Set the maximum amount of address records to be displayed</source>
-			<target state="needs-translation">Set the maximum amount of address records to be displayed</target></trans-unit>
+			<target state="translated">Establecer la cantidad máxima de registros de dirección que serán representados</target></trans-unit>
       <trans-unit id="settings.offset.description" xml:space="preserve">
 				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
-			<target state="needs-translation">Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</target></trans-unit>
+			<target state="translated">Ajusta el desplazamiento para el inicio. P.ej. 3 significa que el primero de 2 registros no son analizados.</target></trans-unit>
       <trans-unit id="settings.topAddressFirst.description" xml:space="preserve">
 				<source>If checked: No matter which sorting is defined, top address are shown as first address records.</source>
-			<target state="needs-translation">If checked: No matter which sorting is defined, top address are shown as first address records.</target></trans-unit>
+			<target state="translated">Si está marcado: ninguna clasificación cuyo reordenado está definido, dirección cima es mostrada como primera dirección de los registros.</target></trans-unit>
       <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve">
 				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
-			<target state="needs-translation">If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</target></trans-unit>
+			<target state="translated">Si está marcado, este complemento no sería influenciado por medio de sobrecarga demandada de opciones los cuales pueden ser p.ej. una categoría por medio del parámetro URL.</target></trans-unit>
       <trans-unit id="settings.tags.description" xml:space="preserve">
 				<source>Filter by given tags.</source>
-			<target state="needs-translation">Filter by given tags.</target></trans-unit>
+			<target state="translated">Filtrar por etiquetas proporcionadas.</target></trans-unit>
       <trans-unit id="settings.media.maxWidth.description" xml:space="preserve">
 				<source>Maximal width of media elements (images, videos, ...)</source>
-			<target state="needs-translation">Maximal width of media elements (images, videos, ...)</target></trans-unit>
+			<target state="translated">Anchura máxima de los elementos multimedia (imágenes, vídeos, ...)</target></trans-unit>
       <trans-unit id="settings.media.maxHeight.description" xml:space="preserve">
 				<source>Maximal height of media elements (images, videos, ...)</source>
-			<target state="needs-translation">Maximal height of media elements (images, videos, ...)</target></trans-unit>
+			<target state="translated">Altura máxima de los elementos multimedia (imágenes, vídeos, ...)</target></trans-unit>
       <trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve">
 				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
-			<target state="needs-translation">Define the length of the teaser in chars. The teaser is typically cropped in the list view.</target></trans-unit>
+			<target state="translated">Define la longitud del guasón en caracteres. El guasón típicamente suele recortarse en la vista del listado.</target></trans-unit>
       <trans-unit id="settings.templateLayout.description" xml:space="preserve">
 				<source>Select a special layout for displaying address records.</source>
-			<target state="needs-translation">Select a special layout for displaying address records.</target></trans-unit>
+			<target state="translated">Seleccione una disposición especial para representar registros de dirección.</target></trans-unit>
     </body>
   </file>
 </xliff>
