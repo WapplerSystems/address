@@ -5,28 +5,28 @@
     <body>
       <trans-unit id="switchableControllerActions.description" xml:space="preserve">
 				<source>Set the view you want to display</source>
-			<target state="needs-translation">Set the view you want to display</target></trans-unit>
+			<target state="translated">Establezca la vista que desea representar</target></trans-unit>
       <trans-unit id="switchableControllerActions.details" xml:space="preserve">
 				<source>List view shows all address records. Latest uses a time restriction, the rest should be understandable</source>
-			<target state="needs-translation">List view shows all address records. Latest uses a time restriction, the rest should be understandable</target></trans-unit>
+			<target state="translated">La vista de lista muestra todos los registros de direcciones. Últimos usos de una restricción de tiempo, el resto debe ser comprensible</target></trans-unit>
       <trans-unit id="settings.orderBy.description" xml:space="preserve">
 				<source>Define the sorting field</source>
-			<target state="needs-translation">Define the sorting field</target></trans-unit>
+			<target state="translated">Define el ordenado del campo</target></trans-unit>
       <trans-unit id="settings.orderDirection.description" xml:space="preserve">
 				<source>Define the sorting direction</source>
-			<target state="needs-translation">Define the sorting direction</target></trans-unit>
+			<target state="translated">Define el ordenado de la dirección</target></trans-unit>
       <trans-unit id="settings.dateField.description" xml:space="preserve">
 				<source>Select the field which is used to build the date menu.</source>
-			<target state="needs-translation">Select the field which is used to build the date menu.</target></trans-unit>
+			<target state="translated">Selecciona el campo el cual es utilizado para crear el menú de fecha.</target></trans-unit>
       <trans-unit id="settings.categories.description" xml:space="preserve">
 				<source>Choose the categories to define which address items are displayed</source>
-			<target state="needs-translation">Choose the categories to define which address items are displayed</target></trans-unit>
+			<target state="translated">Elija las categorías para definir cuál dirección de elementos es representada</target></trans-unit>
       <trans-unit id="settings.categoryConjunction.description" xml:space="preserve">
 				<source>Define how the selected categories are used</source>
-			<target state="needs-translation">Define how the selected categories are used</target></trans-unit>
+			<target state="translated">Define como las categorías seleccionadas son utilizadas</target></trans-unit>
       <trans-unit id="settings.includeSubCategories.description" xml:space="preserve">
 				<source>Include all subcategories of the selected categories too.</source>
-			<target state="needs-translation">Include all subcategories of the selected categories too.</target></trans-unit>
+			<target state="translated">Incluye todas las subcategorías de las categorías también seleccionadas.</target></trans-unit>
       <trans-unit id="settings.categoryConjunction.details" xml:space="preserve">
 				<source>&quot;Don't care&quot;: No category restriction is set. &quot;Show items with selected categories OR&quot;: A address records need to be related with at least one of the selected categories. &quot;Show selected categories AND&quot;. A address record need to be related to all selected categories. &quot;Do not show&quot; is the opposite of above.</source>
 			<target state="needs-translation">"Don't care": No category restriction is set. "Show items with selected categories OR": A address records need to be related with at least one of the selected categories. "Show selected categories AND". A address record need to be related to all selected categories. "Do not show" is the opposite of above.</target></trans-unit>
