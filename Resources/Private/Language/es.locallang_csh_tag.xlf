@@ -5,19 +5,19 @@
     <body>
       <trans-unit id=".description" xml:space="preserve">
 				<source>Tag record</source>
-			<target state="needs-translation">Tag record</target></trans-unit>
+			<target state="translated">Etiqueta registro</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve">
 				<source>Address records can be tagged by those records</source>
-			<target state="needs-translation">Address records can be tagged by those records</target></trans-unit>
+			<target state="translated">Los registros de dirección pueden ser etiquetados por esos registros</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve">
 				<source>See also the website http://www.address.com/</source>
-			<target state="needs-translation">See also the website http://www.address.com/</target></trans-unit>
+			<target state="translated">Consulte además la página web http://www.dirección.com/</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden elements are never shown in the frontend.</target></trans-unit>
+			<target state="translated">Los elementos ocultos nunca se muestran en la parte delantera.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve">
 				<source>Title of the tag.</source>
-			<target state="needs-translation">Title of the tag.</target></trans-unit>
+			<target state="translated">Título de la etiqueta.</target></trans-unit>
     </body>
   </file>
 </xliff>
