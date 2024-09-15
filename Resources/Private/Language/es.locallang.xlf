@@ -23,7 +23,7 @@
 			<target state="needs-translation">Maximum Date</target></trans-unit>
       <trans-unit id="btn.details" xml:space="preserve">
 				<source>View details</source>
-			<target state="needs-translation">View details</target></trans-unit>
+			<target state="translated">Detalles de vista</target></trans-unit>
       <trans-unit id="btn.back" xml:space="preserve">
 				<source>Back</source>
 			<target state="needs-translation">Back</target></trans-unit>
