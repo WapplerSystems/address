@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="address" target-language="de">
     <header/>
     <body>
-      <trans-unit id="pi1_title" xml:space="preserve">
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
 				<source>Address system</source>
-			<target state="translated">Adresssystem</target></trans-unit>
+			<target state="final">Adresssystem</target></trans-unit>
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Address system</source>
 			<target state="needs-translation">Address system</target></trans-unit>
@@ -53,51 +53,51 @@
       <trans-unit id="plugin.tag_list.description" xml:space="preserve">
 				<source>Display a list of tags. The list can be used to filter a list view dynamically.</source>
 			<target state="needs-translation">Display a list of tags. The list can be used to filter a list view dynamically.</target></trans-unit>
-      <trans-unit id="plugin.map.title" xml:space="preserve">
+      <trans-unit id="plugin.map.title" xml:space="preserve" approved="yes">
 				<source>Map</source>
-			<target state="translated">Karte</target></trans-unit>
+			<target state="final">Karte</target></trans-unit>
       <trans-unit id="plugin.map.description" xml:space="preserve">
 				<source>Display a map with addresses.</source>
 			<target state="needs-translation">Display a map with addresses.</target></trans-unit>
-      <trans-unit id="flexforms_tab.settings" xml:space="preserve">
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
 				<source>Settings</source>
-			<target state="translated">Einstellungen</target></trans-unit>
+			<target state="final">Einstellungen</target></trans-unit>
       <trans-unit id="flexforms_tab.additional" xml:space="preserve">
 				<source>Additional</source>
 			<target state="needs-translation">Additional</target></trans-unit>
-      <trans-unit id="flexforms_tab.template" xml:space="preserve">
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
 				<source>Template</source>
-			<target state="translated">Vorlage</target></trans-unit>
+			<target state="final">Vorlage</target></trans-unit>
       <trans-unit id="flexforms_general.address" xml:space="preserve">
 				<source>Address</source>
 			<target state="needs-translation">Address</target></trans-unit>
       <trans-unit id="flexforms_general.mode" xml:space="preserve">
 				<source>What to display</source>
 			<target state="needs-translation">What to display</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve">
+      <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve" approved="yes">
 				<source>List view</source>
-			<target state="translated">Listenansicht</target></trans-unit>
+			<target state="final">Listenansicht</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
 				<source>List view (without overloading detail view)</source>
 			<target state="needs-translation">List view (without overloading detail view)</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve">
+      <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve" approved="yes">
 				<source>Detail view</source>
-			<target state="translated">Detailansicht</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_searchform" xml:space="preserve">
+			<target state="final">Detailansicht</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_searchform" xml:space="preserve" approved="yes">
 				<source>Search form</source>
-			<target state="translated">Suchformular</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_searchresult" xml:space="preserve">
+			<target state="final">Suchformular</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_searchresult" xml:space="preserve" approved="yes">
 				<source>Search result</source>
-			<target state="translated">Suchergebnis</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
+			<target state="final">Suchergebnis</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
 				<source>Category Menu</source>
-			<target state="translated">Kategorienmenü</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
+			<target state="final">Kategoriemenü</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
 				<source>No view yet configured</source>
-			<target state="translated">Noch keine Ansicht konfiguriert</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
+			<target state="final">Noch keine Ansicht konfiguriert</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
 				<source>Search</source>
-			<target state="translated">Suche</target></trans-unit>
+			<target state="final">Suche</target></trans-unit>
       <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
 				<source>Others</source>
 			<target state="needs-translation">Others</target></trans-unit>
@@ -119,42 +119,42 @@
       <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
 				<source>Uid</source>
 			<target state="needs-translation">Uid</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve">
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
 				<source>Manual sorting</source>
-			<target state="translated">Manuelle Sortierung</target></trans-unit>
+			<target state="final">Manuelle Sortierung</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
 				<source>Last edited</source>
 			<target state="needs-translation">Last edited</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve">
 				<source>Created</source>
 			<target state="needs-translation">Created</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
-			<target state="translated">Titel</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
+			<target state="final">Titel</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve" approved="yes">
 				<source>Manual</source>
-			<target state="translated">Manuell</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.selection" xml:space="preserve">
+			<target state="final">Manuell</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.selection" xml:space="preserve" approved="yes">
 				<source>Selection</source>
-			<target state="translated">Auswahl</target></trans-unit>
-      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
+			<target state="final">Auswahl</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve" approved="yes">
 				<source>Sort direction</source>
-			<target state="translated">Sortierreihenfolge</target></trans-unit>
-      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve">
+			<target state="final">Sortierreihenfolge</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve" approved="yes">
 				<source>Ascending</source>
-			<target state="translated">Aufsteigend</target></trans-unit>
-      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve">
+			<target state="final">Aufsteigend</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve" approved="yes">
 				<source>Descending</source>
-			<target state="translated">Absteigend</target></trans-unit>
-      <trans-unit id="flexforms_general.dateField" xml:space="preserve">
+			<target state="final">Absteigend</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve" approved="yes">
 				<source>Date field to use</source>
-			<target state="translated">Zu benutzendes Datumsfeld</target></trans-unit>
+			<target state="final">Zu benutzendes Datumsfeld</target></trans-unit>
       <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve">
 				<source>Given date/time</source>
 			<target state="needs-translation">Given date/time</target></trans-unit>
-      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
 				<source>Archive date</source>
-			<target state="translated">Archivierungsdatum</target></trans-unit>
+			<target state="final">Archivierungsdatum</target></trans-unit>
       <trans-unit id="flexforms_general.categories" xml:space="preserve">
 				<source>Category selection</source>
 			<target state="needs-translation">Category selection</target></trans-unit>
@@ -218,12 +218,12 @@
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
 			<target state="needs-translation">[no constraint]</target></trans-unit>
-      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
 				<source>Max width for media elements</source>
-			<target state="translated">Maximale Breite für Medienelemente</target></trans-unit>
-      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve">
+			<target state="final">Maximale Breite für Medienelemente</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve" approved="yes">
 				<source>Max height for media elements</source>
-			<target state="translated">Maximale Höhe für Medienelemente</target></trans-unit>
+			<target state="final">Maximale Höhe für Medienelemente</target></trans-unit>
       <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve">
 				<source>Length of teaser (in chars)</source>
 			<target state="needs-translation">Length of teaser (in chars)</target></trans-unit>
@@ -254,9 +254,9 @@
       <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
 				<source>Hide the pagination</source>
 			<target state="needs-translation">Hide the pagination</target></trans-unit>
-      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve">
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve" approved="yes">
 				<source>Items per Page</source>
-			<target state="translated">Einträge pro Seite</target></trans-unit>
+			<target state="final">Einträge pro Seite</target></trans-unit>
       <trans-unit id="flexforms_additional.topAddressFirst" xml:space="preserve">
 				<source>Sort &quot;Top address&quot; before</source>
 			<target state="needs-translation">Sort "Top address" before</target></trans-unit>
@@ -269,9 +269,9 @@
       <trans-unit id="flexforms_additional.excludeAlreadyDisplayedAddress" xml:space="preserve">
 				<source>Exclude already displayed address</source>
 			<target state="needs-translation">Exclude already displayed address</target></trans-unit>
-      <trans-unit id="flexforms_additional.tags" xml:space="preserve">
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
-			<target state="translated">Schlagworte</target></trans-unit>
+			<target state="final">Schlagworte</target></trans-unit>
       <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
 				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
 			<target state="needs-translation">Page with uid "%s" is not available anymore!</target></trans-unit>
