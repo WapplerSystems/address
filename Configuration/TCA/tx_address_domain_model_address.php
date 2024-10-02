@@ -2,6 +2,7 @@
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use WapplerSystems\Address\Domain\Model\Dto\EmConfiguration;
+use WapplerSystems\Address\Validation\Double6Validator;
 
 
 /** @var EmConfiguration $configuration */
@@ -303,7 +304,10 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.latitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,trim,WapplerSystems\\Address\\Evaluation\\Double6Evaluator',
+                'format' => 'float',
+                'eval' => 'trim,'. Double6Validator::class,
+                'precision' => 6,
+                'nullable' => true,
                 'default' => null,
             ]
         ],
@@ -314,7 +318,10 @@ $tx_address_domain_model_address = [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.longitude',
             'config' => [
                 'type' => 'input',
-                'eval' => 'null,trim,WapplerSystems\\Address\\Evaluation\\Double6Evaluator',
+                'format' => 'float',
+                'precision' => 6,
+                'eval' => 'trim,'. Double6Validator::class,
+                'nullable' => true,
                 'default' => null,
             ]
         ],
@@ -795,6 +802,37 @@ $tx_address_domain_model_address = [
                 ],
             ]
         ],
+        'marker_icon' => [
+            'exclude' => true,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.marker_icon',
+            'config' => [
+                'type' => 'file',
+                'maxitems' => 1,
+                'appearance' => [
+                    'createNewRelationLinkTitle' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.related_files.add',
+                    'showPossibleLocalizationRecords' => true,
+                    'showRemovedLocalizationRecords' => true,
+                    'showAllLocalizationLink' => true,
+                    'showSynchronizationLink' => true
+                ],
+                'inline' => [
+                    'inlineOnlineMediaAddButtonStyle' => 'display:none'
+                ],
+            ]
+        ],
+        'marker_color' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.marker_color',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', ''],
+                ],
+                'default' => '',
+            ]
+        ],
         'notes' => [
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:notes',
             'config' => [
@@ -853,6 +891,7 @@ $tx_address_domain_model_address = [
                     --palette--;;paletteArchive,
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                     --palette--;;paletteLocation,
+                    --palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.marker;paletteMarker,
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
@@ -883,6 +922,7 @@ $tx_address_domain_model_address = [
 
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                     --palette--;;paletteLocation,
+                    --palette--;;paletteMarker,
                     related,
 
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
@@ -912,8 +952,7 @@ $tx_address_domain_model_address = [
 
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                 --palette--;;paletteLocation,
-
-
+                --palette--;;paletteMarker,
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
 
@@ -942,6 +981,9 @@ $tx_address_domain_model_address = [
         ],
         'paletteLocation' => [
             'showitem' => 'address, building, --linebreak--, zip, city, region, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
+        ],
+        'paletteMarker' => [
+            'showitem' => 'marker_icon, --linebreak--, marker_color,',
         ],
         'palettePerson' => [
             'showitem' => 'first_name, middle_name, last_name, abbreviation, --linebreak--,academic_title, append_academic_title, position,birthday,',

@@ -190,9 +190,6 @@ $boot = static function (): void {
     ];
     ClassLoader::registerAutoloader();
 
-
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = AddressImportCommandController::class;
-
     if (ExtensionManagementUtility::isLoaded('form')) {
 
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['beforeRendering'][1506563222] = AddressHook::class;
@@ -208,6 +205,8 @@ $boot = static function (): void {
     }
 }'
     );
+
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\WapplerSystems\Address\Validation\Double6Validator::class] = '';
 
 };
 

@@ -224,14 +224,17 @@ TxAddress.codeAddress = function() {
 }
 
 TxAddress.positionChanged = function() {
-    {$updateLatitudeJs}
-    {$updateLongitudeJs}
-    {$updateAddressJs}
+    //{$updateLatitudeJs}
+    //{$updateLongitudeJs}
+    //{$updateAddressJs}
     TYPO3.FormEngine.Validation.validate();
 }
 
 TxAddress.updateValue = function(fieldName, value, controlFieldName) {
-    document[TBE_EDITOR.formname][fieldName].value = value;
+    let field = document.querySelector('[name="'+fieldName+'"]');
+    field.value = value;
+    field.dispatchEvent(new Event('change', {bubbles: true, cancelable: true}));
+
     document.querySelector('[data-formengine-input-name="' + fieldName + '"]').value = value;
     if (controlFieldName) {
         document.getElementById(controlFieldName).checked = true;
@@ -296,7 +299,7 @@ EOT;
             <input id="' . $addressId . '" type="textbox" value="' . $address . '" style="width:300px">
             <input type="button" value="' . $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang.xlf:btn.update') . '" onclick="TxAddress.codeAddress()">
         ';
-        $out[] = '<div id="' . $mapId . '" style="height:400px;margin:10px 0;width:400px"></div>';
+        $out[] = '<div id="' . $mapId . '" style="height:400px;margin:10px 0;width:100%"></div>';
         $out[] = '</div>'; // id=$baseElementId
 
         $resultArray = [];
