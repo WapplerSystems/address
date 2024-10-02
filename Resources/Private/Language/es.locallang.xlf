@@ -3,97 +3,97 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address" target-language="es-ES">
     <header/>
     <body>
-      <trans-unit id="msg.searchResultText" xml:space="preserve">
+      <trans-unit id="msg.searchResultText" xml:space="preserve" approved="yes">
 				<source>There are %1$s results for "%2$s".</source>
-			<target state="translated">Hay %1$s resultados para «%2$s».</target></trans-unit>
-      <trans-unit id="btn.searchStart" xml:space="preserve">
+			<target state="final">Hay %1$s resultados para «%2$s».</target></trans-unit>
+      <trans-unit id="btn.searchStart" xml:space="preserve" approved="yes">
 				<source>Start search</source>
-			<target state="translated">Comenzar búsqueda</target></trans-unit>
-      <trans-unit id="msg.searchNoResult" xml:space="preserve">
+			<target state="final">Comenzar búsqueda</target></trans-unit>
+      <trans-unit id="msg.searchNoResult" xml:space="preserve" approved="yes">
 				<source>No address found.</source>
-			<target state="translated">No se ha encontrado ninguna dirección.</target></trans-unit>
-      <trans-unit id="lbl.searchSubject" xml:space="preserve">
+			<target state="final">No se ha encontrado ninguna dirección.</target></trans-unit>
+      <trans-unit id="lbl.searchSubject" xml:space="preserve" approved="yes">
 				<source>Keyword</source>
-			<target state="translated">Palabra clave</target></trans-unit>
-      <trans-unit id="search-minimumDate" xml:space="preserve">
+			<target state="final">Palabra clave</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
 				<source>Minimum Date</source>
-			<target state="translated">Fecha mínima</target></trans-unit>
-      <trans-unit id="search-maximumDate" xml:space="preserve">
+			<target state="final">Fecha mínima</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve" approved="yes">
 				<source>Maximum Date</source>
-			<target state="translated">Fecha máxima</target></trans-unit>
-      <trans-unit id="btn.details" xml:space="preserve">
+			<target state="final">Fecha máxima</target></trans-unit>
+      <trans-unit id="btn.details" xml:space="preserve" approved="yes">
 				<source>View details</source>
-			<target state="translated">Detalles de vista</target></trans-unit>
-      <trans-unit id="btn.back" xml:space="preserve">
+			<target state="final">Detalles de vista</target></trans-unit>
+      <trans-unit id="btn.back" xml:space="preserve" approved="yes">
 				<source>Back</source>
-			<target state="translated">Atrás</target></trans-unit>
-      <trans-unit id="related-address" xml:space="preserve">
+			<target state="final">Atrás</target></trans-unit>
+      <trans-unit id="related-address" xml:space="preserve" approved="yes">
 				<source>Related Address</source>
-			<target state="translated">Dirección relacionada</target></trans-unit>
-      <trans-unit id="related-files" xml:space="preserve">
+			<target state="final">Dirección relacionada</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve" approved="yes">
 				<source>Related Files</source>
-			<target state="translated">Archivos relacionados</target></trans-unit>
-      <trans-unit id="related-links" xml:space="preserve">
+			<target state="final">Archivos relacionados</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve" approved="yes">
 				<source>Related Links</source>
-			<target state="translated">Enlaces relacionados</target></trans-unit>
-      <trans-unit id="author" xml:space="preserve">
+			<target state="final">Enlaces relacionados</target></trans-unit>
+      <trans-unit id="author" xml:space="preserve" approved="yes">
 				<source>created by %s</source>
-			<target state="translated">creado por %s</target></trans-unit>
-      <trans-unit id="author_simple" xml:space="preserve">
+			<target state="final">creado por %s</target></trans-unit>
+      <trans-unit id="author_simple" xml:space="preserve" approved="yes">
 				<source>created by</source>
-			<target state="translated">creado por</target></trans-unit>
-      <trans-unit id="paginate_overall" xml:space="preserve">
+			<target state="final">creado por</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
-			<target state="translated">Página %s de %s.</target></trans-unit>
-      <trans-unit id="paginate_next" xml:space="preserve">
+			<target state="final">Página %s de %s.</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
 				<source>Next</source>
-			<target state="translated">Posterior</target></trans-unit>
-      <trans-unit id="paginate_previous" xml:space="preserve">
+			<target state="final">Posterior</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
 				<source>Previous</source>
-			<target state="translated">Anterior</target></trans-unit>
+			<target state="final">Anterior</target></trans-unit>
       <trans-unit id="categories" xml:space="preserve">
 				<source>Categories</source>
 			<target state="translated">Categorías</target></trans-unit>
-      <trans-unit id="tags" xml:space="preserve">
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
-			<target state="translated">Etiquetas</target></trans-unit>
-      <trans-unit id="entry" xml:space="preserve">
+			<target state="final">Etiquetas</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
 				<source>entry</source>
-			<target state="translated">apunte</target></trans-unit>
-      <trans-unit id="entries" xml:space="preserve">
+			<target state="final">apunte</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
 				<source>entries</source>
-			<target state="translated">apuntes</target></trans-unit>
-      <trans-unit id="list_noaddressfound" xml:space="preserve">
+			<target state="final">apuntes</target></trans-unit>
+      <trans-unit id="list_noaddressfound" xml:space="preserve" approved="yes">
 				<source>No address available.</source>
-			<target state="translated">Ninguna dirección disponible.</target></trans-unit>
-      <trans-unit id="list_nocategoriesfound" xml:space="preserve">
+			<target state="final">Ninguna dirección disponible.</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
 				<source>No categories available.</source>
-			<target state="translated">No hay categorías disponibles.</target></trans-unit>
-      <trans-unit id="addressNotFound" xml:space="preserve">
+			<target state="final">No hay categorías disponibles.</target></trans-unit>
+      <trans-unit id="addressNotFound" xml:space="preserve" approved="yes">
 				<source>The address record is not available anymore.</source>
-			<target state="translated">El registro de direcciones ya no está más disponible.</target></trans-unit>
-      <trans-unit id="btn.detailPage">
+			<target state="final">El registro de direcciones ya no está más disponible.</target></trans-unit>
+      <trans-unit id="btn.detailPage" approved="yes">
         <source>More information</source>
-        <target state="translated">Más información</target>
+        <target state="final">Más información</target>
       </trans-unit>
-      <trans-unit id="lbl.searchLocation">
+      <trans-unit id="lbl.searchLocation" approved="yes">
         <source>Location</source>
-        <target state="translated">Lugar</target>
+        <target state="final">Lugar</target>
       </trans-unit>
-      <trans-unit id="hdl.search">
+      <trans-unit id="hdl.search" approved="yes">
         <source>Search</source>
-        <target state="translated">Búsqueda</target>
+        <target state="final">Búsqueda</target>
       </trans-unit>
-      <trans-unit id="btn.update">
+      <trans-unit id="btn.update" approved="yes">
         <source>Update</source>
-        <target state="translated">Actualizar</target>
+        <target state="final">Actualizar</target>
       </trans-unit>
-      <trans-unit id="paginate_next" xml:space="preserve">
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
 				<source>Next</source>
-			<target state="translated">Posterior</target></trans-unit>
-      <trans-unit id="paginate_previous" xml:space="preserve">
+			<target state="final">Posterior</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
 				<source>Previous</source>
-			<target state="translated">Anterior</target></trans-unit>
+			<target state="final">Anterior</target></trans-unit>
     </body>
   </file>
 </xliff>
