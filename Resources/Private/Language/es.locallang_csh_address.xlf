@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="address" target-language="es-ES">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve">
+				<source>Address record</source>
+			<target state="translated">Registro de dirección</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve">
+				<source>Address system.</source>
+			<target state="translated">Sistema de dirección.</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+				<source>Language of the address record.</source>
+			<target state="translated">Idioma del registro de dirección.</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve">
+				<source>Define a date on which the address record should be shown.</source>
+			<target state="translated">Defina una fecha en la cual el registro de dirección sería mostrado.</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve">
+				<source>Define a date on which the address record should be hidden.</source>
+			<target state="translated">Defina una fecha en la cual el registro de dirección estaría oculto.</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve">
+				<source>Select the user groups which are allowed to see the address record.</source>
+			<target state="translated">Seleccione los grupos de usuarios a los que se les permite ver el registro de dirección.</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve">
+				<source>If checked, this address record can only be edited by administrators.</source>
+			<target state="translated">Si está marcado, este registro de direcciones solamente puede ser editado por administradores.</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden records are not shown in the frontend.</source>
+			<target state="translated">Los registros ocultos no se muestran en el frontend.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve">
+				<source>Address title</source>
+			<target state="translated">Título de dirección</target></trans-unit>
+      <trans-unit id="alternative_title.description" xml:space="preserve">
+				<source>Alternative Title will be used as the title for the browser window / tab</source>
+			<target state="translated">Título alternativo se utilizará como el título para la ventana / pestaña del explorador</target></trans-unit>
+      <trans-unit id="teaser.description" xml:space="preserve">
+				<source>Be aware that it can be cropped.</source>
+			<target state="translated">Tenga en cuenta que se puede recortar.</target></trans-unit>
+      <trans-unit id="type.description" xml:space="preserve">
+				<source>Select the type which can be either a normal address record, a link to an internal page or a link to an external page.</source>
+			<target state="translated">Seleccione el tipo, el cual puede ser un registro de dirección usual, un enlace a una página interna o un enlace a una página externa.</target></trans-unit>
+      <trans-unit id="istopaddress.description" xml:space="preserve">
+				<source>Top address records can get a special treated concerning layout, sorting, ...</source>
+			<target state="translated">Los registros de dirección pueden obtener un tratamiento especial relativo a distribución, ordenación, ...</target></trans-unit>
+      <trans-unit id="author.description" xml:space="preserve">
+				<source>Author of the address record</source>
+			<target state="translated">Autor del registro de dirección</target></trans-unit>
+      <trans-unit id="author_email.description" xml:space="preserve">
+				<source>Email address of the author</source>
+			<target state="translated">Dirección del correo-e del autor</target></trans-unit>
+      <trans-unit id="datetime.description" xml:space="preserve">
+				<source>Date of the address record</source>
+			<target state="translated">Fecha del registro de dirección</target></trans-unit>
+      <trans-unit id="archive.description" xml:space="preserve">
+				<source>Archive date. A date is required if the address record should once be treated as archived address.</source>
+			<target state="translated">Fecha de archivador. Se requiere una fecha si el registro de dirección una vez que sea tratado como dirección archivada.</target></trans-unit>
+      <trans-unit id="bodytext.description" xml:space="preserve">
+				<source>Main content of the address record</source>
+			<target state="translated">Contenido principal del registro de dirección</target></trans-unit>
+      <trans-unit id="categories.description" xml:space="preserve">
+				<source>Select the categories which are related to this record.</source>
+			<target state="translated">Selecciona las categorías las cuales están relacionadas a este registro.</target></trans-unit>
+      <trans-unit id="tags.description" xml:space="preserve">
+				<source>Define and select tags which fit to the article.</source>
+			<target state="translated">Defina y seleccione etiquetas las cuales quepan en el artículo.</target></trans-unit>
+      <trans-unit id="content_elements.description" xml:space="preserve">
+				<source>Content elements can be used to generate feature rich address articles.</source>
+			<target state="translated">Los elementos de contenido pueden ser usados para generar artículos de dirección con características generosas.</target></trans-unit>
+      <trans-unit id="keywords.description" xml:space="preserve">
+				<source>Define keywords which can be used for SEO optimizations.</source>
+			<target state="translated">Define palabras clave las cuales pueden ser utilizadas para optimizaciones SEO.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve">
+				<source>Define a description which can be used for SEO optimizations.</source>
+			<target state="translated">Define una descripción la cual puede ser utilizada para optimizaciones SEO.</target></trans-unit>
+      <trans-unit id="related.description" xml:space="preserve">
+				<source>Select related address records.</source>
+			<target state="translated">Seleccione registros de dirección relativa.</target></trans-unit>
+      <trans-unit id="related_from.description" xml:space="preserve">
+				<source>Show address which select current address record as related.</source>
+			<target state="translated">Muestra dirección cuyo registro de dirección actual selecciona como relativa.</target></trans-unit>
+      <trans-unit id="related_links.description" xml:space="preserve">
+				<source>Define related links to internal and external pages.</source>
+			<target state="translated">Define enlaces relativos para páginas internas y externas.</target></trans-unit>
+    </body>
+  </file>
+</xliff>
