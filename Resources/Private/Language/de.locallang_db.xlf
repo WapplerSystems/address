@@ -102,6 +102,18 @@
       <trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
 				<source>Country</source>
 			<target state="translated">Land</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.marker_icon" xml:space="preserve">
+				<source>Icon</source>
+			<target state="needs-translation">Icon</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.marker_color" xml:space="preserve">
+				<source>Color</source>
+			<target state="needs-translation">Color</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.marker" xml:space="preserve">
+				<source>Marker</source>
+			<target state="needs-translation">Marker</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.inline_map" xml:space="preserve">
+				<source>Karte</source>
+			<target state="needs-translation">Karte</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve">
 				<source>Address</source>
 			<target state="translated">Adresse</target></trans-unit>
