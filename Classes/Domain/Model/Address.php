@@ -256,14 +256,16 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected int $detailPid;
 
     /**
+     * no default value
      * @var float
      */
-    protected float $longitude = 0.0;
+    protected float $longitude;
 
     /**
+     * no default value
      * @var float
      */
-    protected float $latitude = 0.0;
+    protected float $latitude;
 
     /**
      * @var ObjectStorage<Contact>
@@ -271,6 +273,15 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $contacts;
 
+    /**
+     * @var FileReference|null
+     */
+    protected $markerIcon;
+
+    /**
+     * @var string
+     */
+    protected $markerColor;
 
     /**
      * @var \DateTime
@@ -1307,5 +1318,26 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         }
         return '';
     }
+
+    public function getMarkerIcon(): ?FileReference
+    {
+        return $this->markerIcon;
+    }
+
+    public function setMarkerIcon(?FileReference $markerIcon): void
+    {
+        $this->markerIcon = $markerIcon;
+    }
+
+    public function getMarkerColor(): string
+    {
+        return $this->markerColor;
+    }
+
+    public function setMarkerColor(string $markerColor): void
+    {
+        $this->markerColor = $markerColor;
+    }
+
 
 }
