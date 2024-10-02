@@ -3,101 +3,101 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="address" target-language="es-ES">
     <header/>
     <body>
-      <trans-unit id="pi1_title" xml:space="preserve">
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
 				<source>Address system</source>
-			<target state="translated">Sistema de direcciones</target></trans-unit>
-      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
+			<target state="final">Sistema de direcciones</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
 				<source>Address system</source>
-			<target state="translated">Sistema de dirección</target></trans-unit>
-      <trans-unit id="plugin.list_and_detail.title" xml:space="preserve">
+			<target state="final">Sistema de dirección</target></trans-unit>
+      <trans-unit id="plugin.list_and_detail.title" xml:space="preserve" approved="yes">
 				<source>List addresses with detail view</source>
-			<target state="translated">Lista de direcciones con vista detallada</target></trans-unit>
+			<target state="final">Lista de direcciones con vista detallada</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...
 					Plugin is capable of displaying the detail view as well.</source>
 			<target state="translated">Visualización de direcciones elegidas por varias propiedades opcionales como página de almacenamiento, categorías,...
 					El complemento es capaz de mostrar la vista de detalle también.</target></trans-unit>
-      <trans-unit id="plugin.list.title" xml:space="preserve">
+      <trans-unit id="plugin.list.title" xml:space="preserve" approved="yes">
 				<source>Address list view</source>
-			<target state="translated">Listado de dirección</target></trans-unit>
+			<target state="final">Listado de dirección</target></trans-unit>
       <trans-unit id="plugin.list.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...</source>
 			<target state="translated">Visualización de direcciones escogidas por varias propiedades opcionales como página de almacenamiento, categorías,...</target></trans-unit>
-      <trans-unit id="plugin.detail.title" xml:space="preserve">
+      <trans-unit id="plugin.detail.title" xml:space="preserve" approved="yes">
 				<source>Address detail view</source>
-			<target state="translated">Vista detallada de dirección</target></trans-unit>
-      <trans-unit id="plugin.detail.description" xml:space="preserve">
+			<target state="final">Vista detallada de dirección</target></trans-unit>
+      <trans-unit id="plugin.detail.description" xml:space="preserve" approved="yes">
 				<source>Display the detail view of an address</source>
-			<target state="translated">Representa la vista detallada de una dirección</target></trans-unit>
-      <trans-unit id="plugin.search_form.title" xml:space="preserve">
+			<target state="final">Representa la vista detallada de una dirección</target></trans-unit>
+      <trans-unit id="plugin.search_form.title" xml:space="preserve" approved="yes">
 				<source>Search form</source>
-			<target state="translated">Formulario de búsqueda</target></trans-unit>
-      <trans-unit id="plugin.search_form.description" xml:space="preserve">
+			<target state="final">Formulario de búsqueda</target></trans-unit>
+      <trans-unit id="plugin.search_form.description" xml:space="preserve" approved="yes">
 				<source>Display a search form to let users search within addresses</source>
-			<target state="translated">Representa un formulario de búsqueda para permitir a los usuarios buscar dentro de las direcciones</target></trans-unit>
-      <trans-unit id="plugin.search_result.title" xml:space="preserve">
+			<target state="final">Representa un formulario de búsqueda para permitir a los usuarios buscar dentro de las direcciones</target></trans-unit>
+      <trans-unit id="plugin.search_result.title" xml:space="preserve" approved="yes">
 				<source>Search result</source>
-			<target state="translated">Resultado de búsqueda</target></trans-unit>
-      <trans-unit id="plugin.search_result.description" xml:space="preserve">
+			<target state="final">Resultado de búsqueda</target></trans-unit>
+      <trans-unit id="plugin.search_result.description" xml:space="preserve" approved="yes">
 				<source>Display the result of the search</source>
-			<target state="translated">Representa el resultado de la búsqueda</target></trans-unit>
-      <trans-unit id="plugin.category_list.title" xml:space="preserve">
+			<target state="final">Representa el resultado de la búsqueda</target></trans-unit>
+      <trans-unit id="plugin.category_list.title" xml:space="preserve" approved="yes">
 				<source>Category menu</source>
-			<target state="translated">Menú de categoría</target></trans-unit>
-      <trans-unit id="plugin.category_list.description" xml:space="preserve">
+			<target state="final">Menú de categoría</target></trans-unit>
+      <trans-unit id="plugin.category_list.description" xml:space="preserve" approved="yes">
 				<source>Display a menu of categories. The menu can be used to filter a list view dynamically.</source>
-			<target state="translated">Representa un menú de categorías. El menú puede utilizarse para filtrar una vista de listado dinámicamente.</target></trans-unit>
-      <trans-unit id="plugin.tag_list.title" xml:space="preserve">
+			<target state="final">Representa un menú de categorías. El menú puede utilizarse para filtrar una vista de listado dinámicamente.</target></trans-unit>
+      <trans-unit id="plugin.tag_list.title" xml:space="preserve" approved="yes">
 				<source>Tag list</source>
-			<target state="translated">Lista de etiquetas</target></trans-unit>
-      <trans-unit id="plugin.tag_list.description" xml:space="preserve">
+			<target state="final">Lista de etiquetas</target></trans-unit>
+      <trans-unit id="plugin.tag_list.description" xml:space="preserve" approved="yes">
 				<source>Display a list of tags. The list can be used to filter a list view dynamically.</source>
-			<target state="translated">Representa un listado de categorías. El listado puede utilizarse para filtrar una vista de listado dinámicamente.</target></trans-unit>
-      <trans-unit id="plugin.map.title" xml:space="preserve">
+			<target state="final">Representa un listado de categorías. El listado puede utilizarse para filtrar una vista de listado dinámicamente.</target></trans-unit>
+      <trans-unit id="plugin.map.title" xml:space="preserve" approved="yes">
 				<source>Map</source>
-			<target state="translated">Mapa</target></trans-unit>
-      <trans-unit id="plugin.map.description" xml:space="preserve">
+			<target state="final">Mapa</target></trans-unit>
+      <trans-unit id="plugin.map.description" xml:space="preserve" approved="yes">
 				<source>Display a map with addresses.</source>
-			<target state="translated">Representa un mapa con direcciones.</target></trans-unit>
-      <trans-unit id="flexforms_tab.settings" xml:space="preserve">
+			<target state="final">Representa un mapa con direcciones.</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
 				<source>Settings</source>
-			<target state="translated">Ajustes</target></trans-unit>
-      <trans-unit id="flexforms_tab.additional" xml:space="preserve">
+			<target state="final">Ajustes</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
 				<source>Additional</source>
-			<target state="translated">Adicional</target></trans-unit>
-      <trans-unit id="flexforms_tab.template" xml:space="preserve">
+			<target state="final">Adicional</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
 				<source>Template</source>
-			<target state="translated">Plantilla</target></trans-unit>
-      <trans-unit id="flexforms_general.address" xml:space="preserve">
+			<target state="final">Plantilla</target></trans-unit>
+      <trans-unit id="flexforms_general.address" xml:space="preserve" approved="yes">
 				<source>Address</source>
-			<target state="translated">Dirección</target></trans-unit>
-      <trans-unit id="flexforms_general.mode" xml:space="preserve">
+			<target state="final">Dirección</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
 				<source>What to display</source>
-			<target state="translated">Qué representar</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve">
+			<target state="final">Qué representar</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve" approved="yes">
 				<source>List view</source>
-			<target state="translated">Vista de listado</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
+			<target state="final">Vista de listado</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve" approved="yes">
 				<source>List view (without overloading detail view)</source>
-			<target state="translated">Vista de listado (sin sobrecarga de vista de detalles)</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve">
+			<target state="final">Vista de listado (sin sobrecarga de vista de detalles)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve" approved="yes">
 				<source>Detail view</source>
-			<target state="translated">Vista detallada</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_searchform" xml:space="preserve">
+			<target state="final">Vista detallada</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_searchform" xml:space="preserve" approved="yes">
 				<source>Search form</source>
-			<target state="translated">Formulario de búsqueda</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.address_searchresult" xml:space="preserve">
+			<target state="final">Formulario de búsqueda</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_searchresult" xml:space="preserve" approved="yes">
 				<source>Search result</source>
-			<target state="translated">Resultado de búsqueda</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
+			<target state="final">Resultado de búsqueda</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
 				<source>Category Menu</source>
-			<target state="translated">Menú Categorías</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
+			<target state="final">Menú Categorías</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
 				<source>No view yet configured</source>
-			<target state="translated">No hay vista configurada aún</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
+			<target state="final">No hay vista configurada aún</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
 				<source>Search</source>
-			<target state="translated">Búsqueda</target></trans-unit>
+			<target state="final">Búsqueda</target></trans-unit>
       <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
 				<source>Others</source>
 			<target state="translated">Otros</target></trans-unit>
