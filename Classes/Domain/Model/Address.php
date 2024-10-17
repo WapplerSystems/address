@@ -257,15 +257,15 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * no default value
-     * @var float
+     * @var float|null
      */
-    protected float $longitude;
+    protected ?float $longitude = null;
 
     /**
      * no default value
-     * @var float
+     * @var float|null
      */
-    protected float $latitude;
+    protected ?float $latitude = null;
 
     /**
      * @var ObjectStorage<Contact>
@@ -1234,33 +1234,31 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return float
      */
-    public function getLongitude()
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
     /**
-     * @param float $longitude
+     * @param float|null $longitude
      */
-    public function setLongitude($longitude)
+    public function setLongitude(?float $longitude): void
     {
         $this->longitude = $longitude;
     }
 
     /**
-     * @return float
      */
-    public function getLatitude()
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
     /**
-     * @param float $latitude
+     * @param float|null $latitude
      */
-    public function setLatitude($latitude)
+    public function setLatitude(?float $latitude): void
     {
         $this->latitude = $latitude;
     }
