@@ -38,7 +38,7 @@ class SlugService
         $elementCount = $queryBuilder->count('uid')
             ->from('tx_address_domain_model_address')
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
