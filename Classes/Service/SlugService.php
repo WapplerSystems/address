@@ -2,6 +2,8 @@
 
 namespace WapplerSystems\Address\Service;
 
+use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -29,6 +31,7 @@ class SlugService
 
     /**
      * @return int
+     * @throws Exception
      */
     public function countOfSlugUpdates(): int
     {
@@ -39,7 +42,7 @@ class SlugService
             ->from('tx_address_domain_model_address')
             ->where(
                 $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
+                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('')),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
@@ -64,7 +67,7 @@ class SlugService
             ->from('tx_address_domain_model_address')
             ->where(
                 $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
+                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('')),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
@@ -78,7 +81,7 @@ class SlugService
                     ->where(
                         $queryBuilder->expr()->eq(
                             'uid',
-                            $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
+                            $queryBuilder->createNamedParameter($record['uid'], ParameterType::INTEGER)
                         )
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
@@ -136,9 +139,9 @@ class SlugService
             ->where(
                 $queryBuilder->expr()->eq(
                     'path_segment',
-                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
+                    $queryBuilder->createPositionalParameter($slug)
                 ),
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, ParameterType::INTEGER))
             );
     }
 

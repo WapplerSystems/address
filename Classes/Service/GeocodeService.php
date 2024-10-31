@@ -9,6 +9,8 @@ namespace WapplerSystems\Address\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -68,10 +70,10 @@ class GeocodeService implements SingletonInterface
             ->where(
                 $queryBuilder->expr()->or(
                     $queryBuilder->expr()->isNull($latitudeField),
-                    $queryBuilder->expr()->eq($latitudeField, $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq($latitudeField, $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
                     $queryBuilder->expr()->eq($latitudeField, 0.00000000000),
                     $queryBuilder->expr()->isNull($longitudeField),
-                    $queryBuilder->expr()->eq($longitudeField, $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq($longitudeField, $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
                     $queryBuilder->expr()->eq($longitudeField, 0.00000000000)
                 )
             )
@@ -174,8 +176,7 @@ class GeocodeService implements SingletonInterface
     protected function initializeCache(string $name = 'address_geocoding'): FrontendInterface
     {
         try {
-            $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
-            return $cacheManager->getCache($name);
+            return GeneralUtility::makeInstance(CacheManager::class)->getCache($name);
         } catch (\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
             throw new \RuntimeException('Unable to load Cache!', 1548785854);
         }

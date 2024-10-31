@@ -9,6 +9,7 @@ namespace WapplerSystems\Address\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\LanguageAspect;
@@ -178,27 +179,27 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             $queryBuilder = $connection->createQueryBuilder();
 
             $extraWhere = [
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($address->getUid(), \PDO::PARAM_INT)),
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($address->getUid(), ParameterType::INTEGER)),
             ];
             if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, ParameterType::INTEGER));
             }
             if ((bool)($this->arguments['includeExternalType'] ?? false) === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, ParameterType::INTEGER));
             }
 
             $getter = 'get' . ucfirst($sortField) . '';
             if ($address->$getter() instanceof \DateTime) {
                 if ($label === 'prev') {
-                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($address->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($address->$getter()->getTimestamp(), ParameterType::INTEGER));
                 } else {
-                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($address->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($address->$getter()->getTimestamp(), ParameterType::INTEGER));
                 }
             } else {
                 if ($label === 'prev') {
-                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($address->$getter(), \PDO::PARAM_STR));
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($address->$getter()));
                 } else {
-                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($address->$getter(), \PDO::PARAM_STR));
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($address->$getter()));
                 }
             }
 
@@ -206,7 +207,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 ->select('*')
                 ->from('tx_address_domain_model_address')
                 ->where(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
                     $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
                 )
                 ->andWhere(...$extraWhere)
@@ -240,7 +241,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             ->select('*')
             ->from('tx_address_domain_model_address')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, ParameterType::INTEGER))
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();

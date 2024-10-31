@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace WapplerSystems\Address\Seo;
 
+use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\ParameterType;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
@@ -220,6 +222,7 @@ class AddressXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      *
      * @param int $addressId
      * @return int
+     * @throws Exception
      */
     protected function getSinglePidFromCategory(int $addressId): int
     {
@@ -235,9 +238,9 @@ class AddressXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_local', $queryBuilder->quoteIdentifier('sys_category.uid'))
             )
             ->where(
-                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_address_domain_model_address', \PDO::PARAM_STR)),
-                $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($addressId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_address_domain_model_address')),
+                $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($addressId, ParameterType::INTEGER))
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();

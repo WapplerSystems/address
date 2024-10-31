@@ -201,7 +201,7 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
                     ->select('l10n_parent', 'uid', 'sys_language_uid')
                     ->from('sys_category')
                     ->where(
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, ParameterType::INTEGER)),
                         $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
                     )
                     ->executeQuery()->fetchAllAssociative();

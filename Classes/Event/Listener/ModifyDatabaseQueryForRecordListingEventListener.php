@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace WapplerSystems\Address\Event\Listener;
 
+use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent;
 use TYPO3\CMS\Core\Localization\LanguageService;
@@ -41,7 +42,7 @@ final class ModifyDatabaseQueryForRecordListingEventListener
                 // Only hide elements which are inline, allowing for standard
                 // elements to show
                 $event->getQueryBuilder()->andWhere(
-                    $event->getQueryBuilder()->expr()->eq('tx_address_related_address', $event->getQueryBuilder()->createNamedParameter(0, \PDO::PARAM_INT))
+                    $event->getQueryBuilder()->expr()->eq('tx_address_related_address', $event->getQueryBuilder()->createNamedParameter(0, ParameterType::INTEGER))
                 );
 
                 if (self::$count === 0) {

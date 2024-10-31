@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace WapplerSystems\Address\Seo;
 
+use Doctrine\DBAL\ParameterType;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Routing\PageArguments;
@@ -82,26 +83,26 @@ class AddressAvailability
         if ($language === 0) {
             $where = [
                 $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, ParameterType::INTEGER)),
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, ParameterType::INTEGER))
                 ),
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($addressId, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($addressId, ParameterType::INTEGER)),
             ];
         } else {
             $where = [
                 $queryBuilder->expr()->or(
                     $queryBuilder->expr()->and(
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($addressId, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, ParameterType::INTEGER)),
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($addressId, ParameterType::INTEGER))
                     ),
                     $queryBuilder->expr()->and(
-                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($addressId, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($addressId, ParameterType::INTEGER)),
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, ParameterType::INTEGER))
                     ),
                     $queryBuilder->expr()->and(
-                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($addressId, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($addressId, ParameterType::INTEGER)),
+                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, ParameterType::INTEGER))
                     )
                 ),
             ];
