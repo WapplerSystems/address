@@ -21,11 +21,13 @@ foreach ($pluginConfig as $pluginName) {
     $contentTypeName = 'address_' . str_replace('_', '', $pluginName);
     $flexformFileName = in_array($pluginNameForLabel, ['search_result', 'list'], true) ? 'list' : $pluginNameForLabel;
 
-    ExtensionManagementUtility::addPiFlexFormValue(
-        '*',
-        'FILE:EXT:address/Configuration/FlexForms/flexform_' . $flexformFileName . '.xml',
-        $contentTypeName
-    );
+    if (file_exists(GeneralUtility::getFileAbsFileName('EXT:address/Configuration/FlexForms/flexform_' . $flexformFileName . '.xml'))) {
+        ExtensionManagementUtility::addPiFlexFormValue(
+            '*',
+            'FILE:EXT:address/Configuration/FlexForms/flexform_' . $flexformFileName . '.xml',
+            $contentTypeName
+        );
+    }
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-address-plugin-' . str_replace('_', '-', $pluginNameForLabel);
 
     //$GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['previewRenderer'] = \WapplerSystems\Address\Hooks\PluginPreviewRenderer::class;

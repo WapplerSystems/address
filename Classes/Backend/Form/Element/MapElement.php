@@ -18,7 +18,7 @@ class MapElement extends AbstractFormElement
      *
      * @return array
      */
-    public function render()
+    public function render(): array
     {
         $languageService = $this->getLanguageService();
 

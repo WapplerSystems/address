@@ -31,6 +31,8 @@ final class PageContentPreviewRenderingEventListener
      */
     public array $flexformData = [];
 
+    protected array $record = [];
+
 
     public function __construct(
         readonly TemplateLayout $templateLayout,
@@ -44,6 +46,7 @@ final class PageContentPreviewRenderingEventListener
     {
         $this->tableData = [];
         $this->addresses = [];
+        $this->record = $event->getRecord();
 
         if ($event->getTable() !== 'tt_content') {
             return;
@@ -71,7 +74,7 @@ final class PageContentPreviewRenderingEventListener
     /**
      *
      */
-    protected function getExtensionSummary(array $record)
+    protected function getExtensionSummary(array $record): string
     {
         switch ($record['CType']) {
 
@@ -172,7 +175,7 @@ final class PageContentPreviewRenderingEventListener
      * Render single address settings
      *
      */
-    public function getSingleAddressSettings()
+    public function getSingleAddressSettings(): void
     {
         $singleAddressRecord = (int)$this->getFieldFromFlexform('settings.singleAddress');
 
@@ -255,7 +258,7 @@ final class PageContentPreviewRenderingEventListener
      * @param string $table
      * @return string
      */
-    public function getRecordData($id, $table = 'pages')
+    public function getRecordData(int $id, string $table = 'pages'): string
     {
         $record = BackendUtilityCore::getRecord($table, $id);
 
@@ -270,7 +273,7 @@ final class PageContentPreviewRenderingEventListener
 
             if ($table === 'pages') {
                 $id = $record['uid'];
-                $currentPageId = (int)GeneralUtility::_GET('id');
+                $currentPageId = $this->record['pid'];
                 $link = htmlspecialchars($this->getEditLink($record, $currentPageId));
                 $switchLabel = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.switchToPage');
                 $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';

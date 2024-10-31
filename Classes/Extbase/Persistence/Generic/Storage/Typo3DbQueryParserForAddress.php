@@ -21,7 +21,7 @@ class Typo3DbQueryParserForAddress extends \TYPO3\CMS\Extbase\Persistence\Generi
 {
 
 
-    protected function parseOrderings(array $orderings, SourceInterface $source)
+    protected function parseOrderings(array $orderings, SourceInterface $source): void
     {
         if ($this->tableName !== 'tx_address_domain_model_address') {
             parent::parseOrderings($orderings, $source);

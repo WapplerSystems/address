@@ -9,6 +9,7 @@ namespace WapplerSystems\Address\Domain\Model;
  */
 
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 
 /**
@@ -20,7 +21,7 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     /**
      * @var int
      */
-    protected $sorting;
+    protected int $sorting;
 
     /**
      * @var \DateTime
@@ -58,23 +59,13 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     protected $l10nParent;
 
     /**
-     * @var string
-     */
-    protected $title;
-
-    /**
-     * @var string
-     */
-    protected $description;
-
-    /**
-     * @var \WapplerSystems\Address\Domain\Model\Category
+     * @var Category
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $parentcategory;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
+     * @var ObjectStorage<FileReference>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $images;
@@ -128,11 +119,11 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     /**
      * Initialize images
      *
-     * @return \WapplerSystems\Address\Domain\Model\Category
+     * @return Category
      */
     public function __construct()
     {
-        $this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->images = new ObjectStorage();
     }
 
     /**
@@ -275,48 +266,9 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
         $this->l10nParent = $l10nParent;
     }
 
-    /**
-     * Get category title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
 
     /**
-     * Set category title
-     *
-     * @param string $title title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     * @param ObjectStorage $images
      */
     public function setImages($images)
     {
@@ -324,7 +276,7 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
+     * @return ObjectStorage<FileReference>
      */
     public function getImages()
     {
@@ -369,7 +321,7 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     /**
      * Get parent category
      *
-     * @return \WapplerSystems\Address\Domain\Model\Category
+     * @return Category
      */
     public function getParentcategory()
     {
@@ -379,7 +331,7 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     /**
      * Set parent category
      *
-     * @param \WapplerSystems\Address\Domain\Model\Category $category parent category
+     * @param Category $category parent category
      */
     public function setParentcategory(Category $category)
     {
