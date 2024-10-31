@@ -9,6 +9,7 @@ namespace WapplerSystems\Address\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
@@ -60,7 +61,7 @@ use WapplerSystems\Address\Domain\Model\Address;
  */
 class SimplePrevNextViewHelper extends AbstractViewHelper
 {
-    /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
+    /* @var $dataMapper DataMapper */
     protected $dataMapper;
 
     /**
@@ -71,7 +72,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     /**
      * Inject the DataMapper
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
+     * @param DataMapper $dataMapper
      */
     public function injectDataMapper(DataMapper $dataMapper): void
     {
@@ -166,6 +167,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * @param string $pidList
      * @param string $sortField
      * @return array
+     * @throws Exception
      */
     protected function getNeighbours(Address $address, string $pidList, string $sortField): array
     {
@@ -232,7 +234,8 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
     /**
      * @param int $id
-     * @return array
+     * @return array|null
+     * @throws Exception
      */
     protected function getRawRecord(int $id): ?array
     {
