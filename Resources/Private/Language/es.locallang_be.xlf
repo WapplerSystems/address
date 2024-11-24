@@ -524,11 +524,11 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
       </trans-unit>
       <trans-unit id="hiddenContentElements.description">
         <source>Content elements are hidden in sys folders of type "address"!</source>
-        <target state="needs-translation">Content elements are hidden in sys folders of type "address"!</target>
+        <target state="translated">¡Los elementos están ocultos en carpareas sys de tipo «dirección»!</target>
       </trans-unit>
       <trans-unit id="wizard.title.address" xml:space="preserve">
 				<source>Address</source>
-			<target state="needs-translation">Address</target></trans-unit>
+			<target state="translated">Dirección</target></trans-unit>
       <trans-unit id="wizard.title.person" xml:space="preserve">
 				<source>Person</source>
 			<target state="needs-translation">Person</target></trans-unit>
