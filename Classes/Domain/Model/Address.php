@@ -849,7 +849,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getUrl()
     {
-        return $this->url;
+        $websiteContact = $this->getContactByType('website');
+        if ($websiteContact) {
+            return $websiteContact->getContent();
+        }
+        return '';
     }
 
     /**
