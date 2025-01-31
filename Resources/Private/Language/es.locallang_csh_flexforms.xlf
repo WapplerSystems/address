@@ -5,28 +5,28 @@
     <body>
       <trans-unit id="switchableControllerActions.description" xml:space="preserve">
 				<source>Set the view you want to display</source>
-			<target state="needs-translation">Set the view you want to display</target></trans-unit>
+			<target state="translated">Establezca la vista que desea representar</target></trans-unit>
       <trans-unit id="switchableControllerActions.details" xml:space="preserve">
 				<source>List view shows all address records. Latest uses a time restriction, the rest should be understandable</source>
-			<target state="needs-translation">List view shows all address records. Latest uses a time restriction, the rest should be understandable</target></trans-unit>
+			<target state="translated">La vista de lista muestra todos los registros de direcciones. Últimos usos de una restricción de tiempo, el resto serían comprensibles</target></trans-unit>
       <trans-unit id="settings.orderBy.description" xml:space="preserve">
 				<source>Define the sorting field</source>
-			<target state="needs-translation">Define the sorting field</target></trans-unit>
+			<target state="translated">Define el ordenado del campo</target></trans-unit>
       <trans-unit id="settings.orderDirection.description" xml:space="preserve">
 				<source>Define the sorting direction</source>
-			<target state="needs-translation">Define the sorting direction</target></trans-unit>
+			<target state="translated">Define el ordenado de la dirección</target></trans-unit>
       <trans-unit id="settings.dateField.description" xml:space="preserve">
 				<source>Select the field which is used to build the date menu.</source>
-			<target state="needs-translation">Select the field which is used to build the date menu.</target></trans-unit>
+			<target state="translated">Selecciona el campo el cual es utilizado para crear el menú de fecha.</target></trans-unit>
       <trans-unit id="settings.categories.description" xml:space="preserve">
 				<source>Choose the categories to define which address items are displayed</source>
-			<target state="needs-translation">Choose the categories to define which address items are displayed</target></trans-unit>
+			<target state="translated">Elija las categorías para definir cuál dirección de elementos es exhibida</target></trans-unit>
       <trans-unit id="settings.categoryConjunction.description" xml:space="preserve">
 				<source>Define how the selected categories are used</source>
-			<target state="needs-translation">Define how the selected categories are used</target></trans-unit>
+			<target state="translated">Define como las categorías seleccionadas son utilizadas</target></trans-unit>
       <trans-unit id="settings.includeSubCategories.description" xml:space="preserve">
 				<source>Include all subcategories of the selected categories too.</source>
-			<target state="needs-translation">Include all subcategories of the selected categories too.</target></trans-unit>
+			<target state="translated">Incluye todas las subcategorías de las categorías también seleccionadas.</target></trans-unit>
       <trans-unit id="settings.categoryConjunction.details" xml:space="preserve">
 				<source>&quot;Don't care&quot;: No category restriction is set. &quot;Show items with selected categories OR&quot;: A address records need to be related with at least one of the selected categories. &quot;Show selected categories AND&quot;. A address record need to be related to all selected categories. &quot;Do not show&quot; is the opposite of above.</source>
 			<target state="needs-translation">"Don't care": No category restriction is set. "Show items with selected categories OR": A address records need to be related with at least one of the selected categories. "Show selected categories AND". A address record need to be related to all selected categories. "Do not show" is the opposite of above.</target></trans-unit>
@@ -53,43 +53,43 @@
 			<target state="needs-translation">Define the pages/sysfolders which hold the address records</target></trans-unit>
       <trans-unit id="settings.recursive.description" xml:space="preserve">
 				<source>Select the recursion level of the startingpoint.</source>
-			<target state="needs-translation">Select the recursion level of the startingpoint.</target></trans-unit>
+			<target state="translated">Seleccione el nivel de recursión del punto inicial.</target></trans-unit>
       <trans-unit id="settings.detailPid.description" xml:space="preserve">
 				<source>Select the page on which the detail view should be shown.</source>
-			<target state="needs-translation">Select the page on which the detail view should be shown.</target></trans-unit>
+			<target state="translated">Seleccione la página en la cual sería mostrada la vista detallada.</target></trans-unit>
       <trans-unit id="settings.backPid.description" xml:space="preserve">
 				<source>Select the page which is used to return to on detail view.</source>
-			<target state="needs-translation">Select the page which is used to return to on detail view.</target></trans-unit>
+			<target state="translated">Seleccione la página la cual se utiliza para volver a la vista detallada.</target></trans-unit>
       <trans-unit id="settings.listPid.description" xml:space="preserve">
 				<source>Select the page on which the list view is shown.</source>
-			<target state="needs-translation">Select the page on which the list view is shown.</target></trans-unit>
+			<target state="translated">Seleccione la página en la cual se muestra la vista del listado.</target></trans-unit>
       <trans-unit id="settings.limit.description" xml:space="preserve">
 				<source>Set the maximum amount of address records to be displayed</source>
-			<target state="needs-translation">Set the maximum amount of address records to be displayed</target></trans-unit>
+			<target state="translated">Fije la cantidad máxima de registros de dirección que serán exhibidos</target></trans-unit>
       <trans-unit id="settings.offset.description" xml:space="preserve">
 				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
-			<target state="needs-translation">Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</target></trans-unit>
+			<target state="translated">Ajusta el desplazamiento para el inicio. P. ej. 3 significa que el primero de 2 registros no son analizados.</target></trans-unit>
       <trans-unit id="settings.topAddressFirst.description" xml:space="preserve">
 				<source>If checked: No matter which sorting is defined, top address are shown as first address records.</source>
-			<target state="needs-translation">If checked: No matter which sorting is defined, top address are shown as first address records.</target></trans-unit>
+			<target state="translated">Si está marcado: ninguna clasificación cuyo reordenado está definido, se muestra la dirección cima como primera dirección de los registros.</target></trans-unit>
       <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve">
 				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
-			<target state="needs-translation">If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</target></trans-unit>
+			<target state="translated">Si está marcado, este complemento no sería influenciado por medio de sobrecarga demandada de opciones los cuales pueden ser p. ej. una categoría por medio del parámetro URL.</target></trans-unit>
       <trans-unit id="settings.tags.description" xml:space="preserve">
 				<source>Filter by given tags.</source>
-			<target state="needs-translation">Filter by given tags.</target></trans-unit>
+			<target state="translated">Filtrar por etiquetas proporcionadas.</target></trans-unit>
       <trans-unit id="settings.media.maxWidth.description" xml:space="preserve">
 				<source>Maximal width of media elements (images, videos, ...)</source>
-			<target state="needs-translation">Maximal width of media elements (images, videos, ...)</target></trans-unit>
+			<target state="translated">Anchura máxima de los elementos multimedia (imágenes, vídeos, ...)</target></trans-unit>
       <trans-unit id="settings.media.maxHeight.description" xml:space="preserve">
 				<source>Maximal height of media elements (images, videos, ...)</source>
-			<target state="needs-translation">Maximal height of media elements (images, videos, ...)</target></trans-unit>
+			<target state="translated">Altura máxima de los elementos multimedia (imágenes, vídeos, ...)</target></trans-unit>
       <trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve">
 				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
-			<target state="needs-translation">Define the length of the teaser in chars. The teaser is typically cropped in the list view.</target></trans-unit>
+			<target state="translated">Define la longitud del guasón en caracteres. El guasón típicamente suele recortarse en la vista del listado.</target></trans-unit>
       <trans-unit id="settings.templateLayout.description" xml:space="preserve">
 				<source>Select a special layout for displaying address records.</source>
-			<target state="needs-translation">Select a special layout for displaying address records.</target></trans-unit>
+			<target state="translated">Seleccione una disposición especial para exhibir registros de dirección.</target></trans-unit>
     </body>
   </file>
 </xliff>
