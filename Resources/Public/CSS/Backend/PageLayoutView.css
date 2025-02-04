@@ -1,0 +1,51 @@
+.address-table {
+    background-color: transparent;
+    border: 0;
+    margin: 0
+}
+
+.address-table th {
+    width: 40%;
+}
+
+table.address-table > tbody > tr > th {
+    white-space: normal;
+}
+
+.address-table .setting-switcher .up {
+    display: none;
+}
+
+.address-table .setting-switcher .open .up {
+    display: inline;
+}
+
+.address-table .setting-switcher .open .down {
+    display: none;
+}
+
+.address-table .hidden-settings {
+    border: 0;
+}
+
+.address-table > tbody > tr > td {
+    padding: 3px 6px;
+}
+
+/**
+ * For small cols
+ */
+.address-table-small td, .address-table-small th {
+    display: block;
+    float: left;
+}
+
+.address-table-small tr {
+    border-bottom: 1px solid #ccc;
+}
+
+table.address-table-small > tbody > tr > th,
+table.address-table-small > tbody > tr > td {
+    border: 0;
+    width:100%
+}

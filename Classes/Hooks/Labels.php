@@ -26,9 +26,13 @@ class Labels
      */
     public function getUserLabelCategory(array &$params)
     {
+        if (!isset($GLOBALS['TYPO3_REQUEST'], $params['row'], $params['row']['title'])) {
+            return;
+        }
+
         $showTranslationInformation = false;
 
-        $getVars = GeneralUtility::_GET();
+        $getVars = $GLOBALS['TYPO3_REQUEST']->getQueryParams();
         if (isset($getVars['route']) && $getVars['route'] === '/record/edit'
             && isset($getVars['edit']) && is_array($getVars['edit'])
             && (isset($getVars['edit']['tt_content']) || isset($getVars['edit']['tx_address_domain_model_address']) || isset($getVars['edit']['sys_category']))
