@@ -5,13 +5,19 @@ namespace WapplerSystems\Address\Backend\Form\Element;
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use WapplerSystems\Address\Configuration\ConfigurationManager;
+use WapplerSystems\Address\Service\TypoScriptService;
 
 class MapElement extends AbstractFormElement
 {
 
+
+    public function __construct(readonly private TypoScriptService $typoScriptService)
+    {
+
+    }
 
     /**
      * Renders the Google map.
@@ -22,6 +28,13 @@ class MapElement extends AbstractFormElement
     {
         $languageService = $this->getLanguageService();
 
+        $typoscript = null;
+        if ($this->data['site'] instanceof Site) {
+            $typoscript = $this->typoScriptService->getTypoScript($this->data['parentPageRow']['uid'], $this->data['request'], 0, $this->data['rootline'], $this->data['site']);
+        }
+        $typoscript = $typoscript->toArray();
+        $pluginSettings = $typoscript['plugin.']['tx_address.']['settings.'] ?? [];
+
         $table = $this->data['tableName'];
         $fieldName = $this->data['fieldName'];
         $row = $this->data['databaseRow'];
@@ -30,8 +43,6 @@ class MapElement extends AbstractFormElement
 
         $itemValue = $parameterArray['itemFormElValue'];
         $config = $parameterArray['fieldConf']['config'];
-
-        $pluginSettings = $this->getTypoScriptSettings();
 
         $googleMapsLibrary = '';
         if ($pluginSettings['googlemaps']['javascript']['apiUrl'] ?? false) {
