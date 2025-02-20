@@ -17,27 +17,27 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     /**
      * @var string
      */
-    protected string $title;
+    protected string $title = '';
 
     /**
      * @var string
      */
-    protected string $description;
+    protected string $description = '';
 
     /**
      * @var string
      */
-    protected string $alternative;
+    protected string $alternative = '';
 
     /**
      * @var string
      */
-    protected string $link;
+    protected string $link = '';
 
     /**
      * @var bool
      */
-    protected bool $showinpreview;
+    protected bool $showinpreview = false;
 
     /**
      * Set File uid
@@ -76,7 +76,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getAlternative(): ?string
     {
-        return $this->alternative !== null ? $this->alternative : $this->getOriginalResource()->getAlternative();
+        return $this->alternative !== '' ? $this->alternative : $this->getOriginalResource()->getAlternative();
     }
 
     /**
@@ -96,7 +96,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getDescription(): ?string
     {
-        return $this->description !== null ? $this->description : $this->getOriginalResource()->getDescription();
+        return $this->description !== '' ? $this->description : $this->getOriginalResource()->getDescription();
     }
 
     /**
@@ -115,7 +115,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getLink(): ?string
     {
-        return $this->link !== null ? $this->link : $this->getOriginalResource()->getLink();
+        return $this->link !== '' ? $this->link : $this->getOriginalResource()->getLink();
     }
 
     /**
@@ -135,7 +135,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getTitle(): ?string
     {
-        return $this->title !== null ? $this->title : $this->getOriginalResource()->getTitle();
+        return $this->title !== '' ? $this->title : $this->getOriginalResource()->getTitle();
     }
 
     /**
