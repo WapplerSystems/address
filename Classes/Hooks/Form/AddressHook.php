@@ -5,6 +5,8 @@ namespace WapplerSystems\Address\Hooks\Form;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\Domain\Exception\RenderingException;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
+use TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface;
+use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
 use WapplerSystems\Address\Domain\Repository\AddressRepository;
 
 class AddressHook
@@ -17,7 +19,7 @@ class AddressHook
      */
     public function initializeFormElement(GenericFormElement $renderable)
     {
-        $param = GeneralUtility::_GP('tx_address_pi1');
+        $param = $renderable->getRequest()->getQueryParams()['tx_address_pi1'] ?? [];
         if (is_array($param) && $renderable->getIdentifier() === 'addressUid' && (int)$param['contactAddress'] > 0) {
             $renderable->setDefaultValue((int)$param['contactAddress']);
         }
@@ -25,14 +27,14 @@ class AddressHook
 
 
     /**
-     * @param \TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime
-     * @param \TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface $renderable
+     * @param FormRuntime $formRuntime
+     * @param RootRenderableInterface $renderable
      * @return void
      * @throws RenderingException
      */
-    public function beforeRendering(\TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime, \TYPO3\CMS\Form\Domain\Model\Renderable\RootRenderableInterface $renderable)
+    public function beforeRendering(FormRuntime $formRuntime, RootRenderableInterface $renderable)
     {
-        $param = GeneralUtility::_GP('tx_address_pi1');
+        $param = $formRuntime->getRequest()->getQueryParams()['tx_address_pi1'] ?? [];
 
         $addressUid = $formRuntime->getFormState()->getFormValue('addressUid') ?? $param['address'] ?? null;
 
