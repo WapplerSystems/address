@@ -10,15 +10,13 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 $pluginConfig = ['list_and_detail', 'list', 'detail', 'search_form', 'search_result', 'category_list', 'tag_list', 'map'];
 foreach ($pluginConfig as $pluginName) {
     $pluginNameForLabel = $pluginName;
-    ExtensionUtility::registerPlugin(
+    $contentTypeName = ExtensionUtility::registerPlugin(
         'address',
         GeneralUtility::underscoredToUpperCamelCase($pluginName),
         'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.' . $pluginNameForLabel . '.title',
-        null,
+        'ext-address-plugin-'.str_replace('_', '-', $pluginName),
         'address'
     );
-
-    $contentTypeName = 'address_' . str_replace('_', '', $pluginName);
     $flexformFileName = in_array($pluginNameForLabel, ['search_result', 'list'], true) ? 'list' : $pluginNameForLabel;
 
     if (file_exists(GeneralUtility::getFileAbsFileName('EXT:address/Configuration/FlexForms/flexform_' . $flexformFileName . '.xml'))) {

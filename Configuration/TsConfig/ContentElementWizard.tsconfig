@@ -64,6 +64,15 @@ mod.wizards.newContentElement.wizardItems.ext-address {
         CType = address_taglist
       }
     }
+
+    map {
+      iconIdentifier = ext-address-plugin-map
+      title = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.map.title
+      description = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:plugin.map.description
+      tt_content_defValues {
+        CType = address_map
+      }
+    }
   }
 
   show = *

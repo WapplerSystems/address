@@ -1,0 +1,10 @@
+
+
+# address template layouts
+tx_address.templateLayouts {
+  Short = Short
+}
+
+mod.wizards.newContentElement.wizardItems.address {
+  header = LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pi1_title
+}

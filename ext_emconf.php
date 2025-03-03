@@ -1,7 +1,7 @@
 <?php
 
 
-$EM_CONF['address'] = [
+$EM_CONF[$_EXTKEY] = [
     'title' => 'Address list',
     'description' => 'Address extension with multiple contact types per address. Code is based on news extension.',
     'category' => 'fe',

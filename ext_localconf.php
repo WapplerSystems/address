@@ -11,7 +11,6 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use WapplerSystems\Address\Backend\Form\Element\MapElement;
 use WapplerSystems\Address\Backend\FormDataProvider\AddressRowInitializeNew;
-use WapplerSystems\Address\Command\AddressImportCommandController;
 use WapplerSystems\Address\Controller\AddressController;
 use WapplerSystems\Address\Controller\CategoryController;
 use WapplerSystems\Address\Controller\TagController;
@@ -125,15 +124,6 @@ $boot = static function (): void {
         'className' => Typo3DbQueryParserForAddress::class,
     ];
 
-
-
-    ExtensionManagementUtility::addPageTSConfig(
-        "@import 'EXT:address/Configuration/TsConfig/ContentElementWizard.tsconfig'"
-    );
-
-    ExtensionManagementUtility::addPageTSConfig(
-        "@import 'EXT:address/Configuration/TsConfig/Page/config.tsconfig'"
-    );
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
     plugin {

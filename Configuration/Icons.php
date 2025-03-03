@@ -98,5 +98,9 @@ return [
     'ext-address-plugin-tag-list' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
-    ]
+    ],
+    'ext-address-plugin-map' => [
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
+    ],
 ];
