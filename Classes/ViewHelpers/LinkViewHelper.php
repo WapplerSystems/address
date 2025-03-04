@@ -160,10 +160,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     ) {
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
-            $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
+            $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'] ?? '',
                 true);
 
-            if ($detailPidDeterminationMethods[0] === 'record') {
+            if (($detailPidDeterminationMethods[0] ?? '') === 'record') {
                 $detailPid = $this->getDetailPidFromRecord($tsSettings, $address);
                 if ($detailPid !== 0) {
                     $configuration['parameter'] = $detailPid;
@@ -195,7 +195,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_address_pi1[address]=' . $this->getAddressId($address);
         $configuration['additionalParams'] .= '&tx_address_pi1[address]=' . $this->getAddressId($address);
 
-        if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
+        if ((int)($tsSettings['link']['skipControllerAndAction'] ?? 0) !== 1) {
             $configuration['additionalParams'] .= '&tx_address_pi1[controller]=Address' .
                 '&tx_address_pi1[action]=detail';
         }

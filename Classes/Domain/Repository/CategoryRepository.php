@@ -10,6 +10,7 @@ namespace WapplerSystems\Address\Domain\Repository;
  */
 
 use Doctrine\DBAL\Connection;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -214,16 +215,15 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
 
     /**
      * Get the current sys language uid
-     *
-     * @return int
      */
-    protected function getSysLanguageUid()
+    protected function getSysLanguageUid(): int
     {
         $sysLanguage = 0;
+
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            $sysLanguage = $GLOBALS['TSFE']->sys_language_content;
-        } elseif ((int)GeneralUtility::_GP('L')) {
-            $sysLanguage = (int)GeneralUtility::_GP('L');
+            $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
+        } elseif ((int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null)) {
+            $sysLanguage = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null);
         }
 
         return $sysLanguage;
