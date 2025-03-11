@@ -31,7 +31,7 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
      * @param int $recursionCounter recursion counter
      * @return mixed array of rows or FALSE if nothing found
      */
-    public function queryTable(&$params, $recursionCounter = 0)
+    public function queryTable(&$params, $recursionCounter = 0): array
     {
         $uid = (int)GeneralUtility::_GP('uid');
         $records = parent::queryTable($params, $recursionCounter);
