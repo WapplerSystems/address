@@ -5,40 +5,40 @@
     <body>
       <trans-unit id=".description" xml:space="preserve">
 				<source>Address record</source>
-			<target state="needs-translation">Address record</target></trans-unit>
+			<target state="translated">Registro de dirección</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve">
 				<source>Address system.</source>
-			<target state="needs-translation">Address system.</target></trans-unit>
+			<target state="translated">Sistema de dirección.</target></trans-unit>
       <trans-unit id="sys_language_uid.description" xml:space="preserve">
 				<source>Language of the address record.</source>
-			<target state="needs-translation">Language of the address record.</target></trans-unit>
+			<target state="translated">Idioma del registro de dirección.</target></trans-unit>
       <trans-unit id="starttime.description" xml:space="preserve">
 				<source>Define a date on which the address record should be shown.</source>
-			<target state="needs-translation">Define a date on which the address record should be shown.</target></trans-unit>
+			<target state="translated">Defina una fecha en la cual el registro de dirección sería mostrado.</target></trans-unit>
       <trans-unit id="endtime.description" xml:space="preserve">
 				<source>Define a date on which the address record should be hidden.</source>
-			<target state="needs-translation">Define a date on which the address record should be hidden.</target></trans-unit>
+			<target state="translated">Defina una fecha en la cual el registro de dirección estaría oculto.</target></trans-unit>
       <trans-unit id="fe_group.description" xml:space="preserve">
 				<source>Select the user groups which are allowed to see the address record.</source>
-			<target state="needs-translation">Select the user groups which are allowed to see the address record.</target></trans-unit>
+			<target state="translated">Seleccione los grupos de usuario los cuales están permitidos para ver el registro de dirección.</target></trans-unit>
       <trans-unit id="editlock.description" xml:space="preserve">
 				<source>If checked, this address record can only be edited by administrators.</source>
-			<target state="needs-translation">If checked, this address record can only be edited by administrators.</target></trans-unit>
+			<target state="translated">Si está marcado, este registro de dirección solo puede ser editado por los administradores.</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden records are not shown in the frontend.</source>
-			<target state="needs-translation">Hidden records are not shown in the frontend.</target></trans-unit>
+			<target state="translated">Registros ocultados no son mostrados en el frontend.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve">
 				<source>Address title</source>
-			<target state="needs-translation">Address title</target></trans-unit>
+			<target state="translated">Título de dirección</target></trans-unit>
       <trans-unit id="alternative_title.description" xml:space="preserve">
 				<source>Alternative Title will be used as the title for the browser window / tab</source>
-			<target state="needs-translation">Alternative Title will be used as the title for the browser window / tab</target></trans-unit>
+			<target state="translated">El Título Alternativo será utilizado como el título para el tabulador/ventana del explorador</target></trans-unit>
       <trans-unit id="teaser.description" xml:space="preserve">
 				<source>Be aware that it can be cropped.</source>
-			<target state="needs-translation">Be aware that it can be cropped.</target></trans-unit>
+			<target state="translated">Tome en cuenta que puede estar recortado.</target></trans-unit>
       <trans-unit id="type.description" xml:space="preserve">
 				<source>Select the type which can be either a normal address record, a link to an internal page or a link to an external page.</source>
-			<target state="needs-translation">Select the type which can be either a normal address record, a link to an internal page or a link to an external page.</target></trans-unit>
+			<target state="translated">Seleccione el tipo el cual puede ser o bien un registro de dirección usual, un enlace a una página interna o un enlace a una página externa.</target></trans-unit>
       <trans-unit id="istopaddress.description" xml:space="preserve">
 				<source>Top address records can get a special treated concerning layout, sorting, ...</source>
 			<target state="needs-translation">Top address records can get a special treated concerning layout, sorting, ...</target></trans-unit>
