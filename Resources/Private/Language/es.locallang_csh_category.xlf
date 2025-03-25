@@ -5,37 +5,37 @@
     <body>
       <trans-unit id=".description" xml:space="preserve">
 				<source>Category record</source>
-			<target state="needs-translation">Category record</target></trans-unit>
+			<target state="translated">Registro de categoría</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve">
 				<source>Category for address records.</source>
-			<target state="needs-translation">Category for address records.</target></trans-unit>
+			<target state="translated">La categoría para registros de dirección.</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve">
 				<source>See also the website http://www.address.com/</source>
-			<target state="needs-translation">See also the website http://www.address.com/</target></trans-unit>
+			<target state="translated">Consulte también el sitio web http://www.address.com/</target></trans-unit>
       <trans-unit id="sys_language_uid.description" xml:space="preserve">
 				<source>Language of the category</source>
-			<target state="needs-translation">Language of the category</target></trans-unit>
+			<target state="translated">Idioma de la categoría</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden categories are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden categories are never shown in the frontend.</target></trans-unit>
+			<target state="translated">Categorías ocultas nunca son mostradas en el frontent.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve">
 				<source>Title of the category</source>
-			<target state="needs-translation">Title of the category</target></trans-unit>
+			<target state="translated">Título de la categoría</target></trans-unit>
       <trans-unit id="parentcategory.description" xml:space="preserve">
 				<source>Select a parent category of this record to build a category tree.</source>
-			<target state="needs-translation">Select a parent category of this record to build a category tree.</target></trans-unit>
+			<target state="translated">Seleccione una categoría antecesora de este registro para compilar un árbol de categoría.</target></trans-unit>
       <trans-unit id="image.description" xml:space="preserve">
 				<source>Optional image of a category.</source>
-			<target state="needs-translation">Optional image of a category.</target></trans-unit>
+			<target state="translated">Imagen opcional de una categoría.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve">
 				<source>Optional description of a category.</source>
-			<target state="needs-translation">Optional description of a category.</target></trans-unit>
+			<target state="translated">Descripción opcional de una categoría.</target></trans-unit>
       <trans-unit id="single_pid.description" xml:space="preserve">
 				<source>Choose a page which is used to show the detail view of address records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
-			<target state="needs-translation">Choose a page which is used to show the detail view of address records related with this category. This setting is overridden with a configured page inside the plugin's settings.</target></trans-unit>
+			<target state="translated">Elija una página la cual es utilizada para mostrar la vista detallada de registros de dirección relativa con esta categoría. Estos parámetros son descartados con una página interna configurada para las opciones del complemento.</target></trans-unit>
       <trans-unit id="shortcut.description" xml:space="preserve">
 				<source>Optional link of a category.</source>
-			<target state="needs-translation">Optional link of a category.</target></trans-unit>
+			<target state="translated">Enlace opcional de una categoría.</target></trans-unit>
     </body>
   </file>
 </xliff>
