@@ -245,6 +245,9 @@ class AddressRepository extends AbstractDemandedRepository
                     } else {
                         $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                     }
+                    if ($orderField === 'title') {
+                        $orderings['last_name'] = $orderings[$orderField];
+                    }
                 }
             }
         }
