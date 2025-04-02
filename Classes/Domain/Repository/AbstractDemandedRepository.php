@@ -106,7 +106,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
         $query->getQuerySettings()->setRespectStoragePage(false);
 
         if ($disableLanguageOverlayMode) {
-            $query->getQuerySettings()->setLanguageOverlayMode(false);
+            $query->getQuerySettings()->setRespectSysLanguage(false);
         }
 
         $constraints = $this->createConstraintsFromDemand($query, $demand);
@@ -145,12 +145,12 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
         }
 
         // @todo consider moving this to a separate function as well
-        if ($demand->getLimit() != null) {
+        if ($demand->getLimit() !== 0) {
             $query->setLimit($demand->getLimit());
         }
 
         // @todo consider moving this to a separate function as well
-        if ($demand->getOffset() != null) {
+        if ($demand->getOffset() !== 0) {
             if (!$query->getLimit()) {
                 $query->setLimit(PHP_INT_MAX);
             }
