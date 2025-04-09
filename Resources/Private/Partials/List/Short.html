@@ -1,10 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
       data-namespace-typo3-fluid="true">
-<!--
-	=====================
-		Partials/List/Item.html
--->
+
 <div class="address address-{address.type}{f:if(condition: address.istopaddress, then: ' topaddress')} {ad:categoryNames(address:address,prefix:'address-cat-')} mb-3">
     <ad:excludeDisplayedAddress address="{address}"/>
     <!-- header -->
