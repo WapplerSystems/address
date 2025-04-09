@@ -396,7 +396,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      * @param Search $search search object
      * @return AddressDemand
      */
-    public function setSearch(Search $search = null): AddressDemand
+    public function setSearch(?Search $search = null): AddressDemand
     {
         $this->search = $search;
         return $this;
