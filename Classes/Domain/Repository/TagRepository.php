@@ -29,7 +29,7 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
      * @param string|null $startingPoint starting point uid or comma separated list
      * @return array|QueryResultInterface|object[]
      */
-    public function findByIdList(array $idList, array $ordering = [], string $startingPoint = null): array|QueryResultInterface
+    public function findByIdList(array $idList, array $ordering = [], ?string $startingPoint = null): array|QueryResultInterface
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823596);

@@ -179,7 +179,7 @@ class AddressController extends AddressBaseController
      *
      * @param array|null $overwriteDemand
      */
-    public function listAction(array $overwriteDemand = null): ResponseInterface
+    public function listAction(?array $overwriteDemand = null): ResponseInterface
     {
         $possibleRedirect = $this->forwardToDetailActionWhenRequested();
         if ($possibleRedirect) {
@@ -242,7 +242,7 @@ class AddressController extends AddressBaseController
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
      */
-    public function detailAction(Address $address = null, int $currentPage = 1): ResponseInterface
+    public function detailAction(?Address $address = null, int $currentPage = 1): ResponseInterface
     {
         if ($address === null) {
             $previewAddressId = (int)($this->settings['singleAddress'] ?? 0);
@@ -366,7 +366,7 @@ class AddressController extends AddressBaseController
      * @throws \UnexpectedValueException
      */
     public function searchFormAction(
-        Search $search = null,
+        ?Search $search = null,
         array  $overwriteDemand = []
     )
     {
@@ -403,7 +403,7 @@ class AddressController extends AddressBaseController
      * @throws \UnexpectedValueException
      */
     public function searchResultAction(
-        Search $search = null,
+        ?Search $search = null,
         array  $overwriteDemand = []
     )
     {
