@@ -48,40 +48,6 @@ return [
                 'type' => 'passthrough',
             ]
         ],
-        'sys_language_uid' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-            'config' => ['type' => 'language']
-        ],
-        'l10n_parent' => [
-            'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'items' => [
-                    ['', 0],
-                ],
-                'foreign_table' => 'tx_address_domain_model_link',
-                'foreign_table_where' => 'AND tx_address_domain_model_link.pid=###CURRENT_PID### AND tx_address_domain_model_link.sys_language_uid IN (-1,0)',
-                'default' => 0,
-            ]
-        ],
-        'l10n_diffsource' => [
-            'config' => [
-                'type' => 'passthrough',
-                'default' => ''
-            ]
-        ],
-        'hidden' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
-            'config' => [
-                'type' => 'check',
-                'default' => 0
-            ]
-        ],
         'title' => [
             'exclude' => false,
             'l10n_mode' => 'mergeIfNotBlank',
