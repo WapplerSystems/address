@@ -45,7 +45,7 @@ CREATE TABLE tx_address_domain_model_address
 	twitter               varchar(255)     DEFAULT '',
 	facebook              varchar(255)     DEFAULT '',
 	linkedin              varchar(255)     DEFAULT '',
-	latitude              decimal(8, 6)    DEFAULT NULL,
+	latitude              decimal(9, 6)    DEFAULT NULL,
 	longitude             decimal(9, 6)    DEFAULT NULL,
 	gender                varchar(1)       DEFAULT ''  NOT NULL,
 	istopaddress          tinyint(4)       DEFAULT '0' NOT NULL,
