@@ -32,7 +32,7 @@
                     <f:link.email email="{contact.content}">{contact.content}</f:link.email><br />
                 </f:for>
                 <f:for as="contact" each="{ad:address.contacts(address:address, type:'telephone')}">
-                    <i class="d-flex fa fa-phone c-gray mr-2 mt-1" aria-hidden="true"></i> {contact.content}<br />
+                    <ad:link.telephone number="{contact.content}">{contact.content}</ad:link.telephone><br />
                 </f:for>
 
 
