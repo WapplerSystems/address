@@ -3,22 +3,6 @@
 #
 CREATE TABLE tx_address_domain_model_address
 (
-	uid                   int(11)                      NOT NULL auto_increment,
-	pid                   int(11)          DEFAULT '0' NOT NULL,
-	tstamp                int(11)          DEFAULT '0' NOT NULL,
-	crdate                int(11)          DEFAULT '0' NOT NULL,
-	cruser_id             int(11)          DEFAULT '0' NOT NULL,
-	t3_origuid            int(11)          DEFAULT '0' NOT NULL,
-	editlock              tinyint(4)       DEFAULT '0' NOT NULL,
-	sys_language_uid      int(11)          DEFAULT '0' NOT NULL,
-	l10n_parent           int(11)          DEFAULT '0' NOT NULL,
-	l10n_diffsource       mediumtext,
-	deleted               tinyint(4)       DEFAULT '0' NOT NULL,
-	hidden                tinyint(4)       DEFAULT '0' NOT NULL,
-	starttime             int(11)          DEFAULT '0' NOT NULL,
-	endtime               int(11)          DEFAULT '0' NOT NULL,
-	sorting               int(11)          DEFAULT '0' NOT NULL,
-
 	title                 tinytext,
 	first_name            tinytext,
 	middle_name           tinytext,
@@ -78,42 +62,19 @@ CREATE TABLE tx_address_domain_model_address
 	import_source         varchar(100)     DEFAULT ''  NOT NULL,
 
 
-	PRIMARY KEY (uid),
-	KEY parent (pid),
-	KEY sys_language_uid_l10n_parent (sys_language_uid, l10n_parent),
 	KEY import (import_id, import_source)
 );
 
 
 CREATE TABLE tx_address_domain_model_contact
 (
-	uid              int(11)                NOT NULL auto_increment,
-	pid              int(11)    DEFAULT '0' NOT NULL,
-	tstamp           int(11)    DEFAULT '0' NOT NULL,
-	crdate           int(11)    DEFAULT '0' NOT NULL,
-	cruser_id        int(11)    DEFAULT '0' NOT NULL,
-	t3_origuid       int(11)    DEFAULT '0' NOT NULL,
-	editlock         tinyint(4) DEFAULT '0' NOT NULL,
-	sys_language_uid int(11)    DEFAULT '0' NOT NULL,
-	l10n_parent      int(11)    DEFAULT '0' NOT NULL,
-	l10n_diffsource  mediumtext,
-	deleted          tinyint(4) DEFAULT '0' NOT NULL,
-	hidden           tinyint(4) DEFAULT '0' NOT NULL,
-	starttime        int(11)    DEFAULT '0' NOT NULL,
-	endtime          int(11)    DEFAULT '0' NOT NULL,
-	sorting          int(11)    DEFAULT '0' NOT NULL,
 
 	type             varchar(100)           NOT NULL DEFAULT '',
 	content          text,
 
 	address          int(11)    DEFAULT '0' NOT NULL,
 
-	notes            text,
-
-
-	PRIMARY KEY (uid),
-	KEY parent (pid),
-	KEY sys_language_uid_l10n_parent (sys_language_uid, l10n_parent)
+	notes            text
 );
 
 
@@ -163,34 +124,10 @@ CREATE TABLE tx_address_domain_model_address_related_mm
 #
 CREATE TABLE tx_address_domain_model_link
 (
-	uid              int(11)                 NOT NULL auto_increment,
-	pid              int(11)     DEFAULT '0' NOT NULL,
-	tstamp           int(11)     DEFAULT '0' NOT NULL,
-	crdate           int(11)     DEFAULT '0' NOT NULL,
-	cruser_id        int(11)     DEFAULT '0' NOT NULL,
-	sys_language_uid int(11)     DEFAULT '0' NOT NULL,
-	l10n_parent      int(11)     DEFAULT '0' NOT NULL,
-	l10n_diffsource  mediumtext,
-	t3ver_oid        int(11)     DEFAULT '0' NOT NULL,
-	t3ver_id         int(11)     DEFAULT '0' NOT NULL,
-	t3_origuid       int(11)     DEFAULT '0' NOT NULL,
-	t3ver_wsid       int(11)     DEFAULT '0' NOT NULL,
-	t3ver_label      varchar(30) DEFAULT ''  NOT NULL,
-	t3ver_state      tinyint(4)  DEFAULT '0' NOT NULL,
-	t3ver_stage      tinyint(4)  DEFAULT '0' NOT NULL,
-	t3ver_count      int(11)     DEFAULT '0' NOT NULL,
-	t3ver_tstamp     int(11)     DEFAULT '0' NOT NULL,
-	t3ver_move_id    int(11)     DEFAULT '0' NOT NULL,
-	sorting          int(10)     DEFAULT '0' NOT NULL,
-	deleted          tinyint(4)  DEFAULT '0' NOT NULL,
-	hidden           tinyint(4)  DEFAULT '0' NOT NULL,
 	parent           int(11)     DEFAULT '0' NOT NULL,
 	title            tinytext,
 	description      text,
-	uri              text,
-
-	PRIMARY KEY (uid),
-	KEY parent (pid)
+	uri              text
 );
 
 #
@@ -198,33 +135,12 @@ CREATE TABLE tx_address_domain_model_link
 #
 CREATE TABLE tx_address_domain_model_tag
 (
-	uid             int(11)                 NOT NULL auto_increment,
-	pid             int(11)     DEFAULT '0' NOT NULL,
-	tstamp          int(11)     DEFAULT '0' NOT NULL,
-	crdate          int(11)     DEFAULT '0' NOT NULL,
-	cruser_id       int(11)     DEFAULT '0' NOT NULL,
-	sorting         int(11)     DEFAULT '0' NOT NULL,
-	deleted         tinyint(4)  DEFAULT '0' NOT NULL,
-	hidden          tinyint(4)  DEFAULT '0' NOT NULL,
-	t3ver_oid       int(11)     DEFAULT '0' NOT NULL,
-	t3ver_id        int(11)     DEFAULT '0' NOT NULL,
-	t3_origuid      int(11)     DEFAULT '0' NOT NULL,
-	t3ver_wsid      int(11)     DEFAULT '0' NOT NULL,
-	t3ver_label     varchar(30) DEFAULT ''  NOT NULL,
-	t3ver_state     tinyint(4)  DEFAULT '0' NOT NULL,
-	t3ver_stage     tinyint(4)  DEFAULT '0' NOT NULL,
-	t3ver_count     int(11)     DEFAULT '0' NOT NULL,
-	t3ver_tstamp    int(11)     DEFAULT '0' NOT NULL,
-	t3ver_move_id   int(11)     DEFAULT '0' NOT NULL,
 	title           tinytext,
 	seo_title       varchar(255)            NOT NULL DEFAULT '',
 	seo_description text,
 	seo_headline    varchar(255)            NOT NULL DEFAULT '',
 	seo_text        text,
-	notes           text,
-
-	PRIMARY KEY (uid),
-	KEY parent (pid)
+	notes           text
 );
 
 #
