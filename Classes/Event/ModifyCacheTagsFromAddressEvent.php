@@ -15,15 +15,9 @@ use WapplerSystems\Address\Domain\Model\Address;
 
 final class ModifyCacheTagsFromAddressEvent
 {
-    /**
-     * @var array
-     */
-    private $cacheTags;
+    private array $cacheTags;
 
-    /**
-     * @var Address
-     */
-    private $address;
+    private Address $address;
 
     public function __construct(array $cacheTags, Address $address)
     {

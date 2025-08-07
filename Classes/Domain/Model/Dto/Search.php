@@ -18,33 +18,19 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Basic search word
-     *
-     * @var string
      */
-    protected $subject;
+    protected string $subject;
 
     /**
      * Search fields
-     *
-     * @var string
      */
-    protected $fields;
+    protected string $fields;
 
-    /**
-     * @var int
-     */
-    protected $distance;
+    protected int $distance;
 
-    /**
-     * @var string
-     */
-    protected $location;
+    protected string $location;
 
-
-    /**
-     * @var array
-     */
-    protected $settings = [];
+    protected array $settings = [];
 
 
     /**
@@ -52,7 +38,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -62,27 +48,23 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param string $subject
      */
-    public function setSubject($subject)
+    public function setSubject($subject): void
     {
         $this->subject = $subject;
     }
 
     /**
      * Get fields
-     *
-     * @return string
      */
-    public function getFields()
+    public function getFields(): string
     {
         return $this->fields;
     }
 
     /**
      * Set fields
-     *
-     * @param $fields
      */
-    public function setFields($fields)
+    public function setFields($fields): void
     {
         $this->fields = $fields;
     }
@@ -91,7 +73,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getLocation()
+    public function getLocation(): string
     {
         return $this->location;
     }
@@ -99,7 +81,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $location
      */
-    public function setLocation(string $location)
+    public function setLocation(string $location): void
     {
         $this->location = $location;
     }
@@ -107,7 +89,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return int
      */
-    public function getDistance()
+    public function getDistance(): int
     {
         return $this->distance;
     }
@@ -115,7 +97,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param int $distance
      */
-    public function setDistance(int $distance)
+    public function setDistance(int $distance): void
     {
         $this->distance = $distance;
     }
@@ -131,7 +113,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param array $settings
      */
-    public function setSettings(array $settings)
+    public function setSettings(array $settings): void
     {
         $this->settings = $settings;
     }

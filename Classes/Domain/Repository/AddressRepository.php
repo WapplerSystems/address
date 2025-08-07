@@ -38,12 +38,13 @@ class AddressRepository extends AbstractDemandedRepository
      * @param string $conjunction
      * @param bool $includeSubCategories
      * @return ConstraintInterface|null
+     * @throws InvalidQueryException
      */
     protected function createCategoryConstraint(
         QueryInterface $query,
-                       $categories,
-                       $conjunction,
-                       $includeSubCategories = false
+        array|string   $categories,
+        string         $conjunction,
+        bool           $includeSubCategories = false
     ): ?ConstraintInterface
     {
         $constraint = null;
@@ -51,7 +52,7 @@ class AddressRepository extends AbstractDemandedRepository
 
         // If "ignore category selection" is used, nothing needs to be done
         if (empty($conjunction)) {
-            return $constraint;
+            return null;
         }
 
         if (is_string($categories)) {
@@ -112,7 +113,7 @@ class AddressRepository extends AbstractDemandedRepository
         /** @var AddressDemand $demand */
         $constraints = [];
 
-        if ($demand->getCategories() && $demand->getCategories() !== '0') {
+        if (count($demand->getCategories()) > 0) {
             $constraints['categories'] = $this->createCategoryConstraint(
                 $query,
                 $demand->getCategories(),
@@ -121,7 +122,7 @@ class AddressRepository extends AbstractDemandedRepository
             );
         }
 
-        if ($demand->getTypes()) {
+        if (count($demand->getTypes()) > 0) {
             $constraints['type'] = $query->in('type', $demand->getTypes());
         }
 
@@ -146,24 +147,23 @@ class AddressRepository extends AbstractDemandedRepository
         }
 
         // storage page
-        if ($demand->getStoragePage() !== '') {
-            $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
-            $constraints['pid'] = $query->in('pid', $pidList);
+        if (count($demand->getStoragePage()) > 0) {
+            $constraints['pid'] = $query->in('pid', $demand->getStoragePage());
         }
 
         // Tags
         $tags = $demand->getTags();
-        if ($tags && \is_string($tags)) {
-            $tagList = explode(',', $tags);
+        /*
+        if (count($tags) > 0) {
 
             $subConstraints = [];
-            foreach ($tagList as $singleTag) {
-                $subConstraints[] = $query->contains('tags', $singleTag);
+            foreach ($tags as $singleTagId) {
+                $subConstraints[] = $query->contains('tags', $singleTagId);
             }
             if (\count($subConstraints) > 0) {
                 $constraints['tags'] = $query->logicalOr(...$subConstraints);
             }
-        }
+        }*/
 
         // Search
         $searchConstraints = $this->getSearchConstraints($query, $demand);
@@ -183,11 +183,10 @@ class AddressRepository extends AbstractDemandedRepository
 
         // Hide id list
         $hideIdList = $demand->getHideIdList();
-        if ($hideIdList) {
+        if (count($hideIdList) > 0) {
             $constraints['hideIdInList'] = $query->logicalNot(
                 $query->in(
-                    'uid',
-                    GeneralUtility::intExplode(',', $hideIdList)
+                    'uid', $hideIdList
                 )
             );
         }
@@ -317,7 +316,7 @@ class AddressRepository extends AbstractDemandedRepository
      * @throws \UnexpectedValueException
      * @throws InvalidQueryException
      */
-    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
+    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
         if ($demand->getSearch() === null) {
@@ -351,7 +350,7 @@ class AddressRepository extends AbstractDemandedRepository
         $longitude = 0.0;
         $latitude = 0.0;
 
-        if ($searchDistance > 0 && \strlen($searchLocation) > 0) {
+        if ($searchDistance > 0 && $searchLocation !== '') {
 
             /** @var Encoder $encoder */
             $encoder = GeneralUtility::makeInstance(Encoder::class, $searchObject->getSettings());
@@ -393,7 +392,7 @@ class AddressRepository extends AbstractDemandedRepository
             $sql .= ' Having Distance <= ' . $searchDistance . ' ORDER BY Distance ASC';
 
             /** @var Statement $statement */
-            $statement = $this->objectManager->get(
+            $statement = GeneralUtility::makeInstance(
                 Statement::class,
                 $sql,
                 $connection

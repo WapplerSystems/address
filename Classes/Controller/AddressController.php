@@ -11,10 +11,12 @@ namespace WapplerSystems\Address\Controller;
 
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerAwareInterface;
+use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
-use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
@@ -28,8 +30,11 @@ use WapplerSystems\Address\Domain\Model\Dto\Search;
 use WapplerSystems\Address\Domain\Repository\AddressRepository;
 use WapplerSystems\Address\Domain\Repository\CategoryRepository;
 use WapplerSystems\Address\Domain\Repository\TagRepository;
+use WapplerSystems\Address\Event\AddressCheckPidOfAddressRecordFailedInDetailActionEvent;
 use WapplerSystems\Address\Event\AddressDetailActionEvent;
 use WapplerSystems\Address\Event\AddressListActionEvent;
+use WapplerSystems\Address\Event\AddressSearchFormActionEvent;
+use WapplerSystems\Address\Event\AddressSearchResultActionEvent;
 use WapplerSystems\Address\Pagination\QueryResultPaginator;
 use WapplerSystems\Address\Seo\AddressTitleProvider;
 use WapplerSystems\Address\Utility\Cache;
@@ -43,26 +48,18 @@ use WapplerSystems\Address\Utility\TypoScript;
  */
 class AddressController extends AddressBaseController
 {
-    const SIGNAL_ADDRESS_LIST_ACTION = 'listAction';
-    const SIGNAL_ADDRESS_DETAIL_ACTION = 'detailAction';
-    const SIGNAL_ADDRESS_SEARCHFORM_ACTION = 'searchFormAction';
-    const SIGNAL_ADDRESS_SEARCHRESULT_ACTION = 'searchResultAction';
 
-
-    /** @var array */
-    protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
+    protected array $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
 
     /**
      * Original settings without any magic done by stdWrap and skipping empty values
-     *
-     * @var array
      */
-    protected $originalSettings = [];
+    protected array $originalSettings = [];
 
 
-    public function __construct(readonly AddressRepository $addressRepository,
+    public function __construct(readonly AddressRepository  $addressRepository,
                                 readonly CategoryRepository $categoryRepository,
-                                readonly TagRepository $tagRepository)
+                                readonly TagRepository      $tagRepository)
     {
     }
 
@@ -86,7 +83,7 @@ class AddressController extends AddressBaseController
             /** @var $typoScriptFrontendController TypoScriptFrontendController */
             $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
-                $typoScriptFrontendController->addCacheTags(['tx_address']);
+                $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_address'));
                 $cacheTagsSet = true;
             }
         }
@@ -101,9 +98,9 @@ class AddressController extends AddressBaseController
      * @throws \UnexpectedValueException
      */
     protected function createDemandObjectFromSettings(
-        $settings,
-        $class = AddressDemand::class
-    )
+        array $settings,
+        string $class = AddressDemand::class
+    ): AddressDemand
     {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
@@ -123,14 +120,13 @@ class AddressController extends AddressBaseController
         $demand->setCategoryConjunction($settings['categoryConjunction'] ?? '');
         $demand->setIncludeSubCategories($settings['includeSubCategories'] ?? '');
         if (($settings['tags'] ?? '') !== '') {
-            // TODO
-            $demand->setTags($settings['tags']);
+            $demand->setTags(GeneralUtility::intExplode(',', $settings['tags']));
         }
 
-        $demand->setTopAddressRestriction($settings['topAddressRestriction'] ?? '');
+        $demand->setTopAddressRestriction((int)($settings['topAddressRestriction'] ?? 0));
         $demand->setArchiveRestriction($settings['archiveRestriction'] ?? '');
         $demand->setExcludeAlreadyDisplayedAddress($settings['excludeAlreadyDisplayedAddress'] ?? '');
-        $demand->setHideIdList($settings['hideIdList'] ?? '');
+        $demand->setHideIdList(GeneralUtility::intExplode(',',$settings['hideIdList'] ?? '', true));
 
         if ($settings['orderBy']) {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
@@ -144,8 +140,8 @@ class AddressController extends AddressBaseController
 
         $demand->setSearchFields($settings['search']['fields'] ?? '');
 
-        $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
-            $settings['recursive']));
+        $demand->setStoragePage(GeneralUtility::intExplode(',',Page::extendPidListByChildren($settings['startingpoint'],
+            $settings['recursive'])), true);
         return $demand;
     }
 
@@ -208,7 +204,7 @@ class AddressController extends AddressBaseController
             $assignedValues['categories'] = $this->categoryRepository->findByIdList($demand->getCategories());
         }
 
-        if ($demand->getTags() !== null && count($demand->getTags()) > 0) {
+        if (count($demand->getTags()) > 0) {
             $assignedValues['tags'] = $this->tagRepository->findByIdList($demand->getTags());
         }
         $event = $this->eventDispatcher->dispatch(new AddressListActionEvent($this, $assignedValues, $this->request));
@@ -327,15 +323,8 @@ class AddressController extends AddressBaseController
             ),
             true
         );
-        if (\count($allowedStoragePages) > 0 && !in_array($address->getPid(), $allowedStoragePages)) {
-            $this->signalSlotDispatcher->dispatch(
-                __CLASS__,
-                'checkPidOfAddressRecordFailedInDetailAction',
-                [
-                    'address' => $address,
-                    'addressController' => $this
-                ]
-            );
+        if (count($allowedStoragePages) > 0 && !in_array($address->getPid(), $allowedStoragePages)) {
+            $this->eventDispatcher->dispatch(new AddressCheckPidOfAddressRecordFailedInDetailActionEvent($this, $address, $this->request));
             $address = null;
         }
         return $address;
@@ -360,15 +349,14 @@ class AddressController extends AddressBaseController
     /**
      * Display the search form
      *
-     * @param Search $search
+     * @param Search|null $search
      * @param array $overwriteDemand
-     * @throws \InvalidArgumentException
-     * @throws \UnexpectedValueException
+     * @return ResponseInterface
      */
     public function searchFormAction(
         ?Search $search = null,
-        array  $overwriteDemand = []
-    )
+        array   $overwriteDemand = []
+    ): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -378,7 +366,7 @@ class AddressController extends AddressBaseController
         }
 
         if (null === $search) {
-            $search = $this->objectManager->get(Search::class);
+            $search = GeneralUtility::makeInstance(Search::class);
         }
         $search->setSettings($this->settings);
         $demand->setSearch($search);
@@ -387,25 +375,26 @@ class AddressController extends AddressBaseController
             'search' => $search,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
+            'settings' => $this->settings,
         ];
 
-        $assignedValues = $this->emitActionSignal('AddressController', self::SIGNAL_ADDRESS_SEARCHFORM_ACTION,
-            $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new AddressSearchFormActionEvent($this, $assignedValues, $this->request));
+
+        $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**
      * Displays the search result
      *
-     * @param Search $search
+     * @param Search|null $search
      * @param array $overwriteDemand
-     * @throws \InvalidArgumentException
-     * @throws \UnexpectedValueException
+     * @return ResponseInterface
      */
     public function searchResultAction(
         ?Search $search = null,
-        array  $overwriteDemand = []
-    )
+        array   $overwriteDemand = []
+    ): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -420,16 +409,34 @@ class AddressController extends AddressBaseController
             $demand->setSearch($search);
         }
 
+        $addressRecords = $this->addressRepository->findDemanded($demand);
+
+        $paginationConfiguration = $this->settings['search']['paginate'] ?? [];
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? $this->settings['list']['paginate']['itemsPerPage'] ?? '') ?: 10);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
+        $paginator = GeneralUtility::makeInstance(\GeorgRinger\News\Pagination\QueryResultPaginator::class, $addressRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
+
         $assignedValues = [
-            'addresses' => $this->addressRepository->findDemanded($demand),
+            'news' => $addressRecords,
             'overwriteDemand' => $overwriteDemand,
             'search' => $search,
             'demand' => $demand,
+            'settings' => $this->settings,
+            'pagination' => [
+                'currentPage' => $currentPage,
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+            ],
         ];
 
-        $assignedValues = $this->emitActionSignal('AddressController', self::SIGNAL_ADDRESS_SEARCHRESULT_ACTION,
-            $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new AddressSearchResultActionEvent($this, $assignedValues, $this->request));
+
+        $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**
@@ -524,7 +531,7 @@ class AddressController extends AddressBaseController
     }
 
     /**
-     * When list action is called along with a news argument, we forward to detail action.
+     * When list action is called along with an address argument, we forward to detail action.
      */
     protected function forwardToDetailActionWhenRequested(): ?ForwardResponse
     {
@@ -558,7 +565,7 @@ class AddressController extends AddressBaseController
      * @param $paginationClass
      * @param int $maximumNumberOfLinks
      * @param $paginator
-     * @return \#o#Э#A#M#C\GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
+     * @return NumberedPagination|(NumberedPagination&LoggerAwareInterface)|(NumberedPagination&SingletonInterface)|mixed|object|LoggerAwareInterface|string|SimplePagination|(SimplePagination&LoggerAwareInterface)|(SimplePagination&SingletonInterface)|SlidingWindowPagination|(SlidingWindowPagination&LoggerAwareInterface)|(SlidingWindowPagination&SingletonInterface)|SingletonInterface|null
      */
     protected function getPagination($paginationClass, int $maximumNumberOfLinks, $paginator)
     {

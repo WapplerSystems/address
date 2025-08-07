@@ -17,77 +17,77 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var \DateTime
      */
-    protected $crdate;
+    protected \DateTime $crdate;
 
     /**
      * @var \DateTime
      */
-    protected $tstamp;
+    protected \DateTime $tstamp;
 
     /**
      * @var string
      */
-    protected $CType;
+    protected string $CType;
 
     /**
      * @var string
      */
-    protected $header;
+    protected string $header;
 
     /**
      * @var string
      */
-    protected $headerPosition;
+    protected string $headerPosition;
 
     /**
      * @var string
      */
-    protected $bodytext;
+    protected string $bodytext;
 
     /**
      * @var int
      */
-    protected $colPos;
+    protected int $colPos;
 
     /**
      * @var string
      */
-    protected $image;
+    protected string $image;
 
     /**
      * @var int
      */
-    protected $imagewidth;
+    protected int $imagewidth;
 
     /**
      * @var int
      */
-    protected $imageorient;
+    protected int $imageorient;
 
     /**
      * @var string
      */
-    protected $imagecaption;
+    protected string $imagecaption;
 
     /**
      * @var int
      */
-    protected $imagecols;
+    protected int $imagecols;
 
     /**
      * @var int
      */
-    protected $imageborder;
+    protected int $imageborder;
 
     /**
      * @var string
      */
-    protected $media;
+    protected string $media;
 
     /**
      * @var string
      */
-    protected $layout;
+    protected string $layout;
 
     /**
      * @var int

@@ -14,6 +14,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 
@@ -54,13 +55,8 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
     /**
      * Returns the objects of this repository matching the demand.
-     *
-     * @param DemandInterface $demand
-     * @param bool $respectEnableFields
-     * @param bool $disableLanguageOverlayMode
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    public function findDemanded(DemandInterface $demand, bool $respectEnableFields = true, bool $disableLanguageOverlayMode = false): QueryResultInterface
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 
@@ -75,7 +71,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param bool $disableLanguageOverlayMode
      * @return string
      */
-    public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    public function findDemandedRaw(DemandInterface $demand, bool $respectEnableFields = true, bool $disableLanguageOverlayMode = false): string
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
         $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
@@ -166,7 +162,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param DemandInterface $demand
      * @return int
      */
-    public function countDemanded(DemandInterface $demand)
+    public function countDemanded(DemandInterface $demand): int
     {
         $query = $this->createQuery();
 

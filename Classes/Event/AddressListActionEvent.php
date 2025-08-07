@@ -9,25 +9,19 @@
 
 namespace WapplerSystems\Address\Event;
 
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use WapplerSystems\Address\Controller\AddressController;
-use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class AddressListActionEvent
 {
-    /**
-     * @var AddressController
-     */
-    private $addressController;
 
-    /**
-     * @var array
-     */
-    private $assignedValues;
+    private AddressController $addressController;
 
-    /** @var Request */
-    private $request;
+    private array $assignedValues;
 
-    public function __construct(AddressController $addressController, array $assignedValues, Request $request)
+    private RequestInterface $request;
+
+    public function __construct(AddressController $addressController, array $assignedValues, RequestInterface $request)
     {
         $this->addressController = $addressController;
         $this->assignedValues = $assignedValues;
@@ -70,7 +64,7 @@ final class AddressListActionEvent
         return $this;
     }
 
-    public function getRequest(): Request
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }

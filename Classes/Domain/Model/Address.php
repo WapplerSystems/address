@@ -9,17 +9,19 @@ namespace WapplerSystems\Address\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 
 /**
  * Address model
  */
-class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Address extends AbstractEntity
 {
 
-    public const TYPE_PERSON = 1;
-    public const TYPE_COMPANY = 2;
+    public const int TYPE_PERSON = 1;
+    public const int TYPE_COMPANY = 2;
 
     /**
      * @var bool
@@ -40,19 +42,19 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var ObjectStorage<Category>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $categories;
+    protected ObjectStorage $categories;
 
     /**
      * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $related;
+    protected ObjectStorage $related;
 
     /**
      * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $relatedFrom;
+    protected ObjectStorage $relatedFrom;
 
     /**
      * Fal related files
@@ -60,13 +62,13 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $relatedFiles;
+    protected ObjectStorage $relatedFiles;
 
     /**
      * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $relatedLinks;
+    protected ObjectStorage $relatedLinks;
 
     /**
      * @var string
@@ -94,7 +96,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $media;
+    protected ObjectStorage $media;
 
     /**
      * Fal media items with showinpreview set
@@ -102,7 +104,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var array
      * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
-    protected $mediaPreviews;
+    protected array $mediaPreviews = [];
 
     /**
      * Fal media items with showinpreview not set
@@ -110,20 +112,14 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var array
      * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
-    protected $mediaNonPreviews;
+    protected array $mediaNonPreviews = [];
 
 
     /**
      * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\TtContent>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $contentElements;
-
-    /**
-     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Tag>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     */
-    protected $tags;
+    protected ObjectStorage $contentElements;
 
     /**
      * @var string
@@ -133,7 +129,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var int
      */
-    protected $editlock;
+    protected int $editlock;
 
     /**
      * @var int
@@ -158,7 +154,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var \DateTime
      */
-    protected $archive;
+    protected \DateTime $archive;
 
     /**
      * @var bool
@@ -257,13 +253,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * no default value
-     * @var float|null
      */
     protected ?float $longitude = null;
 
     /**
      * no default value
-     * @var float|null
      */
     protected ?float $latitude = null;
 
@@ -271,22 +265,21 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var ObjectStorage<Contact>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $contacts;
+    protected ObjectStorage $contacts;
 
-    /**
-     * @var FileReference|null
-     */
-    protected $markerIcon;
+    protected ?FileReference $markerIcon;
 
-    /**
-     * @var string
-     */
-    protected $markerColor;
+    protected string $markerColor;
 
-    /**
-     * @var \DateTime
-     */
     protected ?\DateTime $starttime = null;
+
+
+    /**
+     *
+     * @var ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Tag>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected ObjectStorage $tags;
 
 
     /**
@@ -300,6 +293,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->media = new ObjectStorage();
         $this->relatedFiles = new ObjectStorage();
         $this->contacts = new ObjectStorage();
+        $this->tags = new ObjectStorage();
     }
 
 
@@ -316,7 +310,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param string $bodytext main content
      */
-    public function setBodytext($bodytext): void
+    public function setBodytext(string $bodytext): void
     {
         $this->bodytext = $bodytext;
     }
@@ -327,7 +321,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return ObjectStorage<Category>
      */
-    public function getCategories()
+    public function getCategories(): ObjectStorage
     {
         return $this->categories;
     }
@@ -337,32 +331,29 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return Category
      */
-    public function getFirstCategory()
+    public function getFirstCategory(): ?Category
     {
         $categories = $this->getCategories();
-        if ($categories !== null) {
-            $categories->rewind();
-            return $categories->current();
-        }
-        return null;
+        $categories->rewind();
+        return $categories->current();
     }
 
     /**
      * Set categories
      *
-     * @param  ObjectStorage $categories
+     * @param ObjectStorage $categories
      */
-    public function setCategories($categories)
+    public function setCategories(ObjectStorage $categories): void
     {
         $this->categories = $categories;
     }
 
     /**
-     * Adds a category to this categories.
+     * Adds a category to categories.
      *
      * @param Category $category
      */
-    public function addCategory(Category $category)
+    public function addCategory(Category $category): void
     {
         $this->getCategories()->attach($category);
     }
@@ -372,7 +363,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      */
-    public function getRelated()
+    public function getRelated(): ObjectStorage
     {
         return $this->related;
     }
@@ -382,7 +373,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param ObjectStorage<\WapplerSystems\Address\Domain\Model\Address> $relatedFrom
      */
-    public function setRelatedFrom($relatedFrom)
+    public function setRelatedFrom(ObjectStorage $relatedFrom): void
     {
         $this->relatedFrom = $relatedFrom;
     }
@@ -392,7 +383,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
      */
-    public function getRelatedFrom()
+    public function getRelatedFrom(): ObjectStorage
     {
         return $this->relatedFrom;
     }
@@ -403,7 +394,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param ObjectStorage $related related addresses
      */
-    public function setRelated($related)
+    public function setRelated(ObjectStorage $related): void
     {
         $this->related = $related;
     }
@@ -413,7 +404,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
      */
-    public function getRelatedLinks()
+    public function getRelatedLinks(): ObjectStorage
     {
         return $this->relatedLinks;
     }
@@ -423,7 +414,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
      */
-    public function getRelatedFiles()
+    public function getRelatedFiles(): ObjectStorage
     {
         return $this->relatedFiles;
     }
@@ -433,7 +424,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param ObjectStorage $relatedFiles FAL related files
      */
-    public function setRelatedFiles($relatedFiles)
+    public function setRelatedFiles(ObjectStorage $relatedFiles): void
     {
         $this->relatedFiles = $relatedFiles;
     }
@@ -443,7 +434,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param FileReference $file
      */
-    public function addRelatedFile(FileReference $file)
+    public function addRelatedFile(FileReference $file): void
     {
         if ($this->getRelatedFiles() === null) {
             $this->relatedFiles = new ObjectStorage();
@@ -456,7 +447,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param ObjectStorage<\WapplerSystems\Address\Domain\Model\Link> $relatedLinks related links relation
      */
-    public function setRelatedLinks($relatedLinks)
+    public function setRelatedLinks(ObjectStorage $relatedLinks): void
     {
         $this->relatedLinks = $relatedLinks;
     }
@@ -466,7 +457,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -476,7 +467,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param int $type type
      */
-    public function setType($type)
+    public function setType(int $type): void
     {
         $this->type = $type;
     }
@@ -486,7 +477,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getKeywords()
+    public function getKeywords(): string
     {
         return $this->keywords;
     }
@@ -496,7 +487,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param string $keywords keywords
      */
-    public function setKeywords($keywords)
+    public function setKeywords(string $keywords): void
     {
         $this->keywords = $keywords;
     }
@@ -506,7 +497,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -516,7 +507,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param string $description description
      */
-    public function setDescription($description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -526,11 +517,8 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param Link $relatedLink
      */
-    public function addRelatedLink(Link $relatedLink)
+    public function addRelatedLink(Link $relatedLink): void
     {
-        if ($this->relatedLinks === null) {
-            $this->relatedLinks = new ObjectStorage();
-        }
         $this->relatedLinks->attach($relatedLink);
     }
 
@@ -540,7 +528,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param ObjectStorage $media
      */
-    public function setMedia(ObjectStorage $media)
+    public function setMedia(ObjectStorage $media): void
     {
         $this->media = $media;
     }
@@ -550,7 +538,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param FileReference $media
      */
-    public function addMedia(FileReference $media)
+    public function addMedia(FileReference $media): void
     {
         if ($this->getMedia() === null) {
             $this->media = new ObjectStorage();
@@ -564,7 +552,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function getMediaPreviews()
+    public function getMediaPreviews(): array
     {
         if ($this->mediaPreviews === null && $this->getMedia()) {
             $this->mediaPreviews = [];
@@ -584,7 +572,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @return array
      * @throws \InvalidArgumentException
      */
-    public function getMediaNonPreviews()
+    public function getMediaNonPreviews(): array
     {
         if ($this->mediaNonPreviews === null && $this->getMedia()) {
             $this->mediaNonPreviews = [];
@@ -602,9 +590,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get first media element which is tagged as preview and is of type image
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @return FileReference|null
      */
-    public function getFirstFalImagePreview()
+    public function getFirstFalImagePreview(): ?FileReference
     {
         $mediaElements = $this->getMediaPreviews();
         if (is_array($mediaElements)) {
@@ -618,9 +606,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Short method for getFirstFalImagePreview
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @return FileReference
      */
-    public function getFirstPreview()
+    public function getFirstPreview(): ?FileReference
     {
         return $this->getFirstFalImagePreview();
     }
@@ -647,31 +635,11 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get Tags
-     *
-     * @return ObjectStorage
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * Set Tags
-     *
-     * @param ObjectStorage $tags tags
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-    }
-
-    /**
      * Get path segment
      *
      * @return string
      */
-    public function getPathSegment()
+    public function getPathSegment(): string
     {
         return $this->pathSegment;
     }
@@ -681,17 +649,15 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param string $pathSegment
      */
-    public function setPathSegment($pathSegment)
+    public function setPathSegment(string $pathSegment): void
     {
         $this->pathSegment = $pathSegment;
     }
 
     /**
      * Get hidden flag
-     *
-     * @return int
      */
-    public function getHidden()
+    public function getHidden(): bool
     {
         return $this->hidden;
     }
@@ -701,7 +667,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param int $hidden hidden flag
      */
-    public function setHidden($hidden)
+    public function setHidden(int $hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -721,7 +687,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param bool $deleted deleted flag
      */
-    public function setDeleted(bool $deleted)
+    public function setDeleted(bool $deleted): void
     {
         $this->deleted = $deleted;
     }
@@ -785,7 +751,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set importSource
      *
-     * @param  string $importSource
+     * @param string $importSource
      */
     public function setImportSource(string $importSource): void
     {
@@ -805,16 +771,13 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
-        return $this->firstName . ' '.$this->lastName;
+        return $this->firstName . ' ' . $this->lastName;
     }
 
 
-    /**
-     * @return \DateTime
-     */
-    public function getArchive()
+    public function getArchive(): \DateTime
     {
         return $this->archive;
     }
@@ -822,7 +785,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param \DateTime $archive
      */
-    public function setArchive($archive)
+    public function setArchive($archive): void
     {
         $this->archive = $archive;
     }
@@ -830,7 +793,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return bool
      */
-    public function isDirectContact()
+    public function isDirectContact(): bool
     {
         return $this->directContact;
     }
@@ -838,7 +801,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param bool $directContact
      */
-    public function setDirectContact($directContact)
+    public function setDirectContact($directContact): void
     {
         $this->directContact = $directContact;
     }
@@ -847,7 +810,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -855,7 +818,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $url
      */
-    public function setUrl($url)
+    public function setUrl(string $url): void
     {
         $this->url = $url;
     }
@@ -863,7 +826,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return ObjectStorage
      */
-    public function getContentElements()
+    public function getContentElements(): ObjectStorage
     {
         return $this->contentElements;
     }
@@ -871,7 +834,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param ObjectStorage $contentElements
      */
-    public function setContentElements($contentElements)
+    public function setContentElements(ObjectStorage $contentElements): void
     {
         $this->contentElements = $contentElements;
     }
@@ -913,7 +876,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
     }
@@ -921,7 +884,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
@@ -929,7 +892,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
     }
@@ -937,7 +900,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getMiddleName()
+    public function getMiddleName(): string
     {
         return $this->middleName;
     }
@@ -945,43 +908,30 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $middleName
      */
-    public function setMiddleName($middleName)
+    public function setMiddleName(string $middleName): void
     {
         $this->middleName = $middleName;
     }
 
-    /**
-     * @return string
-     */
-    public function getAcademicTitle()
+    public function getAcademicTitle(): string
     {
         return $this->academicTitle;
     }
 
-    /**
-     * @param string $academicTitle
-     */
-    public function setAcademicTitle($academicTitle)
+    public function setAcademicTitle(string $academicTitle): void
     {
         $this->academicTitle = $academicTitle;
     }
 
-    /**
-     * @return string
-     */
-    public function getAbbreviation()
+    public function getAbbreviation(): string
     {
         return $this->abbreviation;
     }
 
-    /**
-     * @param mixed $abbreviation
-     */
-    public function setAbbreviation($abbreviation): void
+    public function setAbbreviation(string $abbreviation): void
     {
         $this->abbreviation = $abbreviation;
     }
-
 
 
     /**
@@ -1160,59 +1110,39 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->city = $city;
     }
 
-    /**
-     * @return string
-     */
-    public function getZip()
+    public function getZip(): string
     {
         return $this->zip;
     }
 
-    /**
-     * @param string $zip
-     */
-    public function setZip(string $zip)
+    public function setZip(string $zip): void
     {
         $this->zip = $zip;
     }
 
-    /**
-     * @return string
-     */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
 
-    /**
-     * @param string $country
-     */
-    public function setCountry(string $country)
+    public function setCountry(string $country): void
     {
         $this->country = $country;
     }
 
 
-
-
-    /**
-     * @return bool
-     */
-    public function getIsPerson() {
+    public function getIsPerson(): bool
+    {
         return (int)$this->type === self::TYPE_PERSON;
     }
 
-    /**
-     * @return bool
-     */
-    public function getIsCompany() {
+    public function getIsCompany(): bool
+    {
         return (int)$this->type === self::TYPE_COMPANY;
     }
 
-    /**
-     * @return bool
-     */
-    public function getHasRelatedCompany() {
+    public function getHasRelatedCompany(): bool
+    {
         $items = $this->getRelated();
         /** @var Address $item */
         foreach ($items as $item) {
@@ -1221,59 +1151,43 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return false;
     }
 
-    /**
-     * @return null|Address
-     */
-    public function getRelatedCompany() {
+    public function getRelatedCompany(): ?Address
+    {
         $items = $this->getRelated();
         /** @var Address $item */
         foreach ($items as $item) {
-            if ($item->getIsCompany()) return $item;
+            if ($item->getIsCompany()) {
+                return $item;
+            }
         }
         return null;
     }
 
-    /**
-     */
     public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
-    /**
-     * @param float|null $longitude
-     */
     public function setLongitude(?float $longitude): void
     {
         $this->longitude = $longitude;
     }
 
-    /**
-     */
     public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
-    /**
-     * @param float|null $latitude
-     */
     public function setLatitude(?float $latitude): void
     {
         $this->latitude = $latitude;
     }
 
-    /**
-     * @return ObjectStorage
-     */
     public function getContacts(): ObjectStorage
     {
         return $this->contacts;
     }
 
-    /**
-     * @param ObjectStorage $contacts
-     */
     public function setContacts(ObjectStorage $contacts): void
     {
         $this->contacts = $contacts;
@@ -1281,10 +1195,9 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * get one contact by type, ordered by sorting
-     * @param string $type
-     * @return Contact|null
      */
-    public function getContactByType(string $type) {
+    public function getContactByType(string $type): ?Contact
+    {
         /** @var Contact $contact */
         foreach ($this->contacts as $contact) {
             if ($contact->getType() === $type) {
@@ -1294,11 +1207,8 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return null;
     }
 
-    /**
-     * @param string $type
-     * @return array
-     */
-    public function getContactsByType(string $type) {
+    public function getContactsByType(string $type): array
+    {
         $contacts = [];
         /** @var Contact $contact */
         foreach ($this->contacts as $contact) {
@@ -1309,7 +1219,8 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $contacts;
     }
 
-    public function getFirstEmailAddress(): string {
+    public function getFirstEmailAddress(): string
+    {
         $contacts = $this->getContactsByType('email');
         if (count($contacts) > 0) {
             return $contacts[0]->getContent();
@@ -1335,6 +1246,16 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setMarkerColor(string $markerColor): void
     {
         $this->markerColor = $markerColor;
+    }
+
+    public function getTags(): ObjectStorage
+    {
+        return $this->tags;
+    }
+
+    public function setTags(ObjectStorage $tags): void
+    {
+        $this->tags = $tags;
     }
 
 

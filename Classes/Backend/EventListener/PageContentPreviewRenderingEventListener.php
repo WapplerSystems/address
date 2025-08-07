@@ -649,7 +649,7 @@ final class PageContentPreviewRenderingEventListener
         $flexform = $this->flexformData;
         if (isset($flexform['data'])) {
             $flexform = $flexform['data'];
-            if (is_array($flexform) && is_array($flexform[$sheet]) && is_array($flexform[$sheet]['lDEF'])
+            if (is_array($flexform) && is_array($flexform[$sheet] ?? null) && is_array($flexform[$sheet]['lDEF'] ?? null)
                 && is_array($flexform[$sheet]['lDEF'][$key] ?? null) && isset($flexform[$sheet]['lDEF'][$key]['vDEF'])
             ) {
                 return $flexform[$sheet]['lDEF'][$key]['vDEF'];

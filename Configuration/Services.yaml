@@ -34,3 +34,10 @@ services:
 
   WapplerSystems\Address\Hooks\ItemsProcFunc:
     public: true
+
+
+  WapplerSystems\Address\EventListener\ModifyFlexformEvent:
+    tags:
+      - name: event.listener
+        identifier: 'flexParsing'
+        event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent

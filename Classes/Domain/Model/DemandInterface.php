@@ -1,5 +1,8 @@
 <?php
+
 namespace WapplerSystems\Address\Domain\Model;
+
+use WapplerSystems\Address\Domain\Model\Dto\Search;
 
 /**
  * This file is part of the "address" Extension for TYPO3 CMS.
@@ -14,14 +17,14 @@ namespace WapplerSystems\Address\Domain\Model;
 interface DemandInterface
 {
 
-    public function getSearch();
+    public function getSearch(): ?Search;
 
-    public function getOrder();
+    public function getOrder(): string;
 
-    public function getOrderByAllowed();
+    public function getOrderByAllowed(): string;
 
-    public function getTopAddressFirst();
+    public function getTopAddressFirst(): bool;
 
-    public function getIds();
+    public function getIds(): array;
 
 }

@@ -9,25 +9,19 @@
 
 namespace WapplerSystems\Address\Event;
 
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use WapplerSystems\Address\Controller\TagController;
 use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class TagListActionEvent
 {
-    /**
-     * @var TagController
-     */
-    private $tagController;
+    private TagController $tagController;
 
-    /**
-     * @var array
-     */
-    private $assignedValues;
+    private array $assignedValues;
 
-    /** @var Request */
-    private $request;
+    private RequestInterface $request;
 
-    public function __construct(TagController $tagController, array $assignedValues, Request $request)
+    public function __construct(TagController $tagController, array $assignedValues, RequestInterface $request)
     {
         $this->tagController = $tagController;
         $this->assignedValues = $assignedValues;
@@ -70,7 +64,7 @@ final class TagListActionEvent
         return $this;
     }
 
-    public function getRequest(): Request
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }

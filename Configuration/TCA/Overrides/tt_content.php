@@ -7,8 +7,13 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 
 
-$pluginConfig = ['list_and_detail', 'list', 'detail', 'search_form', 'search_result', 'category_list', 'tag_list', 'map'];
+$pluginConfig = ['list_and_detail', 'list', 'detail', 'search_form', 'search_result', 'map'];
 foreach ($pluginConfig as $pluginName) {
+
+    if ($pluginName === 'tag_list' && !ExtensionManagementUtility::isLoaded('tagging')) {
+        continue;
+    }
+
     $pluginNameForLabel = $pluginName;
     $contentTypeName = ExtensionUtility::registerPlugin(
         'address',

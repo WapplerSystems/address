@@ -14,7 +14,9 @@ use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use WapplerSystems\Address\Database\QueryGenerator;
 
 /**
  * Page Utility class
@@ -30,23 +32,26 @@ class Page
      * @param int $recursive recursive levels
      * @return string comma separated list of ids
      */
-    public static function extendPidListByChildren($pidList = '', $recursive = 0)
+    public static function extendPidListByChildren($pidList = '', $recursive = 0): string
     {
         $recursive = (int)$recursive;
         if ($recursive <= 0) {
-            return $pidList;
+            return $pidList ?? '';
         }
 
-        $queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
+        $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
         $recursiveStoragePids = $pidList;
         $storagePids = GeneralUtility::intExplode(',', $pidList);
         foreach ($storagePids as $startPid) {
-            $pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
-            if (strlen($pids) > 0) {
-                $recursiveStoragePids .= ',' . $pids;
+            if ($startPid >= 0) {
+                // @extensionScannerIgnoreLine
+                $pids = $queryGenerator->getTreeList($startPid, $recursive);
+                if (strlen($pids) > 0) {
+                    $recursiveStoragePids .= ',' . $pids;
+                }
             }
         }
-        return $recursiveStoragePids;
+        return StringUtility::uniqueList($recursiveStoragePids);
     }
 
     /**

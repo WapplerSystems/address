@@ -9,25 +9,19 @@
 
 namespace WapplerSystems\Address\Event;
 
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use WapplerSystems\Address\Controller\CategoryController;
 use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class CategoryListActionEvent
 {
-    /**
-     * @var CategoryController
-     */
-    private $categoryController;
+    private CategoryController $categoryController;
 
-    /**
-     * @var array
-     */
-    private $assignedValues;
+    private array $assignedValues;
 
-    /** @var Request */
-    private $request;
+    private RequestInterface $request;
 
-    public function __construct(CategoryController $categoryController, array $assignedValues, Request $request)
+    public function __construct(CategoryController $categoryController, array $assignedValues, RequestInterface $request)
     {
         $this->categoryController = $categoryController;
         $this->assignedValues = $assignedValues;
@@ -70,7 +64,7 @@ final class CategoryListActionEvent
         return $this;
     }
 
-    public function getRequest(): Request
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }

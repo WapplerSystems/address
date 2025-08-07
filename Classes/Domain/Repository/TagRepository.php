@@ -9,6 +9,8 @@ namespace WapplerSystems\Address\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 use WapplerSystems\Address\Utility\Validation;
@@ -18,7 +20,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * Repository for tag objects
  */
-class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDemandedRepository
+class TagRepository extends AbstractDemandedRepository
 {
 
     /**
@@ -28,6 +30,7 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
      * @param array $ordering ordering
      * @param string|null $startingPoint starting point uid or comma separated list
      * @return array|QueryResultInterface|object[]
+     * @throws InvalidQueryException
      */
     public function findByIdList(array $idList, array $ordering = [], ?string $startingPoint = null): array|QueryResultInterface
     {
@@ -51,7 +54,7 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
 
         return $query->matching(
             $query->logicalAnd(
-                $conditions
+                ...$conditions
             ))->execute();
     }
 
@@ -60,22 +63,19 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return array<ConstraintInterface>
+     * @throws InvalidQueryException
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
 
-        // Storage page
-        if ($demand->getStoragePage() != 0) {
-            $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
-            $constraints[] = $query->in('pid', $pidList);
+        if (count($demand->getStoragePage()) > 0) {
+            $constraints[] = $query->in('pid', $demand->getStoragePage());
         }
 
-        // Tags
-        if ($demand->getTags()) {
-            $tagList = GeneralUtility::intExplode(',', $demand->getTags(), true);
-            $constraints[] = $query->in('uid', $tagList);
+        if (count($demand->getTags()) > 0) {
+            $constraints[] = $query->in('uid', $demand->getTags());
         }
 
         // Clean not used constraints
@@ -92,7 +92,7 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return array<ConstraintInterface>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
@@ -104,10 +104,10 @@ class TagRepository extends \WapplerSystems\Address\Domain\Repository\AbstractDe
             if (!empty($orderList)) {
                 // go through every order statement
                 foreach ($orderList as $orderItem) {
-                    list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
+                    [$orderField, $ascDesc] = GeneralUtility::trimExplode(' ', $orderItem, true);
                     // count == 1 means that no direction is given
                     if ($ascDesc) {
-                        $orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+                        $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
                             QueryInterface::ORDER_DESCENDING :
                             QueryInterface::ORDER_ASCENDING);
                     } else {
