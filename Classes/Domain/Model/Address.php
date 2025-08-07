@@ -702,7 +702,7 @@ class Address extends AbstractEntity
         return $this->starttime;
     }
 
-    public function setStarttime(\DateTime $starttime)
+    public function setStarttime(\DateTime $starttime): void
     {
         $this->starttime = $starttime;
     }
