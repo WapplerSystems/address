@@ -44,7 +44,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @param int $fileUid
      */
-    public function setFileUid($fileUid): void
+    public function setFileUid(int $fileUid): void
     {
         $this->uidLocal = $fileUid;
     }
@@ -64,7 +64,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @param string $alternative
      */
-    public function setAlternative($alternative): void
+    public function setAlternative(string $alternative): void
     {
         $this->alternative = $alternative;
     }
@@ -84,7 +84,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @param string $description
      */
-    public function setDescription($description): void
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -104,7 +104,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @param string $link
      */
-    public function setLink($link): void
+    public function setLink(string $link): void
     {
         $this->link = $link;
     }
@@ -123,7 +123,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @param string $title
      */
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -143,7 +143,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @param bool $showinpreview
      */
-    public function setShowinpreview($showinpreview): void
+    public function setShowinpreview(bool $showinpreview): void
     {
         $this->showinpreview = $showinpreview;
     }

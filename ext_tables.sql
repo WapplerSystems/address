@@ -41,7 +41,6 @@ CREATE TABLE tx_address_domain_model_address
 	append_academic_title tinyint(4)       DEFAULT '0' NOT NULL,
 	teaser                text,
 	bodytext              text,
-	tags                  int(11)          DEFAULT '0' NOT NULL,
 	detail_pid            int(11)          DEFAULT '0' NOT NULL,
 	related_links         tinytext,
 	related               int(11)          DEFAULT '0' NOT NULL,
@@ -55,6 +54,7 @@ CREATE TABLE tx_address_domain_model_address
 	notes                 text,
 	related_files         int(11) unsigned DEFAULT '0',
 	contacts              int(11) unsigned DEFAULT '0',
+	tags                  int(11)          DEFAULT '0' NOT NULL,
 
 	categories            int(11)          DEFAULT '0' NOT NULL,
 
@@ -69,12 +69,12 @@ CREATE TABLE tx_address_domain_model_address
 CREATE TABLE tx_address_domain_model_contact
 (
 
-	type             varchar(100)           NOT NULL DEFAULT '',
-	content          text,
+	type    varchar(100) NOT NULL DEFAULT '',
+	content text,
 
-	address          int(11)    DEFAULT '0' NOT NULL,
+	address int(11)               DEFAULT '0' NOT NULL,
 
-	notes            text
+	notes   text
 );
 
 
@@ -124,35 +124,10 @@ CREATE TABLE tx_address_domain_model_address_related_mm
 #
 CREATE TABLE tx_address_domain_model_link
 (
-	parent           int(11)     DEFAULT '0' NOT NULL,
-	title            tinytext,
-	description      text,
-	uri              text
-);
-
-#
-# Table structure for table 'tx_address_domain_model_tag'
-#
-CREATE TABLE tx_address_domain_model_tag
-(
-	title           tinytext,
-	seo_title       varchar(255)            NOT NULL DEFAULT '',
-	seo_description text,
-	seo_headline    varchar(255)            NOT NULL DEFAULT '',
-	seo_text        text,
-	notes           text
-);
-
-#
-# Table structure for table 'tx_address_domain_model_address_tag_mm'
-#
-CREATE TABLE tx_address_domain_model_address_tag_mm
-(
-	uid_local   int(11) DEFAULT '0' NOT NULL,
-	uid_foreign int(11) DEFAULT '0' NOT NULL,
-	sorting     int(11) DEFAULT '0' NOT NULL,
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
+	parent      int(11) DEFAULT '0' NOT NULL,
+	title       tinytext,
+	description text,
+	uri         text
 );
 
 #

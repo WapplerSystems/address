@@ -9,6 +9,8 @@ namespace WapplerSystems\Address\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 
 /**
  * Cache Utility class
@@ -21,14 +23,14 @@ class Cache
      * Stack for processed cObjs which has added address relevant cache tags.
      * @var array
      */
-    protected static $processedContentRecords = [];
+    protected static array $processedContentRecords = [];
 
     /**
      * Marks as cObj as processed.
      *
-     * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     * @param ContentObjectRenderer $cObj
      */
-    public function markContentRecordAsProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
+    public function markContentRecordAsProcessed(ContentObjectRenderer $cObj): void
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         self::$processedContentRecords[$key] = true;
@@ -37,10 +39,10 @@ class Cache
     /**
      * Checks if a cObj has already added cache tags.
      *
-     * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     * @param ContentObjectRenderer $cObj
      * @return bool
      */
-    public function isContentRecordAlreadyProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
+    public function isContentRecordAlreadyProcessed(ContentObjectRenderer $cObj): bool
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         return array_key_exists($key, self::$processedContentRecords);
@@ -54,7 +56,7 @@ class Cache
      *
      * @param array $addressRecords array with address records
      */
-    public static function addCacheTagsByAddressRecords(array $addressRecords)
+    public static function addCacheTagsByAddressRecords(array $addressRecords): void
     {
         $cacheTags = [];
         foreach ($addressRecords as $address) {
@@ -70,14 +72,14 @@ class Cache
      * Adds page cache tags by used storagePages.
      * This adds tags with the scheme tx_address_pid_[address:pid]
      *
-     * @param \WapplerSystems\Address\Domain\Model\Dto\AddressDemand $demand
+     * @param AddressDemand $demand
      */
-    public static function addPageCacheTagsByDemandObject(\WapplerSystems\Address\Domain\Model\Dto\AddressDemand $demand)
+    public static function addPageCacheTagsByDemandObject(AddressDemand $demand)
     {
         $cacheTags = [];
         if ($demand->getStoragePage()) {
             // Add cache tags for each storage page
-            foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
+            foreach ($demand->getStoragePage() as $pageId) {
                 $cacheTags[] = 'tx_address_pid_' . $pageId;
             }
         }

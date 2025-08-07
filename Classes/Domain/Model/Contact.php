@@ -1,6 +1,8 @@
 <?php
 namespace WapplerSystems\Address\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
+
 /**
  * This file is part of the "address" Extension for TYPO3 CMS.
  *
@@ -11,7 +13,7 @@ namespace WapplerSystems\Address\Domain\Model;
 /**
  * Link model
  */
-class Contact extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
+class Contact extends AbstractValueObject
 {
 
     /**

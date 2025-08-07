@@ -9,26 +9,20 @@
 
 namespace WapplerSystems\Address\Event;
 
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use WapplerSystems\Address\Controller\AddressController;
 use WapplerSystems\Address\Domain\Model\Address;
 use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class AddressCheckPidOfAddressRecordFailedInDetailActionEvent
 {
-    /**
-     * @var AddressController
-     */
-    private $addressController;
+    private AddressController $addressController;
 
-    /**
-     * @var Address
-     */
-    private $address;
+    private Address $address;
 
-    /** @var Request */
-    private $request;
+    private RequestInterface $request;
 
-    public function __construct(AddressController $addressController, Address $address, Request $request)
+    public function __construct(AddressController $addressController, Address $address, RequestInterface $request)
     {
         $this->addressController = $addressController;
         $this->address = $address;
@@ -74,7 +68,7 @@ final class AddressCheckPidOfAddressRecordFailedInDetailActionEvent
     /**
      * @return Request
      */
-    public function getRequest(): Request
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }

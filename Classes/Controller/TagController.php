@@ -1,6 +1,7 @@
 <?php
 namespace WapplerSystems\Address\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use WapplerSystems\Address\Event\TagListActionEvent;
 
 /**
@@ -15,15 +16,15 @@ use WapplerSystems\Address\Event\TagListActionEvent;
  */
 class TagController extends AddressController
 {
-    const SIGNAL_TAG_LIST_ACTION = 'listAction';
 
     /**
      * List tags
      *
      * @param array|null $overwriteDemand
      * @param int $currentPage
+     * @return ResponseInterface
      */
-    public function listAction(array $overwriteDemand = null, int $currentPage = 1): \Psr\Http\Message\ResponseInterface
+    public function listAction(array $overwriteDemand = null, int $currentPage = 1): ResponseInterface
     {
 
         $demand = $this->createDemandObjectFromSettings($this->settings);

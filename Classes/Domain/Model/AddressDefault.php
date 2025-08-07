@@ -12,6 +12,6 @@ namespace WapplerSystems\Address\Domain\Model;
  * Address model for default address
  *
  */
-class AddressDefault extends \WapplerSystems\Address\Domain\Model\Address
+class AddressDefault extends Address
 {
 }

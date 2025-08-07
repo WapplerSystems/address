@@ -8,6 +8,9 @@ return [
     \WapplerSystems\Address\Domain\Model\TtContent::class => [
         'tableName' => 'tt_content',
     ],
+    \WapplerSystems\Address\Domain\Model\Tag::class => [
+        'tableName' => 'sys_tag',
+    ],
     \WapplerSystems\Address\Domain\Model\Category::class => [
         'tableName' => 'sys_category',
         'properties' => [

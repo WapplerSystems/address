@@ -219,6 +219,9 @@
 			<trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.tags" xml:space="preserve">
+				<source>Tag selection</source>
+			</trans-unit>
 			<trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
 				<source>Max width for media elements</source>
 			</trans-unit>

@@ -8,6 +8,8 @@ namespace WapplerSystems\Address\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use WapplerSystems\Address\Domain\Model\DemandInterface;
 
 /**
@@ -16,7 +18,7 @@ use WapplerSystems\Address\Domain\Model\DemandInterface;
  */
 interface DemandedRepositoryInterface
 {
-    public function findDemanded(DemandInterface $demand, $respectEnableFields = true);
+    public function findDemanded(DemandInterface $demand, bool $respectEnableFields = true): QueryResultInterface;
 
-    public function countDemanded(DemandInterface $demand);
+    public function countDemanded(DemandInterface $demand): int;
 }

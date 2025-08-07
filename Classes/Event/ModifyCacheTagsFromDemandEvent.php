@@ -15,15 +15,9 @@ use WapplerSystems\Address\Domain\Model\DemandInterface;
 
 final class ModifyCacheTagsFromDemandEvent
 {
-    /**
-     * @var array
-     */
-    private $cacheTags;
+    private array $cacheTags;
 
-    /**
-     * @var DemandInterface
-     */
-    private $demand;
+    private DemandInterface $demand;
 
     public function __construct(array $cacheTags, DemandInterface $demand)
     {

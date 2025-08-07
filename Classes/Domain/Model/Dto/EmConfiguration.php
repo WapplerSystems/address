@@ -39,98 +39,48 @@ class EmConfiguration
         }
     }
 
-    /**
-     * @var int
-     */
-    protected $tagPid = 0;
+    protected int $tagPid = 0;
 
-    /**
-     * @var boolean;
-     */
-    protected $prependAtCopy = true;
+    protected bool $prependAtCopy = true;
 
-    /**
-     * @var string;
-     */
-    protected $categoryRestriction = '';
+    protected string $categoryRestriction = '';
 
-    /**
-     * @var bool
-     */
-    protected $categoryBeGroupTceFormsRestriction = false;
+    protected bool $categoryBeGroupTceFormsRestriction = false;
 
-    /**
-     * @var bool
-     */
-    protected $contentElementRelation = true;
+    protected bool $contentElementRelation = true;
 
-    /** @var bool */
-    protected $contentElementPreview = true;
+    protected bool $contentElementPreview = true;
 
-    /**
-     * @var bool
-     */
-    protected $manualSorting = false;
+    protected bool $manualSorting = false;
 
-    /**
-     * @var string
-     */
-    protected $archiveDate = 'date';
+    protected string $archiveDate = 'date';
 
-    /**
-     * @var bool
-     */
-    protected $dateTimeNotRequired = false;
+    protected bool $dateTimeNotRequired = false;
 
-    /**
-     * @var bool
-     */
-    protected $showImporter = false;
+    protected bool $showImporter = false;
 
-    /** @var bool */
-    protected $rteForTeaser = false;
+    protected bool $rteForTeaser = false;
 
-    /**
-     * @var bool
-     */
-    protected $showAdministrationModule = true;
+    protected bool $showAdministrationModule = true;
 
-    /** @var bool */
-    protected $hidePageTreeForAdministrationModule = false;
+    protected bool $hidePageTreeForAdministrationModule = false;
 
-    /**
-     * @var int
-     */
-    protected $storageUidImporter = 1;
+    protected int $storageUidImporter = 1;
 
-    /**
-     * @var string
-     */
-    protected $resourceFolderImporter = '/address_import';
+    protected string $resourceFolderImporter = '/address_import';
 
-    /** @var string */
-    protected $slugBehaviour = 'unique';
+    protected string $slugBehaviour = 'unique';
 
-    /**
-     * @return int
-     */
     public function getTagPid(): int
     {
-        return (int)$this->tagPid;
+        return $this->tagPid;
     }
 
-    /**
-     *
-     * @return bool
-     */
     public function getPrependAtCopy(): bool
     {
-        return (boolean)$this->prependAtCopy;
+        return $this->prependAtCopy;
     }
 
-    /**
-     * @return string
-     */
     public function getCategoryRestriction(): string
     {
         return $this->categoryRestriction;
@@ -138,100 +88,65 @@ class EmConfiguration
 
     /**
      * Get categoryBeGroupTceFormsRestriction
-     *
-     * @return bool
      */
     public function getCategoryBeGroupTceFormsRestriction(): bool
     {
-        return (bool)$this->categoryBeGroupTceFormsRestriction;
+        return $this->categoryBeGroupTceFormsRestriction;
     }
 
-    /**
-     * @return bool
-     */
     public function getContentElementRelation(): bool
     {
-        return (boolean)$this->contentElementRelation;
+        return $this->contentElementRelation;
     }
 
-    /**
-     * @return bool
-     */
     public function getContentElementPreview(): bool
     {
-        return (bool)$this->contentElementPreview;
+        return $this->contentElementPreview;
     }
 
-    /**
-     * @return bool
-     */
     public function getManualSorting(): bool
     {
-        return (boolean)$this->manualSorting;
+        return $this->manualSorting;
     }
 
-    /**
-     * @return string
-     */
     public function getArchiveDate(): string
     {
         return $this->archiveDate;
     }
 
-    /**
-     * @return bool
-     */
     public function getShowImporter(): bool
     {
-        return (boolean)$this->showImporter;
+        return $this->showImporter;
     }
 
-    /**
-     * @param bool $showAdministrationModule
-     */
-    public function setShowAdministrationModule($showAdministrationModule)
+    public function setShowAdministrationModule(bool $showAdministrationModule): void
     {
         $this->showAdministrationModule = $showAdministrationModule;
     }
 
-    /**
-     * @return bool
-     */
     public function getShowAdministrationModule(): bool
     {
         return $this->showAdministrationModule;
     }
 
-    /**
-     * @return bool
-     */
     public function getRteForTeaser(): bool
     {
         return $this->rteForTeaser;
     }
 
-    /**
-     * @return string
-     */
     public function getResourceFolderImporter(): string
     {
         return $this->resourceFolderImporter;
     }
 
-    /**
-     * @return int
-     */
     public function getStorageUidImporter(): int
     {
         return $this->storageUidImporter;
     }
 
-    /**
-     * @return bool
-     */
     public function getHidePageTreeForAdministrationModule(): bool
     {
-        return (bool)$this->hidePageTreeForAdministrationModule;
+        return $this->hidePageTreeForAdministrationModule;
     }
 
     public function getSlugBehaviour(): string

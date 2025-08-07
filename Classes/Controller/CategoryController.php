@@ -1,6 +1,7 @@
 <?php
 namespace WapplerSystems\Address\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use WapplerSystems\Address\Domain\Repository\AddressRepository;
 use WapplerSystems\Address\Domain\Repository\CategoryRepository;
 use WapplerSystems\Address\Domain\Repository\TagRepository;
@@ -18,7 +19,7 @@ use WapplerSystems\Address\Event\CategoryListActionEvent;
  */
 class CategoryController extends AddressController
 {
-    const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
+    const string SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
 
 
     /**
@@ -26,8 +27,9 @@ class CategoryController extends AddressController
      *
      * @param array|null $overwriteDemand
      * @param int $currentPage
+     * @return ResponseInterface
      */
-    public function listAction(array $overwriteDemand = null, int $currentPage = 1): \Psr\Http\Message\ResponseInterface
+    public function listAction(array $overwriteDemand = null, int $currentPage = 1): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
