@@ -45,14 +45,14 @@ class MapElement extends AbstractFormElement
         $config = $parameterArray['fieldConf']['config'];
 
         $googleMapsLibrary = '';
-        if ($pluginSettings['googlemaps']['javascript']['apiUrl'] ?? false) {
+        if ($pluginSettings['googlemaps.']['javascript.']['apiUrl'] ?? false) {
 
-            $googleMapsLibrary = $pluginSettings['googlemaps']['javascript']['apiUrl'] ?
-                htmlentities($pluginSettings['googlemaps']['javascript']['apiUrl']) :
+            $googleMapsLibrary = $pluginSettings['googlemaps.']['javascript.']['apiUrl'] ?
+                htmlentities($pluginSettings['googlemaps.']['javascript.']['apiUrl']) :
                 '//maps.google.com/maps/api/js?v=weekly';
 
-            if ($pluginSettings['googlemaps']['javascript']['apiKey'] ?? false) {
-                $googleMapsLibrary .= '&key=' . $pluginSettings['googlemaps']['javascript']['apiKey'];
+            if ($pluginSettings['googlemaps.']['javascript.']['apiKey'] ?? false) {
+                $googleMapsLibrary .= '&key=' . $pluginSettings['googlemaps.']['javascript.']['apiKey'];
             }
         }
 
