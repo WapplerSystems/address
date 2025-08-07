@@ -623,50 +623,8 @@ $tx_address_domain_model_address = [
             ]
         ],
         'tags' => [
-            'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tags',
             'config' => [
-                'type' => 'group',
-                'internal_type' => 'db',
-                'allowed' => 'tx_address_domain_model_tag',
-                'MM' => 'tx_address_domain_model_address_tag_mm',
-                'foreign_table' => 'tx_address_domain_model_tag',
-                'foreign_table_where' => 'ORDER BY tx_address_domain_model_tag.title',
-                'size' => 10,
-                'minitems' => 0,
-                'maxitems' => 99,
-                'wizards' => [
-                    'suggest' => [
-                        'type' => 'suggest',
-                        'default' => [
-                            'searchWholePhrase' => true,
-                            'receiverClass' => \WapplerSystems\Address\Hooks\SuggestReceiver::class
-                        ],
-                    ],
-                    'list' => [
-                        'type' => 'script',
-                        'title' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tags.list',
-                        'icon' => 'actions-system-list-open',
-                        'params' => [
-                            'table' => 'tx_address_domain_model_tag',
-                            'pid' => $configuration->getTagPid(),
-                        ],
-                        'module' => [
-                            'name' => 'wizard_list',
-                        ],
-                    ],
-                    'edit' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.tags.edit',
-                        'module' => [
-                            'name' => 'wizard_edit',
-                        ],
-                        'popup_onlyOpenIfSelected' => true,
-                        'icon' => 'actions-open',
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                    ],
-                ],
+                'type' => 'tag',
             ],
         ],
         'path_segment' => [
