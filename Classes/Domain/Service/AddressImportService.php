@@ -138,13 +138,6 @@ class AddressImportService extends AbstractImportService
         $address->setKeywords($importItem['keywords']);
         $address->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
-        $contentElementUidArray = GeneralUtility::trimExplode(',', $importItem['content_elements'], true);
-        foreach ($contentElementUidArray as $contentElementUid) {
-            if (is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))) {
-                $address->addContentElement($contentElement);
-            }
-        }
-
         $address->setInternalurl($importItem['internalurl']);
         $address->setExternalurl($importItem['externalurl']);
 

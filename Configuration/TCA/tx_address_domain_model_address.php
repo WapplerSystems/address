@@ -48,7 +48,7 @@ $tx_address_domain_model_address = [
 
     ],
     'interface' => [
-        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,title,teaser,bodytext,archive,categories,related,type,keywords,media,url,istopaddress,related_files,related_links,content_elements,tags,path_segment,alternative_title,related_files,detail_pid'
+        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,title,teaser,bodytext,archive,categories,related,type,keywords,media,url,istopaddress,related_files,related_links,tags,path_segment,alternative_title,related_files,detail_pid'
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -600,34 +600,6 @@ $tx_address_domain_model_address = [
                 ],
             ]
         ],
-        'content_elements' => [
-            'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements',
-            'config' => [
-                'type' => 'inline',
-                'allowed' => 'tt_content',
-                'foreign_table' => 'tt_content',
-                'foreign_sortby' => 'sorting',
-                'foreign_field' => 'tx_address_related_address',
-                'minitems' => 0,
-                'maxitems' => 99,
-                'appearance' => [
-                    'useXclassedVersion' => $configuration->getContentElementPreview(),
-                    'collapseAll' => true,
-                    'expandSingle' => true,
-                    'levelLinksPosition' => 'bottom',
-                    'useSortable' => true,
-                    'showPossibleLocalizationRecords' => true,
-                    'showRemovedLocalizationRecords' => true,
-                    'showAllLocalizationLink' => true,
-                    'showSynchronizationLink' => true,
-                    'enabledControls' => [
-                        'info' => false,
-                    ]
-                ]
-            ]
-        ],
         'related_news' => [
             'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
@@ -892,7 +864,6 @@ $tx_address_domain_model_address = [
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                     --palette--;;paletteLocation,
                     --palette--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.marker;paletteMarker,
-                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
 
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -925,8 +896,6 @@ $tx_address_domain_model_address = [
                     --palette--;;paletteMarker,
                     related,
 
-                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
-
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
 
@@ -953,8 +922,6 @@ $tx_address_domain_model_address = [
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                 --palette--;;paletteLocation,
                 --palette--;;paletteMarker,
-                --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.content_elements,content_elements,
-
 
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -1030,10 +997,6 @@ if ($categoryRestrictionSetting) {
         $tx_address_domain_model_address['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
             $tx_address_domain_model_address['columns']['categories']['config']['foreign_table_where'];
     }
-}
-
-if (!$configuration->getContentElementRelation()) {
-    unset($tx_address_domain_model_address['columns']['content_elements']);
 }
 
 if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('news')) {

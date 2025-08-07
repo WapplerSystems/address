@@ -204,9 +204,6 @@
 			<trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve">
 				<source>Top address</source>
 			</trans-unit>
-			<trans-unit id="tx_address_domain_model_address.content_elements" xml:space="preserve">
-				<source>Content elements</source>
-			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve">
 				<source>Tags</source>
 			</trans-unit>

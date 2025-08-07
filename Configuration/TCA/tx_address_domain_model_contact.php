@@ -248,10 +248,6 @@ if ($categoryRestrictionSetting) {
     }
 }
 
-if (!$configuration->getContentElementRelation()) {
-    unset($tx_address_domain_model_contact['columns']['content_elements']);
-}
-
 if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('news')) {
     unset($tx_address_domain_model_contact['columns']['related_news']);
 }
