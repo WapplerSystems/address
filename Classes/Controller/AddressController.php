@@ -141,7 +141,7 @@ class AddressController extends AddressBaseController
         $demand->setSearchFields($settings['search']['fields'] ?? '');
 
         $demand->setStoragePage(GeneralUtility::intExplode(',',Page::extendPidListByChildren($settings['startingpoint'],
-            $settings['recursive'])), true);
+            $settings['recursive']), true));
         return $demand;
     }
 
