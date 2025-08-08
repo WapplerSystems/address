@@ -48,7 +48,7 @@ $tx_address_domain_model_address = [
 
     ],
     'interface' => [
-        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,title,teaser,bodytext,archive,categories,related,type,keywords,media,url,istopaddress,related_files,related_links,tags,path_segment,alternative_title,related_files,detail_pid'
+        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,title,teaser,bodytext,archive,categories,related,type,keywords,media,istopaddress,related_files,related_links,tags,path_segment,alternative_title,related_files,detail_pid'
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -236,50 +236,6 @@ $tx_address_domain_model_address = [
             'exclude' => false,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.position',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => '',
-            ]
-        ],
-        'phone' => [
-            'exclude' => false,
-            'l10n_display' => 'defaultAsReadonly',
-            'l10n_mode' => 'exclude',
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.phone',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => '',
-            ]
-        ],
-        'www' => [
-            'exclude' => false,
-            'l10n_display' => 'defaultAsReadonly',
-            'l10n_mode' => 'exclude',
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.www',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => '',
-            ]
-        ],
-        'fax' => [
-            'exclude' => false,
-            'l10n_display' => 'defaultAsReadonly',
-            'l10n_mode' => 'exclude',
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.fax',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => '',
-            ]
-        ],
-        'email' => [
-            'exclude' => false,
-            'l10n_display' => 'defaultAsReadonly',
-            'l10n_mode' => 'exclude',
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.email',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -550,16 +506,6 @@ $tx_address_domain_model_address = [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
-            ]
-        ],
-        'url' => [
-            'exclude' => false,
-            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.doktype.I.8',
-            'config' => [
-                'type' => 'input',
-                'size' => 50,
-                'eval' => 'required',
-                'softref' => 'typolink'
             ]
         ],
         'istopaddress' => [

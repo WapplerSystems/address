@@ -9,9 +9,11 @@ namespace WapplerSystems\Address\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 
 
 /**
@@ -40,35 +42,35 @@ class Address extends AbstractEntity
 
     /**
      * @var ObjectStorage<Category>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
+    #[Lazy]
     protected ObjectStorage $categories;
 
     /**
-     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Address>
      */
+    #[Lazy]
     protected ObjectStorage $related;
 
     /**
-     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Address>
      */
+    #[Lazy]
     protected ObjectStorage $relatedFrom;
 
     /**
      * Fal related files
      *
-     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<FileReference>
      */
-    protected ObjectStorage $relatedFiles;
+    #[Lazy]
+    protected ?ObjectStorage $relatedFiles = null;
 
     /**
-     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Link>
      */
-    protected ObjectStorage $relatedLinks;
+    #[Lazy]
+    protected ?ObjectStorage $relatedLinks = null;
 
     /**
      * @var string
@@ -93,33 +95,27 @@ class Address extends AbstractEntity
     /**
      * Fal media items
      *
-     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<FileReference>
      */
+    #[Lazy]
     protected ObjectStorage $media;
 
     /**
      * Fal media items with showinpreview set
      *
      * @var array
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
+    #[Transient]
     protected array $mediaPreviews = [];
 
     /**
      * Fal media items with showinpreview not set
      *
      * @var array
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
+    #[Transient]
     protected array $mediaNonPreviews = [];
 
-
-    /**
-     * @var ObjectStorage<\WapplerSystems\Address\Domain\Model\TtContent>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     */
-    protected ObjectStorage $contentElements;
 
     /**
      * @var string
@@ -160,16 +156,6 @@ class Address extends AbstractEntity
      * @var bool
      */
     protected bool $directContact = false;
-
-    /**
-     * @var string
-     */
-    protected string $email = '';
-
-    /**
-     * @var string
-     */
-    protected string $url;
 
     /**
      * @var string
@@ -237,16 +223,6 @@ class Address extends AbstractEntity
     protected string $position;
 
     /**
-     * @var string
-     */
-    protected string $phone;
-
-    /**
-     * @var string
-     */
-    protected string $fax;
-
-    /**
      * @var int
      */
     protected int $detailPid;
@@ -288,7 +264,6 @@ class Address extends AbstractEntity
     public function __construct()
     {
         $this->categories = new ObjectStorage();
-        $this->contentElements = new ObjectStorage();
         $this->relatedLinks = new ObjectStorage();
         $this->media = new ObjectStorage();
         $this->relatedFiles = new ObjectStorage();
@@ -361,7 +336,7 @@ class Address extends AbstractEntity
     /**
      * Get related address
      *
-     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
+     * @return ObjectStorage<Address>
      */
     public function getRelated(): ObjectStorage
     {
@@ -371,7 +346,7 @@ class Address extends AbstractEntity
     /**
      * Set related from
      *
-     * @param ObjectStorage<\WapplerSystems\Address\Domain\Model\Address> $relatedFrom
+     * @param ObjectStorage<Address> $relatedFrom
      */
     public function setRelatedFrom(ObjectStorage $relatedFrom): void
     {
@@ -381,7 +356,7 @@ class Address extends AbstractEntity
     /**
      * Get related from
      *
-     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Address>
+     * @return ObjectStorage<Address>
      */
     public function getRelatedFrom(): ObjectStorage
     {
@@ -402,9 +377,9 @@ class Address extends AbstractEntity
     /**
      * Get related links
      *
-     * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\Link>
+     * @return ObjectStorage<Link>
      */
-    public function getRelatedLinks(): ObjectStorage
+    public function getRelatedLinks(): ?ObjectStorage
     {
         return $this->relatedLinks;
     }
@@ -414,7 +389,7 @@ class Address extends AbstractEntity
      *
      * @return ObjectStorage<\WapplerSystems\Address\Domain\Model\FileReference>
      */
-    public function getRelatedFiles(): ObjectStorage
+    public function getRelatedFiles(): ?ObjectStorage
     {
         return $this->relatedFiles;
     }
@@ -445,7 +420,7 @@ class Address extends AbstractEntity
     /**
      * Set related links
      *
-     * @param ObjectStorage<\WapplerSystems\Address\Domain\Model\Link> $relatedLinks related links relation
+     * @param ObjectStorage<Link> $relatedLinks related links relation
      */
     public function setRelatedLinks(ObjectStorage $relatedLinks): void
     {
@@ -806,61 +781,7 @@ class Address extends AbstractEntity
         $this->directContact = $directContact;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    /**
-     * @param string $url
-     */
-    public function setUrl(string $url): void
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * @return ObjectStorage
-     */
-    public function getContentElements(): ObjectStorage
-    {
-        return $this->contentElements;
-    }
-
-    /**
-     * @param ObjectStorage $contentElements
-     */
-    public function setContentElements(ObjectStorage $contentElements): void
-    {
-        $this->contentElements = $contentElements;
-    }
-
-
-    /**
-     * Get id list of content elements
-     *
-     * @return string
-     */
-    public function getContentElementIdList()
-    {
-        $idList = [];
-        $contentElements = $this->getContentElements();
-        if ($contentElements) {
-            foreach ($this->getContentElements() as $contentElement) {
-                $idList[] = $contentElement->getUid();
-            }
-        }
-        return implode(',', $idList);
-    }
-
-    /**
-     * @return ObjectStorage
-     */
-    public function getMedia()
+    public function getMedia(): ?ObjectStorage
     {
         return $this->media;
     }
@@ -868,7 +789,7 @@ class Address extends AbstractEntity
     /**
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
@@ -933,43 +854,27 @@ class Address extends AbstractEntity
         $this->abbreviation = $abbreviation;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getAddress()
+    public function getAddress(): string
     {
         return $this->address;
     }
 
-    /**
-     * @param string $address
-     */
-    public function setAddress($address)
+    public function setAddress(string $address): void
     {
         $this->address = $address;
     }
 
-    /**
-     * @return string
-     */
-    public function getBuilding()
+    public function getBuilding(): string
     {
         return $this->building;
     }
 
-    /**
-     * @param string $building
-     */
-    public function setBuilding($building)
+    public function setBuilding(string $building): void
     {
         $this->building = $building;
     }
 
-    /**
-     * @return string
-     */
-    public function getPosition()
+    public function getPosition(): string
     {
         return $this->position;
     }
@@ -977,103 +882,37 @@ class Address extends AbstractEntity
     /**
      * @param string $position
      */
-    public function setPosition($position)
+    public function setPosition(string $position): void
     {
         $this->position = $position;
     }
 
-    /**
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param string $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFax()
-    {
-        return $this->fax;
-    }
-
-    /**
-     * @param string $fax
-     */
-    public function setFax($fax)
-    {
-        $this->fax = $fax;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTeaser()
+    public function getTeaser(): string
     {
         return $this->teaser;
     }
 
-    /**
-     * @param mixed $teaser
-     */
-    public function setTeaser($teaser)
+    public function setTeaser($teaser): void
     {
         $this->teaser = $teaser;
     }
 
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDetailPid()
+    public function getDetailPid(): int
     {
         return $this->detailPid;
     }
 
-    /**
-     * @param int $detailPid
-     */
-    public function setDetailPid(int $detailPid)
+    public function setDetailPid(int $detailPid): void
     {
         $this->detailPid = $detailPid;
     }
 
-    /**
-     * @return string
-     */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -1089,7 +928,7 @@ class Address extends AbstractEntity
     /**
      * @param bool $appendAcademicTitle
      */
-    public function setAppendAcademicTitle(bool $appendAcademicTitle)
+    public function setAppendAcademicTitle(bool $appendAcademicTitle): void
     {
         $this->appendAcademicTitle = $appendAcademicTitle;
     }
@@ -1097,7 +936,7 @@ class Address extends AbstractEntity
     /**
      * @return string
      */
-    public function getCity()
+    public function getCity(): string
     {
         return $this->city;
     }
@@ -1105,7 +944,7 @@ class Address extends AbstractEntity
     /**
      * @param string $city
      */
-    public function setCity(string $city)
+    public function setCity(string $city): void
     {
         $this->city = $city;
     }
@@ -1183,7 +1022,7 @@ class Address extends AbstractEntity
         $this->latitude = $latitude;
     }
 
-    public function getContacts(): ObjectStorage
+    public function getContacts(): ?ObjectStorage
     {
         return $this->contacts;
     }
