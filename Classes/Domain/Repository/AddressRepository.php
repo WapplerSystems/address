@@ -78,20 +78,12 @@ class AddressRepository extends AbstractDemandedRepository
         }
 
         if ($categoryConstraints) {
-            switch (strtolower($conjunction)) {
-                case 'or':
-                    $constraint = $query->logicalOr(...$categoryConstraints);
-                    break;
-                case 'notor':
-                    $constraint = $query->logicalNot($query->logicalOr(...$categoryConstraints));
-                    break;
-                case 'notand':
-                    $constraint = $query->logicalNot($query->logicalAnd(...$categoryConstraints));
-                    break;
-                case 'and':
-                default:
-                    $constraint = $query->logicalAnd(...$categoryConstraints);
-            }
+            $constraint = match (strtolower($conjunction)) {
+                'or' => $query->logicalOr(...$categoryConstraints),
+                'notor' => $query->logicalNot($query->logicalOr(...$categoryConstraints)),
+                'notand' => $query->logicalNot($query->logicalAnd(...$categoryConstraints)),
+                default => $query->logicalAnd(...$categoryConstraints),
+            };
         }
 
         return $constraint;
