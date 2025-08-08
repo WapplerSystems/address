@@ -2,9 +2,9 @@
 
 namespace WapplerSystems\Address\ViewHelpers;
 
-use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\ProcessedFile;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Page\AssetCollector;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
@@ -31,6 +31,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
     {
         parent::initializeArguments();
         $this->registerArgument('property', 'string', 'either width or height', true);
+        $this->registerArgument('image', 'string', 'generated image', true);
     }
 
     /**
@@ -45,37 +46,29 @@ class ImageSizeViewHelper extends AbstractViewHelper
         RenderingContextInterface $renderingContext
     ) {
         $value = 0;
-        $tsfe = static::getTypoScriptFrontendController();
-        if (!is_null($tsfe) && $tsfe->lastImageInfo !== null) {
+
+        $usedImage = trim($arguments['image']);
+
+        $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
+        $imagesOnPage = $assetCollector->getMedia();
+
+        if (isset($imagesOnPage[$usedImage])) {
             switch ($arguments['property']) {
                 case 'width':
-                    $value = $tsfe->lastImageInfo[0];
+                    $value = $imagesOnPage[$usedImage][0];
                     break;
                 case 'height':
-                    $value = $tsfe->lastImageInfo[1];
+                    $value = $imagesOnPage[$usedImage][1];
                     break;
                 case 'size':
-                    /** @var ProcessedFile $processedImage */
-                    $processedImage = $tsfe->lastImageInfo['processedFile'];
-                    if ($processedImage) {
-                        $value = $processedImage->getSize();
-                    } elseif ($originalFile = $tsfe->lastImageInfo['originalFile']) {
-                        /** @var File $originalFile */
-                        $value = $originalFile->getSize();
+                    $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
+                    if (is_file($file)) {
+                        $value = @filesize($file);
                     }
-                    break;
-                default:
-                    throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $arguments['property']));
             }
         }
-        return $value;
+
+        return (int)$value;
     }
 
-    /**
-     * @return TypoScriptFrontendController
-     */
-    protected static function getTypoScriptFrontendController()
-    {
-        return $GLOBALS['TSFE'];
-    }
 }
