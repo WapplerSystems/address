@@ -239,8 +239,8 @@ class Address extends AbstractEntity
 
     /**
      * @var ObjectStorage<Contact>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
+    #[Lazy]
     protected ObjectStorage $contacts;
 
     protected ?FileReference $markerIcon;
@@ -253,8 +253,8 @@ class Address extends AbstractEntity
     /**
      *
      * @var ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Tag>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
+    #[Lazy]
     protected ObjectStorage $tags;
 
 
