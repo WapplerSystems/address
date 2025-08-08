@@ -9,11 +9,11 @@ namespace WapplerSystems\Address\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 
 
 /**
@@ -529,7 +529,7 @@ class Address extends AbstractEntity
      */
     public function getMediaPreviews(): array
     {
-        if ($this->mediaPreviews === null && $this->getMedia()) {
+        if (count($this->mediaPreviews) === 0 && $this->getMedia()) {
             $this->mediaPreviews = [];
             /** @var $mediaItem FileReference */
             foreach ($this->getMedia() as $mediaItem) {
@@ -549,7 +549,7 @@ class Address extends AbstractEntity
      */
     public function getMediaNonPreviews(): array
     {
-        if ($this->mediaNonPreviews === null && $this->getMedia()) {
+        if (count($this->mediaNonPreviews) === 0 && $this->getMedia()) {
             $this->mediaNonPreviews = [];
             /** @var $mediaItem FileReference */
             foreach ($this->getMedia() as $mediaItem) {
