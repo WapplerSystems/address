@@ -19,8 +19,6 @@ use WapplerSystems\Address\Event\CategoryListActionEvent;
  */
 class CategoryController extends AddressController
 {
-    const string SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
-
 
     /**
      * List categories
