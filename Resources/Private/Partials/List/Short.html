@@ -4,7 +4,7 @@
 
 <div class="address address-{address.type}{f:if(condition: address.istopaddress, then: ' topaddress')} {ad:categoryNames(address:address,prefix:'address-cat-')} mb-3">
     <ad:excludeDisplayedAddress address="{address}"/>
-    <!-- header -->
+
     <div class="header">
         <h5>
             <ad:link address="{address}" settings="{settings}" title="{address.title}">
@@ -18,8 +18,8 @@
 
 
     <p>
-        <f:if condition="{address.phone}"><i class="fa fa-phone c-gray" aria-hidden="true"></i> {address.phone}<br/></f:if>
-        <f:if condition="{address.fax}"><i class="fa fa-fax c-gray" aria-hidden="true"></i> {address.fax}</f:if>
+        <f:if condition="{address.phone}">{address.phone}<br/></f:if>
+        <f:if condition="{address.fax}">{address.fax}</f:if>
     </p>
 
 
