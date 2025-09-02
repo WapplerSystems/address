@@ -325,7 +325,8 @@ $tx_address_domain_model_address = [
         ],
         'building' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
+            'l10n_display' => 'defaultAsReadonly',
+            'l10n_mode' => 'exclude',
             'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.building',
             'config' => [
                 'type' => 'input',
