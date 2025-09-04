@@ -408,13 +408,16 @@ class AddressRepository extends AbstractDemandedRepository
     }
 
 
-    public function findAllInPids(array $pids): array|QueryResultInterface
+    public function findAllInPids(array $pids, ?array $orderings = null): array|QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->matching(
             $query->in('pid', $pids)
         );
+        if ($orderings) {
+            $query->setOrderings($orderings);
+        }
 
         return $query->execute();
     }
