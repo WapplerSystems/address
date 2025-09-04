@@ -1,0 +1,4 @@
+name: wapplersystems/address-openstreetmap
+label: Address - OpenStreetMap
+dependencies:
+  - wapplersystems/address

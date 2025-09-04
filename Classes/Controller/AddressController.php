@@ -307,6 +307,66 @@ class AddressController extends AddressBaseController
 
 
     /**
+     *
+     * @param array|null $overwriteDemand
+     */
+    public function mapAction(?array $overwriteDemand = null): ResponseInterface
+    {
+        $possibleRedirect = $this->forwardToDetailActionWhenRequested();
+        if ($possibleRedirect) {
+            return $possibleRedirect;
+        }
+
+        $demand = $this->createDemandObjectFromSettings($this->settings);
+        $demand->setActionAndClass(__METHOD__, __CLASS__);
+
+        if ($overwriteDemand !== null && (int)$this->settings['disableOverrideDemand'] !== 1) {
+            $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
+        }
+
+        $addressRecords = $this->addressRepository->findDemanded($demand);
+
+        $assignedValues = [
+            'addresses' => $addressRecords,
+            'overwriteDemand' => $overwriteDemand,
+            'demand' => $demand,
+            'categories' => null,
+            'tags' => null,
+            'settings' => $this->settings,
+        ];
+
+        if (count($demand->getCategories()) > 0) {
+            $assignedValues['categories'] = $this->categoryRepository->findByIdList($demand->getCategories());
+        }
+
+        if (count($demand->getTags()) > 0) {
+            $assignedValues['tags'] = $this->tagRepository->findByIdList($demand->getTags());
+        }
+        $event = $this->eventDispatcher->dispatch(new AddressListActionEvent($this, $assignedValues, $this->request));
+        $this->view->assignMultiple($event->getAssignedValues());
+
+        // pagination
+        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $event->getAssignedValues()['addresses'], $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
+
+        $this->view->assign('pagination', [
+            'currentPage' => $currentPage,
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+        ]);
+
+        Cache::addPageCacheTagsByDemandObject($demand);
+        return $this->htmlResponse();
+    }
+
+
+    /**
      * Checks if the address pid could be found in the startingpoint settings of the detail plugin and
      * if the pid could not be found it return NULL instead of the address object.
      *

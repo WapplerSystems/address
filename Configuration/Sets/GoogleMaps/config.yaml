@@ -1,0 +1,4 @@
+name: wapplersystems/address-googlemaps
+label: Address - Google Maps
+dependencies:
+  - wapplersystems/address

@@ -8,6 +8,8 @@ namespace WapplerSystems\Address\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use WapplerSystems\Address\Utility\MapRenderer;
 use WapplerSystems\Address\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -21,14 +23,19 @@ class ItemsProcFunc
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
+    /** @var MapRenderer $mapRendererUtility */
+    protected $mapRendererUtility;
+
     /**
      * ItemsProcFunc constructor.
      * @param TemplateLayout $templateLayout
      */
     public function __construct(
-        TemplateLayout $templateLayout
+        TemplateLayout $templateLayout,
+        MapRenderer $mapRendererUtility
     ) {
         $this->templateLayoutsUtility = $templateLayout;
+        $this->mapRendererUtility = $mapRendererUtility;
     }
 
     /**
@@ -278,5 +285,25 @@ class ItemsProcFunc
     protected function getLanguageService()
     {
         return $GLOBALS['LANG'];
+    }
+
+
+    public function user_mapRenderers(array &$config): void
+    {
+        $currentColPos = $config['flexParentDatabaseRow']['colPos'];
+        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
+
+        if ($pageId > 0) {
+            $mapRenderers = $this->mapRendererUtility->getAvailableMapRenderers($pageId);
+
+            $mapRenderers = $this->reduceTemplateLayouts($mapRenderers, $currentColPos);
+            foreach ($mapRenderers as $layout) {
+                $additionalLayout = [
+                    htmlspecialchars($this->getLanguageService()->sL($layout[0])),
+                    $layout[1],
+                ];
+                array_push($config['items'], $additionalLayout);
+            }
+        }
     }
 }

@@ -1,0 +1,19 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:layout name="General"/>
+
+<f:section name="content">
+
+    <f:switch expression="{settings.mapRenderer}">
+        <f:case value="GoogleMaps">
+            <f:render partial="Map/GoogleMaps" arguments="{_all}"/>
+        </f:case>
+        <f:case value="OpenStreetMap">
+            <f:render partial="Map/OpenStreetMap" arguments="{_all}"/>
+        </f:case>
+
+    </f:switch>
+
+</f:section>
+</html>

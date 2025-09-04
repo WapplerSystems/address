@@ -232,7 +232,10 @@
 				<source>Length of teaser (in chars)</source>
 			</trans-unit>
 			<trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
-				<source>Template Layout</source>
+				<source>Template layout</source>
+			</trans-unit>
+			<trans-unit id="flexforms_template.mapRenderer" xml:space="preserve">
+				<source>Map renderer</source>
 			</trans-unit>
 			<trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>

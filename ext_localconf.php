@@ -92,6 +92,15 @@ $boot = static function (): void {
         [],
         ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
+    ExtensionUtility::configurePlugin(
+        'Address',
+        'Map',
+        [
+            AddressController::class => 'map',
+        ],
+        [],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1603209223] = [
         'nodeName' => 'map',

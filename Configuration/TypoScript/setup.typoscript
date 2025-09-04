@@ -180,6 +180,10 @@ plugin.tx_address {
 
     }
 
+    leaflet {
+      tileserverUrl = {$plugin.tx_address.settings.leaflet.tileserverUrl}
+    }
+
     backend {
       enableMap = {$plugin.tx_address.settings.backend.enableMap}
     }

@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="leaflet" href="EXT:address/Resources/Public/CSS/Frontend/leaflet/leaflet.css" />
+<f:asset.script identifier="leaflet" src="EXT:address/Resources/Public/JavaScript/Frontend/leaflet/leaflet.js"/>
+
+<div id="map-{contentObjectData.uid}" style="height: 400px;"></div>
+
+
+<f:if condition="{addresses}">
+
+    <f:asset.script identifier="leaflet-init-{contentObjectData.uid}">
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var map = L.map('map-{contentObjectData.uid}').setView([51.1657, 10.4515], 6); // Deutschland Mitte
+
+            L.tileLayer('{settings.leaflet.tileserverUrl}', {
+                maxZoom: 18,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            // Marker für jede Adresse setzen
+            <f:for each="{addresses}" as="address">
+                <f:if condition="{address.latitude} && {address.longitude}">
+                    L.marker([{address.latitude}, {address.longitude}])
+                    .addTo(map)
+                    .bindPopup('{address.title}');
+                </f:if>
+            </f:for>
+        });
+
+    </f:asset.script>
+
+</f:if>
+
+
+
+</html>
