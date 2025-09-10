@@ -40,7 +40,7 @@ class TypoScriptService
      * @throws AbstractServerErrorException
      * @throws PropagateResponseException
      */
-    public function getTypoScript(int $pageUid, ServerRequest $request, int $languageUid = 0, array $rootLine = [], SiteInterface $site = null): RootNode
+    public function getTypoScript(int $pageUid, ServerRequest $request, int $languageUid = 0, array $rootLine = [], ?SiteInterface $site = null): RootNode
     {
         if (isset(self::$typoScript) && self::$typoScript !== null) {
             return self::$typoScript;
