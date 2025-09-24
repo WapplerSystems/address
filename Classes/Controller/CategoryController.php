@@ -27,7 +27,7 @@ class CategoryController extends AddressController
      * @param int $currentPage
      * @return ResponseInterface
      */
-    public function listAction(array $overwriteDemand = null, int $currentPage = 1): ResponseInterface
+    public function listAction(?array $overwriteDemand = null, int $currentPage = 1): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
