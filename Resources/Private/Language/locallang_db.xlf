@@ -102,6 +102,9 @@
 			<trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
 				<source>Country</source>
 			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.contact_person" xml:space="preserve">
+				<source>Contact person</source>
+			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.marker_icon" xml:space="preserve">
 				<source>Icon</source>
 			</trans-unit>

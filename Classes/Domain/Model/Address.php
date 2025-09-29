@@ -93,6 +93,11 @@ class Address extends AbstractEntity
     protected string $teaser = '';
 
     /**
+     * @var string
+     */
+    protected string $contactPerson = '';
+
+    /**
      * Fal media items
      *
      * @var ObjectStorage<FileReference>
@@ -1097,5 +1102,14 @@ class Address extends AbstractEntity
         $this->tags = $tags;
     }
 
+    public function getContactPerson(): string
+    {
+        return $this->contactPerson;
+    }
+
+    public function setContactPerson(string $contactPerson): void
+    {
+        $this->contactPerson = $contactPerson;
+    }
 
 }

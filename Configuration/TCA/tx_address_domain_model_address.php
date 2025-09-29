@@ -323,6 +323,14 @@ $tx_address_domain_model_address = [
                 'type' => 'input',
             ]
         ],
+        'contact_person' => [
+            'exclude' => true,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.contact_person',
+            'config' => [
+                'type' => 'input',
+            ]
+        ],
         'building' => [
             'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
@@ -762,7 +770,7 @@ $tx_address_domain_model_address = [
                     --palette--;;paletteContact,
                     --palette--;;paletteSlug,
                     teaser,
-                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel,
                     --palette--;;paletteArchive,
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                     --palette--;;paletteLocation,
@@ -792,7 +800,7 @@ $tx_address_domain_model_address = [
                     teaser,
                     --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
                     --palette--;;paletteArchive,
-                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel,
 
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                     --palette--;;paletteLocation,
@@ -820,7 +828,7 @@ $tx_address_domain_model_address = [
                     --palette--;;paletteDate,
                     --palette--;;paletteSlug,
                     teaser,
-                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel,
 
                 --div--;LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:location,
                 --palette--;;paletteLocation,
@@ -847,7 +855,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'type, sys_language_uid, hidden, istopaddress,',
         ],
         'paletteContact' => [
-            'showitem' => 'contacts, --linebreak--, direct_contact,',
+            'showitem' => 'contacts, --linebreak--, direct_contact, --linebreak--, contact_person,',
         ],
         'paletteLocation' => [
             'showitem' => 'address, building, --linebreak--, zip, city, region, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
