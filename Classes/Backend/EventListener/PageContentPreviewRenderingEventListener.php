@@ -407,7 +407,7 @@ final class PageContentPreviewRenderingEventListener
      */
     public function getTagRestrictionSetting()
     {
-        $tags = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional'), true);
+        $tags = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'sDEF'), true);
         if (count($tags) === 0) {
             return;
         }
