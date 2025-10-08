@@ -7,13 +7,21 @@
 
 <div id="map-{contentObjectData.uid}" style="height: 400px;"></div>
 
-
 <f:if condition="{addresses}">
 
     <f:asset.script identifier="leaflet-init-{contentObjectData.uid}">
 
+        let assetsUrlPrefix = '{assetsUrlPrefix}';
+
+        L.Marker.prototype.options.icon = L.icon({<f:comment></f:comment>
+            iconUrl: assetsUrlPrefix + 'marker-icon.png',
+            shadowUrl: assetsUrlPrefix + 'marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
-            var map = L.map('map-{contentObjectData.uid}').setView([51.1657, 10.4515], 6); // Deutschland Mitte
+            var map = L.map('map-{contentObjectData.uid}').setView([51.1657, 10.4515], 6);
 
             L.tileLayer('{settings.leaflet.tileserverUrl}', {
                 maxZoom: 18,

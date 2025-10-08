@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
@@ -326,6 +327,9 @@ class AddressController extends AddressBaseController
 
         $addressRecords = $this->addressRepository->findDemanded($demand);
 
+        $absolutePath = GeneralUtility::getFileAbsFileName('EXT:address/Resources/Public/Images/leaflet/');
+        $assetsUrlPrefix = PathUtility::getAbsoluteWebPath($absolutePath);
+
         $assignedValues = [
             'addresses' => $addressRecords,
             'overwriteDemand' => $overwriteDemand,
@@ -333,6 +337,7 @@ class AddressController extends AddressBaseController
             'categories' => null,
             'tags' => null,
             'settings' => $this->settings,
+            'assetsUrlPrefix' => $assetsUrlPrefix,
         ];
 
         if (count($demand->getCategories()) > 0) {

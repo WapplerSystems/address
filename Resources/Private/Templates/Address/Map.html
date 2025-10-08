@@ -12,7 +12,11 @@
         <f:case value="OpenStreetMap">
             <f:render partial="Map/OpenStreetMap" arguments="{_all}"/>
         </f:case>
-
+        <f:defaultCase>
+            <div class="alert alert-info">
+                No map renderer selected.
+            </div>
+        </f:defaultCase>
     </f:switch>
 
 </f:section>

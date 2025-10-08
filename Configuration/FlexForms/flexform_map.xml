@@ -13,64 +13,6 @@
                 <type>array</type>
                 <el>
 
-                    <!-- order -->
-                    <settings.orderBy>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
-                        <config>
-                            <type>select</type>
-                            <renderType>selectSingle</renderType>
-                            <items>
-                                <numIndex index="0" type="array">
-                                    <numIndex index="0"></numIndex>
-                                    <numIndex index="1"></numIndex>
-                                </numIndex>
-                                <numIndex index="3">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.crdate</numIndex>
-                                    <numIndex index="1">crdate</numIndex>
-                                </numIndex>
-                                <numIndex index="4">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.title</numIndex>
-                                    <numIndex index="1">title</numIndex>
-                                </numIndex>
-                                <numIndex index="5">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.manual</numIndex>
-                                    <numIndex index="1">sorting</numIndex>
-                                </numIndex>
-                                <numIndex index="6">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.selection</numIndex>
-                                    <numIndex index="1">selection</numIndex>
-                                </numIndex>
-                            </items>
-                        </config>
-
-                    </settings.orderBy>
-
-                    <!-- order direction  -->
-                    <settings.orderDirection>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection</label>
-                        <config>
-                            <type>select</type>
-                            <renderType>selectSingle</renderType>
-                            <items>
-                                <numIndex index="0" type="array">
-                                    <numIndex index="0"></numIndex>
-                                    <numIndex index="1"></numIndex>
-                                </numIndex>
-                                <numIndex index="1">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc</numIndex>
-                                    <numIndex index="1">asc</numIndex>
-                                </numIndex>
-                                <numIndex index="2">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc</numIndex>
-                                    <numIndex index="1">desc</numIndex>
-                                </numIndex>
-                            </items>
-                        </config>
-
-                    </settings.orderDirection>
-
 
                     <!-- Category Mode -->
                     <settings.categoryConjunction>
@@ -190,31 +132,6 @@
 
                     </settings.archiveRestriction>
 
-
-                    <!-- Top Address -->
-                    <settings.topAddressRestriction>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.topAddressRestriction</label>
-                        <config>
-                            <type>select</type>
-                            <renderType>selectSingle</renderType>
-                            <items>
-                                <numIndex index="0" type="array">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</numIndex>
-                                    <numIndex index="1"></numIndex>
-                                </numIndex>
-                                <numIndex index="1">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.topAddressRestriction.1</numIndex>
-                                    <numIndex index="1">1</numIndex>
-                                </numIndex>
-                                <numIndex index="2">
-                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.topAddressRestriction.2</numIndex>
-                                    <numIndex index="1">2</numIndex>
-                                </numIndex>
-                            </items>
-                        </config>
-
-                    </settings.topAddressRestriction>
 
                     <settings.selectedAddresses>
 
@@ -432,58 +349,6 @@
 
                     </settings.limit>
 
-                    <!-- Offset -->
-                    <settings.offset>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.offset</label>
-                        <config>
-                            <type>input</type>
-                            <size>5</size>
-                            <eval>num</eval>
-                        </config>
-
-                    </settings.offset>
-
-                    <!-- Hide pagination -->
-                    <settings.hidePagination>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.hidePagination</label>
-                        <config>
-                            <type>check</type>
-                        </config>
-
-                    </settings.hidePagination>
-
-                    <settings.list.paginate.itemsPerPage>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.itemsPerPage</label>
-                        <config>
-                            <type>input</type>
-                            <size>2</size>
-                        </config>
-
-                    </settings.list.paginate.itemsPerPage>
-
-                    <!-- topAddressFirst -->
-                    <settings.topAddressFirst>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.topAddressFirst</label>
-                        <config>
-                            <type>check</type>
-                        </config>
-
-                    </settings.topAddressFirst>
-
-                    <!-- only not displayed address -->
-                    <settings.excludeAlreadyDisplayedAddress>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_additional.excludeAlreadyDisplayedAddress</label>
-                        <config>
-                            <type>check</type>
-                        </config>
-
-                    </settings.excludeAlreadyDisplayedAddress>
-
                     <!-- disable overrideDemand -->
                     <settings.disableOverrideDemand>
 
@@ -521,29 +386,6 @@
                 <type>array</type>
                 <el>
 
-                    <!-- Image Width -->
-                    <settings.media.maxWidth>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxWidth</label>
-                        <config>
-                            <type>input</type>
-                            <size>5</size>
-                            <eval>num</eval>
-                        </config>
-
-                    </settings.media.maxWidth>
-
-                    <!-- Image Height -->
-                    <settings.media.maxHeight>
-
-                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxHeight</label>
-                        <config>
-                            <type>input</type>
-                            <size>5</size>
-                            <eval>num</eval>
-                        </config>
-
-                    </settings.media.maxHeight>
 
                     <!-- crop length Teaser -->
                     <settings.cropMaxCharacters>

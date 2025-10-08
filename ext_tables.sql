@@ -56,6 +56,8 @@ CREATE TABLE tx_address_domain_model_address
 	contacts              int(11) unsigned DEFAULT '0',
 	tags                  int(11)          DEFAULT '0' NOT NULL,
 
+	sorting               int(11)          DEFAULT '0' NOT NULL,
+
 	categories            int(11)          DEFAULT '0' NOT NULL,
 
 	import_id             varchar(100)     DEFAULT ''  NOT NULL,
