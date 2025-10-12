@@ -318,6 +318,9 @@ class AddressController extends AddressBaseController
             return $possibleRedirect;
         }
 
+        $contentObjectData = $this->request->getAttribute('currentContentObject')->data;
+        $identifier = 'map' . $contentObjectData['uid'];
+
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -330,6 +333,74 @@ class AddressController extends AddressBaseController
         $absolutePath = GeneralUtility::getFileAbsFileName('EXT:address/Resources/Public/Images/leaflet/');
         $assetsUrlPrefix = PathUtility::getAbsoluteWebPath($absolutePath);
 
+
+        $mapRenderer = $this->settings['mapRenderer'] ?? 'GoogleMaps';
+        $initZoomlevel = (int)($this->settings['initZoomlevel'] ?? 6);
+        $initJavaScript = '';
+        $maxZoom = null;
+        if (((int)($this->settings['enableMaxZoom'] ?? 0)) === 1) {
+            $maxZoom = (int)$this->settings['maxZoom'];
+        }
+        $minZoom = null;
+        if (((int)($this->settings['enableMinZoom'] ?? 0)) === 1) {
+            $minZoom = (int)$this->settings['minZoom'];
+        }
+
+        if ($mapRenderer === 'OpenStreetMap') {
+            $tileserverUrl = $this->settings['leaflet']['tileserverUrl'] ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+            $viewJS = <<<JS
+{$identifier}.setView([51.1657, 10.4515], {$initZoomlevel});
+JS;
+            if ($this->settings['centeredAddress'] ?? false) {
+
+                $centeredAddress = $this->addressRepository->findByUid((int)$this->settings['centeredAddress']);
+                $latitude = $centeredAddress?->getLatitude() ?? 51.1657;
+                $longitude = $centeredAddress?->getLongitude() ?? 10.4515;
+                $viewJS = <<<JS
+{$identifier}.setView([{$latitude}, {$longitude}], {$initZoomlevel});
+JS;
+            }
+
+            $markersJS = '';
+            /** @var Address $address */
+            foreach ($addressRecords as $address) {
+                if ($address->getLatitude() !== null && $address->getLongitude() !== null) {
+                    $markersJS .= <<<JS
+L.marker([{$address->getLatitude()}, {$address->getLongitude()}])
+    .addTo({$identifier})
+    .bindPopup('{$address->getTitle()}');
+JS;
+                }
+            }
+
+            $maxZoomJS = $maxZoom !== null ? 'maxZoom: '.$maxZoom.',' : '';
+            $minZoomJS = $minZoom !== null ? 'minZoom: '.$minZoom.',' : '';
+
+            $initJavaScript = <<<JS
+
+L.Marker.prototype.options.icon = L.icon({
+    iconUrl: '{$assetsUrlPrefix}marker-icon.png',
+    shadowUrl: '{$assetsUrlPrefix}marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41]
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var {$identifier} = L.map('{$identifier}');
+    {$viewJS}
+
+    L.tileLayer('{$tileserverUrl}', {
+        {$maxZoomJS}{$minZoomJS}
+        attribution: '© OpenStreetMap'
+    }).addTo({$identifier});
+
+    {$markersJS}
+});
+JS;
+        }
+
+
         $assignedValues = [
             'addresses' => $addressRecords,
             'overwriteDemand' => $overwriteDemand,
@@ -338,6 +409,8 @@ class AddressController extends AddressBaseController
             'tags' => null,
             'settings' => $this->settings,
             'assetsUrlPrefix' => $assetsUrlPrefix,
+            'initJavaScript' => $initJavaScript,
+            'identifier' => $identifier,
         ];
 
         if (count($demand->getCategories()) > 0) {
@@ -350,21 +423,6 @@ class AddressController extends AddressBaseController
         $event = $this->eventDispatcher->dispatch(new AddressListActionEvent($this, $assignedValues, $this->request));
         $this->view->assignMultiple($event->getAssignedValues());
 
-        // pagination
-        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
-        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
-
-        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
-        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $event->getAssignedValues()['addresses'], $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
-        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
-        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
-
-        $this->view->assign('pagination', [
-            'currentPage' => $currentPage,
-            'paginator' => $paginator,
-            'pagination' => $pagination,
-        ]);
 
         Cache::addPageCacheTagsByDemandObject($demand);
         return $this->htmlResponse();

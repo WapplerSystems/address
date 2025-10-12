@@ -69,8 +69,29 @@
 			<trans-unit id="flexforms_tab.template" xml:space="preserve">
 				<source>Template</source>
 			</trans-unit>
+			<trans-unit id="flexforms_tab.map" xml:space="preserve">
+				<source>Map</source>
+			</trans-unit>
 			<trans-unit id="flexforms_general.address" xml:space="preserve">
 				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="flexforms_map.centeredAddress">
+				<source>Centered address</source>
+			</trans-unit>
+			<trans-unit id="flexforms_map.initZoomlevel">
+				<source>Zoom level at start</source>
+			</trans-unit>
+			<trans-unit id="flexforms_map.enableMinZoom">
+				<source>Enable minimum zoom</source>
+			</trans-unit>
+			<trans-unit id="flexforms_map.enableMaxZoom">
+				<source>Enable maximum zoom</source>
+			</trans-unit>
+			<trans-unit id="flexforms_map.maxZoom">
+				<source>Maximum zoom</source>
+			</trans-unit>
+			<trans-unit id="flexforms_map.minZoom">
+				<source>Minimum zoom</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.mode" xml:space="preserve">
 				<source>What to display</source>
