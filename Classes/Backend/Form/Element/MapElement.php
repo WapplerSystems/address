@@ -84,30 +84,10 @@ class MapElement extends AbstractFormElement
         $longitudeField = $dataPrefix . '[' . $config['parameters']['longitude'] . ']';
         $longitudeControlField = $controlPrefix . '[' . $config['parameters']['longitude'] . ']';
         $addressField = $dataPrefix . '[' . $config['parameters']['address'] . ']';
+        $cityField = $dataPrefix . '[' . $config['parameters']['city'] . ']';
+        $zipcodeField = $dataPrefix . '[' . $config['parameters']['zip'] . ']';
+        $countryField = $dataPrefix . '[' . $config['parameters']['country'] . ']';
 
-
-        $updateJs = "TBE_EDITOR.fieldChanged('%s','%s','%s','%s');";
-        $updateLatitudeJs = sprintf(
-            $updateJs,
-            $table,
-            $row['uid'],
-            $config['parameters']['latitude'],
-            $latitudeField
-        );
-        $updateLongitudeJs = sprintf(
-            $updateJs,
-            $table,
-            $row['uid'],
-            $config['parameters']['longitude'],
-            $longitudeField
-        );
-        $updateAddressJs = sprintf(
-            $updateJs,
-            $table,
-            $row['uid'],
-            $config['parameters']['address'],
-            $addressField
-        );
 
         if ($googleMapsLibrary !== '') {
             $out[] = '<script type="text/javascript" src="' . $googleMapsLibrary . '"></script>';
@@ -118,7 +98,7 @@ class MapElement extends AbstractFormElement
             <input id="' . $addressId . '" type="textbox" value="' . $address . '" style="width:300px">
             <input id="'.$geocodeButtonId.'" class="tx_address_geocode-button" type="button" value="' . $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang.xlf:btn.update') . '">
         ';
-        $out[] = '<div class="tx_address_map" data-geocode-button="'.$geocodeButtonId.'" data-address-field="'.$addressField.'" data-longitude-field="'.$longitudeField.'" data-latitude-field="'.$latitudeField.'" data-longitude-control-field="'.$longitudeControlField.'" data-latitude-control-field="'.$latitudeControlField.'" id="' . $mapId . '" style="height:400px;margin:10px 0;width:100%"></div>';
+        $out[] = '<div class="tx_address_map" data-geocode-button="'.$geocodeButtonId.'" data-address-field="'.$addressField.'"  data-city-field="'.$cityField.'"  data-zipcode-field="'.$zipcodeField.'" data-country-field="'.$countryField.'" data-longitude-field="'.$longitudeField.'" data-latitude-field="'.$latitudeField.'" data-longitude-control-field="'.$longitudeControlField.'" data-latitude-control-field="'.$latitudeControlField.'" id="' . $mapId . '" style="height:400px;margin:10px 0;width:100%"></div>';
         $out[] = '</div>'; // id=$baseElementId
 
         $resultArray = [];
@@ -137,17 +117,6 @@ class MapElement extends AbstractFormElement
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
-    }
-
-
-    private function getTypoScriptSettings()
-    {
-        $tsArray = GeneralUtility::makeInstance(ConfigurationManager::class)
-            ->getConfiguration(
-                ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
-            );
-
-        return GeneralUtility::removeDotsFromTS($tsArray['plugin.']['tx_address.']['settings.'] ?? []);
     }
 
 }

@@ -7,6 +7,9 @@ class AddressMap {
     this.longitudeControlField = document.querySelector('[name="'+ mapField.getAttribute('data-longitude-control-field')+'"]');
     this.geocodeButton = document.getElementById(mapField.getAttribute('data-geocode-button'));
     this.addressField = document.querySelector('[data-formengine-input-name="'+ mapField.getAttribute('data-address-field')+'"]');
+    this.cityField = document.querySelector('[data-formengine-input-name="'+ mapField.getAttribute('data-city-field')+'"]');
+    this.zipcodeField = document.querySelector('[data-formengine-input-name="'+ mapField.getAttribute('data-zipcode-field')+'"]');
+    this.countryField = document.querySelector('[data-formengine-input-name="'+ mapField.getAttribute('data-country-field')+'"]');
     this.latitude = this.latitudeField.value;
     this.longitude = this.longitudeField.value;
     this.init();
@@ -46,6 +49,19 @@ class AddressMap {
 
   codeAddress() {
     var address = this.addressField.value;
+    let city = this.cityField.value;
+    let zipcode = this.zipcodeField.value;
+    let country = this.countryField.value;
+    if (zipcode) {
+      address += ', ' + zipcode;
+    }
+    if (city) {
+      address += ', ' + city;
+    }
+    if (country) {
+      address += ', ' + country;
+    }
+    console.debug(address);
     var lat = 0;
     var lng = 0;
     if (address.match(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/)) {
