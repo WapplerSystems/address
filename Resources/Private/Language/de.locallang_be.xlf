@@ -26,7 +26,7 @@
 			<target state="translated">Listenansicht</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
 				<source>List view (without overloading detail view)</source>
-			<target state="needs-translation">List view (without overloading detail view)</target></trans-unit>
+			<target state="translated">Listenansicht (ohne Überladen der Detailansicht)</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve">
 				<source>Detail view</source>
 			<target state="translated">Detailansicht</target></trans-unit>
