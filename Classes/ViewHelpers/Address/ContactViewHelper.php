@@ -11,7 +11,7 @@ use WapplerSystems\Address\Domain\Model\Contact;
 class ContactViewHelper extends AbstractViewHelper
 {
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('address', Address::class, 'address item', true);

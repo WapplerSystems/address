@@ -10,7 +10,7 @@ use WapplerSystems\Address\Domain\Model\Address;
 class ContactsViewHelper extends AbstractViewHelper
 {
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('address', Address::class, 'address item', true);

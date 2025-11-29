@@ -11,7 +11,7 @@ class TelephoneViewHelper extends AbstractTagBasedViewHelper
 
     protected $tagName = 'a';
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('number', 'string', 'Telephone number', true);

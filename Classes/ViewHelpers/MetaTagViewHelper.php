@@ -9,8 +9,9 @@ namespace WapplerSystems\Address\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * ViewHelper to render meta tags
@@ -50,70 +51,60 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <meta name="keywords" content="address 1, address 2" />
  * </output>
  */
-class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class MetaTagViewHelper extends AbstractViewHelper
 {
-
-    /**
-     * @var string
-     */
-    protected $tagName = 'meta';
-
-    /**
-     * Arguments initialization
-     *
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        $this->registerTagAttribute('property', 'string', 'Property of meta tag');
-        $this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
-        $this->registerTagAttribute('content', 'string', 'Content of meta tag');
+        $this->registerArgument('property', 'string', 'Property of meta tag', false, '', false);
+        $this->registerArgument('name', 'string', 'Content of meta tag using the name attribute', false, '', false);
+        $this->registerArgument('content', 'string', 'Content of meta tag', true, null, false);
         $this->registerArgument('useCurrentDomain', 'boolean', 'Use current domain', false, false);
         $this->registerArgument('forceAbsoluteUrl', 'boolean', 'Force absolut domain', false, false);
+        $this->registerArgument('replace', 'boolean', 'Replace potential existing tag', false, false);
     }
 
-    /**
-     * Renders a meta tag
-
-     */
     public function render()
     {
         // Skip if current record is part of tt_content CType shortcut
         if (!empty($GLOBALS['TSFE']->recordRegister)
             && is_array($GLOBALS['TSFE']->recordRegister)
-            && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
+            && str_contains(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:')
             && !empty($GLOBALS['TSFE']->currentRecord)
-            && strpos($GLOBALS['TSFE']->currentRecord, 'tx_address_domain_model_address:') !== false
+            && str_contains($GLOBALS['TSFE']->currentRecord, 'tx_news_domain_model_news:')
         ) {
             return;
         }
 
         $useCurrentDomain = $this->arguments['useCurrentDomain'];
         $forceAbsoluteUrl = $this->arguments['forceAbsoluteUrl'];
+        $content = (string)$this->arguments['content'];
 
         // set current domain
         if ($useCurrentDomain) {
-            $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+            $content = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
         }
 
         // prepend current domain
         if ($forceAbsoluteUrl) {
-            $parsedPath = parse_url($this->arguments['content']);
+            $parsedPath = parse_url($content);
             if (is_array($parsedPath) && !isset($parsedPath['host'])) {
-                $this->tag->addAttribute('content',
-                    rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
+                $content
+                    = rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
                     . '/'
-                    . ltrim($this->arguments['content'], '/')
-                );
+                    . ltrim($content, '/');
             }
         }
 
-        if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
-            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-            if ($this->tag->hasAttribute('property')) {
-                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('property'), $this->tag->getAttribute('content'));
-            } elseif ($this->tag->hasAttribute('name')) {
-                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('name'), $this->tag->getAttribute('content'));
+        if ($content !== '') {
+            $registry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
+            if ($this->arguments['property']) {
+                $manager = $registry->getManagerForProperty($this->arguments['property']);
+                $manager->addProperty($this->arguments['property'], $content, [], $this->arguments['replace'], 'property');
+            } elseif ($this->arguments['name']) {
+                $manager = $registry->getManagerForProperty($this->arguments['name']);
+                $manager->addProperty($this->arguments['name'], $content, [], $this->arguments['replace'], 'name');
             }
         }
     }
 }
+

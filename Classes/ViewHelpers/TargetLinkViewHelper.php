@@ -11,7 +11,6 @@ namespace WapplerSystems\Address\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to get the target out of the typolink
@@ -27,12 +26,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  */
 class TargetLinkViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
 
     /**
      * Initialize arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('link', 'string', 'Link', true);
@@ -41,17 +39,11 @@ class TargetLinkViewHelper extends AbstractViewHelper
     /**
      * Returns the correct target of a typolink
      *
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
      * @return mixed
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
-        $params = explode(' ', $arguments['link']);
+    public function render(): mixed
+    {
+        $params = explode(' ', $this->arguments['link']);
 
         // The target is on the 2nd place and must start with a '_'
         if (count($params) >= 2 && substr($params[1], 0, 1) === '_') {

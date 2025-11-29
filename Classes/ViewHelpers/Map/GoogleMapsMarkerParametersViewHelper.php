@@ -12,7 +12,7 @@ class GoogleMapsMarkerParametersViewHelper extends AbstractViewHelper
 {
 
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('address', Address::class, 'The address', true);

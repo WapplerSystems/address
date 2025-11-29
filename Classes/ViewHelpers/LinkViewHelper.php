@@ -80,7 +80,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     }
 
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerUniversalTagAttributes();
@@ -98,7 +98,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param string $content optional content which is linked
      * @return string link
      */
-    public function render()
+    public function render(): string
     {
         /** @var Address $address */
         $address = $this->arguments['address'];

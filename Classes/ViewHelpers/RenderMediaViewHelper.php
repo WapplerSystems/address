@@ -52,7 +52,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
      *
      * @api
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('address', 'object', 'the address post', true);
         $this->registerArgument('imgClass', 'string', 'add css class to images');

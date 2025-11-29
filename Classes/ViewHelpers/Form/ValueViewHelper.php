@@ -46,7 +46,7 @@ class ValueViewHelper extends AbstractFormFieldViewHelper
      * @return string
      * @api
      */
-    public function render()
+    public function render(): string
     {
         $value = $this->getValueAttribute();
 

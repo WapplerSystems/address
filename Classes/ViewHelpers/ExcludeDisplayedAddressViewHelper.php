@@ -11,7 +11,6 @@ namespace WapplerSystems\Address\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 use WapplerSystems\Address\Domain\Model\Address;
 
 /**
@@ -29,12 +28,11 @@ use WapplerSystems\Address\Domain\Model\Address;
  */
 class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
 
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('address', Address::class, 'address record', true);
@@ -45,12 +43,9 @@ class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
-        $address = $arguments['address'];
+    public function render(): void
+    {
+        $address = $this->arguments['address'];
         $uid = $address->getUid();
 
         if (empty($GLOBALS['EXT']['address']['alreadyDisplayed'])) {
@@ -65,3 +60,4 @@ class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
         }
     }
 }
+

@@ -26,7 +26,7 @@ class CategoryNamesViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('address', Address::class, 'address item', true);

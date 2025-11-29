@@ -5,9 +5,7 @@ namespace WapplerSystems\Address\ViewHelpers;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 
 /**
@@ -22,12 +20,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  */
 class ImageSizeViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
 
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('property', 'string', 'either width or height', true);
@@ -35,25 +32,19 @@ class ImageSizeViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
      * @return int
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
+    public function render(): int
+    {
         $value = 0;
 
-        $usedImage = trim($arguments['image']);
+        $usedImage = trim($this->arguments['image']);
 
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         $imagesOnPage = $assetCollector->getMedia();
 
         if (isset($imagesOnPage[$usedImage])) {
-            switch ($arguments['property']) {
+            switch ($this->arguments['property']) {
                 case 'width':
                     $value = $imagesOnPage[$usedImage][0];
                     break;
