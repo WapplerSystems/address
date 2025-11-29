@@ -6,6 +6,7 @@ namespace WapplerSystems\Address\Backend\EventListener;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
@@ -31,7 +32,7 @@ final class PageContentPreviewRenderingEventListener
      */
     public array $flexformData = [];
 
-    protected array $record = [];
+    protected RecordInterface $record;
 
 
     public function __construct(
@@ -52,16 +53,16 @@ final class PageContentPreviewRenderingEventListener
             return;
         }
 
-        if (str_starts_with($event->getRecord()['CType'], 'address_')) {
+        if (str_starts_with($event->getRecord()->get('CType'), 'address_')) {
             $event->setPreviewContent($this->getContent($event->getRecord()));
         }
 
     }
 
-    private function getContent(array $record): string
+    private function getContent(RecordInterface $record): string
     {
 
-        $flexformData = GeneralUtility::xml2array($record['pi_flexform']);
+        $flexformData = GeneralUtility::xml2array($record->get('pi_flexform'));
         if (is_string($flexformData)) {
             return 'ERROR: ' . htmlspecialchars($flexformData);
         }
@@ -74,7 +75,7 @@ final class PageContentPreviewRenderingEventListener
     /**
      *
      */
-    protected function getExtensionSummary(array $record): string
+    protected function getExtensionSummary(RecordInterface $record): string
     {
         switch ($record['CType']) {
 
