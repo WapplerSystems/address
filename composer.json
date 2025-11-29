@@ -20,8 +20,8 @@
 		"GPL-2.0-or-later"
 	],
 	"require": {
-		"typo3/cms-core": "^13.4.0",
-		"wapplersystems/tag": "^13.0"
+		"typo3/cms-core": "^14.0.0",
+		"wapplersystems/tag": "^14.0"
 	},
 	"suggest": {
 	},
