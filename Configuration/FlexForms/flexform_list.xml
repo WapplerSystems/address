@@ -20,6 +20,7 @@
                         <config>
                             <type>select</type>
                             <renderType>selectSingle</renderType>
+                            <itemsProcFunc>WapplerSystems\Address\Hooks\ItemsProcFunc->user_orderBy</itemsProcFunc>
                             <items>
                                 <numIndex index="0" type="array">
                                     <numIndex index="0"></numIndex>

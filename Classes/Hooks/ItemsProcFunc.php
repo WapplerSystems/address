@@ -9,6 +9,8 @@ namespace WapplerSystems\Address\Hooks;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Schema\Struct\SelectItem;
 use WapplerSystems\Address\Utility\MapRenderer;
 use WapplerSystems\Address\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -100,47 +102,25 @@ class ItemsProcFunc
      * needs different ones then a address action
      *
      * @param array &$config configuration array
+     * @throws \JsonException
      */
-    public function user_orderBy(array &$config)
+    public function user_orderBy(array &$config): void
     {
-        $row = $this->getContentElementRow($config['row']['uid']);
-
-        // check if the record has been saved once
-        if (is_array($row) && !empty($row['pi_flexform'])) {
-            $flexformConfig = GeneralUtility::xml2array($row['pi_flexform']);
-
-            // check if there is a flexform configuration
-            if (isset($flexformConfig['data']['sDEF']['lDEF'])) {
-                $selectedPlugin = strtolower($row['CType']) ?? '';
-                // check for selected plugin
-                if ($selectedPlugin === 'address_categorylist') {
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByCategory'];
-                } elseif ($selectedPlugin === 'address_taglist') {
-                    $this->removeNonValidOrderFields($config, 'tx_address_domain_model_tag');
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByTag'];
-                } else {
-                    $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['address']['orderByNews'];
-                }
-            }
+        $pagesTsConfig = BackendUtility::getPagesTSconfig($config['flexParentDatabaseRow']['pid']);
+        if (isset($pagesTsConfig['tx_address.']['additionalOrderBy.']) && is_array($pagesTsConfig['tx_address.']['additionalOrderBy.'])) {
+            $newItemArray = $pagesTsConfig['tx_address.']['additionalOrderBy.'];
         }
 
-        // if a override configuration is found
-        if (!empty($newItems)) {
-            // remove default configuration
-            $config['items'] = [];
-            // empty default line
-            array_push($config['items'], ['', '']);
+        if (!empty($newItemArray)) {
 
-            $newItemArray = GeneralUtility::trimExplode(',', $newItems, true);
-            $languageKey = 'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
-            foreach ($newItemArray as $item) {
-                // label: if empty, key (=field) is used
-                $label = $this->getLanguageService()->sL($languageKey . $item);
-                if (empty($label)) {
-                    $label = $item;
-                }
-                array_push($config['items'], [htmlspecialchars($label), $item]);
+            foreach ($newItemArray as $key => $label) {
+                $config['items'][] = new SelectItem(
+                    'select',
+                    $label,
+                    $key
+                );
             }
+
         }
     }
 
