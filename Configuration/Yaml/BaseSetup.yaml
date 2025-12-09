@@ -12,17 +12,14 @@ TYPO3:
         #allowDeleteFromExtensionPaths: true
 
       formManager:
-        translationFile:
-          # translations for the form managers "new form" modal
-          10: 'EXT:form/Resources/Private/Language/Database.xlf'
+        translationFiles:
           50: 'EXT:address/Resources/Private/Language/Database.xlf'
 
 
       mixins:
         translationSettingsMixin:
           translation:
-            translationFile:
-              10: 'EXT:form/Resources/Private/Language/locallang.xlf'
+            translationFiles:
               50: 'EXT:address/Resources/Private/Language/locallang.xlf'
 
       prototypes:
@@ -34,9 +31,7 @@ TYPO3:
             formEditorPartials:
               FormElement-ContactLabel: 'Stage/SimpleTemplate'
 
-            translationFile:
-              # translations for the form plugin (finisher overrides)
-              10: 'EXT:form/Resources/Private/Language/Database.xlf'
+            translationFiles:
               50: 'EXT:address/Resources/Private/Language/Database.xlf'
 
             dynamicRequireJsModules:
@@ -44,8 +39,7 @@ TYPO3:
                 - 'TYPO3/CMS/Address/Backend/FormEditor/ViewModel'
 
           formEngine:
-            translationFile:
-              10: 'EXT:form/Resources/Private/Language/Database.xlf'
+            translationFiles:
               50: 'EXT:address/Resources/Private/Language/Database.xlf'
 
           mixins:
