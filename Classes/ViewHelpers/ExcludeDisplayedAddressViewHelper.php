@@ -29,7 +29,6 @@ use WapplerSystems\Address\Domain\Model\Address;
  */
 class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
 
     /**
      * Initialize arguments
@@ -45,12 +44,9 @@ class ExcludeDisplayedAddressViewHelper extends AbstractViewHelper
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
-        $address = $arguments['address'];
+    public function render(): void
+    {
+        $address = $this->arguments['address'];
         $uid = $address->getUid();
 
         if (empty($GLOBALS['EXT']['address']['alreadyDisplayed'])) {
