@@ -19,6 +19,9 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
@@ -58,9 +61,11 @@ class AddressController extends AddressBaseController
     protected array $originalSettings = [];
 
 
-    public function __construct(readonly AddressRepository  $addressRepository,
-                                readonly CategoryRepository $categoryRepository,
-                                readonly TagRepository      $tagRepository)
+    public function __construct(readonly AddressRepository            $addressRepository,
+                                readonly CategoryRepository           $categoryRepository,
+                                readonly TagRepository                $tagRepository,
+                                private readonly ViewFactoryInterface $viewFactory
+    )
     {
     }
 
@@ -99,7 +104,7 @@ class AddressController extends AddressBaseController
      * @throws \UnexpectedValueException
      */
     protected function createDemandObjectFromSettings(
-        array $settings,
+        array  $settings,
         string $class = AddressDemand::class
     ): AddressDemand
     {
@@ -127,7 +132,7 @@ class AddressController extends AddressBaseController
         $demand->setTopAddressRestriction((int)($settings['topAddressRestriction'] ?? 0));
         $demand->setArchiveRestriction($settings['archiveRestriction'] ?? '');
         $demand->setExcludeAlreadyDisplayedAddress($settings['excludeAlreadyDisplayedAddress'] ?? '');
-        $demand->setHideIdList(GeneralUtility::intExplode(',',$settings['hideIdList'] ?? '', true));
+        $demand->setHideIdList(GeneralUtility::intExplode(',', $settings['hideIdList'] ?? '', true));
 
         if ($settings['orderBy']) {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
@@ -141,7 +146,7 @@ class AddressController extends AddressBaseController
 
         $demand->setSearchFields($settings['search']['fields'] ?? '');
 
-        $demand->setStoragePage(GeneralUtility::intExplode(',',Page::extendPidListByChildren($settings['startingpoint'],
+        $demand->setStoragePage(GeneralUtility::intExplode(',', Page::extendPidListByChildren($settings['startingpoint'],
             $settings['recursive']), true));
         return $demand;
     }
@@ -234,10 +239,9 @@ class AddressController extends AddressBaseController
     /**
      * Single view of a address record
      *
-     * @param Address $address address item
+     * @param Address|null $address address item
      * @param int $currentPage current page for optional pagination
-     * @return void
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException
+     * @return ResponseInterface
      */
     public function detailAction(?Address $address = null, int $currentPage = 1): ResponseInterface
     {
@@ -318,6 +322,24 @@ class AddressController extends AddressBaseController
             return $possibleRedirect;
         }
 
+
+        $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
+        $typoscript = $configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT,'address');
+        $view = $typoscript['plugin.']['tx_address.']['view.'] ?? [];
+
+        $templateRootPaths = ['EXT:address/Resources/Private/Templates/'] + ($view['templateRootPaths.'] ?? []);
+        $partialRootPaths = ['EXT:address/Resources/Private/Partials/'] + ($view['partialRootPaths.'] ?? []);
+        $layoutRootPaths = ['EXT:address/Resources/Private/Layouts/'] + ($view['layoutRootPaths.'] ?? []);
+
+        $viewFactoryData = new ViewFactoryData(
+            templateRootPaths: $templateRootPaths,
+            partialRootPaths: $partialRootPaths,
+            layoutRootPaths: $layoutRootPaths,
+            request: $this->request,
+        );
+        $popupView = $this->viewFactory->create($viewFactoryData);
+
         $contentObjectData = $this->request->getAttribute('currentContentObject')->data;
         $identifier = 'map' . $contentObjectData['uid'];
 
@@ -365,17 +387,21 @@ JS;
             $markersJS = '';
             /** @var Address $address */
             foreach ($addressRecords as $address) {
+
+                $popupView->assign('address', $address);
+                $popupContent = str_replace(["\r", "\n"], '', $popupView->render('Map/Popup'));
+
                 if ($address->getLatitude() !== null && $address->getLongitude() !== null) {
                     $markersJS .= <<<JS
 L.marker([{$address->getLatitude()}, {$address->getLongitude()}])
     .addTo({$identifier})
-    .bindPopup('{$address->getTitle()}');
+    .bindPopup('{$popupContent}');
 JS;
                 }
             }
 
-            $maxZoomJS = $maxZoom !== null ? 'maxZoom: '.$maxZoom.',' : '';
-            $minZoomJS = $minZoom !== null ? 'minZoom: '.$minZoom.',' : '';
+            $maxZoomJS = $maxZoom !== null ? 'maxZoom: ' . $maxZoom . ',' : '';
+            $minZoomJS = $minZoom !== null ? 'minZoom: ' . $minZoom . ',' : '';
 
             $initJavaScript = <<<JS
 
