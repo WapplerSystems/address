@@ -263,6 +263,16 @@
                         <onChange>reload</onChange>
                     </settings.autoCentered>
 
+                    <settings.manualCenter>
+                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_map.manualCenter</label>
+                        <description>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_map.manualCenter.description</description>
+                        <config>
+                            <type>input</type>
+                            <size>20</size>
+                        </config>
+                        <displayCond>FIELD:settings.autoCentered:=:0</displayCond>
+                    </settings.manualCenter>
+
                     <settings.centeredAddress>
                         <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_map.centeredAddress</label>
                         <config>

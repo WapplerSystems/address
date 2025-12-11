@@ -81,6 +81,12 @@
 			<trans-unit id="flexforms_map.centeredAddress">
 				<source>Centered address</source>
 			</trans-unit>
+			<trans-unit id="flexforms_map.manualCenter">
+				<source>Manual center</source>
+			</trans-unit>
+			<trans-unit id="flexforms_map.manualCenter.description">
+				<source>Format: &lt;Latitude&gt;,&lt;Longitude&gt;</source>
+			</trans-unit>
 			<trans-unit id="flexforms_map.initZoomlevel">
 				<source>Zoom level at start</source>
 			</trans-unit>

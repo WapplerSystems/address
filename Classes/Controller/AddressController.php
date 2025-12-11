@@ -381,6 +381,14 @@ JS;
                 $viewJS = <<<JS
 {$identifier}.setView([{$latitude}, {$longitude}], {$initZoomlevel});
 JS;
+            } elseif (!empty($this->settings['manualCenter'] ?? '')) {
+                $latLon = GeneralUtility::trimExplode(',', $this->settings['manualCenter'], true);
+                $latitude = $latLon[0] ?? 51.1657;
+                $longitude = $latLon[1] ?? 10.4515;
+                $viewJS = <<<JS
+{$identifier}.setView([{$latitude}, {$longitude}], {$initZoomlevel});
+JS;
+
             } elseif ($this->settings['centeredAddress'] ?? false) {
 
                 $centeredAddress = $this->addressRepository->findByUid((int)$this->settings['centeredAddress']);
