@@ -254,6 +254,15 @@
                 <type>array</type>
                 <el>
 
+                    <settings.autoCentered>
+                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_map.autoCentered</label>
+                        <config>
+                            <type>check</type>
+                            <default>0</default>
+                        </config>
+                        <onChange>reload</onChange>
+                    </settings.autoCentered>
+
                     <settings.centeredAddress>
                         <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_map.centeredAddress</label>
                         <config>
@@ -272,7 +281,9 @@
                                 </suggest>
                             </wizards>
                         </config>
+                        <displayCond>FIELD:settings.autoCentered:=:0</displayCond>
                     </settings.centeredAddress>
+
 
                     <settings.initZoomlevel>
                         <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_map.initZoomlevel</label>

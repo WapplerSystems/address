@@ -24,6 +24,7 @@ use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -374,7 +375,13 @@ class AddressController extends AddressBaseController
             $viewJS = <<<JS
 {$identifier}.setView([51.1657, 10.4515], {$initZoomlevel});
 JS;
-            if ($this->settings['centeredAddress'] ?? false) {
+
+            if ($this->settings['autoCentered'] ?? false) {
+                [$latitude, $longitude] = $this->calculateCenter($addressRecords);
+                $viewJS = <<<JS
+{$identifier}.setView([{$latitude}, {$longitude}], {$initZoomlevel});
+JS;
+            } elseif ($this->settings['centeredAddress'] ?? false) {
 
                 $centeredAddress = $this->addressRepository->findByUid((int)$this->settings['centeredAddress']);
                 $latitude = $centeredAddress?->getLatitude() ?? 51.1657;
@@ -462,7 +469,7 @@ JS;
      * @param Address $address
      * @return null|Address
      */
-    protected function checkPidOfAddressRecord(Address $address)
+    protected function checkPidOfAddressRecord(Address $address): ?Address
     {
         $allowedStoragePages = GeneralUtility::trimExplode(
             ',',
@@ -591,7 +598,7 @@ JS;
     /**
      * initialize search result action
      */
-    public function initializeSearchResultAction()
+    public function initializeSearchResultAction(): void
     {
         $this->initializeSearchActions();
     }
@@ -599,7 +606,7 @@ JS;
     /**
      * Initialize search form action
      */
-    public function initializeSearchFormAction()
+    public function initializeSearchFormAction(): void
     {
         $this->initializeSearchActions();
     }
@@ -729,5 +736,34 @@ JS;
         }
         return $pagination;
     }
+
+
+
+    protected function calculateCenter(QueryResult $addressRecords): array
+    {
+        $latSum = 0.0;
+        $lngSum = 0.0;
+        $count = 0;
+
+        /** @var Address $address */
+        foreach ($addressRecords as $address) {
+            if ($address->getLatitude() !== null && $address->getLongitude() !== null) {
+                $latSum += $address->getLatitude();
+                $lngSum += $address->getLongitude();
+                $count++;
+            }
+        }
+
+        if ($count === 0) {
+            // Standardwert für Deutschland
+            return [51.1657, 10.4515];
+        }
+
+        return [
+            round($latSum / $count, 5),
+            round($lngSum / $count, 5),
+        ];
+    }
+
 
 }

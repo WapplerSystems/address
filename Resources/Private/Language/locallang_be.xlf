@@ -75,6 +75,9 @@
 			<trans-unit id="flexforms_general.address" xml:space="preserve">
 				<source>Address</source>
 			</trans-unit>
+			<trans-unit id="flexforms_map.autoCentered">
+				<source>Center map by calculating the central point</source>
+			</trans-unit>
 			<trans-unit id="flexforms_map.centeredAddress">
 				<source>Centered address</source>
 			</trans-unit>
