@@ -42,6 +42,14 @@
                                     <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.selection</numIndex>
                                     <numIndex index="1">selection</numIndex>
                                 </numIndex>
+                                <numIndex index="7">
+                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.city</numIndex>
+                                    <numIndex index="1">city</numIndex>
+                                </numIndex>
+                                <numIndex index="8">
+                                    <numIndex index="0">LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.country</numIndex>
+                                    <numIndex index="1">country</numIndex>
+                                </numIndex>
                             </items>
                         </config>
 

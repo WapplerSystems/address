@@ -40,12 +40,13 @@
 
 
                 <f:if condition="{address.address}">
-                    <div class="media">
+                    <div class="">
                         <i class="d-flex fa fa-location-arrow c-gray mr-2 mt-1" aria-hidden="true"></i>
-                        <div class="media-body">
+                        <div class="">
                             <f:format.nl2br>{address.address}</f:format.nl2br>
                             <f:if condition="{address.zip}"><br/>{address.zip}</f:if>
                             <f:if condition="{address.city}">{address.city}</f:if>
+                            <f:if condition="{address.country}"><br/>{address.country}</f:if>
                         </div>
                     </div>
                 </f:if>
