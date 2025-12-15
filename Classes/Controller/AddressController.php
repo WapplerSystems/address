@@ -410,8 +410,34 @@ JS;
                 $popupContent = str_replace(["\r", "\n"], '', $popupView->render('Map/Popup'));
 
                 if ($address->getLatitude() !== null && $address->getLongitude() !== null) {
+
+                    $markerIcon = $address->getCustomMarkerIcon();
+                    $markerIconJS = '';
+                    if ($markerIcon !== null && $markerIcon->getIcon() !== null) {
+                        $iconUrl = $markerIcon->getIcon()->getOriginalResource()->getPublicUrl();
+                        $iconSize = '[' . (int)$markerIcon->getIcon()->getOriginalResource()->getProperty('width') . ',' . (int)$markerIcon->getIcon()->getOriginalResource()->getProperty('height') . ']';
+                        $iconAnchor = '['.((int)$markerIcon->getIcon()->getOriginalResource()->getProperty('width') / 2 ).',' . (int)$markerIcon->getIcon()->getOriginalResource()->getProperty('height') . ']';
+                        if (!empty($markerIcon->getAnchor())) {
+                            $iconAnchor = '['.$markerIcon->getAnchor().']';
+                        }
+                        if (!empty($markerIcon->getSize())) {
+                            $iconSize = '['.$markerIcon->getSize().']';
+                        }
+
+                        $markerIconJS = <<<JS
+icon: L.icon({
+    iconUrl: '{$iconUrl}',
+    iconSize: {$iconSize},
+    iconAnchor: {$iconAnchor}
+})
+JS;
+                    }
+
+
                     $markersJS .= <<<JS
-L.marker([{$address->getLatitude()}, {$address->getLongitude()}])
+L.marker([{$address->getLatitude()}, {$address->getLongitude()}], {
+    $markerIconJS
+})
     .addTo({$identifier})
     .bindPopup('{$popupContent}', {offset: L.point(0, -25)});
 JS;
