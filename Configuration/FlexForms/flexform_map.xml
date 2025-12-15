@@ -359,6 +359,18 @@
                         <displayCond>FIELD:settings.enableMinZoom:=:1</displayCond>
                     </settings.minZoom>
 
+                    <settings.markerIcon>
+                        <label>LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:flexforms_map.markerIcon</label>
+                        <config>
+                            <type>group</type>
+                            <allowed>tx_address_domain_model_markericon</allowed>
+                            <multiple>0</multiple>
+                            <size>1</size>
+                            <minitems>0</minitems>
+                            <maxitems>1</maxitems>
+                        </config>
+                    </settings.markerIcon>
+
                 </el>
             </ROOT>
         </map>

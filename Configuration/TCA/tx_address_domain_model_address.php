@@ -627,37 +627,37 @@ $tx_address_domain_model_address = [
                 ],
                 'overrideChildTca' => [
                     'types' => [
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
+                        \TYPO3\CMS\Core\Resource\FileType::UNKNOWN->value => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
                                     --palette--;;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        \TYPO3\CMS\Core\Resource\FileType::TEXT->value => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
                                     --palette--;;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        \TYPO3\CMS\Core\Resource\FileType::IMAGE->value => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
                                     --palette--;;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        \TYPO3\CMS\Core\Resource\FileType::AUDIO->value => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
                                     --palette--;;audioOverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        \TYPO3\CMS\Core\Resource\FileType::VIDEO->value => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
                                     --palette--;;videoOverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        \TYPO3\CMS\Core\Resource\FileType::APPLICATION->value => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;addressPalette,
                                     --palette--;;imageoverlayPalette,
@@ -685,35 +685,19 @@ $tx_address_domain_model_address = [
                 ],
             ]
         ],
-        'marker_icon' => [
-            'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.marker_icon',
+        'custom_marker_icon' => [
+            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.custom_marker_icon',
             'config' => [
-                'type' => 'file',
+                'type' => 'group',
+                'allowed' => 'tx_address_domain_model_markericon',
+                'multiple' => false,
+                'size' => 1,
                 'maxitems' => 1,
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.related_files.add',
-                    'showPossibleLocalizationRecords' => true,
-                    'showRemovedLocalizationRecords' => true,
+                    'showSynchronizationLink' => true,
                     'showAllLocalizationLink' => true,
-                    'showSynchronizationLink' => true
+                    'showPossibleLocalizationRecords' => true,
                 ],
-                'inline' => [
-                    'inlineOnlineMediaAddButtonStyle' => 'display:none'
-                ],
-            ]
-        ],
-        'marker_color' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:address/Resources/Private/Language/locallang_db.xlf:tx_address_domain_model_address.marker_color',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'items' => [
-                    ['', ''],
-                ],
-                'default' => '',
             ]
         ],
         'notes' => [
@@ -861,7 +845,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'address, building, --linebreak--, zip, city, region, country, --linebreak--, inline_map, --linebreak--, longitude, latitude,',
         ],
         'paletteMarker' => [
-            'showitem' => 'marker_icon, --linebreak--, marker_color,',
+            'showitem' => 'custom_marker_icon',
         ],
         'palettePerson' => [
             'showitem' => 'first_name, middle_name, last_name, abbreviation, --linebreak--,academic_title, append_academic_title, position,birthday,',

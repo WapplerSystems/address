@@ -105,6 +105,9 @@
 			<trans-unit id="tx_address_domain_model_address.contact_person" xml:space="preserve">
 				<source>Contact person</source>
 			</trans-unit>
+			<trans-unit id="tx_address_domain_model_address.custom_marker_icon" xml:space="preserve">
+				<source>Icon</source>
+			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.marker_icon" xml:space="preserve">
 				<source>Icon</source>
 			</trans-unit>
@@ -186,6 +189,26 @@
 
 			<trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
 				<source>Content</source>
+			</trans-unit>
+
+
+			<trans-unit id="tx_address_domain_model_markericon" xml:space="preserve">
+				<source>Map marker icon</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_markericon.icon" xml:space="preserve">
+				<source>Icon</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_markericon.size" xml:space="preserve">
+				<source>Rendered size in px</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_markericon.size.description" xml:space="preserve">
+				<source>width,height</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_markericon.anchor" xml:space="preserve">
+				<source>Icon anchor in px</source>
+			</trans-unit>
+			<trans-unit id="tx_address_domain_model_markericon.anchor.description" xml:space="preserve">
+				<source>x,y</source>
 			</trans-unit>
 
 			<trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">

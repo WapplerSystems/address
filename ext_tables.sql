@@ -46,6 +46,7 @@ CREATE TABLE tx_address_domain_model_address
 	related               int(11)          DEFAULT '0' NOT NULL,
 	related_from          int(11)          DEFAULT '0' NOT NULL,
 	media                 int(11) unsigned DEFAULT '0',
+	custom_marker_icon    int(11) unsigned DEFAULT '0',
 	marker_icon           int(11) unsigned DEFAULT '0',
 	marker_color          varchar(255)     DEFAULT '',
 	content_elements      int(11)          DEFAULT '0' NOT NULL,

@@ -250,6 +250,8 @@ class Address extends AbstractEntity
 
     protected ?FileReference $markerIcon;
 
+    protected ?MarkerIcon $customMarkerIcon;
+
     protected string $markerColor;
 
     protected ?\DateTime $starttime = null;
@@ -1111,5 +1113,16 @@ class Address extends AbstractEntity
     {
         $this->contactPerson = $contactPerson;
     }
+
+    public function getCustomMarkerIcon(): ?MarkerIcon
+    {
+        return $this->customMarkerIcon;
+    }
+
+    public function setCustomMarkerIcon(?MarkerIcon $customMarkerIcon): void
+    {
+        $this->customMarkerIcon = $customMarkerIcon;
+    }
+
 
 }

@@ -32,8 +32,10 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use WapplerSystems\Address\Domain\Model\Address;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 use WapplerSystems\Address\Domain\Model\Dto\Search;
+use WapplerSystems\Address\Domain\Model\MarkerIcon;
 use WapplerSystems\Address\Domain\Repository\AddressRepository;
 use WapplerSystems\Address\Domain\Repository\CategoryRepository;
+use WapplerSystems\Address\Domain\Repository\MarkerIconRepository;
 use WapplerSystems\Address\Domain\Repository\TagRepository;
 use WapplerSystems\Address\Event\AddressCheckPidOfAddressRecordFailedInDetailActionEvent;
 use WapplerSystems\Address\Event\AddressDetailActionEvent;
@@ -65,6 +67,7 @@ class AddressController extends AddressBaseController
     public function __construct(readonly AddressRepository            $addressRepository,
                                 readonly CategoryRepository           $categoryRepository,
                                 readonly TagRepository                $tagRepository,
+                                readonly MarkerIconRepository         $markerIconRepository,
                                 private readonly ViewFactoryInterface $viewFactory
     )
     {
@@ -326,7 +329,7 @@ class AddressController extends AddressBaseController
 
         $configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
         $typoscript = $configurationManager->getConfiguration(
-            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT,'address');
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT, 'address');
         $view = $typoscript['plugin.']['tx_address.']['view.'] ?? [];
 
         $templateRootPaths = ['EXT:address/Resources/Private/Templates/'] + ($view['templateRootPaths.'] ?? []);
@@ -410,7 +413,7 @@ JS;
                     $markersJS .= <<<JS
 L.marker([{$address->getLatitude()}, {$address->getLongitude()}])
     .addTo({$identifier})
-    .bindPopup('{$popupContent}');
+    .bindPopup('{$popupContent}', {offset: L.point(0, -25)});
 JS;
                 }
             }
@@ -418,13 +421,39 @@ JS;
             $maxZoomJS = $maxZoom !== null ? 'maxZoom: ' . $maxZoom . ',' : '';
             $minZoomJS = $minZoom !== null ? 'minZoom: ' . $minZoom . ',' : '';
 
+
+            $iconUrl = $assetsUrlPrefix .= 'marker-icon.png';
+            $shadowUrl = $assetsUrlPrefix .= 'marker-shadow.png';
+            $iconSize = '[25, 41]';
+            $iconAnchor = '[12, 41]';
+
+            if (($this->settings['markerIcon'] ?? '0') === '1') {
+
+                /** @var MarkerIcon $markerIcon */
+                $markerIcon = $this->markerIconRepository->findByUid((int)$this->settings['markerIcon']);
+
+                if ($markerIcon->getIcon() !== null) {
+                    $iconUrl = $markerIcon->getIcon()->getOriginalResource()->getPublicUrl();
+                    $shadowUrl = '';
+                    $iconSize = '[' . (int)$markerIcon->getIcon()->getOriginalResource()->getProperty('width') . ',' . (int)$markerIcon->getIcon()->getOriginalResource()->getProperty('height') . ']';
+                    $iconAnchor = '['.((int)$markerIcon->getIcon()->getOriginalResource()->getProperty('width') / 2 ).',' . (int)$markerIcon->getIcon()->getOriginalResource()->getProperty('height') . ']';
+                    if (!empty($markerIcon->getAnchor())) {
+                       $iconAnchor = '['.$markerIcon->getAnchor().']';
+                    }
+                    if (!empty($markerIcon->getSize())) {
+                        $iconSize = '['.$markerIcon->getSize().']';
+                    }
+                }
+
+            }
+
             $initJavaScript = <<<JS
 
 L.Marker.prototype.options.icon = L.icon({
-    iconUrl: '{$assetsUrlPrefix}marker-icon.png',
-    shadowUrl: '{$assetsUrlPrefix}marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41]
+    iconUrl: '{$iconUrl}',
+    shadowUrl: '{$shadowUrl}',
+    iconSize: {$iconSize},
+    iconAnchor: {$iconAnchor}
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -744,7 +773,6 @@ JS;
         }
         return $pagination;
     }
-
 
 
     protected function calculateCenter(QueryResult $addressRecords): array
