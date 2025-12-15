@@ -448,8 +448,8 @@ JS;
             $minZoomJS = $minZoom !== null ? 'minZoom: ' . $minZoom . ',' : '';
 
 
-            $iconUrl = $assetsUrlPrefix .= 'marker-icon.png';
-            $shadowUrl = $assetsUrlPrefix .= 'marker-shadow.png';
+            $iconUrl = $assetsUrlPrefix . 'marker-icon.png';
+            $shadowUrl = $assetsUrlPrefix . 'marker-shadow.png';
             $iconSize = '[25, 41]';
             $iconAnchor = '[12, 41]';
 
