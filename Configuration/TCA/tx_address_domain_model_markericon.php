@@ -33,6 +33,9 @@ $tx_address_domain_model_markericon = [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
+        'typeicon_classes' => [
+            'default' => 'ext-address-markericon',
+        ],
     ],
     'interface' => [
         'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,icon'

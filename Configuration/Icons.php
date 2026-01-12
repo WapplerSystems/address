@@ -15,6 +15,10 @@ return [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_address_company.svg',
     ],
+    'ext-address-markericon' => [
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_markericon.svg',
+    ],
     'ext-address-tag' => [
         'provider' => SvgIconProvider::class,
         'source' => 'EXT:address/Resources/Public/Icons/address_domain_model_tag.svg',
