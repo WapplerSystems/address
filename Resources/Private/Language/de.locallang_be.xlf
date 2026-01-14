@@ -8,7 +8,7 @@
 			<target state="final">Adresssystem</target></trans-unit>
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Address system</source>
-			<target state="needs-translation">Address system</target></trans-unit>
+			<target state="translated">Adressen-Liste</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.title" xml:space="preserve">
 				<source>List addresses with detail view</source>
 			<target state="needs-translation">List addresses with detail view</target></trans-unit>
