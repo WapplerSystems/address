@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="address" target-language="de">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Category record</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Tag Datensatz</target></trans-unit>
+			<target state="final">Kategorie Datensatz</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve">
 				<source>Category for address records.</source>
 			<target state="needs-translation">Category for address records.</target></trans-unit>
@@ -18,9 +18,9 @@
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden categories are never shown in the frontend.</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Versteckte Datensätze werden im Frontend nicht angezeigt</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Title of the category</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Titel des Tags</target></trans-unit>
+			<target state="final">Titel der Kategorie</target></trans-unit>
       <trans-unit id="parentcategory.description" xml:space="preserve">
 				<source>Select a parent category of this record to build a category tree.</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Wählen Sie eine übergeordnete Kateogorie zu diesem Datensatz um einen Kategoriebaum zu erstellen.</target></trans-unit>
