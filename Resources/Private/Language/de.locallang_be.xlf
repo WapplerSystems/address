@@ -6,12 +6,12 @@
       <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
 				<source>Addresses</source>
 			<target state="final">Adresssystem</target></trans-unit>
-      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
 				<source>Address system</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Adresssystem</target></trans-unit>
+			<target state="final">Adressen-Liste</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.title" xml:space="preserve">
 				<source>List addresses with detail view</source>
-			<target state="needs-translation">List addresses with detail view</target></trans-unit>
+			<target state="translated">Adressen-Liste mit Detail-Ansicht</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...
 					Plugin is capable of displaying the detail view as well.</source>
@@ -23,9 +23,9 @@
       <trans-unit id="plugin.list.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...</source>
 			<target state="needs-translation">Display of addresses chosen by various optional properties like storage page, categories,...</target></trans-unit>
-      <trans-unit id="plugin.detail.title" xml:space="preserve">
+      <trans-unit id="plugin.detail.title" xml:space="preserve" approved="yes">
 				<source>Address detail view</source>
-			<target state="needs-translation">Address detail view</target></trans-unit>
+			<target state="final">Adressdetailansicht</target></trans-unit>
       <trans-unit id="plugin.detail.description" xml:space="preserve">
 				<source>Display the detail view of an address</source>
 			<target state="needs-translation">Display the detail view of an address</target></trans-unit>
@@ -41,9 +41,9 @@
       <trans-unit id="plugin.search_result.description" xml:space="preserve">
 				<source>Display the result of the search</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Zeigt das Ergebnis einer Suche an</target></trans-unit>
-      <trans-unit id="plugin.category_list.title" xml:space="preserve">
+      <trans-unit id="plugin.category_list.title" xml:space="preserve" approved="yes">
 				<source>Category menu</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Kategorienmenü</target></trans-unit>
+			<target state="final">Kategorie-Menü</target></trans-unit>
       <trans-unit id="plugin.category_list.description" xml:space="preserve">
 				<source>Display a menu of categories. The menu can be used to filter a list view dynamically.</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Zeigt ein Menü von Kategorien an. Das Menü kann verwendet werden, um eine Listenansicht dynamisch zu filtern.</target></trans-unit>
@@ -58,7 +58,7 @@
 			<target state="final">Karte</target></trans-unit>
       <trans-unit id="plugin.map.description" xml:space="preserve">
 				<source>Display a map with addresses.</source>
-			<target state="needs-translation">Display a map with addresses.</target></trans-unit>
+			<target state="translated">Zeigt eine Karte mit Adressen an.</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
 				<source>Settings</source>
 			<target state="final">Einstellungen</target></trans-unit>
@@ -78,13 +78,13 @@
         <source>Center map by calculating the central point</source>
         <target state="needs-translation">Center map by calculating the central point</target>
       </trans-unit>
-      <trans-unit id="flexforms_map.centeredAddress">
+      <trans-unit id="flexforms_map.centeredAddress" approved="yes">
         <source>Centered address</source>
-        <target state="needs-translation">Centered address</target>
+        <target state="final">Zentrierte Adresse</target>
       </trans-unit>
-      <trans-unit id="flexforms_map.manualCenter">
+      <trans-unit id="flexforms_map.manualCenter" approved="yes">
         <source>Manual center</source>
-        <target state="needs-translation">Manual center</target>
+        <target state="final">Manuelles Zentrum</target>
       </trans-unit>
       <trans-unit id="flexforms_map.defaultMarkerIcon">
         <source>Default marker icon</source>
@@ -110,13 +110,13 @@
         <source>Enable maximum zoom</source>
         <target state="needs-translation">Enable maximum zoom</target>
       </trans-unit>
-      <trans-unit id="flexforms_map.maxZoom">
+      <trans-unit id="flexforms_map.maxZoom" approved="yes">
         <source>Maximum zoom</source>
-        <target state="needs-translation">Maximum zoom</target>
+        <target state="final">Maximaler Zoom</target>
       </trans-unit>
-      <trans-unit id="flexforms_map.minZoom">
+      <trans-unit id="flexforms_map.minZoom" approved="yes">
         <source>Minimum zoom</source>
-        <target state="needs-translation">Minimum zoom</target>
+        <target state="final">Minimaler Zoom</target>
       </trans-unit>
       <trans-unit id="flexforms_general.mode" xml:space="preserve">
 				<source>What to display</source>
@@ -163,9 +163,9 @@
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve">
 				<source>Sort by</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Sortieren nach</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve" approved="yes">
 				<source>Uid</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">UID</target></trans-unit>
+			<target state="final">UID</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
 				<source>Manual sorting</source>
 			<target state="final">Manuelle Sortierung</target></trans-unit>
@@ -208,9 +208,9 @@
       <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
 				<source>Archive date</source>
 			<target state="final">Archivierungsdatum</target></trans-unit>
-      <trans-unit id="flexforms_general.categories" xml:space="preserve">
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
 				<source>Category selection</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Kategorieauswahl</target></trans-unit>
+			<target state="final">Kategorieauswahl</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
 				<source>Category mode</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Kategorie Modus</target></trans-unit>
@@ -232,15 +232,15 @@
       <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
 				<source>Include subcategories</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Unterkategorien einschließen</target></trans-unit>
-      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
 				<source>Time limit (LOW): higher than given time</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Zeitlimit</target></trans-unit>
+			<target state="final">Untere Zeitbegrenzung: höher als die angegebene Zeit</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
 				<source>Time limit (HIGH): Address less than given time</source>
 			<target state="needs-translation">Time limit (HIGH): Address less than given time</target></trans-unit>
-      <trans-unit id="flexforms_general.topAddressRestriction" xml:space="preserve">
+      <trans-unit id="flexforms_general.topAddressRestriction" xml:space="preserve" approved="yes">
 				<source>Top Address</source>
-			<target state="needs-translation">Top Address</target></trans-unit>
+			<target state="final">Priorisierte Adresse</target></trans-unit>
       <trans-unit id="flexforms_general.topAddressRestriction.1" xml:space="preserve">
 				<source>only Top Address records</source>
 			<target state="needs-translation">only Top Address records</target></trans-unit>
@@ -271,9 +271,9 @@
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">[keine Einschränkung]</target></trans-unit>
-      <trans-unit id="flexforms_general.tags" xml:space="preserve">
+      <trans-unit id="flexforms_general.tags" xml:space="preserve" approved="yes">
 				<source>Tag selection</source>
-			<target state="needs-translation">Tag selection</target></trans-unit>
+			<target state="final">Tag-Auswahl</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
 				<source>Max width for media elements</source>
 			<target state="final">Maximale Breite für Medienelemente</target></trans-unit>
@@ -286,9 +286,9 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
 				<source>Template layout</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Template Layout</target></trans-unit>
-      <trans-unit id="flexforms_template.mapRenderer" xml:space="preserve">
+      <trans-unit id="flexforms_template.mapRenderer" xml:space="preserve" approved="yes">
 				<source>Map renderer</source>
-			<target state="needs-translation">Map renderer</target></trans-unit>
+			<target state="final">Kartendarsteller</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">1</target></trans-unit>
@@ -331,15 +331,15 @@
       <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
 			<target state="final">Schlagworte</target></trans-unit>
-      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
 				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Seite mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
-      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
+			<target state="final">Seite mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve" approved="yes">
 				<source>Record with uid "%s" is not available anymore!</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Eintrag mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
-      <trans-unit id="pagemodule.addressNotAvailable" xml:space="preserve">
+			<target state="final">Eintrag mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
+      <trans-unit id="pagemodule.addressNotAvailable" xml:space="preserve" approved="yes">
 				<source>Address record with uid &quot;%s&quot; is not available anymore!</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Adresseintrag mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
+			<target state="final">Adresseintrag mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
       <trans-unit id="pagemodule.switchToPage" xml:space="preserve">
 				<source>Switch to this page</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Zu dieser Seite wechseln</target></trans-unit>
@@ -486,18 +486,18 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
       <trans-unit id="module.searchWord" xml:space="preserve">
 				<source>Search</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Suchen</target></trans-unit>
-      <trans-unit id="module.addressListing" xml:space="preserve">
+      <trans-unit id="module.addressListing" xml:space="preserve" approved="yes">
 				<source>Address Listing</source>
-			<target state="needs-translation">Address Listing</target></trans-unit>
-      <trans-unit id="module.addressCount" xml:space="preserve">
+			<target state="final">Adressliste</target></trans-unit>
+      <trans-unit id="module.addressCount" xml:space="preserve" approved="yes">
 				<source>%s address records</source>
-			<target state="needs-translation">%s address records</target></trans-unit>
+			<target state="final">%s Adressen-Einträge</target></trans-unit>
       <trans-unit id="module.addressPidListing" xml:space="preserve">
 				<source>Address Pid listing</source>
 			<target state="needs-translation">Address Pid listing</target></trans-unit>
-      <trans-unit id="administration.title" xml:space="preserve">
+      <trans-unit id="administration.title" xml:space="preserve" approved="yes">
 				<source>Address administration</source>
-			<target state="needs-translation">Address administration</target></trans-unit>
+			<target state="final">Adressenverwaltung</target></trans-unit>
       <trans-unit id="administration.nopageselected" xml:space="preserve">
 				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Bitte im Seitenbaum links einen Ordner auswählen.</target></trans-unit>
@@ -536,9 +536,9 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
       <trans-unit id="address-folder" xml:space="preserve">
 				<source>Address</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Anschrift</target></trans-unit>
-      <trans-unit id="import.header" xml:space="preserve">
+      <trans-unit id="import.header" xml:space="preserve" approved="yes">
 				<source>Address Importer</source>
-			<target state="needs-translation">Address Importer</target></trans-unit>
+			<target state="final">Adressen importieren</target></trans-unit>
       <trans-unit id="import.choose_a_job" xml:space="preserve">
 				<source>Choose a job</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Wähle den Import-Job</target></trans-unit>
