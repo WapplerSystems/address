@@ -162,9 +162,9 @@
       <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
 				<source>Facebook</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Facebook</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
+      <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve" approved="yes">
 				<source>Instagram</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Instagram</target></trans-unit>
+			<target state="final">Instagram</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.youtube" xml:space="preserve">
 				<source>YouTube</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">YouTube</target></trans-unit>
@@ -174,9 +174,9 @@
       <trans-unit id="tx_address_domain_model_contact.type.vimeo" xml:space="preserve">
 				<source>Vimeo</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Vimeo</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
+      <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve" approved="yes">
 				<source>Mastodon</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Mastodon</target></trans-unit>
+			<target state="final">Mastodon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
 				<source>Threema</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Threema</target></trans-unit>
