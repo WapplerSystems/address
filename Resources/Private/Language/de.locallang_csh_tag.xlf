@@ -15,9 +15,9 @@
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden elements are never shown in the frontend.</source>
 			<target state="needs-review-translation" state-qualifier="leveraged-tm">Versteckte Elemente werden auf der Website nicht angezeigt.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Title of the tag.</source>
-			<target state="needs-review-translation" state-qualifier="leveraged-tm">Titel des Tags.</target></trans-unit>
+			<target state="final">Titel des Schlagwortes.</target></trans-unit>
     </body>
   </file>
 </xliff>
