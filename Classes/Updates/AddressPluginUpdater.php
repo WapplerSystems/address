@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace WapplerSystems\Address\Updates;
 
+use TYPO3\CMS\Core\Attribute\UpgradeWizard;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
+use TYPO3\CMS\Core\Upgrades\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Attribute\UpgradeWizard;
-use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
-use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 #[UpgradeWizard('addressPluginUpdater')]
 class AddressPluginUpdater implements UpgradeWizardInterface
@@ -80,7 +80,10 @@ class AddressPluginUpdater implements UpgradeWizardInterface
     {
         $description = 'The old plugin using switchableControllerActions has been split into separate plugins. ';
         $description .= 'This update wizard migrates all existing plugin settings and changes the plugin';
-        $description .= 'to use the new plugins available. Count of plugins: ' . count($this->getMigrationRecords());
+        $description .= 'to use the new plugins available.';
+        if ($this->listTypeColumnExists()) {
+            $description .= 'Count of plugins: ' . count($this->getMigrationRecords());
+        }
         return $description;
     }
 
@@ -93,6 +96,10 @@ class AddressPluginUpdater implements UpgradeWizardInterface
 
     public function updateNecessary(): bool
     {
+        if (!$this->listTypeColumnExists()) {
+            return false;
+        }
+
         return $this->checkIfWizardIsRequired();
     }
 
@@ -247,4 +254,15 @@ class AddressPluginUpdater implements UpgradeWizardInterface
         $output = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . LF . $output;
         return $output;
     }
+
+
+    public function listTypeColumnExists(): bool
+    {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tt_content');
+        $schemaManager = $connection->createSchemaManager();
+        $columns = $schemaManager->listTableColumns('tt_content');
+        return array_key_exists('list_type', $columns);
+    }
+
 }

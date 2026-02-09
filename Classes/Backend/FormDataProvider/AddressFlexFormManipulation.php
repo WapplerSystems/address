@@ -148,7 +148,7 @@ class AddressFlexFormManipulation implements FormDataProviderInterface
     {
         if ($result['tableName'] === 'tt_content'
             && $result['databaseRow']['CType'] === 'list'
-            && $result['databaseRow']['list_type'] === 'address_pi1'
+            && ($result['databaseRow']['list_type'] ?? '') === 'address_pi1'
             && is_array($result['processedTca']['columns']['pi_flexform']['config']['ds'])
         ) {
             $result = $this->updateFlexForms($result);
