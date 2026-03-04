@@ -261,3 +261,14 @@ config.tx_extbase.persistence.classes {
   }
 
 }
+
+
+plugin.tx_form {
+
+  settings {
+    yamlConfigurations {
+      90 = EXT:address/Configuration/Yaml/BaseSetup.yaml
+    }
+  }
+
+}
