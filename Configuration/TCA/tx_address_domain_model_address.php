@@ -808,7 +808,7 @@ $tx_address_domain_model_address = [
             'showitem' => 'l10n_parent, l10n_diffsource,
                     title,
                     --palette--;;paletteCore,
-                    --palette--;;paletteContact,
+                    --palette--;;paletteContactCompany,
                     --palette--;;paletteDate,
                     --palette--;;paletteSlug,
                     teaser,
@@ -839,6 +839,9 @@ $tx_address_domain_model_address = [
             'showitem' => 'type, sys_language_uid, hidden, istopaddress,',
         ],
         'paletteContact' => [
+            'showitem' => 'contacts, --linebreak--, direct_contact,',
+        ],
+        'paletteContactCompany' => [
             'showitem' => 'contacts, --linebreak--, direct_contact, --linebreak--, contact_person,',
         ],
         'paletteLocation' => [
