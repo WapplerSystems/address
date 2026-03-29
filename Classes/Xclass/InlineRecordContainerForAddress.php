@@ -25,13 +25,13 @@ class InlineRecordContainerForAddress extends InlineRecordContainer
      * @param string $ariaAttributesString HTML aria attributes for the collapse button
      * @return string
      */
-    protected function renderForeignRecordHeader(array $data, string $ariaAttributesString): string
+    protected function renderForeignRecordHeader(array $data, bool $isExpanded, string $ariaControls): string
     {
         $languageService = $this->getLanguageService();
         $inlineConfig = $data['inlineParentConfig'];
         $foreignTable = $inlineConfig['foreign_table'];
         if (!isset($inlineConfig['appearance']['useXclassedVersion']) || $inlineConfig['appearance']['useXclassedVersion'] !== true || $foreignTable !== 'tt_content') {
-            return parent::renderForeignRecordHeader($data, $ariaAttributesString);
+            return parent::renderForeignRecordHeader($data, $isExpanded, $ariaControls);
         }
 
         $rec = $data['databaseRow'];

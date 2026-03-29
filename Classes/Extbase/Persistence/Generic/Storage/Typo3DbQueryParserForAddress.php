@@ -13,6 +13,7 @@ namespace WapplerSystems\Address\Extbase\Persistence\Generic\Storage;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedOrderException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\JoinInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\Selector;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\SelectorInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\SourceInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -23,7 +24,13 @@ class Typo3DbQueryParserForAddress extends \TYPO3\CMS\Extbase\Persistence\Generi
 
     protected function parseOrderings(array $orderings, SourceInterface $source): void
     {
-        if ($this->tableName !== 'tx_address_domain_model_address') {
+        if (!($source instanceof Selector)) {
+            parent::parseOrderings($orderings, $source);
+            return;
+        }
+        $className = $source->getNodeTypeName();
+        $tableName = $this->dataMapper->convertClassNameToTableName($className);
+        if ($tableName !== 'tx_address_domain_model_address') {
             parent::parseOrderings($orderings, $source);
             return;
         }
