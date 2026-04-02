@@ -63,9 +63,6 @@
       <trans-unit id="tags.description" xml:space="preserve">
 				<source>Define and select tags which fit to the article.</source>
 			<target state="needs-translation">Define and select tags which fit to the article.</target></trans-unit>
-      <trans-unit id="content_elements.description" xml:space="preserve">
-				<source>Content elements can be used to generate feature rich address articles.</source>
-			<target state="needs-translation">Content elements can be used to generate feature rich address articles.</target></trans-unit>
       <trans-unit id="keywords.description" xml:space="preserve">
 				<source>Define keywords which can be used for SEO optimizations.</source>
 			<target state="needs-translation">Define keywords which can be used for SEO optimizations.</target></trans-unit>

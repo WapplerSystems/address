@@ -102,6 +102,9 @@
       <trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
 				<source>Country</source>
 			<target state="needs-translation">Country</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.contact_person" xml:space="preserve">
+				<source>Contact person</source>
+			<target state="needs-translation">Contact person</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.marker_icon" xml:space="preserve">
 				<source>Icon</source>
 			<target state="needs-translation">Icon</target></trans-unit>
@@ -198,9 +201,6 @@
       <trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve">
 				<source>Top address</source>
 			<target state="needs-translation">Top address</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_address.content_elements" xml:space="preserve">
-				<source>Content elements</source>
-			<target state="needs-translation">Content elements</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve">
 				<source>Tags</source>
 			<target state="needs-translation">Tags</target></trans-unit>

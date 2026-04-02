@@ -54,9 +54,9 @@
       <trans-unit id="tx_address_domain_model_address.middle_name" xml:space="preserve" approved="yes">
 				<source>Middle name</source>
 			<target state="final">Zweiter Vorname</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_address.position" xml:space="preserve" approved="yes">
+      <trans-unit id="tx_address_domain_model_address.position" xml:space="preserve">
 				<source>Position</source>
-			<target state="final">Position</target></trans-unit>
+			<target state="needs-translation">Position</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.birthday" xml:space="preserve" approved="yes">
 				<source>Birthday</source>
 			<target state="final">Geburtstag</target></trans-unit>
@@ -72,9 +72,9 @@
       <trans-unit id="tx_address_domain_model_address.www" xml:space="preserve" approved="yes">
 				<source>Website</source>
 			<target state="final">Webseite</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_address.fax" xml:space="preserve" approved="yes">
+      <trans-unit id="tx_address_domain_model_address.fax" xml:space="preserve">
 				<source>Fax</source>
-			<target state="final">Fax</target></trans-unit>
+			<target state="needs-translation">Fax</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.email" xml:space="preserve" approved="yes">
 				<source>Email</source>
 			<target state="final">E-Mail</target></trans-unit>
@@ -102,6 +102,9 @@
       <trans-unit id="tx_address_domain_model_address.country" xml:space="preserve" approved="yes">
 				<source>Country</source>
 			<target state="final">Land</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.contact_person" xml:space="preserve">
+				<source>Contact person</source>
+			<target state="needs-translation">Contact person</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.marker_icon" xml:space="preserve" approved="yes">
 				<source>Icon</source>
 			<target state="final">Symbol</target></trans-unit>
@@ -117,9 +120,9 @@
       <trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve" approved="yes">
 				<source>Address</source>
 			<target state="final">Adresse</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_address.type.I.1" xml:space="preserve" approved="yes">
+      <trans-unit id="tx_address_domain_model_address.type.I.1" xml:space="preserve">
 				<source>Person</source>
-			<target state="final">Person</target></trans-unit>
+			<target state="needs-translation">Person</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.type.I.2" xml:space="preserve" approved="yes">
 				<source>Company</source>
 			<target state="final">Firma</target></trans-unit>
@@ -138,45 +141,45 @@
       <trans-unit id="tx_address_domain_model_contact.type.mobilePhone" xml:space="preserve" approved="yes">
 				<source>Mobile phone</source>
 			<target state="final">Mobiltelefon</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.website" xml:space="preserve" approved="yes">
+      <trans-unit id="tx_address_domain_model_contact.type.website" xml:space="preserve">
 				<source>Website</source>
-			<target state="final">Website</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.blog" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Website</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.blog" xml:space="preserve">
 				<source>Blog</source>
-			<target state="final">Blog</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.xing" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Blog</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.xing" xml:space="preserve">
 				<source>Xing</source>
-			<target state="final">Xing</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Xing</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
 				<source>LinkedIn</source>
-			<target state="final">LinkedIn</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve" approved="yes">
+			<target state="needs-translation">LinkedIn</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve">
 				<source>X</source>
-			<target state="final">X</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve" approved="yes">
+			<target state="needs-translation">X</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
 				<source>Facebook</source>
-			<target state="final">Facebook</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Facebook</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
 				<source>Instagram</source>
-			<target state="final">Instagram</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.youtube" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Instagram</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.youtube" xml:space="preserve">
 				<source>YouTube</source>
-			<target state="final">YouTube</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.twitch" xml:space="preserve" approved="yes">
+			<target state="needs-translation">YouTube</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.twitch" xml:space="preserve">
 				<source>Twitch</source>
-			<target state="final">Twitch</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.vimeo" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Twitch</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.vimeo" xml:space="preserve">
 				<source>Vimeo</source>
-			<target state="final">Vimeo</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Vimeo</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
 				<source>Mastodon</source>
-			<target state="final">Mastodon</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Mastodon</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
 				<source>Threema</source>
-			<target state="final">Threema</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Threema</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve">
 				<source>Fax</source>
-			<target state="final">Fax</target></trans-unit>
+			<target state="needs-translation">Fax</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve" approved="yes">
 				<source>Content</source>
 			<target state="final">Inhalt</target></trans-unit>
@@ -198,9 +201,6 @@
       <trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve" approved="yes">
 				<source>Top address</source>
 			<target state="final">Priorisierte Adresse</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_address.content_elements" xml:space="preserve" approved="yes">
-				<source>Content elements</source>
-			<target state="final">Inhaltselemente</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
 			<target state="final">Schlagwörter</target></trans-unit>
@@ -219,9 +219,9 @@
       <trans-unit id="tx_address_domain_model_address.contacts" xml:space="preserve" approved="yes">
 				<source>Contacts</source>
 			<target state="final">Kontakte</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_tag.seo.seo_title" xml:space="preserve" approved="yes">
+      <trans-unit id="tx_address_domain_model_tag.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="final"><![CDATA[<title>-Tag]]></target></trans-unit>
+			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
 			<target state="final">Meta-Beschreibung</target></trans-unit>
@@ -243,9 +243,9 @@
       <trans-unit id="tx_address_domain_model_category.shortcut" xml:space="preserve" approved="yes">
 				<source>Address category shortcut</source>
 			<target state="final">Adressenkategorie Verweis</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_category.seo.seo_title" xml:space="preserve" approved="yes">
+      <trans-unit id="tx_address_domain_model_category.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="final"><![CDATA[<title>-Tag]]></target></trans-unit>
+			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
 			<target state="final">Meta-Beschreibung</target></trans-unit>
@@ -264,9 +264,9 @@
       <trans-unit id="tx_address_domain_model_link.description" xml:space="preserve" approved="yes">
 				<source>Description</source>
 			<target state="final">Beschreibung</target></trans-unit>
-      <trans-unit id="tx_address_domain_model_link.uri" xml:space="preserve" approved="yes">
+      <trans-unit id="tx_address_domain_model_link.uri" xml:space="preserve">
 				<source>URL</source>
-			<target state="final">URL</target></trans-unit>
+			<target state="needs-translation">URL</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link.uri.placeholder" xml:space="preserve" approved="yes">
 				<source>www.domain.org</source>
 			<target state="final">www.domain.de</target></trans-unit>
