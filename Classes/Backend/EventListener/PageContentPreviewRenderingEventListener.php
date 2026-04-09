@@ -8,6 +8,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
@@ -265,7 +266,7 @@ final class PageContentPreviewRenderingEventListener
 
         if (is_array($record)) {
             $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
-                . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
+                . $this->iconFactory->getIconForRecord($table, $record, IconSize::SMALL)->render()
                 . '</span> ';
             $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, $record,
                 '+info,edit,history');

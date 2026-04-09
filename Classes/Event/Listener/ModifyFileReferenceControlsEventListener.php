@@ -14,6 +14,7 @@ namespace WapplerSystems\Address\Event\Listener;
 use WapplerSystems\Address\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
 use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -32,16 +33,16 @@ final class ModifyFileReferenceControlsEventListener
 
             if ($extensionConfiguration->isAdvancedMediaPreview()) {
                 if ($previewSetting === 1) {
-                    $icon = $iconFactory->getIcon('ext-address-doublecheck', Icon::SIZE_SMALL);
+                    $icon = $iconFactory->getIcon('ext-address-doublecheck', IconSize::SMALL);
                     $label = $GLOBALS['LANG']->sL($ll . 'tx_address_domain_model_media.showinviews.1');
                     $event->setControl('ext-address-preview', ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '">' . $icon . '</span>');
                 } elseif ($previewSetting === 2) {
-                    $icon = $iconFactory->getIcon('actions-check', Icon::SIZE_SMALL);
+                    $icon = $iconFactory->getIcon('actions-check', IconSize::SMALL);
                     $label = $GLOBALS['LANG']->sL($ll . 'tx_address_domain_model_media.showinviews.2');
                     $event->setControl('ext-address-preview', ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '">' . $icon . '</span>');
                 }
             } elseif ($previewSetting === 1) {
-                $icon = $iconFactory->getIcon('actions-check', Icon::SIZE_SMALL);
+                $icon = $iconFactory->getIcon('actions-check', IconSize::SMALL);
                 $label = $GLOBALS['LANG']->sL($ll . 'tx_address_domain_model_media.showinpreview');
                 $event->setControl('ext-address-preview', ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '">' . $icon . '</span>');
             }

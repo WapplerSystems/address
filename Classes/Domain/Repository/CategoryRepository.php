@@ -195,20 +195,18 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
     {
         $language = $this->getSysLanguageUid();
         if ($language > 0 && !empty($idList)) {
-            if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-                $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                    ->getQueryBuilderForTable('sys_category');
-                $rows = $queryBuilder
-                    ->select('l10n_parent', 'uid', 'sys_language_uid')
-                    ->from('sys_category')
-                    ->where(
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, ParameterType::INTEGER)),
-                        $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
-                    )
-                    ->executeQuery()->fetchAllAssociative();
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_category');
+            $rows = $queryBuilder
+                ->select('l10n_parent', 'uid', 'sys_language_uid')
+                ->from('sys_category')
+                ->where(
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, ParameterType::INTEGER)),
+                    $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
+                )
+                ->executeQuery()->fetchAllAssociative();
 
-                $idList = $this->replaceCategoryIds($idList, $rows);
-            }
+            $idList = $this->replaceCategoryIds($idList, $rows);
             // @todo currently only implemented for the frontend
         }
     }
@@ -220,10 +218,9 @@ class CategoryRepository extends \WapplerSystems\Address\Domain\Repository\Abstr
     {
         $sysLanguage = 0;
 
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+        try {
             $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
-        } elseif ((int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null)) {
-            $sysLanguage = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null);
+        } catch (\Exception) {
         }
 
         return $sysLanguage;

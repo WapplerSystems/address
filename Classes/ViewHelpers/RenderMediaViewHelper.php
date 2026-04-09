@@ -11,6 +11,7 @@ namespace WapplerSystems\Address\ViewHelpers;
 
 use Bitmotion\NawSecuredl\Core\ObjectManager;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileType;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -145,9 +146,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
 
                 // check if media tag needs to be wrapped in div, depends on type of media file
                 $wrapClass= '';
-                if ($media->getType() === File::FILETYPE_VIDEO) {
+                if ($media->getType() === FileType::VIDEO) {
                     $wrapClass = $this->videoClass;
-                } elseif ($media->getType() === File::FILETYPE_AUDIO) {
+                } elseif ($media->getType() === FileType::AUDIO) {
                     $wrapClass = $this->audioClass;
                 }
 

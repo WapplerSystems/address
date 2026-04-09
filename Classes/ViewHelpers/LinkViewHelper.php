@@ -83,13 +83,12 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerUniversalTagAttributes();
         $this->registerArgument('address', Address::class, 'address item', true);
         $this->registerArgument('settings', 'array', 'Settings', false, []);
         $this->registerArgument('uriOnly', 'bool', 'url only', false, false);
         $this->registerArgument('configuration', 'array', 'configuration', false, []);
         $this->registerArgument('content', 'string', 'content', false, '');
-        $this->registerTagAttribute('section', 'string', 'Anchor for links', false);
+        $this->registerArgument('section', 'string', 'Anchor for links', false);
     }
 
     /**
@@ -187,7 +186,8 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             }
 
             if (!$detailPid) {
-                $detailPid = $GLOBALS['TSFE']->id;
+                $request = $this->renderingContext->getRequest();
+                $detailPid = $request->getAttribute('frontend.page.information')?->getId() ?? 0;
             }
             $configuration['parameter'] = $detailPid;
         }

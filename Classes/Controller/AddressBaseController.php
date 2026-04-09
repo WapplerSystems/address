@@ -11,17 +11,12 @@ namespace WapplerSystems\Address\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
-use WapplerSystems\Address\Utility\EmConfiguration;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\HttpUtility;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use WapplerSystems\Address\Domain\Model\Dto\EmConfiguration;
 
 /**
- * Base controller
  *
  */
 class AddressBaseController extends ActionController
@@ -31,8 +26,9 @@ class AddressBaseController extends ActionController
     {
         $view->assign('contentObjectData', $this->request->getAttribute('currentContentObject')->data);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            $view->assign('pageData', $GLOBALS['TSFE']->page);
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
+        if ($pageInformation !== null) {
+            $view->assign('pageData', $pageInformation->getPageRecord());
         }
     }
 
@@ -48,61 +44,35 @@ class AddressBaseController extends ActionController
         if (empty($configuration)) {
             return null;
         }
-        $options = GeneralUtility::trimExplode(',', $configuration, true);
 
-        switch ($options[0]) {
-            case 'redirectToListView':
-                $this->redirect('list');
-                break;
-            case 'redirectToPage':
-                if (count($options) === 1 || count($options) > 3) {
-                    $msg = sprintf(
-                        'If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
-                        $options[0]
-                    );
-                    throw new \InvalidArgumentException($msg);
+        $configuration = trim($configuration);
+        if (str_starts_with($configuration, 'redirect')) {
+            $parts = explode(',', $configuration);
+            $url = $parts[1] ?? '';
+            $statusCode = (int)($parts[2] ?? 301);
+            if (!empty($url)) {
+                return $this->responseFactory->createResponse($statusCode)
+                    ->withHeader('Location', $url);
+            }
+        } elseif (str_starts_with($configuration, 'pageNotFoundHandler')) {
+            $errorController = GeneralUtility::makeInstance(ErrorController::class);
+            $response = $errorController->pageNotFoundAction(
+                $this->request,
+                'Address not found'
+            );
+            throw new ImmediateResponseException($response);
+        } else {
+                $statusCode = (int)$configuration;
+                if ($statusCode === 0) {
+                    $statusCode = 404;
                 }
-                $this->uriBuilder->reset();
-                $this->uriBuilder->setTargetPageUid($options[1]);
-                $this->uriBuilder->setCreateAbsoluteUri(true);
-                if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
-                    $this->uriBuilder->setAbsoluteUriScheme('https');
-                }
-                $url = $this->uriBuilder->build();
-
-                if (isset($options[2])) {
-                    $this->redirectToUri($url, 0, (int)$options[2]);
-                } else {
-                    $this->redirectToUri($url);
-                }
-
-                break;
-            case 'pageNotFoundHandler':
-                $message = 'No address entry found!';
-                $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
-                    $GLOBALS['TYPO3_REQUEST'],
-                    $message
-                );
-                throw new ImmediateResponseException($response, 1590468229);
-            case 'showStandaloneTemplate':
-                $statusCode = (int)($options[2] ?? 404);
-
-                $this->getTypoScriptFrontendController()->set_no_cache('News record not found');
-
-                $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
-                $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($options[1]));
-
+                $standaloneTemplate = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
+                $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($configuration));
                 return $this->responseFactory->createResponse($statusCode)
                     ->withHeader('Content-Type', 'text/html; charset=utf-8')
                     ->withBody($this->streamFactory->createStream($standaloneTemplate->render()));
         }
         return null;
     }
-
-    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'];
-    }
-
 
 }

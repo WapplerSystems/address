@@ -11,6 +11,7 @@ namespace WapplerSystems\Address\Utility;
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -125,7 +126,7 @@ class Page
         // Creating top icon; the current page
         $tree->tree[] = [
             'row' => $treeStartingRecord,
-            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render() : ''
+            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, IconSize::SMALL)->render() : ''
         ];
 
         $tree->getTree($pageUid, $treeLevel, '');

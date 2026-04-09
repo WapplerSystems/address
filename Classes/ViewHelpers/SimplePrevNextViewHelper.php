@@ -141,13 +141,11 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         /** @var LanguageAspect $languageAspect */
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
 
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
-            // @extensionScannerIgnoreLine
-            $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
+        if ($languageAspect->getContentId() > 0) {
+            $pageRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Domain\Repository\PageRepository::class);
+            $overlay = $pageRepository->getLanguageOverlay(
                 'tx_address_domain_model_address',
                 $rawRecord,
-                $languageAspect->getContentId(),
-                $languageAspect->getLegacyOverlayType()
             );
             if (!is_null($overlay)) {
                 $rawRecord = $overlay;

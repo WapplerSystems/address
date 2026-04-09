@@ -76,15 +76,12 @@ class AddressController extends AddressBaseController
         if (isset($this->settings['format'])) {
             $this->request = $this->request->withFormat($this->settings['format']);
         }
-        // Only do this in Frontend Context
-        if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            // We only want to set the tag once in one request, so we have to cache that statically if it has been done
-            static $cacheTagsSet = false;
-
-            /** @var $typoScriptFrontendController TypoScriptFrontendController */
-            $typoScriptFrontendController = $GLOBALS['TSFE'];
-            if (!$cacheTagsSet) {
-                $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_address'));
+        // Set cache tag once per request
+        static $cacheTagsSet = false;
+        if (!$cacheTagsSet) {
+            $cacheCollector = $this->request->getAttribute('frontend.cache.collector');
+            if ($cacheCollector !== null) {
+                $cacheCollector->addCacheTags(new CacheTag('tx_address'));
                 $cacheTagsSet = true;
             }
         }
@@ -249,7 +246,9 @@ class AddressController extends AddressBaseController
 
             if ($previewAddressId > 0) {
                 if ($this->isPreviewOfHiddenRecordsEnabled()) {
-                    $GLOBALS['TSFE']->showHiddenRecords = true;
+                    // showHiddenRecords removed in v14 — use Context API
+                    $context = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class);
+                    $context->setAspect('visibility', new \TYPO3\CMS\Core\Context\VisibilityAspect(true));
                     $address = $this->addressRepository->findByUid($previewAddressId, false);
                 } else {
                     $address = $this->addressRepository->findByUid($previewAddressId);

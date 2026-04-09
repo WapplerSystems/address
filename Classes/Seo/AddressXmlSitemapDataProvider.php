@@ -175,7 +175,7 @@ class AddressXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     protected function defineUrl(array $data): array
     {
         // @extensionScannerIgnoreLine
-        $pageId = $this->config['url']['pageId'] ?? $GLOBALS['TSFE']->id;
+        $pageId = $this->config['url']['pageId'] ?? ($this->request->getAttribute('frontend.page.information')?->getId() ?? 0);
         if (($this->config['url']['useCategorySinglePid'] ?? false) && $pageIdFromCategory = $this->getSinglePidFromCategory($data['data']['uid'])) {
             $pageId = $pageIdFromCategory;
         }

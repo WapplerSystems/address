@@ -136,7 +136,7 @@ class AddressPluginUpdater implements UpgradeWizardInterface
                 }
 
                 // Remove empty sheets
-                if (!count($flexFormData['data'][$sheetKey]['lDEF']) > 0) {
+                if (count($flexFormData['data'][$sheetKey]['lDEF']) === 0) {
                     unset($flexFormData['data'][$sheetKey]);
                 }
             }

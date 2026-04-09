@@ -64,7 +64,13 @@ class Cache
             $cacheTags[] = 'tx_address_uid_' . $address->getUid();
         }
         if (count($cacheTags) > 0) {
-            $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+            $cacheCollector = $request?->getAttribute('frontend.cache.collector');
+            if ($cacheCollector !== null) {
+                foreach ($cacheTags as $tag) {
+                    $cacheCollector->addCacheTags(new \TYPO3\CMS\Core\Cache\CacheTag($tag));
+                }
+            }
         }
     }
 
@@ -84,7 +90,13 @@ class Cache
             }
         }
         if (count($cacheTags) > 0) {
-            $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+            $cacheCollector = $request?->getAttribute('frontend.cache.collector');
+            if ($cacheCollector !== null) {
+                foreach ($cacheTags as $tag) {
+                    $cacheCollector->addCacheTags(new \TYPO3\CMS\Core\Cache\CacheTag($tag));
+                }
+            }
         }
     }
 }

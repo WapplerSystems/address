@@ -32,15 +32,7 @@ class TitleTagViewHelper extends AbstractViewHelper
 
     public function render(): void
     {
-        // Skip if current record is part of tt_content CType shortcut
-        if (!empty($GLOBALS['TSFE']->recordRegister)
-            && is_array($GLOBALS['TSFE']->recordRegister)
-            && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
-            && !empty($GLOBALS['TSFE']->currentRecord)
-            && strpos($GLOBALS['TSFE']->currentRecord, 'tx_address_domain_model_address:') !== false
-        ) {
-            return;
-        }
+        // recordRegister / currentRecord no longer available (TSFE removed in v14)
 
         $content = trim($this->renderChildren());
         if (!empty($content)) {
