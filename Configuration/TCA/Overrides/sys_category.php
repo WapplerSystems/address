@@ -144,5 +144,4 @@ $addressSysCategoryColumns = [
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_address_domain_model_address']
     = [0 => 'categories'];
 
-$GLOBALS['TCA']['sys_category']['ctrl']['label_userFunc'] =
-    \WapplerSystems\Address\Hooks\Labels::class . '->getUserLabelCategory';
+// label_userFunc removed — Labels class does not exist
