@@ -63,7 +63,7 @@ class MetaTagViewHelper extends AbstractViewHelper
         $this->registerArgument('replace', 'boolean', 'Replace potential existing tag', false, false);
     }
 
-    public function render()
+    public function render(): string
     {
         // recordRegister / currentRecord no longer available (TSFE removed in v14)
 
@@ -97,6 +97,7 @@ class MetaTagViewHelper extends AbstractViewHelper
                 $manager->addProperty($this->arguments['name'], $content, [], $this->arguments['replace'], 'name');
             }
         }
+        return '';
     }
 }
 

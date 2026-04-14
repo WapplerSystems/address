@@ -12,6 +12,7 @@ namespace WapplerSystems\Address\Hooks;
 use WapplerSystems\Address\Utility\MapRenderer;
 use WapplerSystems\Address\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -216,22 +217,23 @@ class ItemsProcFunc
     {
         $html = '';
 
-        $orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?
-            $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] :
-            $GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
+        $orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby']
+            ?? $GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']
+            ?? 'sorting';
 
-        $languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            '*',
-            'sys_language',
-            '1=1 ' . BackendUtilityCore::deleteClause('sys_language'),
-            '',
-            $orderBy
-        );
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_language');
+        $languages = $queryBuilder
+            ->select('*')
+            ->from('sys_language')
+            ->orderBy($orderBy)
+            ->executeQuery()
+            ->fetchAllAssociative();
 
         // if any language is available
         if (count($languages) > 0) {
             $html = '<select name="data[addressoverlay]" id="field_addressoverlay" class="form-control">
-						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value')) . '</option>';
+						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value')) . '</option>';
 
             foreach ($languages as $language) {
                 $selected = ((int)$GLOBALS['BE_USER']->uc['addressoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';

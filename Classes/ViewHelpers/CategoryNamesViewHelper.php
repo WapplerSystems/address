@@ -36,7 +36,7 @@ class CategoryNamesViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         $output = '';
         /** @var Address $address */

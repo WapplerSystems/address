@@ -27,7 +27,7 @@ class RemoveMediaTagsViewHelper extends AbstractViewHelper
     /**
      * @return mixed
      */
-    public function render()
+    public function render(): string
     {
         $content = $this->renderChildren();
         return str_replace($this->tags, '', $content);

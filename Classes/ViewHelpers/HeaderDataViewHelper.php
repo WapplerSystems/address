@@ -33,9 +33,9 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class HeaderDataViewHelper extends AbstractViewHelper
 {
-
-    public function render() {
+    public function render(): string {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addHeaderData($this->renderChildren());
+        return '';
     }
 }

@@ -9,53 +9,22 @@ namespace WapplerSystems\Address\Service;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-/**
- * Provide a way to get the configuration just everywhere
- *
- * Example
- * $pluginSettingsService =
- * $this->objectManager->get('WapplerSystems\\Address\\Service\\SettingsService');
- * \TYPO3\CMS\Core\Utility\GeneralUtility::print_array($pluginSettingsService->getSettings());
- *
- * If objectManager is not available:
- * http://forge.typo3.org/projects/typo3v4-mvc/wiki/
- * Dependency_Injection_%28DI%29#Creating-Prototype-Objects-through-the-Object-Manager
- *
- */
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+
 class SettingsService
 {
+    protected mixed $settings = null;
 
-    /**
-     * @var mixed
-     */
-    protected $settings = null;
+    public function __construct(
+        private readonly ConfigurationManagerInterface $configurationManager,
+    ) {}
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-     */
-    protected $configurationManager;
-
-    /**
-     * Injects the Configuration Manager and loads the settings
-     *
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
-     */
-    public function injectConfigurationManager(
-        \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    ) {
-        $this->configurationManager = $configurationManager;
-    }
-
-    /**
-     * Returns all settings.
-     *
-     * @return array
-     */
-    public function getSettings()
+    public function getSettings(): array
     {
         if ($this->settings === null) {
             $this->settings = $this->configurationManager->getConfiguration(
-                \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+                ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
                 'Address',
                 'Pi1'
             );
@@ -63,18 +32,8 @@ class SettingsService
         return $this->settings;
     }
 
-    /**
-     * Returns the settings at path $path, which is separated by ".",
-     * e.g. "pages.uid".
-     * "pages.uid" would return $this->settings['pages']['uid'].
-     *
-     * If the path is invalid or no entry is found, false is returned.
-     *
-     * @param string $path
-     * @return mixed
-     */
-    public function getByPath($path)
+    public function getByPath(string $path): mixed
     {
-        return \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getPropertyPath($this->getSettings(), $path);
+        return ObjectAccess::getPropertyPath($this->getSettings(), $path);
     }
 }

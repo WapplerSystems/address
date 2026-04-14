@@ -15,22 +15,9 @@ use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 
 class SendToAddressFinisher extends EmailFinisher
 {
-
-    /**
-     * @var \WapplerSystems\Address\Domain\Repository\AddressRepository
-     */
-    protected $addressRepository;
-
-
-    /**
-     * Inject the category repository
-     *
-     * @param \WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository
-     */
-    public function injectCategoryRepository(\WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository)
-    {
-        $this->addressRepository = $addressRepository;
-    }
+    public function __construct(
+        private readonly \WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository,
+    ) {}
 
 
     /**

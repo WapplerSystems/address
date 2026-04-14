@@ -55,11 +55,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     protected $tagName = 'a';
 
     /**
-     * @var \WapplerSystems\Address\Service\SettingsService
-     */
-    protected $pluginSettingsService;
-
-    /**
      * @var array
      */
     protected $detailPidDeterminationCallbacks = [
@@ -71,12 +66,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /** @var $cObj ContentObjectRenderer */
     protected $cObj;
 
-    /**
-     * @param \WapplerSystems\Address\Service\SettingsService $pluginSettingsService
-     */
-    public function injectSettingsService(\WapplerSystems\Address\Service\SettingsService $pluginSettingsService)
-    {
-        $this->pluginSettingsService = $pluginSettingsService;
+    public function __construct(
+        private readonly \WapplerSystems\Address\Service\SettingsService $pluginSettingsService,
+    ) {
+        parent::__construct();
     }
 
 

@@ -61,22 +61,15 @@ use WapplerSystems\Address\Domain\Model\Address;
  */
 class SimplePrevNextViewHelper extends AbstractViewHelper
 {
-    /* @var $dataMapper DataMapper */
-    protected $dataMapper;
-
     /**
      * @var bool
      */
     protected $escapeOutput = false;
 
-    /**
-     * Inject the DataMapper
-     *
-     * @param DataMapper $dataMapper
-     */
-    public function injectDataMapper(DataMapper $dataMapper): void
-    {
-        $this->dataMapper = $dataMapper;
+    public function __construct(
+        private readonly DataMapper $dataMapper,
+    ) {
+        parent::__construct();
     }
 
     /**
@@ -103,9 +96,10 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
         $mapped = $this->mapResultToObjects($neighbours);
 
-        $this->templateVariableContainer->add($as, $mapped);
+        $variableProvider = $this->renderingContext->getVariableProvider();
+        $variableProvider->add($as, $mapped);
         $output = $this->renderChildren();
-        $this->templateVariableContainer->remove($as);
+        $variableProvider->remove($as);
         return $output;
     }
 

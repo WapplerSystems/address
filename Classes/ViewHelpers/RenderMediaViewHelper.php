@@ -171,7 +171,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         /** @var Address $address */
         $address = $this->arguments['address'];
