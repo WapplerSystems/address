@@ -9,6 +9,7 @@ namespace WapplerSystems\Address\Hooks;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Localization\LanguageService;
 use WapplerSystems\Address\Utility\MapRenderer;
 use WapplerSystems\Address\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -281,10 +282,8 @@ class ItemsProcFunc
 
     /**
      * Returns LanguageService
-     *
-     * @return \TYPO3\CMS\Lang\LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

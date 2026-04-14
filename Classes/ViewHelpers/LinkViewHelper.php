@@ -9,11 +9,13 @@ namespace WapplerSystems\Address\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 use WapplerSystems\Address\Domain\Model\Address;
+use WapplerSystems\Address\Service\SettingsService;
 
 /**
  * ViewHelper to render links from address records to detail view or page
@@ -67,7 +69,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     protected $cObj;
 
     public function __construct(
-        private readonly \WapplerSystems\Address\Service\SettingsService $pluginSettingsService,
+        private readonly SettingsService $pluginSettingsService,
     ) {
         parent::__construct();
     }
@@ -205,7 +207,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $uid = $address->getUid();
         // If a user is logged in and not in live workspace
         if ($GLOBALS['BE_USER'] && $GLOBALS['BE_USER']->workspace > 0) {
-            $record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord('tx_address_domain_model_address',
+            $record = BackendUtility::getLiveVersionOfRecord('tx_address_domain_model_address',
                 $address->getUid());
             if ($record['uid']) {
                 $uid = $record['uid'];

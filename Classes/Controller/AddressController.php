@@ -13,6 +13,8 @@ use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use TYPO3\CMS\Core\Cache\CacheTag;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\VisibilityAspect;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -23,8 +25,8 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
-use TYPO3\CMS\Fluid\View\TemplateView;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Core\View\ViewInterface;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use WapplerSystems\Address\Domain\Model\Address;
 use WapplerSystems\Address\Domain\Model\Dto\AddressDemand;
 use WapplerSystems\Address\Domain\Model\Dto\Search;
@@ -247,8 +249,8 @@ class AddressController extends AddressBaseController
             if ($previewAddressId > 0) {
                 if ($this->isPreviewOfHiddenRecordsEnabled()) {
                     // showHiddenRecords removed in v14 — use Context API
-                    $context = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class);
-                    $context->setAspect('visibility', new \TYPO3\CMS\Core\Context\VisibilityAspect(true));
+                    $context = GeneralUtility::makeInstance(Context::class);
+                    $context->setAspect('visibility', new VisibilityAspect(true));
                     $address = $this->addressRepository->findByUid($previewAddressId, false);
                 } else {
                     $address = $this->addressRepository->findByUid($previewAddressId);
@@ -585,7 +587,7 @@ JS;
         if ($this->arguments->hasArgument('search')) {
             $propertyMappingConfiguration = $this->arguments['search']->getPropertyMappingConfiguration();
             $propertyMappingConfiguration->allowAllProperties();
-            $propertyMappingConfiguration->setTypeConverterOption(PersistentObjectConverter::class, \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+            $propertyMappingConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         }
     }
 
@@ -593,10 +595,8 @@ JS;
     /**
      * Injects a view.
      * This function is for testing purposes only.
-     *
-     * @param TemplateView $view the view to inject
      */
-    public function setView(TemplateView $view)
+    public function setView(ViewInterface $view): void
     {
         $this->view = $view;
     }
@@ -627,7 +627,8 @@ JS;
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
             foreach ($stdWrapProperties as $key) {
                 if (is_array($typoScriptArray[$key . '.'] ?? null)) {
-                    $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
+                    $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
+                    $originalSettings[$key] = $cObj->stdWrap(
                         $typoScriptArray[$key] ?? '',
                         $typoScriptArray[$key . '.']
                     );

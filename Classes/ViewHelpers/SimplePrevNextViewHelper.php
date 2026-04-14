@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -68,9 +69,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
     public function __construct(
         private readonly DataMapper $dataMapper,
-    ) {
-        parent::__construct();
-    }
+    ) {}
 
     /**
      * Initialize arguments.
@@ -136,7 +135,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
 
         if ($languageAspect->getContentId() > 0) {
-            $pageRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Domain\Repository\PageRepository::class);
+            $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
             $overlay = $pageRepository->getLanguageOverlay(
                 'tx_address_domain_model_address',
                 $rawRecord,

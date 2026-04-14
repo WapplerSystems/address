@@ -13,6 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use WapplerSystems\Address\Domain\Model\Dto\EmConfiguration;
 
@@ -66,7 +67,7 @@ class AddressBaseController extends ActionController
                 if ($statusCode === 0) {
                     $statusCode = 404;
                 }
-                $standaloneTemplate = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
+                $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
                 $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($configuration));
                 return $this->responseFactory->createResponse($statusCode)
                     ->withHeader('Content-Type', 'text/html; charset=utf-8')

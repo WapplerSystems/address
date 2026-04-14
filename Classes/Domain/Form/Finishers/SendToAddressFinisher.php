@@ -8,26 +8,26 @@ namespace WapplerSystems\Address\Domain\Form\Finishers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Mail\MailerInterface;
+use TYPO3\CMS\Core\Mail\TemplatedEmailFactory;
 use TYPO3\CMS\Form\Domain\Finishers\EmailFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
+use WapplerSystems\Address\Domain\Repository\AddressRepository;
 
 
 class SendToAddressFinisher extends EmailFinisher
 {
     public function __construct(
-        private readonly \WapplerSystems\Address\Domain\Repository\AddressRepository $addressRepository,
-    ) {}
+        EventDispatcherInterface $eventDispatcher,
+        TemplatedEmailFactory $templatedEmailFactory,
+        MailerInterface $mailer,
+        private readonly AddressRepository $addressRepository,
+    ) {
+        parent::__construct($eventDispatcher, $templatedEmailFactory, $mailer);
+    }
 
-
-    /**
-     * Get mail recipients
-     *
-     * @param string $listOption List option name
-     * @return array
-     *
-     * @deprecated since TYPO3 v10.0, will be removed in TYPO3 v11.0.
-     */
     protected function getRecipients(
         string $listOption,
     ): array {
@@ -57,5 +57,4 @@ class SendToAddressFinisher extends EmailFinisher
         }
         return $addresses;
     }
-
 }
