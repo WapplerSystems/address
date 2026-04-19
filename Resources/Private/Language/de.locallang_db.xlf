@@ -13,7 +13,7 @@
 				<source>Title</source>
 			<target state="final">Titel</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.teaser" xml:space="preserve" approved="yes">
-				<source>Teaser</source>
+				<source>Short description</source>
 			<target state="final">Kurzbeschreibung</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.datetime" xml:space="preserve" approved="yes">
 				<source>Date &amp; Time</source>
@@ -79,7 +79,7 @@
 				<source>Email</source>
 			<target state="final">E-Mail</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.direct_contact" xml:space="preserve" approved="yes">
-				<source>Direct contactable</source>
+				<source>Directly contactable</source>
 			<target state="final">Direkt kontaktierbar</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.address" xml:space="preserve" approved="yes">
 				<source>Address</source>
@@ -112,8 +112,8 @@
 				<source>Marker</source>
 			<target state="final">Markierung</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.inline_map" xml:space="preserve">
-				<source>Karte</source>
-			<target state="needs-translation">Karte</target></trans-unit>
+				<source>Map</source>
+			<target state="final">Karte</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve" approved="yes">
 				<source>Address</source>
 			<target state="final">Adresse</target></trans-unit>
@@ -196,8 +196,8 @@
 				<source>Related address</source>
 			<target state="final">Verknüpfte Adresse</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve" approved="yes">
-				<source>Top address</source>
-			<target state="final">Priorisierte Adresse</target></trans-unit>
+				<source>Featured address</source>
+			<target state="final">Hervorgehobene Adresse</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.content_elements" xml:space="preserve" approved="yes">
 				<source>Content elements</source>
 			<target state="final">Inhaltselemente</target></trans-unit>

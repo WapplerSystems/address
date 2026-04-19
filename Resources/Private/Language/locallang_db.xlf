@@ -13,7 +13,7 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.teaser" xml:space="preserve">
-				<source>Teaser</source>
+				<source>Short description</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.datetime" xml:space="preserve">
 				<source>Date &amp; Time</source>
@@ -79,7 +79,7 @@
 				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.direct_contact" xml:space="preserve">
-				<source>Direct contactable</source>
+				<source>Directly contactable</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.address" xml:space="preserve">
 				<source>Address</source>
@@ -115,7 +115,7 @@
 				<source>Marker</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.inline_map" xml:space="preserve">
-				<source>Karte</source>
+				<source>Map</source>
 			</trans-unit>
 
 			<trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve">
@@ -205,7 +205,7 @@
 				<source>Related address</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve">
-				<source>Top address</source>
+				<source>Featured address</source>
 			</trans-unit>
 			<trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve">
 				<source>Tags</source>
