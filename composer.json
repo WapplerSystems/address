@@ -26,10 +26,8 @@
         "typo3/cms-core": "^13.4.0",
         "wapplersystems/tag": "^13.0"
     },
-        "require-dev": {
-        "phpunit/phpunit": "~4.8.0",
-        "friendsofphp/php-cs-fixer": "^2.0",
-        "nimut/testing-framework": "^1.0"
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0"
     },
     "autoload": {
         "psr-4": {
