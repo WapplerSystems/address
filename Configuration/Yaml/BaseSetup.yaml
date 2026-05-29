@@ -1,286 +1,283 @@
 imports:
   - { resource: "./Finishers/EmailToAddress.yaml" }
 
-TYPO3:
-  CMS:
-    Form:
 
-      persistenceManager:
-        allowedExtensionPaths:
-          70: EXT:address/Configuration/Yaml/Forms/
-        allowSaveToExtensionPaths: true
-        #allowDeleteFromExtensionPaths: true
+persistenceManager:
+  allowedExtensionPaths:
+    70: EXT:address/Configuration/Yaml/Forms/
+  allowSaveToExtensionPaths: true
+  #allowDeleteFromExtensionPaths: true
 
-      formManager:
-        translationFile:
-          # translations for the form managers "new form" modal
-          10: 'EXT:form/Resources/Private/Language/Database.xlf'
-          50: 'EXT:address/Resources/Private/Language/Database.xlf'
+formManager:
+  translationFile:
+    # translations for the form managers "new form" modal
+    10: 'EXT:form/Resources/Private/Language/Database.xlf'
+    50: 'EXT:address/Resources/Private/Language/Database.xlf'
 
 
-      mixins:
-        translationSettingsMixin:
+mixins:
+  translationSettingsMixin:
+    translation:
+      translationFile:
+        10: 'EXT:form/Resources/Private/Language/locallang.xlf'
+        50: 'EXT:address/Resources/Private/Language/locallang.xlf'
+
+prototypes:
+  address:
+    __inheritances:
+      10: 'prototypes.standard'
+
+    formEditor:
+      formEditorPartials:
+        FormElement-ContactLabel: 'Stage/SimpleTemplate'
+
+      translationFile:
+        # translations for the form plugin (finisher overrides)
+        10: 'EXT:form/Resources/Private/Language/Database.xlf'
+        50: 'EXT:address/Resources/Private/Language/Database.xlf'
+
+      dynamicRequireJsModules:
+        additionalViewModelModules:
+          - 'TYPO3/CMS/Address/Backend/FormEditor/ViewModel'
+
+    formEngine:
+      translationFile:
+        10: 'EXT:form/Resources/Private/Language/Database.xlf'
+        50: 'EXT:address/Resources/Private/Language/Database.xlf'
+
+    mixins:
+      FormElementMixin:
+        formEditor:
+          editors:
+            450:
+              identifier: 'hideInEmail'
+              templateName: 'Inspector-CheckboxEditor'
+              label: 'Hide in email'
+              propertyPath: 'properties.hideInEmail'
+
+    formElementsDefinition:
+
+      Text:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      Password:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      AdvancedPassword:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      Textarea:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      Hidden:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      Checkbox:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      MultiCheckbox:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      MultiSelect:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      RadioButton:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      SingleSelect:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      DatePicker:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      StaticText:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      ContentElement:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      FileUpload:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+      ImageUpload:
+        __inheritances:
+          20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+
+
+      ContactLabel:
+        implementationClassName: 'TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement'
+        renderingOptions:
+          templateName: 'ContactLabel'
+        formEditor:
+          editors:
+            100:
+              identifier: header
+              templateName: Inspector-FormElementHeaderEditor
+            200:
+              identifier: label
+              templateName: Inspector-TextEditor
+              label: formEditor.elements.BaseFormElementMixin.editor.label.label
+              propertyPath: label
+          label: 'formEditor.elements.ContactLabel.label'
+          group: custom
+          groupSorting: 1200
+          iconIdentifier: 't3-form-icon-text'
+
+      Form:
+        renderingOptions:
+          templateRootPaths:
+            50: 'EXT:address/Resources/Private/Templates/Form/'
+          partialRootPaths:
+            50: 'EXT:address/Resources/Private/Partials/Form/'
           translation:
-            translationFile:
-              10: 'EXT:form/Resources/Private/Language/locallang.xlf'
-              50: 'EXT:address/Resources/Private/Language/locallang.xlf'
+            translationFiles:
+              110: 'EXT:address/Resources/Private/Language/form.xlf'
 
-      prototypes:
-        address:
-          __inheritances:
-            10: 'TYPO3.CMS.Form.prototypes.standard'
+        formEditor:
 
-          formEditor:
-            formEditorPartials:
-              FormElement-ContactLabel: 'Stage/SimpleTemplate'
-
-            translationFile:
-              # translations for the form plugin (finisher overrides)
-              10: 'EXT:form/Resources/Private/Language/Database.xlf'
-              50: 'EXT:address/Resources/Private/Language/Database.xlf'
-
-            dynamicRequireJsModules:
-              additionalViewModelModules:
-                - 'TYPO3/CMS/Address/Backend/FormEditor/ViewModel'
-
-          formEngine:
-            translationFile:
-              10: 'EXT:form/Resources/Private/Language/Database.xlf'
-              50: 'EXT:address/Resources/Private/Language/Database.xlf'
-
-          mixins:
-            FormElementMixin:
-              formEditor:
-                editors:
-                  450:
-                    identifier: 'hideInEmail'
-                    templateName: 'Inspector-CheckboxEditor'
-                    label: 'Hide in email'
-                    propertyPath: 'properties.hideInEmail'
-
-          formElementsDefinition:
-
-            Text:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            Password:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            AdvancedPassword:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            Textarea:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            Hidden:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            Checkbox:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            MultiCheckbox:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            MultiSelect:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            RadioButton:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            SingleSelect:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            DatePicker:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            StaticText:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            ContentElement:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            FileUpload:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
-
-            ImageUpload:
-              __inheritances:
-                20: 'TYPO3.CMS.Form.prototypes.address.mixins.FormElementMixin'
+          editors:
+            900:
+              selectOptions:
+                230:
+                  value: 'EmailToAddress'
+                  label: 'Email to address'
 
 
-            ContactLabel:
-              implementationClassName: 'TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement'
-              renderingOptions:
-                templateName: 'ContactLabel'
-              formEditor:
+          propertyCollections:
+            finishers:
+              230:
+                identifier: EmailToAddress
                 editors:
                   100:
                     identifier: header
-                    templateName: Inspector-FormElementHeaderEditor
+                    templateName: Inspector-CollectionElementHeaderEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.header.label
                   200:
-                    identifier: label
+                    identifier: subject
                     templateName: Inspector-TextEditor
-                    label: formEditor.elements.BaseFormElementMixin.editor.label.label
-                    propertyPath: label
-                label: 'formEditor.elements.ContactLabel.label'
-                group: custom
-                groupSorting: 1200
-                iconIdentifier: 't3-form-icon-text'
-
-            Form:
-              renderingOptions:
-                templateRootPaths:
-                  50: 'EXT:address/Resources/Private/Templates/Form/'
-                partialRootPaths:
-                  50: 'EXT:address/Resources/Private/Partials/Form/'
-                translation:
-                  translationFiles:
-                    110: 'EXT:address/Resources/Private/Language/form.xlf'
-
-              formEditor:
-
-                editors:
-                  900:
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.subject.label
+                    propertyPath: options.subject
+                    enableFormelementSelectionButton: true
+                    propertyValidators:
+                      10: NotEmpty
+                      20: FormElementIdentifierWithinCurlyBracesInclusive
+                  500:
+                    identifier: senderAddress
+                    templateName: Inspector-TextEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.senderAddress.label
+                    propertyPath: options.senderAddress
+                    enableFormelementSelectionButton: true
+                    propertyValidatorsMode: OR
+                    propertyValidators:
+                      10: NaiveEmail
+                      20: FormElementIdentifierWithinCurlyBracesExclusive
+                    fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.senderAddress.fieldExplanationText
+                  600:
+                    identifier: senderName
+                    templateName: Inspector-TextEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.senderName.label
+                    propertyPath: options.senderName
+                    enableFormelementSelectionButton: true
+                    propertyValidators:
+                      10: FormElementIdentifierWithinCurlyBracesInclusive
+                    fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.senderName.fieldExplanationText
+                  750:
+                    identifier: replyToRecipients
+                    templateName: Inspector-PropertyGridEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.replyToRecipients.label
+                    propertyPath: options.replyToRecipients
+                    isSortable: true
+                    enableAddRow: true
+                    enableDeleteRow: true
+                    useLabelAsFallbackValue: false
+                    gridColumns:
+                      -
+                        name: value
+                        title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.value.title
+                      -
+                        name: label
+                        title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.label.title
+                  850:
+                    identifier: carbonCopyRecipients
+                    templateName: Inspector-PropertyGridEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.carbonCopyRecipients.label
+                    propertyPath: options.carbonCopyRecipients
+                    isSortable: true
+                    enableAddRow: true
+                    enableDeleteRow: true
+                    useLabelAsFallbackValue: false
+                    gridColumns:
+                      -
+                        name: value
+                        title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.value.title
+                      -
+                        name: label
+                        title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.label.title
+                  950:
+                    identifier: blindCarbonCopyRecipients
+                    templateName: Inspector-PropertyGridEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.blindCarbonCopyRecipients.label
+                    propertyPath: options.blindCarbonCopyRecipients
+                    isSortable: true
+                    enableAddRow: true
+                    enableDeleteRow: true
+                    useLabelAsFallbackValue: false
+                    gridColumns:
+                      -
+                        name: value
+                        title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.value.title
+                      -
+                        name: label
+                        title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.label.title
+                  1050:
+                    identifier: addHtmlPart
+                    templateName: Inspector-CheckboxEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.addHtmlPart.label
+                    propertyPath: options.addHtmlPart
+                    fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.addHtmlPart.fieldExplanationText
+                  1100:
+                    identifier: attachUploads
+                    templateName: Inspector-CheckboxEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.attachUploads.label
+                    propertyPath: options.attachUploads
+                  1200:
+                    identifier: language
+                    templateName: Inspector-SingleSelectEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.language.label
+                    propertyPath: options.translation.language
                     selectOptions:
-                      230:
-                        value: 'EmailToAddress'
-                        label: 'Email to address'
-
-
-                propertyCollections:
-                  finishers:
-                    230:
-                      identifier: EmailToAddress
-                      editors:
-                        100:
-                          identifier: header
-                          templateName: Inspector-CollectionElementHeaderEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.header.label
-                        200:
-                          identifier: subject
-                          templateName: Inspector-TextEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.subject.label
-                          propertyPath: options.subject
-                          enableFormelementSelectionButton: true
-                          propertyValidators:
-                            10: NotEmpty
-                            20: FormElementIdentifierWithinCurlyBracesInclusive
-                        500:
-                          identifier: senderAddress
-                          templateName: Inspector-TextEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.senderAddress.label
-                          propertyPath: options.senderAddress
-                          enableFormelementSelectionButton: true
-                          propertyValidatorsMode: OR
-                          propertyValidators:
-                            10: NaiveEmail
-                            20: FormElementIdentifierWithinCurlyBracesExclusive
-                          fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.senderAddress.fieldExplanationText
-                        600:
-                          identifier: senderName
-                          templateName: Inspector-TextEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.senderName.label
-                          propertyPath: options.senderName
-                          enableFormelementSelectionButton: true
-                          propertyValidators:
-                            10: FormElementIdentifierWithinCurlyBracesInclusive
-                          fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.senderName.fieldExplanationText
-                        750:
-                          identifier: replyToRecipients
-                          templateName: Inspector-PropertyGridEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.replyToRecipients.label
-                          propertyPath: options.replyToRecipients
-                          isSortable: true
-                          enableAddRow: true
-                          enableDeleteRow: true
-                          useLabelAsFallbackValue: false
-                          gridColumns:
-                            -
-                              name: value
-                              title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.value.title
-                            -
-                              name: label
-                              title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.label.title
-                        850:
-                          identifier: carbonCopyRecipients
-                          templateName: Inspector-PropertyGridEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.carbonCopyRecipients.label
-                          propertyPath: options.carbonCopyRecipients
-                          isSortable: true
-                          enableAddRow: true
-                          enableDeleteRow: true
-                          useLabelAsFallbackValue: false
-                          gridColumns:
-                            -
-                              name: value
-                              title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.value.title
-                            -
-                              name: label
-                              title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.label.title
-                        950:
-                          identifier: blindCarbonCopyRecipients
-                          templateName: Inspector-PropertyGridEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.blindCarbonCopyRecipients.label
-                          propertyPath: options.blindCarbonCopyRecipients
-                          isSortable: true
-                          enableAddRow: true
-                          enableDeleteRow: true
-                          useLabelAsFallbackValue: false
-                          gridColumns:
-                            -
-                              name: value
-                              title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.value.title
-                            -
-                              name: label
-                              title: formEditor.elements.Form.finisher.EmailToSender.editor.recipients.gridColumns.label.title
-                        1050:
-                          identifier: addHtmlPart
-                          templateName: Inspector-CheckboxEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.addHtmlPart.label
-                          propertyPath: options.addHtmlPart
-                          fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.addHtmlPart.fieldExplanationText
-                        1100:
-                          identifier: attachUploads
-                          templateName: Inspector-CheckboxEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.attachUploads.label
-                          propertyPath: options.attachUploads
-                        1200:
-                          identifier: language
-                          templateName: Inspector-SingleSelectEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.language.label
-                          propertyPath: options.translation.language
-                          selectOptions:
-                            10:
-                              value: default
-                              label: formEditor.elements.Form.finisher.EmailToSender.editor.language.1
-                        1300:
-                          identifier: useFluidEmail
-                          templateName: Inspector-CheckboxEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.useFluidEmail.label
-                          propertyPath: options.useFluidEmail
-                          fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.useFluidEmail.fieldExplanationText
-                        1400:
-                          identifier: title
-                          templateName: Inspector-TextEditor
-                          label: formEditor.elements.Form.finisher.EmailToSender.editor.title.label
-                          propertyPath: options.title
-                          fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.title.fieldExplanationText
-                          enableFormelementSelectionButton: true
-                          propertyValidators:
-                            10: FormElementIdentifierWithinCurlyBracesInclusive
-                        9999:
-                          identifier: removeButton
-                          templateName: Inspector-RemoveElementEditor
+                      10:
+                        value: default
+                        label: formEditor.elements.Form.finisher.EmailToSender.editor.language.1
+                  1300:
+                    identifier: useFluidEmail
+                    templateName: Inspector-CheckboxEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.useFluidEmail.label
+                    propertyPath: options.useFluidEmail
+                    fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.useFluidEmail.fieldExplanationText
+                  1400:
+                    identifier: title
+                    templateName: Inspector-TextEditor
+                    label: formEditor.elements.Form.finisher.EmailToSender.editor.title.label
+                    propertyPath: options.title
+                    fieldExplanationText: formEditor.elements.Form.finisher.EmailToSender.editor.title.fieldExplanationText
+                    enableFormelementSelectionButton: true
+                    propertyValidators:
+                      10: FormElementIdentifierWithinCurlyBracesInclusive
+                  9999:
+                    identifier: removeButton
+                    templateName: Inspector-RemoveElementEditor
