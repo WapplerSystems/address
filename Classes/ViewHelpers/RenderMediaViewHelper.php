@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WapplerSystems\Address\ViewHelpers;
 
@@ -9,181 +10,155 @@ namespace WapplerSystems\Address\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Bitmotion\NawSecuredl\Core\ObjectManager;
-use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\FileType;
-use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder;
 use WapplerSystems\Address\Domain\Model\Address;
+use WapplerSystems\Address\Domain\Model\FileReference as AddressFileReference;
 
+/**
+ * Replaces `[media]` tokens in rich-text content with the attached media
+ * files of an Address record, one file per token in document order.
+ *
+ * Output is unescaped on purpose (escapeOutput = false) because the body
+ * itself is rendered HTML, but every dynamic attribute value goes through
+ * TagBuilder, which html-encodes attribute values via htmlspecialchars.
+ * Inline text contents are explicitly htmlspecialchars'd before being
+ * passed to setContent.
+ */
 class RenderMediaViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;
-
     protected $escapingInterceptorEnabled = false;
 
-    /**
-     * @var string
-     */
-    protected $mediaTag = '/\\[media\\]/';
+    private string $mediaTag = '/\\[media\\]/';
+    private string $replaceMediaTag = '/(?:<p>\s*)?\\[media\\](?:\s*<\/p>)?/';
 
-    protected $replaceMediaTag = '/(?:<p>\s*)?\\[media\\](?:\s*<\/p>)?/';
+    private string $imgClass = '';
+    private string $videoClass = '';
+    private string $audioClass = '';
 
-    /**
-     * @var string
-     */
-    protected $imgClass = '';
-
-    /**
-     * @var string
-     */
-    protected $videoClass = '';
-
-    /**
-     * @var string
-     */
-    protected $audioClass = '';
-
-    /**
-     * Initialize all arguments. You need to override this method and call
-     * $this->registerArgument(...) inside this method, to register all your arguments.
-     *
-     * @api
-     */
     public function initializeArguments(): void
     {
         $this->registerArgument('address', 'object', 'the address post', true);
-        $this->registerArgument('imgClass', 'string', 'add css class to images');
-        $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class');
-        $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class');
+        $this->registerArgument('imgClass', 'string', 'add css class to images', false, '');
+        $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class', false, '');
+        $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class', false, '');
     }
 
-    /**
-     * Render an img tag for image
-     * @param $image FileReference
-     * @return string
-     */
-    private function renderImage($image)
+    public function render(): string
     {
-        $objManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $imageService = $objManager->get(ImageService::class);
-
-        $crop = $image->getProperty('crop');
-        $processingInstructions = [
-            'width' => null,
-            'height' => null,
-            'crop' => $crop,
-        ];
-
-        $processedImage = $imageService->applyProcessingInstructions($image, $processingInstructions);
-        $imageUri = $imageService->getImageUri($processedImage);
-
-        $alt = trim($image->getProperty('alternative'));
-        $title = trim($image->getProperty('title'));
-        $description = trim($image->getProperty('description'));
-
-        $imageAttributes = [
-            'src' => $imageUri,
-            'alt' => $alt ?: ($title ?: ''),
-            'title' => $title
-        ];
-
-        if (!empty($this->imgClass)) {
-            $imageAttributes['class'] = $this->imgClass;
+        $address = $this->arguments['address'];
+        if (!$address instanceof Address) {
+            return (string)$this->renderChildren();
         }
 
-        $imageAttributes = array_reduce(
-            array_keys($imageAttributes),
-            function ($carry, $key) use ($imageAttributes) {
-                return $carry . ' ' . $key . '="' . htmlspecialchars($imageAttributes[$key]) . '"';
-            },
-            ''
-        );
+        $this->imgClass = (string)$this->arguments['imgClass'];
+        $this->videoClass = (string)$this->arguments['videoClass'];
+        $this->audioClass = (string)$this->arguments['audioClass'];
 
-        if (!empty($description)) {
-            $description = '<figcaption>' . htmlspecialchars($description) . '</figcaption>';
-        }
-
-        return '<figure>' . '<img ' . $imageAttributes . ' />' . $description . '</figure>';
+        $mediaFiles = (array)$address->getMediaNonPreviews();
+        $content = (string)$this->renderChildren();
+        return $this->renderMedia($content, $mediaFiles);
     }
 
     /**
-     * Replace the [media] tags with the output of the according media render output
+     * Walks the [media] tokens in $content and replaces each with the next
+     * attached file's renderer output. When more tokens than files exist,
+     * the surplus tokens are left as literal text rather than swallowed —
+     * matches the historical behaviour and keeps editors aware that they
+     * referenced a file that isn't there.
      *
-     * @param string $content
-     * @param array $files
-     * @return string
+     * @param array<int,AddressFileReference|null> $files
      */
-    private function renderMedia($content, array $files)
+    private function renderMedia(string $content, array $files): string
     {
         $fileIndex = 0;
         preg_match_all($this->mediaTag, $content, $matches);
         foreach ($matches[0] as $_) {
-            /** @var \WapplerSystems\Address\Domain\Model\FileReference $file */
-            $file = null;
-            /** @var \TYPO3\CMS\Core\Resource\FileReference $media */
-            $media = null;
-
-            // check if a file is present for current media tag
-            if (count($files) <= $fileIndex) {
+            if (!isset($files[$fileIndex])) {
                 break;
             }
-
             $file = $files[$fileIndex++];
             if ($file === null) {
                 break;
             }
 
             $media = $file->getOriginalResource();
-            $fileRenderer = RendererRegistry::getInstance()->getRenderer($media);
+            $renderer = GeneralUtility::makeInstance(RendererRegistry::class)->getRenderer($media);
 
-            // if a renderer is configured for the file type use this renderer
-            if ($fileRenderer !== null) {
-                $media_tag = $fileRenderer->render($media, 0, 0);
-
-                // check if media tag needs to be wrapped in div, depends on type of media file
-                $wrapClass= '';
-                if ($media->getType() === FileType::VIDEO) {
-                    $wrapClass = $this->videoClass;
-                } elseif ($media->getType() === FileType::AUDIO) {
-                    $wrapClass = $this->audioClass;
+            if ($renderer !== null) {
+                $mediaTag = $renderer->render($media, 0, 0);
+                $wrapClass = match ($media->getType()) {
+                    FileType::VIDEO => $this->videoClass,
+                    FileType::AUDIO => $this->audioClass,
+                    default => '',
+                };
+                if ($wrapClass !== '') {
+                    $wrap = new TagBuilder('div');
+                    $wrap->addAttribute('class', $wrapClass);
+                    // setContent passes through without re-encoding — the renderer
+                    // output is trusted HTML (TYPO3 core renderers).
+                    $wrap->setContent($mediaTag);
+                    $wrap->forceClosingTag(true);
+                    $mediaTag = $wrap->render();
                 }
-
-                if (!empty($wrapClass)) {
-                    $media_tag = '<div class="' . $wrapClass . '">' . $media_tag . '</div>';
-                }
-            }
-            // fallback to image rendering
-            else {
-                $media_tag = $this->renderImage($media);
+            } else {
+                $mediaTag = $this->renderImage($media);
             }
 
-            // replace one tag in content with render output
-            $content = preg_replace($this->replaceMediaTag, $media_tag, $content, 1);
+            $content = preg_replace($this->replaceMediaTag, $mediaTag, $content, 1) ?? $content;
         }
-
         return $content;
     }
 
     /**
-     * @return string
+     * Fallback renderer for images that have no registered MediaRenderer.
+     * Builds a `<figure><img …/><figcaption>…</figcaption></figure>` with
+     * all attribute values quoted through TagBuilder.
      */
-    public function render(): string
+    private function renderImage(FileInterface $image): string
     {
-        /** @var Address $address */
-        $address = $this->arguments['address'];
+        $imageService = GeneralUtility::makeInstance(ImageService::class);
 
-        $this->imgClass = htmlspecialchars($this->arguments['imgClass']);
-        $this->videoClass = htmlspecialchars($this->arguments['videoClass']);
-        $this->audioClass = htmlspecialchars($this->arguments['audioClass']);
+        // `getProperty()` may return null on freshly imported files; cast
+        // upfront so trim() doesn't get a TypeError on PHP 8.1+.
+        $crop = $image->getProperty('crop');
+        $processedImage = $imageService->applyProcessingInstructions($image, [
+            'width' => null,
+            'height' => null,
+            'crop' => $crop,
+        ]);
+        $imageUri = $imageService->getImageUri($processedImage);
 
-        $mediaFiles = (array)$address->getMediaNonPreviews();
+        $alt = trim((string)$image->getProperty('alternative'));
+        $title = trim((string)$image->getProperty('title'));
+        $description = trim((string)$image->getProperty('description'));
 
-        $content = $this->renderChildren();
-        $content = $this->renderMedia($content, $mediaFiles);
-        return $content;
+        $tag = new TagBuilder('img');
+        $tag->addAttribute('src', $imageUri);
+        $tag->addAttribute('alt', $alt !== '' ? $alt : $title);
+        if ($title !== '') {
+            $tag->addAttribute('title', $title);
+        }
+        if ($this->imgClass !== '') {
+            $tag->addAttribute('class', $this->imgClass);
+        }
+
+        $figcaption = '';
+        if ($description !== '') {
+            $caption = new TagBuilder('figcaption');
+            // setContent does not encode — encode here so a description
+            // containing `<script>…` is rendered as text, not executed.
+            $caption->setContent(htmlspecialchars($description, ENT_QUOTES | ENT_HTML5));
+            $caption->forceClosingTag(true);
+            $figcaption = $caption->render();
+        }
+
+        return '<figure>' . $tag->render() . $figcaption . '</figure>';
     }
 }

@@ -175,6 +175,16 @@ $boot = static function (): void {
         ];
     }
 
+    // Used by CategoryService to memoise the sys_category descendant /
+    // ancestor walks. Was historically referenced as "cache_address_category"
+    // but never actually registered, so every CategoryService call crashed.
+    if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_category'] ?? null)) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['address_category'] = [
+            'frontend' => VariableFrontend::class,
+            'backend'  => Typo3DatabaseBackend::class,
+        ];
+    }
+
     if (class_exists(ClassLoader::class)) {
         ClassLoader::registerAutoloader();
     }

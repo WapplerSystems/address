@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WapplerSystems\Address\Utility;
 
@@ -8,41 +9,49 @@ namespace WapplerSystems\Address\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use WapplerSystems\Address\Domain\Model\Dto\EmConfiguration as EmConfigurationDto;
 
 /**
- * Utility class to get the settings from Extension Manager
+ * Legacy facade around {@see EmConfigurationDto}. Historically this class
+ * unserialised `$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['address']`,
+ * which in TYPO3 v11+ is no longer a serialised string but a plain array —
+ * the unserialise then silently produced `false`, and every call site got
+ * empty defaults instead of the real settings.
  *
+ * The facade is kept so existing call sites keep compiling; new code should
+ * take an {@see EmConfigurationDto} directly via constructor injection.
+ *
+ * @deprecated will be removed in a future major; inject EmConfigurationDto.
  */
 class EmConfiguration
 {
-
     /**
-     * Parses the extension settings.
-     *
-     * @return \WapplerSystems\Address\Domain\Model\Dto\EmConfiguration
-     * @throws \Exception If the configuration is invalid.
+     * Returns the typed configuration DTO. Equivalent to making the DTO via
+     * the DI container — the DTO's own constructor pulls the array from
+     * {@see ExtensionConfiguration::get()} when called with no argument.
      */
-    public static function getSettings()
+    public static function getSettings(): EmConfigurationDto
     {
-        $configuration = self::parseSettings();
-        require_once(ExtensionManagementUtility::extPath('address') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
-        $settings = new \WapplerSystems\Address\Domain\Model\Dto\EmConfiguration($configuration);
-        return $settings;
+        return GeneralUtility::makeInstance(EmConfigurationDto::class);
     }
 
     /**
-     * Parse settings and return it as array
+     * Returns the raw extension settings array. The historic implementation
+     * called `unserialize()`; on v11+ the value is already an array, so we
+     * go through ExtensionConfiguration which handles both shapes.
      *
-     * @return array unserialized extconf settings
+     * @return array<string,mixed>
      */
-    public static function parseSettings()
+    public static function parseSettings(): array
     {
-        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['address'] ?? '');
-
-        if (!is_array($settings)) {
-            $settings = [];
+        try {
+            $configuration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('address');
+        } catch (\Throwable) {
+            return [];
         }
-        return $settings;
+        return is_array($configuration) ? $configuration : [];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WapplerSystems\Address\Backend;
 
@@ -8,44 +9,49 @@ namespace WapplerSystems\Address\Backend;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Exception;
-use WapplerSystems\Address\Utility\EmConfiguration;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler as DataHandlerCore;
+use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use WapplerSystems\Address\Utility\EmConfiguration;
 
 /**
- * Ajax response for the custom suggest receiver
- *
+ * Ajax response for the custom suggest receiver. Creates a tag record if no
+ * matching one exists yet for the given address page, and returns the dash-
+ * separated tuple expected by the BE suggest JS module.
  */
 class TagEndPoint
 {
-    const TAG = 'tx_address_domain_model_tag';
-    const ADDRESS = 'tx_address_domain_model_address';
-    const LL_PATH = 'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:tag_suggest_';
+    public const TAG = 'tx_address_domain_model_tag';
+    public const ADDRESS = 'tx_address_domain_model_address';
+    public const LL_PATH = 'LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:tag_suggest_';
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param Response $response
-     * @return Response
-     */
-    public function create(ServerRequestInterface $request, Response $response)
+    public function __construct(
+        private readonly ConnectionPool $connectionPool,
+        private readonly LanguageServiceFactory $languageServiceFactory,
+    ) {}
+
+    public function create(ServerRequestInterface $request): ResponseInterface
     {
         try {
-            $item = isset($request->getParsedBody()['item']) ? $request->getParsedBody()['item'] : $request->getQueryParams()['item'];
+            $parsed = $request->getParsedBody();
+            $query = $request->getQueryParams();
+            $item = is_array($parsed) && isset($parsed['item']) ? (string)$parsed['item'] : (string)($query['item'] ?? '');
 
-            if (empty($item)) {
-                throw new Exception('error_no-tag');
+            if ($item === '') {
+                throw new \RuntimeException('error_no-tag');
             }
 
-            $addressUid = isset($request->getParsedBody()['addressid']) ? $request->getParsedBody()['addressid'] : $request->getQueryParams()['addressid'];
-            if ((int)$addressUid === 0) {
-                throw new Exception('error_no-addressid');
+            $addressUid = is_array($parsed) && isset($parsed['addressid']) ? (int)$parsed['addressid'] : (int)($query['addressid'] ?? 0);
+            if ($addressUid === 0) {
+                throw new \RuntimeException('error_no-addressid');
             }
 
-            // Get tag uid
             $newTagId = $this->getTagUid($item, $addressUid);
 
             $content = [
@@ -55,87 +61,95 @@ class TagEndPoint
                 self::ADDRESS,
                 'tags',
                 'data[tx_address_domain_model_address][' . $addressUid . '][tags]',
-                $addressUid
+                $addressUid,
             ];
+            $response = new Response();
             $response->getBody()->write(implode('-', $content));
-        } catch (Exception $e) {
-            $message = $GLOBALS['LANG']->sL(self::LL_PATH . $e->getMessage());
-            throw new \RuntimeException($message);
+            return $response;
+        } catch (\Throwable $e) {
+            // Resolve the translated message via the LanguageService factory
+            // — $GLOBALS['LANG'] is not guaranteed in v14 ajax contexts.
+            $language = $this->languageServiceFactory->createFromUserPreferences($GLOBALS['BE_USER'] ?? null);
+            $message = $language->sL(self::LL_PATH . $e->getMessage());
+            if ($message === '') {
+                $message = $e->getMessage();
+            }
+            return new JsonResponse(['error' => $message], 400);
         }
-        return $response;
     }
 
     /**
-     * Get the uid of the tag, either bei inserting as new or get existing
+     * Get the uid of the tag, either by inserting a new record or by reusing
+     * the existing one with the same title on the configured tag storage pid.
      *
-     * @param string $title title
-     * @param int $addressUid address uid
-     * @return int
-     * @throws Exception
+     * @throws \RuntimeException when the storage pid is not configured or the
+     *         DataHandler refuses to create the record
      */
-    protected function getTagUid($title, $addressUid)
+    protected function getTagUid(string $title, int $addressUid): int
     {
-        // Get configuration from EM
         $configuration = EmConfiguration::getSettings();
 
-        $pid = $configuration->getTagPid();
+        $pid = (int)$configuration->getTagPid();
         if ($pid === 0) {
             $pid = $this->getTagPidFromTsConfig($addressUid);
         }
 
         if ($pid === 0) {
-            throw new Exception('error_no-pid-defined');
+            throw new \RuntimeException('error_no-pid-defined');
         }
 
-        $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
-            '*',
-            self::TAG,
-            'deleted=0 AND pid=' . $pid .
-            ' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($title, self::TAG)
-        );
-        if (isset($record['uid'])) {
-            $tagUid = $record['uid'];
-        } else {
-            $tcemainData = [
-                self::TAG => [
-                    'NEW' => [
-                        'pid' => $pid,
-                        'title' => $title
-                    ]
-                ]
-            ];
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TAG);
+        // We need rows regardless of `hidden`/`disabled` flags but obey the
+        // soft-delete column — same semantics as the old `deleted=0` literal.
+        $queryBuilder->getRestrictions()->removeAll();
+        $row = $queryBuilder
+            ->select('uid')
+            ->from(self::TAG)
+            ->where(
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title)),
+            )
+            ->setMaxResults(1)
+            ->executeQuery()
+            ->fetchAssociative();
 
-            $dataHandler = GeneralUtility::makeInstance(DataHandlerCore::class);
-            $dataHandler->start($tcemainData, []);
-            $dataHandler->process_datamap();
-
-            $tagUid = $dataHandler->substNEWwithIDs['NEW'];
+        if (is_array($row) && isset($row['uid'])) {
+            return (int)$row['uid'];
         }
 
-        if ($tagUid == 0) {
-            throw new Exception('error_no-tag-created');
-        }
+        $tcemainData = [
+            self::TAG => [
+                'NEW' => [
+                    'pid' => $pid,
+                    'title' => $title,
+                ],
+            ],
+        ];
 
+        $dataHandler = GeneralUtility::makeInstance(DataHandlerCore::class);
+        $dataHandler->start($tcemainData, []);
+        $dataHandler->process_datamap();
+
+        $tagUid = (int)($dataHandler->substNEWwithIDs['NEW'] ?? 0);
+        if ($tagUid === 0) {
+            throw new \RuntimeException('error_no-tag-created');
+        }
         return $tagUid;
     }
 
     /**
-     * Get pid for tags from TsConfig
-     *
-     * @param int $addressUid uid of current address record
-     * @return int
+     * Resolve the tag storage pid from page TSconfig at the address record's
+     * page. Returns 0 when nothing is configured — caller treats that as an
+     * error.
      */
-    protected function getTagPidFromTsConfig($addressUid)
+    protected function getTagPidFromTsConfig(int $addressUid): int
     {
-        $pid = 0;
-
-        $addressRecord = BackendUtilityCore::getRecord('tx_address_domain_model_address', (int)$addressUid);
-
-        $pagesTsConfig = BackendUtilityCore::getPagesTSconfig($addressRecord['pid']);
-        if (isset($pagesTsConfig['tx_address.']) && isset($pagesTsConfig['tx_address.']['tagPid'])) {
-            $pid = (int)$pagesTsConfig['tx_address.']['tagPid'];
+        $addressRecord = BackendUtilityCore::getRecord(self::ADDRESS, $addressUid);
+        if (!is_array($addressRecord)) {
+            return 0;
         }
-
-        return $pid;
+        $pagesTsConfig = BackendUtilityCore::getPagesTSconfig((int)($addressRecord['pid'] ?? 0));
+        return (int)($pagesTsConfig['tx_address.']['tagPid'] ?? 0);
     }
 }

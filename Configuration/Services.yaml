@@ -34,3 +34,14 @@ services:
   WapplerSystems\Address\Hooks\ItemsProcFunc:
     public: true
 
+  # Backend AJAX route target — TYPO3's router fetches this from the
+  # container, so it must be public.
+  WapplerSystems\Address\Backend\TagEndPoint:
+    public: true
+
+  # Fetched via GeneralUtility::makeInstance() from the legacy static facade
+  # and from existing Repository call sites; must be public so the BC shim
+  # keeps resolving it.
+  WapplerSystems\Address\Service\CategoryService:
+    public: true
+

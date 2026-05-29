@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace WapplerSystems\Address\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;

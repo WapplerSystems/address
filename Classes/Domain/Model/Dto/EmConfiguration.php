@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace WapplerSystems\Address\Domain\Model\Dto;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
@@ -18,24 +20,39 @@ class EmConfiguration
 {
 
     /**
-     * Fill the properties properly
+     * Fill the properties properly. Values arriving from
+     * {@see ExtensionConfiguration::get()} are typed as strings ("0", "1",
+     * "date", …) because the Extension Manager stores everything as text.
+     * Under strict_types we need to settype() each value to the property's
+     * declared scalar type before assignment.
      *
-     * @param array $configuration em configuration
+     * @param array<string,mixed> $configuration em configuration
      */
     public function __construct(array $configuration = [])
     {
         if (empty($configuration)) {
             try {
                 $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
-                $configuration = $extensionConfiguration->get('address');
-            } catch (\Exception $exception) {
-                // do nothing
+                $loaded = $extensionConfiguration->get('address');
+                $configuration = is_array($loaded) ? $loaded : [];
+            } catch (\Exception) {
+                // ExtensionConfiguration throws when the extension is not
+                // installed (e.g. early bootstrap) — fall back to declared
+                // property defaults.
             }
         }
         foreach ($configuration as $key => $value) {
-            if (property_exists(__CLASS__, $key)) {
-                $this->$key = $value;
+            if (!property_exists(__CLASS__, $key)) {
+                continue;
             }
+            $propertyType = (new \ReflectionProperty($this, $key))->getType();
+            if ($propertyType instanceof \ReflectionNamedType && $propertyType->isBuiltin()) {
+                // settype() preserves the historical loose-mode coercion
+                // ("0" → false, "1" → true, "" → 0) that the Extension
+                // Manager relies on.
+                settype($value, $propertyType->getName());
+            }
+            $this->$key = $value;
         }
     }
 

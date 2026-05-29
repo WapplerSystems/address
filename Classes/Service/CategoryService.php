@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace WapplerSystems\Address\Service;
 
@@ -8,189 +9,262 @@ namespace WapplerSystems\Address\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Service for category related stuff
+ * Service for sys_category tree resolution + small helpers.
  *
+ * Modern API (post v14 audit):
+ *  - {@see getChildren()}       — recursively collect descendant category ids
+ *  - {@see getRootline()}       — walk parent chain up to the root
+ *  - {@see removeFromList()}    — comma-list set-difference
+ *  - {@see translateRecord()}   — BE-only localised label lookup
+ *
+ * Legacy static methods (getChildrenCategories, getRootlineRecursive,
+ * removeValuesFromString, translateCategoryRecord) are kept as thin shims
+ * that delegate to the instance for backwards compatibility with the two
+ * Repository callers and any third-party extensions. They are marked
+ * @deprecated and will be removed in a future major.
  */
 class CategoryService
 {
+    private const TABLE = 'sys_category';
+    private const RECURSION_LIMIT = 10000;
+    private const CACHE_NAME = 'address_category';
+
+    public function __construct(
+        private readonly ConnectionPool $connectionPool,
+        private readonly CacheManager $cacheManager,
+    ) {}
 
     /**
-     * Get child categories by calling recursive function
-     * and using the caching framework to save some queries
+     * Collect the comma-separated descendant ids for a list of starting
+     * category uids. Cached by input id list, walked depth-first.
      *
-     * @param string $idList list of category ids to start
-     * @param int $counter
-     * @param string $additionalWhere additional where clause
-     * @param bool $removeGivenIdListFromResult remove the given id list from result
-     * @return string comma separated list of category ids
+     * @param string $idList comma-separated list of starting uids
+     * @param bool $removeStartingIds when true, the input ids are removed
+     *        from the result — useful for callers that want strict descendants
+     */
+    public function getChildren(string $idList, bool $removeStartingIds = false): string
+    {
+        $cache = $this->getCache();
+        $cacheIdentifier = sha1('children-' . $idList);
+
+        $entry = $cache->get($cacheIdentifier);
+        if (!is_string($entry)) {
+            $entry = $this->getChildrenRecursive($idList, 0);
+            $cache->set($cacheIdentifier, $entry);
+        }
+
+        return $removeStartingIds ? $this->removeFromList($entry, $idList) : $entry;
+    }
+
+    /**
+     * Walk the parent chain of $id and return a comma-separated list of all
+     * ancestor uids, parent-first, then the parent's parent and so on.
+     */
+    public function getRootline(int $id): string
+    {
+        $cache = $this->getCache();
+        $cacheIdentifier = sha1('rootline-' . $id);
+
+        $entry = $cache->get($cacheIdentifier);
+        if (!is_string($entry)) {
+            $entry = $this->getRootlineRecursiveInternal($id, 0);
+            $cache->set($cacheIdentifier, $entry);
+        }
+        return $entry;
+    }
+
+    /**
+     * Comma-list set difference. Returns the elements of $list that are not
+     * present in $remove.
+     */
+    public function removeFromList(string $list, string $remove): string
+    {
+        $listArr = GeneralUtility::trimExplode(',', $list, true);
+        $removeArr = GeneralUtility::trimExplode(',', $remove, true);
+        return implode(',', array_diff($listArr, $removeArr));
+    }
+
+    /**
+     * Translate a category row to the BE user's overlay language. When no
+     * overlay exists or we're not in a BE context, returns $default.
+     *
+     * @param array<string,mixed> $row sys_category row
+     */
+    public function translateRecord(string $default, array $row = []): string
+    {
+        $beUser = $GLOBALS['BE_USER'] ?? null;
+        if (!is_object($beUser) || !isset($beUser->uc['addressoverlay'])) {
+            return $default;
+        }
+        $overlayLanguage = (int)$beUser->uc['addressoverlay'];
+        $uid = (int)($row['uid'] ?? 0);
+        $sysLanguageUid = (int)($row['sys_language_uid'] ?? 0);
+        if ($uid === 0 || $overlayLanguage === 0 || $sysLanguageUid !== 0) {
+            return $default;
+        }
+
+        $qb = $this->connectionPool->getQueryBuilderForTable(self::TABLE);
+        $qb->getRestrictions()->removeAll();
+        $overlay = $qb
+            ->select('title')
+            ->from(self::TABLE)
+            ->where(
+                $qb->expr()->eq('deleted', $qb->createNamedParameter(0, \PDO::PARAM_INT)),
+                $qb->expr()->eq('sys_language_uid', $qb->createNamedParameter($overlayLanguage, \PDO::PARAM_INT)),
+                $qb->expr()->eq('l10n_parent', $qb->createNamedParameter($uid, \PDO::PARAM_INT)),
+            )
+            ->setMaxResults(1)
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if (is_array($overlay) && isset($overlay['title']) && $overlay['title'] !== '') {
+            return $overlay['title'] . ' (' . ($row['title'] ?? '') . ')';
+        }
+        return $default;
+    }
+
+    private function getChildrenRecursive(string $idList, int $counter): string
+    {
+        $startingIds = array_filter(array_map('intval', GeneralUtility::trimExplode(',', $idList, true)));
+        if ($startingIds === []) {
+            return '';
+        }
+
+        $result = [];
+        if ($counter === 0) {
+            $result[] = implode(',', $startingIds);
+        }
+
+        $qb = $this->connectionPool->getQueryBuilderForTable(self::TABLE);
+        $qb->getRestrictions()->removeAll();
+        $rows = $qb
+            ->select('uid')
+            ->from(self::TABLE)
+            ->where(
+                $qb->expr()->eq('deleted', $qb->createNamedParameter(0, \PDO::PARAM_INT)),
+                $qb->expr()->in('parent', $qb->createNamedParameter($startingIds, \TYPO3\CMS\Core\Database\Connection::PARAM_INT_ARRAY)),
+            )
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        foreach ($rows as $row) {
+            $counter++;
+            if ($counter > self::RECURSION_LIMIT) {
+                $this->logRecursionWarning();
+                return implode(',', array_filter($result));
+            }
+            $childUid = (int)$row['uid'];
+            $sub = $this->getChildrenRecursive((string)$childUid, $counter);
+            $result[] = $childUid . ($sub !== '' ? ',' . $sub : '');
+        }
+
+        return implode(',', array_filter($result));
+    }
+
+    private function getRootlineRecursiveInternal(int $id, int $counter): string
+    {
+        if ($id === 0 || $counter > self::RECURSION_LIMIT) {
+            if ($counter > self::RECURSION_LIMIT) {
+                $this->logRecursionWarning();
+            }
+            return '';
+        }
+
+        $qb = $this->connectionPool->getQueryBuilderForTable(self::TABLE);
+        $qb->getRestrictions()->removeAll();
+        $row = $qb
+            ->select('uid', 'parent')
+            ->from(self::TABLE)
+            ->where(
+                $qb->expr()->eq('uid', $qb->createNamedParameter($id, \PDO::PARAM_INT)),
+                $qb->expr()->eq('deleted', $qb->createNamedParameter(0, \PDO::PARAM_INT)),
+            )
+            ->setMaxResults(1)
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if (!is_array($row)) {
+            return '';
+        }
+        $parent = (int)$row['parent'];
+        if ($parent === 0) {
+            return '';
+        }
+        $up = $this->getRootlineRecursiveInternal($parent, $counter + 1);
+        return $up === '' ? (string)$parent : $parent . ',' . $up;
+    }
+
+    private function getCache(): FrontendInterface
+    {
+        return $this->cacheManager->getCache(self::CACHE_NAME);
+    }
+
+    private function logRecursionWarning(): void
+    {
+        $tt = $GLOBALS['TT'] ?? null;
+        if ($tt instanceof TimeTracker) {
+            $tt->setTSlogMessage('EXT:address: one or more recursive categories were found');
+        }
+    }
+
+    // ----------------------------------------------------------------------
+    // Legacy static facade — kept for BC, delegates to instance methods.
+    // ----------------------------------------------------------------------
+
+    /**
+     * @deprecated since 14.1, inject CategoryService and call getChildren()
      */
     public static function getChildrenCategories(
-        $idList,
-        $counter = 0,
-        $additionalWhere = '',
-        $removeGivenIdListFromResult = false
-    ) {
-        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_address_category');
-        $cacheIdentifier = sha1('children' . $idList);
-
-        $entry = $cache->get($cacheIdentifier);
-        if (!$entry) {
-            $entry = self::getChildrenCategoriesRecursive($idList, $counter, $additionalWhere);
-            $cache->set($cacheIdentifier, $entry);
-        }
-
-        if ($removeGivenIdListFromResult) {
-            $entry = self::removeValuesFromString($entry, $idList);
-        }
-
-        return $entry;
-    }
-
-    /**
-     * Remove values of a comma separated list from another comma separated list
-     *
-     * @param string $result string comma separated list
-     * @param $toBeRemoved string comma separated list
-     * @return string
-     */
-    public static function removeValuesFromString($result, $toBeRemoved)
-    {
-        $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
-        $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
-
-        $result = implode(',', array_diff($resultAsArray, $idListAsArray));
-        return $result;
-    }
-
-    /**
-     * Get rootline up by calling recursive function
-     * and using the caching framework to save some queries
-     *
-     * @param int $id category id to start
-     * @param string $additionalWhere additional where clause
-     * @return string comma separated list of category ids
-     */
-    public static function getRootline($id, $additionalWhere = '')
-    {
-        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_address_category');
-        $cacheIdentifier = sha1('rootline' . $id);
-
-        $entry = $cache->get($cacheIdentifier);
-        if (!$entry) {
-            $entry = self::getRootlineRecursive($id, $additionalWhere);
-            $cache->set($cacheIdentifier, $entry);
-        }
-        return $entry;
-    }
-
-    /**
-     * Get child categories
-     *
-     * @param string $idList list of category ids to start
-     * @param int $counter
-     * @param string $additionalWhere additional where clause
-     * @return string comma separated list of category ids
-     */
-    private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = '')
-    {
-        $result = [];
-
-        // add idlist to the output too
-        if ($counter === 0) {
-            $result[] = $GLOBALS['TYPO3_DB']->cleanIntList($idList);
-        }
-
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-            'uid',
-            'sys_category',
-            'sys_category.parent IN (' . $GLOBALS['TYPO3_DB']->cleanIntList($idList) . ')
-				AND deleted=0 ' . $additionalWhere);
-
-        while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
-            $counter++;
-            if ($counter > 10000) {
-                $GLOBALS['TT']->setTSlogMessage('EXT:address: one or more recursive categories where found');
-                return implode(',', $result);
-            }
-            $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter, $additionalWhere);
-            $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
-        }
-        $GLOBALS['TYPO3_DB']->sql_free_result($res);
-
-        $result = implode(',', $result);
-        return $result;
-    }
-
-    /**
-     * Get rootline categories
-     *
-     * @param int $id category id to start
-     * @param int $counter counter
-     * @param string $additionalWhere additional where clause
-     * @return string comma separated list of category ids
-     */
-    public static function getRootlineRecursive($id, $counter = 0, $additionalWhere = '')
-    {
-        $id = (int)$id;
-        $result = [];
-
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-            'uid,parent',
-            'sys_category',
-            'uid=' . $id . ' AND deleted=0 ' . $additionalWhere);
-
-        $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-        $GLOBALS['TYPO3_DB']->sql_free_result($res);
-        if ($id === 0 || !$row || $counter > 10000) {
-            $GLOBALS['TT']->setTSlogMessage('EXT:address: one or more recursive categories where found');
-            return $id;
-        }
-
-        $parent = self::getRootlineRecursive($row['parent'], $counter, $additionalWhere);
-        $result[] = $row['parent'];
-        if ($parent > 0) {
-            $result[] = $parent;
-        }
-
-        $result = implode(',', $result);
-        return $result;
-    }
-
-    /**
-     * Translate a category record in the backend
-     *
-     * @param string $default default label
-     * @param array $row category record
-     * @return string
-     * @throws \UnexpectedValueException
-     */
-    public static function translateCategoryRecord($default, array $row = [])
-    {
-        if (TYPO3_MODE != 'BE') {
-            throw new \UnexpectedValueException('TYPO3 Mode must be BE');
-        }
-
-        $overlayLanguage = (int)$GLOBALS['BE_USER']->uc['addressoverlay'];
-
-        $title = '';
-
-        if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] == 0) {
-            $overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-                '*',
-                'sys_category',
-                'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $row['uid']
+        string $idList,
+        int $counter = 0,
+        string $additionalWhere = '',
+        bool $removeGivenIdListFromResult = false,
+    ): string {
+        if ($additionalWhere !== '' || $counter !== 0) {
+            trigger_error(
+                'CategoryService::getChildrenCategories(): $counter and $additionalWhere were removed — values are ignored. Use ->getChildren() on a DI-injected instance.',
+                E_USER_DEPRECATED,
             );
-            if (isset($overlayRecord[0]['title'])) {
-                $title = $overlayRecord[0]['title'] . ' (' . $row['title'] . ')';
-            }
         }
+        return GeneralUtility::makeInstance(self::class)->getChildren($idList, $removeGivenIdListFromResult);
+    }
 
-        $title = ($title ? $title : $default);
+    /**
+     * @deprecated since 14.1, inject CategoryService and call removeFromList()
+     */
+    public static function removeValuesFromString(string $result, string $toBeRemoved): string
+    {
+        return GeneralUtility::makeInstance(self::class)->removeFromList($result, $toBeRemoved);
+    }
 
-        return $title;
+    /**
+     * @deprecated since 14.1, inject CategoryService and call getRootline()
+     */
+    public static function getRootlineRecursive(int $id, int $counter = 0, string $additionalWhere = ''): string
+    {
+        if ($additionalWhere !== '' || $counter !== 0) {
+            trigger_error(
+                'CategoryService::getRootlineRecursive(): $counter and $additionalWhere were removed — values are ignored. Use ->getRootline() on a DI-injected instance.',
+                E_USER_DEPRECATED,
+            );
+        }
+        return GeneralUtility::makeInstance(self::class)->getRootline($id);
+    }
+
+    /**
+     * @deprecated since 14.1, inject CategoryService and call translateRecord()
+     * @param array<string,mixed> $row
+     */
+    public static function translateCategoryRecord(string $default, array $row = []): string
+    {
+        return GeneralUtility::makeInstance(self::class)->translateRecord($default, $row);
     }
 }
