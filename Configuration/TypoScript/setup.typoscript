@@ -1,4 +1,3 @@
-@import 'Form/setup.typoscript'
 
 # ==============================================
 # FE-Plugin configuration for EXT:address

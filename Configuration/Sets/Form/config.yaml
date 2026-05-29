@@ -1,0 +1,5 @@
+name: wapplersystems/address-form
+label: Address form integration
+dependencies:
+  - wapplersystems/address
+  - typo3/form
