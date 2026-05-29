@@ -3,6 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="address" target-language="ru">
     <header/>
     <body>
+      <trans-unit id="extension.title" xml:space="preserve">
+				<source>Address</source>
+			<target state="needs-translation">Address</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tabs.relations" xml:space="preserve">
 				<source>Relations</source>
 			<target state="needs-translation">Relations</target></trans-unit>
