@@ -4,40 +4,40 @@
     <header/>
     <body>
       <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
-				<source>Address system</source>
-			<target state="final">Adresssystem</target></trans-unit>
+				<source>Addresses</source>
+			<target state="final">Adressen</target></trans-unit>
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Address system</source>
 			<target state="needs-translation">Address system</target></trans-unit>
-      <trans-unit id="plugin.list_and_detail.title" xml:space="preserve">
+      <trans-unit id="plugin.list_and_detail.title" xml:space="preserve" approved="yes">
 				<source>List addresses with detail view</source>
-			<target state="needs-translation">List addresses with detail view</target></trans-unit>
+			<target state="final">Adressliste mit Detailansicht</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...
 					Plugin is capable of displaying the detail view as well.</source>
 			<target state="needs-translation">Display of addresses chosen by various optional properties like storage page, categories,...
 					Plugin is capable of displaying the detail view as well.</target></trans-unit>
-      <trans-unit id="plugin.list.title" xml:space="preserve">
+      <trans-unit id="plugin.list.title" xml:space="preserve" approved="yes">
 				<source>Address list view</source>
-			<target state="needs-translation">Address list view</target></trans-unit>
+			<target state="final">Adressliste</target></trans-unit>
       <trans-unit id="plugin.list.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...</source>
 			<target state="needs-translation">Display of addresses chosen by various optional properties like storage page, categories,...</target></trans-unit>
-      <trans-unit id="plugin.detail.title" xml:space="preserve">
+      <trans-unit id="plugin.detail.title" xml:space="preserve" approved="yes">
 				<source>Address detail view</source>
-			<target state="needs-translation">Address detail view</target></trans-unit>
+			<target state="final">Adress-Detailansicht</target></trans-unit>
       <trans-unit id="plugin.detail.description" xml:space="preserve">
 				<source>Display the detail view of an address</source>
 			<target state="needs-translation">Display the detail view of an address</target></trans-unit>
-      <trans-unit id="plugin.search_form.title" xml:space="preserve">
+      <trans-unit id="plugin.search_form.title" xml:space="preserve" approved="yes">
 				<source>Search form</source>
-			<target state="needs-translation">Search form</target></trans-unit>
+			<target state="final">Suchformular</target></trans-unit>
       <trans-unit id="plugin.search_form.description" xml:space="preserve">
 				<source>Display a search form to let users search within addresses</source>
 			<target state="needs-translation">Display a search form to let users search within addresses</target></trans-unit>
-      <trans-unit id="plugin.search_result.title" xml:space="preserve">
+      <trans-unit id="plugin.search_result.title" xml:space="preserve" approved="yes">
 				<source>Search result</source>
-			<target state="needs-translation">Search result</target></trans-unit>
+			<target state="final">Suchergebnis</target></trans-unit>
       <trans-unit id="plugin.search_result.description" xml:space="preserve">
 				<source>Display the result of the search</source>
 			<target state="needs-translation">Display the result of the search</target></trans-unit>

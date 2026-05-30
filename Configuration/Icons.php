@@ -73,15 +73,15 @@ return [
     ],
     'ext-address-plugin-list-and-detail' => [
         'provider' => SvgIconProvider::class,
-        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
+        'source' => 'EXT:address/Resources/Public/Icons/plugin-list-and-detail.svg',
     ],
     'ext-address-plugin-list' => [
         'provider' => SvgIconProvider::class,
-        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
+        'source' => 'EXT:address/Resources/Public/Icons/plugin-list.svg',
     ],
     'ext-address-plugin-detail' => [
         'provider' => SvgIconProvider::class,
-        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
+        'source' => 'EXT:address/Resources/Public/Icons/plugin-detail.svg',
     ],
     'ext-address-plugin-category-list' => [
         'provider' => SvgIconProvider::class,
@@ -89,11 +89,11 @@ return [
     ],
     'ext-address-plugin-search-form' => [
         'provider' => SvgIconProvider::class,
-        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
+        'source' => 'EXT:address/Resources/Public/Icons/plugin-search-form.svg',
     ],
     'ext-address-plugin-search-result' => [
         'provider' => SvgIconProvider::class,
-        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
+        'source' => 'EXT:address/Resources/Public/Icons/plugin-search-result.svg',
     ],
     'ext-address-plugin-tag-list' => [
         'provider' => SvgIconProvider::class,
@@ -101,6 +101,6 @@ return [
     ],
     'ext-address-plugin-map' => [
         'provider' => SvgIconProvider::class,
-        'source' => 'EXT:address/Resources/Public/Icons/Extension.svg',
+        'source' => 'EXT:address/Resources/Public/Icons/plugin-map.svg',
     ],
 ];
