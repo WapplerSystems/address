@@ -129,20 +129,22 @@ class AddressController extends AddressBaseController
         $demand->setExcludeAlreadyDisplayedAddress((bool)($settings['excludeAlreadyDisplayedAddress'] ?? false));
         $demand->setHideIdList(GeneralUtility::intExplode(',',$settings['hideIdList'] ?? '', true));
 
-        if ($settings['orderBy']) {
-            $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
+        if (!empty($settings['orderBy'])) {
+            $demand->setOrder($settings['orderBy'] . ' ' . ($settings['orderDirection'] ?? ''));
         }
-        $demand->setOrderByAllowed($settings['orderByAllowed']);
+        $demand->setOrderByAllowed($settings['orderByAllowed'] ?? '');
 
-        $demand->setTopAddressFirst($settings['topAddressFirst']);
+        $demand->setTopAddressFirst((bool)($settings['topAddressFirst'] ?? false));
 
         $demand->setLimit((int)($settings['limit'] ?? 0));
         $demand->setOffset((int)($settings['offset'] ?? 0));
 
         $demand->setSearchFields($settings['search']['fields'] ?? '');
 
-        $demand->setStoragePage(GeneralUtility::intExplode(',',Page::extendPidListByChildren($settings['startingpoint'],
-            $settings['recursive']), true));
+        $demand->setStoragePage(GeneralUtility::intExplode(',', Page::extendPidListByChildren(
+            $settings['startingpoint'] ?? '',
+            (int)($settings['recursive'] ?? 0)
+        ), true));
         return $demand;
     }
 
