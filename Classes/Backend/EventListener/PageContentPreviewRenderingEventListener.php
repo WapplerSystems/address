@@ -6,6 +6,7 @@ namespace WapplerSystems\Address\Backend\EventListener;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Domain\FlexFormFieldValues;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconSize;
@@ -14,7 +15,8 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use WapplerSystems\Address\Utility\TemplateLayout;
 
 final class PageContentPreviewRenderingEventListener
@@ -30,15 +32,21 @@ final class PageContentPreviewRenderingEventListener
 
     /**
      * Flexform information
+     *
+     * In TYPO3 v14 the form framework hydrates tt_content.pi_flexform into a
+     * {@see FlexFormFieldValues} object. Prior versions delivered the
+     * xml2array() result. Keep the type wide so getFieldFromFlexform() can
+     * branch on the runtime type.
      */
-    public array $flexformData = [];
+    public array|FlexFormFieldValues $flexformData = [];
 
     protected RecordInterface $record;
 
 
     public function __construct(
-        readonly TemplateLayout $templateLayout,
-        readonly IconFactory    $iconFactory
+        readonly TemplateLayout        $templateLayout,
+        readonly IconFactory           $iconFactory,
+        readonly ViewFactoryInterface  $viewFactory,
     )
     {
     }
@@ -62,12 +70,17 @@ final class PageContentPreviewRenderingEventListener
 
     private function getContent(RecordInterface $record): string
     {
+        $rawFlexform = $record->get('pi_flexform');
 
-        $flexformData = GeneralUtility::xml2array($record->get('pi_flexform'));
-        if (is_string($flexformData)) {
-            return 'ERROR: ' . htmlspecialchars($flexformData);
+        if ($rawFlexform instanceof FlexFormFieldValues) {
+            $this->flexformData = $rawFlexform;
+        } else {
+            $flexformData = GeneralUtility::xml2array((string)$rawFlexform);
+            if (is_string($flexformData)) {
+                return 'ERROR: ' . htmlspecialchars($flexformData);
+            }
+            $this->flexformData = $flexformData;
         }
-        $this->flexformData = $flexformData;
 
         return $this->getExtensionSummary($record);
     }
@@ -78,7 +91,10 @@ final class PageContentPreviewRenderingEventListener
      */
     protected function getExtensionSummary(RecordInterface $record): string
     {
-        switch ($record['CType']) {
+        $cType = (string)$record->get('CType');
+        $pid = $record->getPid();
+
+        switch ($cType) {
 
             case 'address_list':
             case 'address_listanddetail':
@@ -86,7 +102,7 @@ final class PageContentPreviewRenderingEventListener
                 $this->getStartingPoint();
                 $this->getCategorySettings();
                 $this->getDetailPidSetting();
-                $this->getTemplateLayoutSettings($record['pid']);
+                $this->getTemplateLayoutSettings($pid);
                 $this->getArchiveSettings();
                 $this->getTopAddressRestrictionSetting();
                 $this->getOrderSettings();
@@ -97,26 +113,26 @@ final class PageContentPreviewRenderingEventListener
             case 'address_detail':
                 $this->getSingleAddressSettings();
                 $this->getDetailPidSetting();
-                $this->getTemplateLayoutSettings($record['pid']);
+                $this->getTemplateLayoutSettings($pid);
                 break;
             case 'category_list':
                 $this->getCategorySettings(false);
-                $this->getTemplateLayoutSettings($record['pid']);
+                $this->getTemplateLayoutSettings($pid);
                 break;
             case 'tag_list':
                 $this->getStartingPoint();
                 $this->getListPidSetting();
                 $this->getOrderSettings();
-                $this->getTemplateLayoutSettings($record['pid']);
+                $this->getTemplateLayoutSettings($pid);
                 break;
             default:
-                $this->getTemplateLayoutSettings($record['pid']);
+                $this->getTemplateLayoutSettings($pid);
         }
 
         // for all views
         $this->getOverrideDemandSettings();
 
-        return $this->renderSettingsAsTable($record['uid']);
+        return $this->renderSettingsAsTable($record->getUid());
     }
 
 
@@ -275,7 +291,7 @@ final class PageContentPreviewRenderingEventListener
 
             if ($table === 'pages') {
                 $id = $record['uid'];
-                $currentPageId = $this->record['pid'];
+                $currentPageId = $this->record->getPid();
                 $link = htmlspecialchars($this->getEditLink($record, $currentPageId));
                 $switchLabel = $this->getLanguageService()->sL('LLL:EXT:address/Resources/Private/Language/locallang_be.xlf:pagemodule.switchToPage');
                 $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';
@@ -622,8 +638,9 @@ final class PageContentPreviewRenderingEventListener
         $content = '';
 
         if ($this->addresses) {
-            $view = GeneralUtility::makeInstance(StandaloneView::class);
-            $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Templates/Backend/ContentPreview/Addresses.html'));
+            $view = $this->viewFactory->create(new ViewFactoryData(
+                templatePathAndFilename: 'EXT:address/Resources/Private/Templates/Backend/ContentPreview/Addresses.html',
+            ));
             $view->assignMultiple([
                 'addresses' => $this->addresses,
                 'id' => $recordUid
@@ -631,8 +648,9 @@ final class PageContentPreviewRenderingEventListener
             $content .= $view->render();
         }
         if ($this->tableData) {
-            $view = GeneralUtility::makeInstance(StandaloneView::class);
-            $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:address/Resources/Private/Templates/Backend/ContentPreview/Parameters.html'));
+            $view = $this->viewFactory->create(new ViewFactoryData(
+                templatePathAndFilename: 'EXT:address/Resources/Private/Templates/Backend/ContentPreview/Parameters.html',
+            ));
             $view->assignMultiple([
                 'rows' => $this->tableData,
                 'id' => $recordUid
@@ -652,6 +670,11 @@ final class PageContentPreviewRenderingEventListener
      */
     public function getFieldFromFlexform($key, $sheet = 'sDEF')
     {
+        if ($this->flexformData instanceof FlexFormFieldValues) {
+            $path = $sheet . '/' . $key;
+            return $this->flexformData->has($path) ? $this->flexformData->get($path) : null;
+        }
+
         $flexform = $this->flexformData;
         if (isset($flexform['data'])) {
             $flexform = $flexform['data'];
