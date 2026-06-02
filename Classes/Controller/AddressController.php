@@ -119,14 +119,14 @@ class AddressController extends AddressBaseController
         }
         $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'] ?? '', true));
         $demand->setCategoryConjunction($settings['categoryConjunction'] ?? '');
-        $demand->setIncludeSubCategories($settings['includeSubCategories'] ?? '');
+        $demand->setIncludeSubCategories((bool)($settings['includeSubCategories'] ?? false));
         if (($settings['tags'] ?? '') !== '') {
             $demand->setTags(GeneralUtility::intExplode(',', $settings['tags']));
         }
 
         $demand->setTopAddressRestriction((int)($settings['topAddressRestriction'] ?? 0));
         $demand->setArchiveRestriction($settings['archiveRestriction'] ?? '');
-        $demand->setExcludeAlreadyDisplayedAddress($settings['excludeAlreadyDisplayedAddress'] ?? '');
+        $demand->setExcludeAlreadyDisplayedAddress((bool)($settings['excludeAlreadyDisplayedAddress'] ?? false));
         $demand->setHideIdList(GeneralUtility::intExplode(',',$settings['hideIdList'] ?? '', true));
 
         if ($settings['orderBy']) {
