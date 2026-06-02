@@ -83,7 +83,7 @@ class TypoScriptService
             $site,
             $sysTemplateRows,
             [],
-            0,
+            '0',
             null,
             $request,
         );
