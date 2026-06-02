@@ -166,7 +166,7 @@ class AddressController extends AddressBaseController
             if (\in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
                 continue;
             }
-            if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
+            if ($propertyValue !== '' || !empty($this->settings['allowEmptyStringsForOverwriteDemand'])) {
                 ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
         }
@@ -188,7 +188,7 @@ class AddressController extends AddressBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($overwriteDemand !== null && (int)$this->settings['disableOverrideDemand'] !== 1) {
+        if ($overwriteDemand !== null && (int)($this->settings['disableOverrideDemand'] ?? 0) !== 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
@@ -328,7 +328,7 @@ class AddressController extends AddressBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($overwriteDemand !== null && (int)$this->settings['disableOverrideDemand'] !== 1) {
+        if ($overwriteDemand !== null && (int)($this->settings['disableOverrideDemand'] ?? 0) !== 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
@@ -526,7 +526,7 @@ JS;
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($overwriteDemand !== null && (int)$this->settings['disableOverrideDemand'] !== 1) {
+        if ($overwriteDemand !== null && (int)($this->settings['disableOverrideDemand'] ?? 0) !== 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
