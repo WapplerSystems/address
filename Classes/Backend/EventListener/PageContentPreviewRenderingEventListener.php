@@ -6,6 +6,7 @@ namespace WapplerSystems\Address\Backend\EventListener;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Collection\LazyRecordCollection;
 use TYPO3\CMS\Core\Domain\FlexFormFieldValues;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -672,7 +673,24 @@ final class PageContentPreviewRenderingEventListener
     {
         if ($this->flexformData instanceof FlexFormFieldValues) {
             $path = $sheet . '/' . $key;
-            return $this->flexformData->has($path) ? $this->flexformData->get($path) : null;
+            if (!$this->flexformData->has($path)) {
+                return null;
+            }
+            $value = $this->flexformData->get($path);
+            // Since TYPO3 v14 relational flexform fields (type=group with
+            // internal_type=db, select with a foreign_table, tree selects) are
+            // resolved by FlexFormFieldValues::get() into records instead of the
+            // raw comma-separated list of UIDs. All callers in this class expect
+            // the scalar value (a CSV for intExplode(), or an int), so normalize
+            // resolved records back to that form.
+            if ($value instanceof LazyRecordCollection) {
+                // __toString() returns the original comma-separated list of UIDs.
+                return (string)$value;
+            }
+            if ($value instanceof RecordInterface) {
+                return (string)$value->getUid();
+            }
+            return $value;
         }
 
         $flexform = $this->flexformData;
