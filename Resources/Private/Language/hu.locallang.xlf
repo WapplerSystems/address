@@ -8,92 +8,92 @@
 			<target state="needs-translation">There are %1$s results for "%2$s".</target></trans-unit>
       <trans-unit id="btn.searchStart" xml:space="preserve">
 				<source>Start search</source>
-			<target state="needs-translation">Start search</target></trans-unit>
+			<target state="translated">Keresés indítása</target></trans-unit>
       <trans-unit id="msg.searchNoResult" xml:space="preserve">
 				<source>No address found.</source>
-			<target state="needs-translation">No address found.</target></trans-unit>
+			<target state="translated">Nem található cím.</target></trans-unit>
       <trans-unit id="lbl.searchSubject" xml:space="preserve">
 				<source>Keyword</source>
-			<target state="needs-translation">Keyword</target></trans-unit>
+			<target state="translated">Kulcsszó</target></trans-unit>
       <trans-unit id="search-minimumDate" xml:space="preserve">
 				<source>Minimum Date</source>
-			<target state="needs-translation">Minimum Date</target></trans-unit>
+			<target state="translated">Minimális dátum</target></trans-unit>
       <trans-unit id="search-maximumDate" xml:space="preserve">
 				<source>Maximum Date</source>
-			<target state="needs-translation">Maximum Date</target></trans-unit>
+			<target state="translated">Maximális dátum</target></trans-unit>
       <trans-unit id="btn.details" xml:space="preserve">
 				<source>View details</source>
-			<target state="needs-translation">View details</target></trans-unit>
+			<target state="translated">Részletek megtekintése</target></trans-unit>
       <trans-unit id="btn.back" xml:space="preserve">
 				<source>Back</source>
-			<target state="needs-translation">Back</target></trans-unit>
+			<target state="translated">Vissza</target></trans-unit>
       <trans-unit id="related-address" xml:space="preserve">
 				<source>Related Address</source>
-			<target state="needs-translation">Related Address</target></trans-unit>
+			<target state="translated">Kapcsolódó cím</target></trans-unit>
       <trans-unit id="related-files" xml:space="preserve">
 				<source>Related Files</source>
-			<target state="needs-translation">Related Files</target></trans-unit>
+			<target state="translated">Kapcsolódó fájlok</target></trans-unit>
       <trans-unit id="related-links" xml:space="preserve">
 				<source>Related Links</source>
-			<target state="needs-translation">Related Links</target></trans-unit>
+			<target state="translated">Kapcsolódó hivatkozások</target></trans-unit>
       <trans-unit id="author" xml:space="preserve">
 				<source>created by %s</source>
-			<target state="needs-translation">created by %s</target></trans-unit>
+			<target state="translated">létrehozta: %s</target></trans-unit>
       <trans-unit id="author_simple" xml:space="preserve">
 				<source>created by</source>
-			<target state="needs-translation">created by</target></trans-unit>
+			<target state="translated">létrehozta</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve">
 				<source>Page %s of %s.</source>
-			<target state="needs-translation">Page %s of %s.</target></trans-unit>
+			<target state="translated">%s. oldal / összesen %s.</target></trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve">
 				<source>Next</source>
-			<target state="needs-translation">Next</target></trans-unit>
+			<target state="translated">Következő</target></trans-unit>
       <trans-unit id="paginate_previous" xml:space="preserve">
 				<source>Previous</source>
-			<target state="needs-translation">Previous</target></trans-unit>
+			<target state="translated">Előző</target></trans-unit>
       <trans-unit id="categories" xml:space="preserve">
 				<source>Categories</source>
-			<target state="needs-translation">Categories</target></trans-unit>
+			<target state="translated">Kategóriák</target></trans-unit>
       <trans-unit id="tags" xml:space="preserve">
 				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
+			<target state="translated">Címkék</target></trans-unit>
       <trans-unit id="entry" xml:space="preserve">
 				<source>entry</source>
-			<target state="needs-translation">entry</target></trans-unit>
+			<target state="translated">bejegyzés</target></trans-unit>
       <trans-unit id="entries" xml:space="preserve">
 				<source>entries</source>
-			<target state="needs-translation">entries</target></trans-unit>
+			<target state="translated">bejegyzések</target></trans-unit>
       <trans-unit id="list_noaddressfound" xml:space="preserve">
 				<source>No address available.</source>
-			<target state="needs-translation">No address available.</target></trans-unit>
+			<target state="translated">Nem érhető el cím.</target></trans-unit>
       <trans-unit id="list_nocategoriesfound" xml:space="preserve">
 				<source>No categories available.</source>
-			<target state="needs-translation">No categories available.</target></trans-unit>
+			<target state="translated">Nem érhetők el kategóriák.</target></trans-unit>
       <trans-unit id="addressNotFound" xml:space="preserve">
 				<source>The address record is not available anymore.</source>
-			<target state="needs-translation">The address record is not available anymore.</target></trans-unit>
+			<target state="translated">A címrekord már nem érhető el.</target></trans-unit>
       <trans-unit id="btn.detailPage">
         <source>More information</source>
-        <target state="needs-translation">More information</target>
+        <target state="translated">További információ</target>
       </trans-unit>
       <trans-unit id="lbl.searchLocation">
         <source>Location</source>
-        <target state="needs-translation">Location</target>
+        <target state="translated">Helyszín</target>
       </trans-unit>
       <trans-unit id="hdl.search">
         <source>Search</source>
-        <target state="needs-translation">Search</target>
+        <target state="translated">Keresés</target>
       </trans-unit>
       <trans-unit id="btn.update">
         <source>Update</source>
-        <target state="needs-translation">Update</target>
+        <target state="translated">Frissítés</target>
       </trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve">
 				<source>Next</source>
-			<target state="needs-translation">Next</target></trans-unit>
+			<target state="translated">Következő</target></trans-unit>
       <trans-unit id="paginate_previous" xml:space="preserve">
 				<source>Previous</source>
-			<target state="needs-translation">Previous</target></trans-unit>
+			<target state="translated">Előző</target></trans-unit>
     </body>
   </file>
 </xliff>
