@@ -26,7 +26,7 @@
 			<target state="needs-translation">Define when the address should be listed in the archive</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.categories" xml:space="preserve">
 				<source>Categories</source>
-			<target state="needs-translation">Categories</target></trans-unit>
+			<target state="translated">Kategóriák</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.related" xml:space="preserve">
 				<source>Related address</source>
 			<target state="needs-translation">Related address</target></trans-unit>
@@ -224,7 +224,7 @@
 			<target state="needs-translation">Top address</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve">
 				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
+			<target state="translated">Címkék</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags.add" xml:space="preserve">
 				<source>Add a new tag</source>
 			<target state="needs-translation">Add a new tag</target></trans-unit>
@@ -314,7 +314,7 @@
 			<target state="needs-translation">Notes</target></trans-unit>
       <trans-unit id="location" xml:space="preserve">
 				<source>Location</source>
-			<target state="needs-translation">Location</target></trans-unit>
+			<target state="translated">Helyszín</target></trans-unit>
     </body>
   </file>
 </xliff>
