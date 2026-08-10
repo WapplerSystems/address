@@ -5,7 +5,7 @@
     <body>
       <trans-unit id="msg.searchResultText" xml:space="preserve">
 				<source>There are %1$s results for "%2$s".</source>
-			<target state="needs-translation">There are %1$s results for "%2$s".</target></trans-unit>
+			<target state="translated">%1$s találat a(z) "%2$s" keresésre.</target></trans-unit>
       <trans-unit id="btn.searchStart" xml:space="preserve">
 				<source>Start search</source>
 			<target state="translated">Keresés indítása</target></trans-unit>
