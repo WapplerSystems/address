@@ -5,25 +5,25 @@
     <body>
       <trans-unit id=".description" xml:space="preserve">
 				<source>Link record</source>
-			<target state="needs-translation">Link record</target></trans-unit>
+			<target state="needs-review-translation" state-qualifier="leveraged-tm">Link Datensatz</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve">
 				<source>Relation to other pages and records.</source>
-			<target state="needs-translation">Relation to other pages and records.</target></trans-unit>
+			<target state="needs-review-translation" state-qualifier="leveraged-tm">Relation zu anderen Seiten und Datensätzen.</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve">
 				<source>See also the website http://www.address.com/</source>
-			<target state="needs-translation">See also the website http://www.address.com/</target></trans-unit>
+			<target state="needs-review-translation" state-qualifier="leveraged-tm">Siehe auch Webseite http://www.address.com/</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden elements are never shown in the frontend.</target></trans-unit>
+			<target state="needs-review-translation" state-qualifier="leveraged-tm">Versteckte Elemente werden auf der Website nicht angezeigt.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve">
 				<source>Optional title of a link.</source>
-			<target state="needs-translation">Optional title of a link.</target></trans-unit>
+			<target state="needs-review-translation" state-qualifier="leveraged-tm">Optionaler Titel eines Links.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve">
 				<source>Description of a link.</source>
-			<target state="needs-translation">Description of a link.</target></trans-unit>
+			<target state="needs-review-translation" state-qualifier="leveraged-tm">Beschreibung eines Links.</target></trans-unit>
       <trans-unit id="uri.description" xml:space="preserve">
 				<source>Link to a file, ... .</source>
-			<target state="needs-translation">Link to a file, ... .</target></trans-unit>
+			<target state="needs-review-translation" state-qualifier="leveraged-tm">Link zu einer Website, Datei, ...</target></trans-unit>
     </body>
   </file>
 </xliff>
