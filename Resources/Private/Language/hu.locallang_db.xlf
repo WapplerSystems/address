@@ -17,7 +17,7 @@
 			<target state="translated">Cím</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.teaser" xml:space="preserve">
 				<source>Short description</source>
-			<target state="needs-translation">Short description</target></trans-unit>
+			<target state="translated">Rövid leírás</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.datetime" xml:space="preserve">
 				<source>Date &amp; Time</source>
 			<target state="translated">Dátum és idő</target></trans-unit>
@@ -53,7 +53,7 @@
 			<target state="translated">Vezetéknév</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.abbreviation" xml:space="preserve">
 				<source>Abbreviation</source>
-			<target state="needs-translation">Abbreviation</target></trans-unit>
+			<target state="translated">Rövidítés</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.middle_name" xml:space="preserve">
 				<source>Middle name</source>
 			<target state="translated">Középső név</target></trans-unit>
@@ -74,7 +74,7 @@
 			<target state="translated">Telefon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.www" xml:space="preserve">
 				<source>Website</source>
-			<target state="needs-translation">Website</target></trans-unit>
+			<target state="translated">Weboldal</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.fax" xml:space="preserve">
 				<source>Fax</source>
 			<target state="translated">Fax</target></trans-unit>
@@ -83,13 +83,13 @@
 			<target state="translated">E-mail</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.direct_contact" xml:space="preserve">
 				<source>Directly contactable</source>
-			<target state="needs-translation">Directly contactable</target></trans-unit>
+			<target state="translated">Közvetlenül elérhető</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.address" xml:space="preserve">
 				<source>Address</source>
 			<target state="translated">Cím</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.detail_pid" xml:space="preserve">
 				<source>Detail page</source>
-			<target state="needs-translation">Detail page</target></trans-unit>
+			<target state="translated">Részletoldal</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.building" xml:space="preserve">
 				<source>Building</source>
 			<target state="translated">Épület</target></trans-unit>
@@ -101,25 +101,25 @@
 			<target state="translated">Irányítószám</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.region" xml:space="preserve">
 				<source>State/region</source>
-			<target state="needs-translation">State/region</target></trans-unit>
+			<target state="translated">Tartomány/régió</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
 				<source>Country</source>
 			<target state="translated">Ország</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.contact_person" xml:space="preserve">
 				<source>Contact person</source>
-			<target state="needs-translation">Contact person</target></trans-unit>
+			<target state="translated">Kapcsolattartó</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.marker_icon" xml:space="preserve">
 				<source>Icon</source>
-			<target state="needs-translation">Icon</target></trans-unit>
+			<target state="translated">Ikon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.marker_color" xml:space="preserve">
 				<source>Color</source>
-			<target state="needs-translation">Color</target></trans-unit>
+			<target state="translated">Szín</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.marker" xml:space="preserve">
 				<source>Marker</source>
-			<target state="needs-translation">Marker</target></trans-unit>
+			<target state="translated">Jelölő</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.inline_map" xml:space="preserve">
 				<source>Map</source>
-			<target state="needs-translation">Map</target></trans-unit>
+			<target state="translated">Térkép</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve">
 				<source>Address</source>
 			<target state="translated">Cím</target></trans-unit>
@@ -131,61 +131,61 @@
 			<target state="translated">Cég</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact" xml:space="preserve">
 				<source>Contact</source>
-			<target state="needs-translation">Contact</target></trans-unit>
+			<target state="translated">Kapcsolat</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type" xml:space="preserve">
 				<source>Type</source>
-			<target state="needs-translation">Type</target></trans-unit>
+			<target state="translated">Típus</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.email" xml:space="preserve">
 				<source>Email</source>
 			<target state="translated">E-mail</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.telephone" xml:space="preserve">
 				<source>Telephone</source>
-			<target state="needs-translation">Telephone</target></trans-unit>
+			<target state="translated">Telefon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.mobilePhone" xml:space="preserve">
 				<source>Mobile phone</source>
-			<target state="needs-translation">Mobile phone</target></trans-unit>
+			<target state="translated">Mobiltelefon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.website" xml:space="preserve">
 				<source>Website</source>
-			<target state="needs-translation">Website</target></trans-unit>
+			<target state="translated">Weboldal</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.blog" xml:space="preserve">
 				<source>Blog</source>
-			<target state="needs-translation">Blog</target></trans-unit>
+			<target state="translated">Blog</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.xing" xml:space="preserve">
 				<source>Xing</source>
-			<target state="needs-translation">Xing</target></trans-unit>
+			<target state="translated">Xing</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
 				<source>LinkedIn</source>
-			<target state="needs-translation">LinkedIn</target></trans-unit>
+			<target state="translated">LinkedIn</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve">
 				<source>X</source>
-			<target state="needs-translation">X</target></trans-unit>
+			<target state="translated">X</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
 				<source>Facebook</source>
-			<target state="needs-translation">Facebook</target></trans-unit>
+			<target state="translated">Facebook</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
 				<source>Instagram</source>
-			<target state="needs-translation">Instagram</target></trans-unit>
+			<target state="translated">Instagram</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.youtube" xml:space="preserve">
 				<source>YouTube</source>
-			<target state="needs-translation">YouTube</target></trans-unit>
+			<target state="translated">YouTube</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.twitch" xml:space="preserve">
 				<source>Twitch</source>
-			<target state="needs-translation">Twitch</target></trans-unit>
+			<target state="translated">Twitch</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.vimeo" xml:space="preserve">
 				<source>Vimeo</source>
-			<target state="needs-translation">Vimeo</target></trans-unit>
+			<target state="translated">Vimeo</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
 				<source>Mastodon</source>
-			<target state="needs-translation">Mastodon</target></trans-unit>
+			<target state="translated">Mastodon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
 				<source>Threema</source>
-			<target state="needs-translation">Threema</target></trans-unit>
+			<target state="translated">Threema</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve">
 				<source>Fax</source>
 			<target state="translated">Fax</target></trans-unit>
       <trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
 				<source>Content</source>
-			<target state="needs-translation">Content</target></trans-unit>
+			<target state="translated">Tartalom</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">
 				<source>Longitude</source>
 			<target state="translated">Hosszúság</target></trans-unit>
@@ -194,106 +194,106 @@
 			<target state="translated">Szélesség</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.media" xml:space="preserve">
 				<source>Media file</source>
-			<target state="needs-translation">Media file</target></trans-unit>
+			<target state="translated">Médiafájl</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.media.add" xml:space="preserve">
 				<source>Add media file</source>
-			<target state="needs-translation">Add media file</target></trans-unit>
+			<target state="translated">Médiafájl hozzáadása</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.related_news" xml:space="preserve">
 				<source>Related address</source>
 			<target state="translated">Kapcsolódó cím</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve">
 				<source>Featured address</source>
-			<target state="needs-translation">Featured address</target></trans-unit>
+			<target state="translated">Kiemelt cím</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve">
 				<source>Tags</source>
 			<target state="translated">Címkék</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags.add" xml:space="preserve">
 				<source>Add a new tag</source>
-			<target state="needs-translation">Add a new tag</target></trans-unit>
+			<target state="translated">Új címke hozzáadása</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags.list" xml:space="preserve">
 				<source>List all tags</source>
-			<target state="needs-translation">List all tags</target></trans-unit>
+			<target state="translated">Összes címke listázása</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.tags.edit" xml:space="preserve">
 				<source>Edit tag</source>
-			<target state="needs-translation">Edit tag</target></trans-unit>
+			<target state="translated">Címke szerkesztése</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.keywords.placeholder" xml:space="preserve">
 				<source>Keyword1, keyword2, keyword3</source>
-			<target state="needs-translation">Keyword1, keyword2, keyword3</target></trans-unit>
+			<target state="translated">Kulcsszó1, kulcsszó2, kulcsszó3</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.contacts" xml:space="preserve">
 				<source>Contacts</source>
-			<target state="needs-translation">Contacts</target></trans-unit>
+			<target state="translated">Kapcsolatok</target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
+			<target state="translated"><![CDATA[<title>-címke]]></target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.seo.seo_description" xml:space="preserve">
 				<source>Meta-Description</source>
-			<target state="needs-translation">Meta-Description</target></trans-unit>
+			<target state="translated">Meta-leírás</target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.seo.seo_headline" xml:space="preserve">
 				<source>Headline (H1)</source>
-			<target state="needs-translation">Headline (H1)</target></trans-unit>
+			<target state="translated">Főcím (H1)</target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.seo.composeo_text" xml:space="preserve">
 				<source>SEO Text-Container</source>
-			<target state="needs-translation">SEO Text-Container</target></trans-unit>
+			<target state="translated">SEO szövegtároló</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.tabs.seo" xml:space="preserve">
 				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
+			<target state="translated">SEO</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.image" xml:space="preserve">
 				<source>Image</source>
-			<target state="needs-translation">Image</target></trans-unit>
+			<target state="translated">Kép</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.single_pid" xml:space="preserve">
 				<source>Single-view page for address from this category</source>
-			<target state="needs-translation">Single-view page for address from this category</target></trans-unit>
+			<target state="translated">Egyedi nézet oldal a kategória címeihez</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.shortcut" xml:space="preserve">
 				<source>Address category shortcut</source>
-			<target state="needs-translation">Address category shortcut</target></trans-unit>
+			<target state="translated">Címkategória-parancsikon</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
+			<target state="translated"><![CDATA[<title>-címke]]></target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.seo.seo_description" xml:space="preserve">
 				<source>Meta-Description</source>
-			<target state="needs-translation">Meta-Description</target></trans-unit>
+			<target state="translated">Meta-leírás</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.seo.seo_headline" xml:space="preserve">
 				<source>Headline (H1)</source>
-			<target state="needs-translation">Headline (H1)</target></trans-unit>
+			<target state="translated">Főcím (H1)</target></trans-unit>
       <trans-unit id="tx_address_domain_model_category.seo.seo_text" xml:space="preserve">
 				<source>SEO Text-Container</source>
-			<target state="needs-translation">SEO Text-Container</target></trans-unit>
+			<target state="translated">SEO szövegtároló</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link" xml:space="preserve">
 				<source>Address Link Element</source>
-			<target state="needs-translation">Address Link Element</target></trans-unit>
+			<target state="translated">Címhivatkozás elem</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link.title" xml:space="preserve">
 				<source>Title</source>
 			<target state="translated">Cím</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link.description" xml:space="preserve">
 				<source>Description</source>
-			<target state="needs-translation">Description</target></trans-unit>
+			<target state="translated">Leírás</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link.uri" xml:space="preserve">
 				<source>URL</source>
-			<target state="needs-translation">URL</target></trans-unit>
+			<target state="translated">URL</target></trans-unit>
       <trans-unit id="tx_address_domain_model_link.uri.placeholder" xml:space="preserve">
 				<source>www.domain.org</source>
-			<target state="needs-translation">www.domain.org</target></trans-unit>
+			<target state="translated">www.domain.org</target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.tabs.seo" xml:space="preserve">
 				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
+			<target state="translated">SEO</target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag" xml:space="preserve">
 				<source>Address Tag</source>
-			<target state="needs-translation">Address Tag</target></trans-unit>
+			<target state="translated">Címcímke</target></trans-unit>
       <trans-unit id="tx_address_domain_model_tag.title" xml:space="preserve">
 				<source>Title</source>
 			<target state="translated">Cím</target></trans-unit>
       <trans-unit id="tx_address_domain_model_media.showinpreview" xml:space="preserve">
 				<source>Show in list views</source>
-			<target state="needs-translation">Show in list views</target></trans-unit>
+			<target state="translated">Megjelenítés a listanézetekben</target></trans-unit>
       <trans-unit id="tx_address_domain_model_address.path_segment" xml:space="preserve">
 				<source>Speaking URL path segment</source>
-			<target state="needs-translation">Speaking URL path segment</target></trans-unit>
+			<target state="translated">Beszélő URL-elérési út szegmens</target></trans-unit>
       <trans-unit id="be_user.tx_address_categorymounts" xml:space="preserve">
 				<source>Address: Category restriction</source>
-			<target state="needs-translation">Address: Category restriction</target></trans-unit>
+			<target state="translated">Cím: kategóriakorlátozás</target></trans-unit>
       <trans-unit id="notes" xml:space="preserve">
 				<source>Notes</source>
-			<target state="needs-translation">Notes</target></trans-unit>
+			<target state="translated">Megjegyzések</target></trans-unit>
       <trans-unit id="location" xml:space="preserve">
 				<source>Location</source>
 			<target state="translated">Helyszín</target></trans-unit>
