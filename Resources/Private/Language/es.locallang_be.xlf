@@ -103,154 +103,154 @@
 			<target state="translated">Otros</target></trans-unit>
       <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
 				<source>Tag list</source>
-			<target state="needs-translation">Tag list</target></trans-unit>
+			<target state="translated">Listado de etiquetas</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
 				<source>Archive</source>
-			<target state="needs-translation">Archive</target></trans-unit>
+			<target state="translated">Archivador</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
 				<source>Only active (non archived)</source>
-			<target state="needs-translation">Only active (non archived)</target></trans-unit>
+			<target state="translated">Solo activos (no archivados)</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
 				<source>Archived</source>
-			<target state="needs-translation">Archived</target></trans-unit>
+			<target state="translated">Archivado</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve">
 				<source>Sort by</source>
-			<target state="needs-translation">Sort by</target></trans-unit>
+			<target state="translated">Ordenar por</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
 				<source>Uid</source>
-			<target state="needs-translation">Uid</target></trans-unit>
+			<target state="translated">Uid</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve">
 				<source>Manual sorting</source>
-			<target state="needs-translation">Manual sorting</target></trans-unit>
+			<target state="translated">Ordenamiento manual</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
 				<source>Last edited</source>
-			<target state="needs-translation">Last edited</target></trans-unit>
+			<target state="translated">Último editado</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve">
 				<source>Created</source>
-			<target state="needs-translation">Created</target></trans-unit>
+			<target state="translated">Creado</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
 				<source>Title</source>
-			<target state="needs-translation">Title</target></trans-unit>
+			<target state="translated">Título</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
 				<source>Manual</source>
-			<target state="needs-translation">Manual</target></trans-unit>
+			<target state="translated">Manual</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.selection" xml:space="preserve">
 				<source>Selection</source>
-			<target state="needs-translation">Selection</target></trans-unit>
+			<target state="translated">Selección</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
-			<target state="needs-translation">Sort direction</target></trans-unit>
+			<target state="translated">Ordenar por dirección</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve">
 				<source>Ascending</source>
-			<target state="needs-translation">Ascending</target></trans-unit>
+			<target state="translated">Ascendente</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve">
 				<source>Descending</source>
-			<target state="needs-translation">Descending</target></trans-unit>
+			<target state="translated">Descendente</target></trans-unit>
       <trans-unit id="flexforms_general.dateField" xml:space="preserve">
 				<source>Date field to use</source>
-			<target state="needs-translation">Date field to use</target></trans-unit>
+			<target state="translated">Campo de fecha a utilizar</target></trans-unit>
       <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve">
 				<source>Given date/time</source>
-			<target state="needs-translation">Given date/time</target></trans-unit>
+			<target state="translated">Fecha/hora proporcionada</target></trans-unit>
       <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
 				<source>Archive date</source>
-			<target state="needs-translation">Archive date</target></trans-unit>
+			<target state="translated">Fecha archivador</target></trans-unit>
       <trans-unit id="flexforms_general.categories" xml:space="preserve">
 				<source>Category selection</source>
-			<target state="needs-translation">Category selection</target></trans-unit>
+			<target state="translated">Selección de categoría</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
 				<source>Category mode</source>
-			<target state="needs-translation">Category mode</target></trans-unit>
+			<target state="translated">Modo de categoría</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve">
 				<source>Don't care, show all</source>
 			<target state="needs-translation">Don't care, show all</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve">
 				<source>Show items with selected categories (OR)</source>
-			<target state="needs-translation">Show items with selected categories (OR)</target></trans-unit>
+			<target state="translated">Mostrar elementos con categorías seleccionadas (OR / excluyente)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve">
 				<source>Show items with selected categories (AND)</source>
-			<target state="needs-translation">Show items with selected categories (AND)</target></trans-unit>
+			<target state="translated">Mostrar elementos con categorías seleccionadas (AND / incluyente)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve">
 				<source>Do NOT show items with selected categories (AND)</source>
-			<target state="needs-translation">Do NOT show items with selected categories (AND)</target></trans-unit>
+			<target state="translated">No mostrar elementos con categorías seleccionadas (AND / incluyente)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve">
 				<source>Do NOT show items with selected categories (OR)</source>
-			<target state="needs-translation">Do NOT show items with selected categories (OR)</target></trans-unit>
+			<target state="translated">No mostrar elementos con categorías seleccionadas (OR / excluyente)</target></trans-unit>
       <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
 				<source>Include subcategories</source>
-			<target state="needs-translation">Include subcategories</target></trans-unit>
+			<target state="translated">Incluir subcategorias</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
 				<source>Time limit (LOW): higher than given time</source>
-			<target state="needs-translation">Time limit (LOW): higher than given time</target></trans-unit>
+			<target state="translated">Límite de tiempo (por debajo): más grande del tiempo dado</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
 				<source>Time limit (HIGH): Address less than given time</source>
-			<target state="needs-translation">Time limit (HIGH): Address less than given time</target></trans-unit>
+			<target state="translated">Límite de tiempo (por arriba): Noticias con menos tiempo del dado</target></trans-unit>
       <trans-unit id="flexforms_general.topAddressRestriction" xml:space="preserve">
 				<source>Top Address</source>
-			<target state="needs-translation">Top Address</target></trans-unit>
+			<target state="translated">Dirección superior</target></trans-unit>
       <trans-unit id="flexforms_general.topAddressRestriction.1" xml:space="preserve">
 				<source>only Top Address records</source>
-			<target state="needs-translation">only Top Address records</target></trans-unit>
+			<target state="translated">excepto registros de Dirección Destacada</target></trans-unit>
       <trans-unit id="flexforms_general.topAddressRestriction.2" xml:space="preserve">
 				<source>except Top Address records</source>
-			<target state="needs-translation">except Top Address records</target></trans-unit>
+			<target state="translated">excepto registros de Dirección Destacada</target></trans-unit>
       <trans-unit id="flexforms_general.selectedAddresses" xml:space="preserve">
 				<source>Show only selected address records</source>
-			<target state="needs-translation">Show only selected address records</target></trans-unit>
+			<target state="translated">Mostrar sólo registros de direcciones seleccionados</target></trans-unit>
       <trans-unit id="flexforms_general.singleAddress" xml:space="preserve">
 				<source>Show a single address record</source>
-			<target state="needs-translation">Show a single address record</target></trans-unit>
+			<target state="translated">Muestra un único registro de dirección</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve">
 				<source>Allow preview of hidden records</source>
-			<target state="needs-translation">Allow preview of hidden records</target></trans-unit>
+			<target state="translated">Permite vista previa de registros ocultos</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
 				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
+			<target state="translated">No</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
 				<source>Yes</source>
-			<target state="needs-translation">Yes</target></trans-unit>
+			<target state="translated">Sí</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve">
 				<source>Defined in TypoScript</source>
-			<target state="needs-translation">Defined in TypoScript</target></trans-unit>
+			<target state="translated">Definido en TypoScript</target></trans-unit>
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
 				<source>Defined in TypoScript</source>
-			<target state="needs-translation">Defined in TypoScript</target></trans-unit>
+			<target state="translated">Definido en TypoScript</target></trans-unit>
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
-			<target state="needs-translation">[no constraint]</target></trans-unit>
+			<target state="translated">[sin restricción]</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
 				<source>Max width for media elements</source>
-			<target state="needs-translation">Max width for media elements</target></trans-unit>
+			<target state="translated">Anchura máxima para elementos del medio</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve">
 				<source>Max height for media elements</source>
-			<target state="needs-translation">Max height for media elements</target></trans-unit>
+			<target state="translated">Altura máxima para elementos del medio</target></trans-unit>
       <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve">
 				<source>Length of teaser (in chars)</source>
-			<target state="needs-translation">Length of teaser (in chars)</target></trans-unit>
+			<target state="translated">Longitud del prólogo (en letras)</target></trans-unit>
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
 				<source>Template Layout</source>
-			<target state="needs-translation">Template Layout</target></trans-unit>
+			<target state="translated">Distribuir Plantilla</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
+			<target state="translated"/></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
 				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
+			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
 				<source>Page ID for single address display</source>
-			<target state="needs-translation">Page ID for single address display</target></trans-unit>
+			<target state="translated">Id de Página para representar dirección única</target></trans-unit>
       <trans-unit id="flexforms_additional.backPid" xml:space="preserve">
 				<source>Page ID to return to</source>
-			<target state="needs-translation">Page ID to return to</target></trans-unit>
+			<target state="translated">ID de página para devolver a</target></trans-unit>
       <trans-unit id="flexforms_additional.listPid" xml:space="preserve">
 				<source>Page ID for list display</source>
-			<target state="needs-translation">Page ID for list display</target></trans-unit>
+			<target state="translated">ID de página para enumerar pantalla</target></trans-unit>
       <trans-unit id="flexforms_additional.limit" xml:space="preserve">
 				<source>Max records displayed</source>
-			<target state="needs-translation">Max records displayed</target></trans-unit>
+			<target state="translated">Registros máximos representados</target></trans-unit>
       <trans-unit id="flexforms_additional.offset" xml:space="preserve">
 				<source>Starting with given address record. 0 means first record, 1 the 2nd one!</source>
-			<target state="needs-translation">Starting with given address record. 0 means first record, 1 the 2nd one!</target></trans-unit>
+			<target state="translated">Iniciando con registro de dirección proporcionado. 0 significa primer registro, 1 el segundo.</target></trans-unit>
       <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
 				<source>Hide the pagination</source>
 			<target state="needs-translation">Hide the pagination</target></trans-unit>
@@ -405,25 +405,25 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
 			<target state="needs-translation">Time range</target></trans-unit>
       <trans-unit id="module.timeRestriction" xml:space="preserve">
 				<source>Time Restriction</source>
-			<target state="needs-translation">Time Restriction</target></trans-unit>
+			<target state="translated">Restricción de tiempo</target></trans-unit>
       <trans-unit id="module.timeRestrictionHigh" xml:space="preserve">
 				<source>Time Restriction High</source>
-			<target state="needs-translation">Time Restriction High</target></trans-unit>
+			<target state="translated">Tiempo de Restricción Alto</target></trans-unit>
       <trans-unit id="module.createNewCategory" xml:space="preserve">
 				<source>Create a new category</source>
-			<target state="needs-translation">Create a new category</target></trans-unit>
+			<target state="translated">Crea una categoría nueva</target></trans-unit>
       <trans-unit id="module.createNewAddressRecord" xml:space="preserve">
 				<source>Create new address record</source>
-			<target state="needs-translation">Create new address record</target></trans-unit>
+			<target state="translated">Crea un registro de dirección nuevo</target></trans-unit>
       <trans-unit id="module.createNewTag" xml:space="preserve">
 				<source>Create new tag record</source>
-			<target state="needs-translation">Create new tag record</target></trans-unit>
+			<target state="translated">Crea un registro de etiqueta nuevo</target></trans-unit>
       <trans-unit id="module.topAddressYes" xml:space="preserve">
 				<source>Yes</source>
-			<target state="needs-translation">Yes</target></trans-unit>
+			<target state="translated">Sí</target></trans-unit>
       <trans-unit id="module.topAddressNo" xml:space="preserve">
 				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
+			<target state="translated">No</target></trans-unit>
       <trans-unit id="module.searchWord" xml:space="preserve">
 				<source>Search</source>
 			<target state="needs-translation">Search</target></trans-unit>
@@ -452,25 +452,25 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
 				</target></trans-unit>
       <trans-unit id="administration.nolimit" xml:space="preserve">
 				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
-			<target state="needs-translation">No limit defined in setting "%s"! Include the default TypoScript in the root page.</target></trans-unit>
+			<target state="translated">¡Ningún límite definido en los parámetros «%s»! Incluya el TypoScript por defecto en la página raíz.</target></trans-unit>
       <trans-unit id="administration.toggleForm" xml:space="preserve">
 				<source>Show/Hide filter</source>
-			<target state="needs-translation">Show/Hide filter</target></trans-unit>
+			<target state="translated">Mostrar/Ocultar filtro</target></trans-unit>
       <trans-unit id="administration.noaddressfound" xml:space="preserve">
 				<source>No address found</source>
-			<target state="needs-translation">No address found</target></trans-unit>
+			<target state="translated">Ninguna dirección encontrada</target></trans-unit>
       <trans-unit id="administration.noaddressfoundText" xml:space="preserve">
 				<source>The current page does not contain any address records. Either select another page in the page tree on the left or create the first address record on this page.</source>
-			<target state="needs-translation">The current page does not contain any address records. Either select another page in the page tree on the left or create the first address record on this page.</target></trans-unit>
+			<target state="translated">La página actual no contiene ningún registro de dirección. O bien seleccione otra página en el árbol de página izquierda o bien cree el primer registro de dirección en esta página.</target></trans-unit>
       <trans-unit id="administration.noaddressfoundSwitch" xml:space="preserve">
 				<source>See all pages containing address records</source>
-			<target state="needs-translation">See all pages containing address records</target></trans-unit>
+			<target state="translated">Consulte todas las páginas conteniendo registros de direcciones</target></trans-unit>
       <trans-unit id="administration.filter.hidden" xml:space="preserve">
 				<source>Hidden</source>
-			<target state="needs-translation">Hidden</target></trans-unit>
+			<target state="translated">Oculto</target></trans-unit>
       <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve">
 				<source>only hidden</source>
-			<target state="needs-translation">only hidden</target></trans-unit>
+			<target state="translated">solo oculto</target></trans-unit>
       <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
 				<source>only non-hidden</source>
 			<target state="needs-translation">only non-hidden</target></trans-unit>
@@ -485,50 +485,50 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
 			<target state="needs-translation">Choose a job</target></trans-unit>
       <trans-unit id="import.description" xml:space="preserve">
 				<source>This is the "Address importer module". </source>
-			<target state="needs-translation">This is the "Address importer module". </target></trans-unit>
+			<target state="translated">Esto es el módulo «Dirección de módulo importado».</target></trans-unit>
       <trans-unit id="import.done" xml:space="preserve">
 				<source>The import has been completed. Reload the module to start a new one.</source>
-			<target state="needs-translation">The import has been completed. Reload the module to start a new one.</target></trans-unit>
+			<target state="translated">La importación ha sido completada. Recargue el módulo para iniciar uno nuevo.</target></trans-unit>
       <trans-unit id="import.backupwarning" xml:space="preserve">
 				<source>It's strongly recommended to backup all address tables before running an import job.</source>
-			<target state="needs-translation">It's strongly recommended to backup all address tables before running an import job.</target></trans-unit>
+			<target state="translated">Esta recomentado fuertemente respaldar todas las tablas de dirección antes de ejecutar una tarea importada.</target></trans-unit>
       <trans-unit id="import.backupwarning.header" xml:space="preserve">
 				<source>Important!</source>
-			<target state="needs-translation">Important!</target></trans-unit>
+			<target state="translated">¡Importante!</target></trans-unit>
       <trans-unit id="import.nojobs" xml:space="preserve">
 				<source>No jobs available for the importer.</source>
-			<target state="needs-translation">No jobs available for the importer.</target></trans-unit>
+			<target state="translated">No hay tareas disponibles para el importador.</target></trans-unit>
       <trans-unit id="import.error.configuration.title" xml:space="preserve">
 				<source>The configuration for the import is incomplete!</source>
-			<target state="needs-translation">The configuration for the import is incomplete!</target></trans-unit>
+			<target state="translated">La configuración para la importación está incompleta.l!</target></trans-unit>
       <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve">
 				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
-			<target state="needs-translation">Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</target></trans-unit>
+			<target state="translated">Defina los parámetros "resourceFolderImporter" dentro de la configuración del gestor de extensión. EL directorio dado contendrá todos los archivos importados.</target></trans-unit>
       <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve">
 				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
-			<target state="needs-translation">The directory defined in the setting "resourceFolderImporter" does not exist!</target></trans-unit>
+			<target state="translated">¡El directorio definido en los parámetros «resourceFolderImporter» no existe!</target></trans-unit>
       <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
 				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
-			<target state="needs-translation">Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</target></trans-unit>
+			<target state="translated">¡Defina los parámetros «storageUidImported» dentro de la configuración del gestor de extensión! El ID dado es el almacenaje del fichero utilizado.</target></trans-unit>
       <trans-unit id="record.savingdisabled.header">
         <source>Saving is disabled</source>
-        <target state="needs-translation">Saving is disabled</target>
+        <target state="translated">Guardado está desactivado</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content">
         <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="needs-translation">This record has the following categories assigned that are not defined in your permissions:</target>
+        <target state="translated">El registro tiene asignadas las siguientes categorías asignadas que no están definidas en sus permisos:</target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title">
         <source>Content elements are hidden</source>
-        <target state="needs-translation">Content elements are hidden</target>
+        <target state="translated">El contenido de elementos están ocultos</target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.description">
         <source>Content elements are hidden in sys folders of type "address"!</source>
-        <target state="needs-translation">Content elements are hidden in sys folders of type "address"!</target>
+        <target state="translated">¡Los elementos están ocultos en carpareas sys de tipo «dirección»!</target>
       </trans-unit>
       <trans-unit id="wizard.title.address" xml:space="preserve">
 				<source>Address</source>
-			<target state="needs-translation">Address</target></trans-unit>
+			<target state="translated">Dirección</target></trans-unit>
       <trans-unit id="wizard.title.person" xml:space="preserve">
 				<source>Person</source>
 			<target state="needs-translation">Person</target></trans-unit>
