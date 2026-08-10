@@ -8,7 +8,7 @@
 			<target state="needs-translation">Addresses</target></trans-unit>
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Address system</source>
-			<target state="needs-translation">Address system</target></trans-unit>
+			<target state="translated">Címrendszer</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.title" xml:space="preserve">
 				<source>List addresses with detail view</source>
 			<target state="needs-translation">List addresses with detail view</target></trans-unit>
@@ -31,13 +31,13 @@
 			<target state="needs-translation">Display the detail view of an address</target></trans-unit>
       <trans-unit id="plugin.search_form.title" xml:space="preserve">
 				<source>Search form</source>
-			<target state="needs-translation">Search form</target></trans-unit>
+			<target state="translated">Kereső űrlap</target></trans-unit>
       <trans-unit id="plugin.search_form.description" xml:space="preserve">
 				<source>Display a search form to let users search within addresses</source>
 			<target state="needs-translation">Display a search form to let users search within addresses</target></trans-unit>
       <trans-unit id="plugin.search_result.title" xml:space="preserve">
 				<source>Search result</source>
-			<target state="needs-translation">Search result</target></trans-unit>
+			<target state="translated">Keresési találat</target></trans-unit>
       <trans-unit id="plugin.search_result.description" xml:space="preserve">
 				<source>Display the result of the search</source>
 			<target state="needs-translation">Display the result of the search</target></trans-unit>
@@ -61,13 +61,13 @@
 			<target state="needs-translation">Display a map with addresses.</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
-			<target state="needs-translation">Settings</target></trans-unit>
+			<target state="translated">Beállítások</target></trans-unit>
       <trans-unit id="flexforms_tab.additional" xml:space="preserve">
 				<source>Additional</source>
-			<target state="needs-translation">Additional</target></trans-unit>
+			<target state="translated">További</target></trans-unit>
       <trans-unit id="flexforms_tab.template" xml:space="preserve">
 				<source>Template</source>
-			<target state="needs-translation">Template</target></trans-unit>
+			<target state="translated">Sablon</target></trans-unit>
       <trans-unit id="flexforms_tab.map" xml:space="preserve">
 				<source>Map</source>
 			<target state="needs-translation">Map</target></trans-unit>
@@ -100,22 +100,22 @@
       </trans-unit>
       <trans-unit id="flexforms_general.mode" xml:space="preserve">
 				<source>What to display</source>
-			<target state="needs-translation">What to display</target></trans-unit>
+			<target state="translated">Mit jelenítsen meg</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve">
 				<source>List view</source>
-			<target state="needs-translation">List view</target></trans-unit>
+			<target state="translated">Listanézet</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
 				<source>List view (without overloading detail view)</source>
-			<target state="needs-translation">List view (without overloading detail view)</target></trans-unit>
+			<target state="translated">Listanézet (részletnézet terhelése nélkül)</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve">
 				<source>Detail view</source>
-			<target state="needs-translation">Detail view</target></trans-unit>
+			<target state="translated">Részletnézet</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_searchform" xml:space="preserve">
 				<source>Search form</source>
-			<target state="needs-translation">Search form</target></trans-unit>
+			<target state="translated">Kereső űrlap</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_searchresult" xml:space="preserve">
 				<source>Search result</source>
-			<target state="needs-translation">Search result</target></trans-unit>
+			<target state="translated">Keresési találat</target></trans-unit>
       <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
 				<source>Category Menu</source>
 			<target state="needs-translation">Category Menu</target></trans-unit>
@@ -124,7 +124,7 @@
 			<target state="needs-translation">No view yet configured</target></trans-unit>
       <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
 				<source>Search</source>
-			<target state="needs-translation">Search</target></trans-unit>
+			<target state="translated">Keresés</target></trans-unit>
       <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
 				<source>Others</source>
 			<target state="needs-translation">Others</target></trans-unit>
@@ -304,7 +304,7 @@
 			<target state="needs-translation">Exclude already displayed address</target></trans-unit>
       <trans-unit id="flexforms_additional.tags" xml:space="preserve">
 				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
+			<target state="translated">Címkék</target></trans-unit>
       <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
 				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
 			<target state="needs-translation">Page with uid "%s" is not available anymore!</target></trans-unit>
@@ -429,7 +429,7 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
 			<target state="needs-translation">No page defined to save tag. Please add the id in the settings of the extension manager.</target></trans-unit>
       <trans-unit id="module.headline" xml:space="preserve">
 				<source>Settings</source>
-			<target state="needs-translation">Settings</target></trans-unit>
+			<target state="translated">Beállítások</target></trans-unit>
       <trans-unit id="module.recursive" xml:space="preserve">
 				<source>Recursive</source>
 			<target state="needs-translation">Recursive</target></trans-unit>
@@ -459,7 +459,7 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
 			<target state="needs-translation">No</target></trans-unit>
       <trans-unit id="module.searchWord" xml:space="preserve">
 				<source>Search</source>
-			<target state="needs-translation">Search</target></trans-unit>
+			<target state="translated">Keresés</target></trans-unit>
       <trans-unit id="module.addressListing" xml:space="preserve">
 				<source>Address Listing</source>
 			<target state="needs-translation">Address Listing</target></trans-unit>
