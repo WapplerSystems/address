@@ -11,54 +11,54 @@
 			<target state="translated">Címrendszer</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.title" xml:space="preserve">
 				<source>List addresses with detail view</source>
-			<target state="needs-translation">List addresses with detail view</target></trans-unit>
+			<target state="translated">Címek listázása részletnézettel</target></trans-unit>
       <trans-unit id="plugin.list_and_detail.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...
 					Plugin is capable of displaying the detail view as well.</source>
-			<target state="needs-translation">Display of addresses chosen by various optional properties like storage page, categories,...
-					Plugin is capable of displaying the detail view as well.</target></trans-unit>
+			<target state="translated">Különféle opcionális tulajdonságok (pl. tárolóoldal, kategóriák) alapján kiválasztott címek megjelenítése
+					A bővítmény képes a részletnézet megjelenítésére is.</target></trans-unit>
       <trans-unit id="plugin.list.title" xml:space="preserve">
 				<source>Address list view</source>
-			<target state="needs-translation">Address list view</target></trans-unit>
+			<target state="translated">Címek listanézet</target></trans-unit>
       <trans-unit id="plugin.list.description" xml:space="preserve">
 				<source>Display of addresses chosen by various optional properties like storage page, categories,...</source>
-			<target state="needs-translation">Display of addresses chosen by various optional properties like storage page, categories,...</target></trans-unit>
+			<target state="translated">Különféle opcionális tulajdonságok (pl. tárolóoldal, kategóriák) alapján kiválasztott címek megjelenítése</target></trans-unit>
       <trans-unit id="plugin.detail.title" xml:space="preserve">
 				<source>Address detail view</source>
-			<target state="needs-translation">Address detail view</target></trans-unit>
+			<target state="translated">Címek részletnézet</target></trans-unit>
       <trans-unit id="plugin.detail.description" xml:space="preserve">
 				<source>Display the detail view of an address</source>
-			<target state="needs-translation">Display the detail view of an address</target></trans-unit>
+			<target state="translated">Egy cím részletnézetének megjelenítése</target></trans-unit>
       <trans-unit id="plugin.search_form.title" xml:space="preserve">
 				<source>Search form</source>
 			<target state="translated">Kereső űrlap</target></trans-unit>
       <trans-unit id="plugin.search_form.description" xml:space="preserve">
 				<source>Display a search form to let users search within addresses</source>
-			<target state="needs-translation">Display a search form to let users search within addresses</target></trans-unit>
+			<target state="translated">Kereső űrlap megjelenítése, hogy a felhasználók kereshessenek a címek között</target></trans-unit>
       <trans-unit id="plugin.search_result.title" xml:space="preserve">
 				<source>Search result</source>
 			<target state="translated">Keresési találat</target></trans-unit>
       <trans-unit id="plugin.search_result.description" xml:space="preserve">
 				<source>Display the result of the search</source>
-			<target state="needs-translation">Display the result of the search</target></trans-unit>
+			<target state="translated">A keresés eredményének megjelenítése</target></trans-unit>
       <trans-unit id="plugin.category_list.title" xml:space="preserve">
 				<source>Category menu</source>
-			<target state="needs-translation">Category menu</target></trans-unit>
+			<target state="translated">Kategóriamenü</target></trans-unit>
       <trans-unit id="plugin.category_list.description" xml:space="preserve">
 				<source>Display a menu of categories. The menu can be used to filter a list view dynamically.</source>
-			<target state="needs-translation">Display a menu of categories. The menu can be used to filter a list view dynamically.</target></trans-unit>
+			<target state="translated">Kategóriamenü megjelenítése. A menü a listanézet dinamikus szűrésére használható.</target></trans-unit>
       <trans-unit id="plugin.tag_list.title" xml:space="preserve">
 				<source>Tag list</source>
 			<target state="translated">Címkelista</target></trans-unit>
       <trans-unit id="plugin.tag_list.description" xml:space="preserve">
 				<source>Display a list of tags. The list can be used to filter a list view dynamically.</source>
-			<target state="needs-translation">Display a list of tags. The list can be used to filter a list view dynamically.</target></trans-unit>
+			<target state="translated">Címkelista megjelenítése. A lista a listanézet dinamikus szűrésére használható.</target></trans-unit>
       <trans-unit id="plugin.map.title" xml:space="preserve">
 				<source>Map</source>
-			<target state="needs-translation">Map</target></trans-unit>
+			<target state="translated">Térkép</target></trans-unit>
       <trans-unit id="plugin.map.description" xml:space="preserve">
 				<source>Display a map with addresses.</source>
-			<target state="needs-translation">Display a map with addresses.</target></trans-unit>
+			<target state="translated">Térkép megjelenítése címekkel.</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
 			<target state="translated">Beállítások</target></trans-unit>
@@ -133,10 +133,10 @@
 			<target state="translated">Cím</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
 				<source>Manual</source>
-			<target state="needs-translation">Manual</target></trans-unit>
+			<target state="translated">Kézi</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.selection" xml:space="preserve">
 				<source>Selection</source>
-			<target state="needs-translation">Selection</target></trans-unit>
+			<target state="translated">Kiválasztás</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
 			<target state="translated">Rendezési irány</target></trans-unit>
@@ -196,7 +196,7 @@
 			<target state="translated">a kiemelt címek kivételével</target></trans-unit>
       <trans-unit id="flexforms_general.selectedAddresses" xml:space="preserve">
 				<source>Show only selected address records</source>
-			<target state="needs-translation">Show only selected address records</target></trans-unit>
+			<target state="translated">Csak a kiválasztott címrekordok megjelenítése</target></trans-unit>
       <trans-unit id="flexforms_general.singleAddress" xml:space="preserve">
 				<source>Show a single address record</source>
 			<target state="translated">Egyetlen címrekord megjelenítése</target></trans-unit>
@@ -265,7 +265,7 @@
 			<target state="translated">Felülbírálási igény letiltása</target></trans-unit>
       <trans-unit id="flexforms_additional.disableMetaTags" xml:space="preserve">
 				<source>Disables setting of meta tags</source>
-			<target state="needs-translation">Disables setting of meta tags</target></trans-unit>
+			<target state="translated">A meta címkék beállításának letiltása</target></trans-unit>
       <trans-unit id="flexforms_additional.excludeAlreadyDisplayedAddress" xml:space="preserve">
 				<source>Exclude already displayed address</source>
 			<target state="translated">Már megjelenített cím kizárása</target></trans-unit>
@@ -300,8 +300,8 @@
         <source>Category restriction: Restrict the available categories in address records. PageTsConfig:
 TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
 				</source>
-        <target state="needs-translation">Category restriction: Restrict the available categories in address records. PageTsConfig:
-TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+        <target state="translated">Kategóriakorlátozás: a címrekordokban elérhető kategóriák korlátozása. PageTsConfig:
+TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. Ez a funkció jelenleg fejlesztés alatt áll, és nem várható, hogy működik!
 				</target>
       </trans-unit>
       <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
@@ -363,7 +363,7 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
 			<target state="translated">Oldalfa elrejtése az adminisztrációs modulhoz: Az egyszerűbb használat érdekében rejtse el az oldalfát az adminisztrációs modul számára.</target></trans-unit>
       <trans-unit id="extmng.slugBehaviour" xml:space="preserve">
 				<source>Slug behaviour: uniqueInSite: The same slug can be used for address in different sites. Use this setting *only* if no address records are shared between sites. "unique" means that same address title will lead to different slug names.</source>
-			<target state="needs-translation">Slug behaviour: uniqueInSite: The same slug can be used for address in different sites. Use this setting *only* if no address records are shared between sites. "unique" means that same address title will lead to different slug names.</target></trans-unit>
+			<target state="translated">Slug-viselkedés: uniqueInSite: Ugyanaz a slug használható a címekhez különböző oldalakon. Ezt a beállítást *csak* akkor használja, ha nincsenek megosztott címrekordok az oldalak között. A "unique" azt jelenti, hogy ugyanaz a címmegnevezés különböző slug-nevekhez vezet.</target></trans-unit>
       <trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for address categories in the Backend</source>
 			<target state="translated">Ennek az overlay-nek a használata a címkategóriákhoz a háttérrendszerben</target></trans-unit>
@@ -448,7 +448,7 @@ TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This fe
       <trans-unit id="administration.addressPidListing.description" xml:space="preserve">
 				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the address entries of the page.
 				</source>
-			<target state="needs-translation">Choose a recursive level to display your page tree with the related entries. Click on the page title to show the address entries of the page.
+			<target state="translated">Válasszon rekurzív szintet az oldalfa kapcsolódó bejegyzésekkel történő megjelenítéséhez. Kattintson az oldal címére az oldal címbejegyzéseinek megjelenítéséhez.
 				</target></trans-unit>
       <trans-unit id="administration.nolimit" xml:space="preserve">
 				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
