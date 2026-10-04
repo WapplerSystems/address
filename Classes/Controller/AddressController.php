@@ -353,6 +353,17 @@ class AddressController extends AddressBaseController
         if ($mapRenderer === 'OpenStreetMap') {
             $tileserverUrl = $this->settings['leaflet']['tileserverUrl'] ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
+            // Die ODbL verlangt eine Nennung der Mitwirkenden mit Verweis auf
+            // die Lizenz; ein blosses "© OpenStreetMap" erfuellt das nicht.
+            // Ueber die Konstante austauschbar, weil ein eigener Kachelserver
+            // eine zusaetzliche Nennung tragen kann - und weil die Nennung in
+            // der Sprache der Website stehen sollte. Leerer Wert faellt auf den
+            // Standard zurueck: Eine nicht gesetzte Konstante kommt als leere
+            // Zeichenkette an, nicht als null.
+            $attribution = ($this->settings['leaflet']['attribution'] ?? '') !== ''
+                ? $this->settings['leaflet']['attribution']
+                : '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
             $viewJS = <<<JS
 {$identifier}.setView([51.1657, 10.4515], {$initZoomlevel});
 JS;
@@ -370,14 +381,19 @@ JS;
             /** @var Address $address */
             foreach ($addressRecords as $address) {
                 if ($address->getLatitude() !== null && $address->getLongitude() !== null) {
+                    // json_encode statt einfacher Anfuehrungszeichen: Ein
+                    // Apostroph im Titel - "O'Brien", "Hotel L'Europe" - hat
+                    // sonst die gesamte Karte stillgelegt.
+                    $popupJS = json_encode($address->getTitle(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                     $markersJS .= <<<JS
 L.marker([{$address->getLatitude()}, {$address->getLongitude()}])
     .addTo({$identifier})
-    .bindPopup('{$address->getTitle()}');
+    .bindPopup({$popupJS});
 JS;
                 }
             }
 
+            $attributionJS = json_encode($attribution, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             $maxZoomJS = $maxZoom !== null ? 'maxZoom: '.$maxZoom.',' : '';
             $minZoomJS = $minZoom !== null ? 'minZoom: '.$minZoom.',' : '';
 
@@ -396,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     L.tileLayer('{$tileserverUrl}', {
         {$maxZoomJS}{$minZoomJS}
-        attribution: '© OpenStreetMap'
+        attribution: {$attributionJS}
     }).addTo({$identifier});
 
     {$markersJS}

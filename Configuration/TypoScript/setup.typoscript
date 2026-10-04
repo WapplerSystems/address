@@ -183,6 +183,7 @@ plugin.tx_address {
 
     leaflet {
       tileserverUrl = {$plugin.tx_address.settings.leaflet.tileserverUrl}
+      attribution = {$plugin.tx_address.settings.leaflet.attribution}
     }
 
     backend {
