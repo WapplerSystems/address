@@ -59,6 +59,11 @@ plugin.tx_address {
 
       tileserverUrl = https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
 
+      # cat=plugin.tx_address/settings/c; type=string; label=Referrer-Richtlinie der Kachelbilder
+      # Leer: die Richtlinie der Seite gilt. Noetig bei "same-origin", sonst
+      # erreicht einen Kachelserver mit Referer-Freigabe keine Herkunft.
+      referrerPolicy =
+
       # cat=plugin.tx_address/settings/c; type=string; label=Attribution der Karte
       # Die ODbL verlangt die Nennung der Mitwirkenden mit Verweis auf die Lizenz.
       attribution = &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors

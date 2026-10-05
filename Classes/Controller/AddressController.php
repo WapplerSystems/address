@@ -394,6 +394,18 @@ JS;
             }
 
             $attributionJS = json_encode($attribution, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+            // Steht auf der Website <meta name="referrer" content="same-origin">,
+            // dann senden die Kachelbilder gar keinen Referer - der Kachelserver
+            // sieht eine Anfrage ohne Herkunft. Ein Proxy mit Referer-Freigabe
+            // lehnt die ab, und die Karte besteht aus Hinweisbildern, ohne dass
+            // irgendwo ein Fehler auftaucht. Leaflet kann den Bildern eine eigene
+            // Richtlinie mitgeben: "origin" sendet nur das Schema samt Hostnamen,
+            // ohne Pfad. Leer gelassen bleibt alles, wie die Seite es vorgibt.
+            $referrerPolicy = (string)($this->settings['leaflet']['referrerPolicy'] ?? '');
+            $referrerJS = $referrerPolicy !== ''
+                ? 'referrerPolicy: ' . json_encode($referrerPolicy) . ','
+                : '';
             $maxZoomJS = $maxZoom !== null ? 'maxZoom: '.$maxZoom.',' : '';
             $minZoomJS = $minZoom !== null ? 'minZoom: '.$minZoom.',' : '';
 
@@ -411,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {$viewJS}
 
     L.tileLayer('{$tileserverUrl}', {
-        {$maxZoomJS}{$minZoomJS}
+        {$maxZoomJS}{$minZoomJS}{$referrerJS}
         attribution: {$attributionJS}
     }).addTo({$identifier});
 
