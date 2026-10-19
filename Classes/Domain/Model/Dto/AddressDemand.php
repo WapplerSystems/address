@@ -62,7 +62,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
     protected bool $topAddressFirst = false;
 
     /** @var int */
-    protected $storagePage;
+    protected string $storagePage = '';
 
     /** @var int */
     protected int $limit;
@@ -320,7 +320,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      */
     public function setStoragePage($storagePage): AddressDemand
     {
-        $this->storagePage = $storagePage;
+        $this->storagePage = (string)$storagePage;
         return $this;
     }
 
@@ -329,7 +329,7 @@ class AddressDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getStoragePage(): int|string
+    public function getStoragePage(): string
     {
         return $this->storagePage;
     }

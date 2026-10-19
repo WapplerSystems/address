@@ -4,10 +4,10 @@
 
 <f:layout name="Detail"/>
 
-<!--
+<f:comment>
 	=====================
 		Address/Detail.html
--->
+</f:comment>
 
 <f:section name="content">
     <f:if condition="{address}">
@@ -66,7 +66,7 @@
                     </f:if>
 
                     <f:if condition="{address.tags}">
-                        <!-- Tags -->
+                        <f:comment> Tags </f:comment>
                         <span class="address-list-tags" itemprop="keywords">
 						<f:for each="{address.tags}" as="tag">
 							{tag.title}
@@ -91,10 +91,8 @@
                     <p><b>
                         <f:translate key="hdl.contact">Contact</f:translate>
                     </b><br/>
-                        <f:translate key="lbl.telephone">Telephone</f:translate>
-                        : {address.phone}<br/>
-                        <f:translate key="lbl.fax">Fax</f:translate>
-                        : {address.fax}<br/>
+                        <f:if condition="{address.phone}"><f:translate key="lbl.telephone">Telephone</f:translate>: {address.phone}<br/></f:if>
+                        <f:if condition="{address.fax}"><f:translate key="lbl.fax">Fax</f:translate>: {address.fax}<br/></f:if>
 
                         <f:if condition="{address.directContact}">
                             <f:then>
@@ -131,7 +129,7 @@
 
 
                     <f:if condition="{address.contentElements}">
-                        <!-- content elements -->
+                        <f:comment> content elements </f:comment>
                         <f:cObject typoscriptObjectPath="lib.tx_address.contentElementRendering">{address.contentElementIdList}</f:cObject>
                     </f:if>
 
@@ -141,7 +139,7 @@
             </div>
 
             <f:if condition="{address.teaser}">
-                <!-- teaser -->
+                <f:comment> teaser </f:comment>
                 <div class="teaser-text" itemprop="description">
                     <f:format.html>{address.teaser}</f:format.html>
                 </div>
@@ -152,7 +150,7 @@
 
 
             <f:if condition="{address.relatedLinks}">
-                <!-- Related links -->
+                <f:comment> Related links </f:comment>
                 <div class="address-related address-related-links card mb-4">
                     <div class="card-body">
                         <h4 class="card-title">
@@ -177,7 +175,7 @@
 
 
             <f:if condition="{settings.backPid}">
-                <!-- Link Back -->
+                <f:comment> Link Back </f:comment>
                 <div class="address-backlink-wrap">
                     <f:link.page pageUid="{settings.backPid}">
                         <f:translate key="btn.back"/>
@@ -186,11 +184,11 @@
             </f:if>
 
 
-            <!-- related things -->
+            <f:comment> related things </f:comment>
             <div class="address-related-wrap">
 
                 <f:if condition="{address.relatedFiles}">
-                    <!-- related files -->
+                    <f:comment> related files </f:comment>
                     <div class="address-related address-related-files">
                         <h4>
                             <f:translate key="related-files"/>

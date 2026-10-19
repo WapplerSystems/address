@@ -1,10 +1,10 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:ad="http://typo3.org/ns/WapplerSystems/Address/ViewHelpers"
       data-namespace-typo3-fluid="true">
-<!--
+<f:comment>
 	=====================
 		Partials/List/Item.html
--->
+</f:comment>
 <div class="address address-{address.type}{f:if(condition: address.istopaddress, then: ' topaddress')} mb-4">
     <ad:excludeDisplayedAddress address="{address}"/>
 
@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-8">
 
-            <!-- header -->
+            <f:comment> header </f:comment>
             <div class="address--list-header address--header">
                 <h3>
                     <ad:link address="{address}" settings="{settings}" title="{address.title}">
@@ -52,7 +52,7 @@
 
             </div>
 
-            <!-- teaser -->
+            <f:comment> teaser </f:comment>
             <div class="teaser-text">
                 <ad:removeMediaTags>
                     <f:if condition="{address.teaser}">
@@ -70,17 +70,17 @@
                 </ad:link>
             </div>
 
-            <!-- footer information -->
+            <f:comment> footer information </f:comment>
             <div class="footer">
                 <p>
 
                     <f:if condition="{address.firstCategory}">
-                        <!-- first category -->
+                        <f:comment> first category </f:comment>
                         <span class="address-list-category">{address.firstCategory.title}</span>
                     </f:if>
 
                     <f:if condition="{address.tags}">
-                        <!-- Tags -->
+                        <f:comment> Tags </f:comment>
                         <span class="address-list-tags">
 							<f:for each="{address.tags}" as="tag">
 								{tag.title}
