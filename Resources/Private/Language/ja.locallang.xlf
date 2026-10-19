@@ -94,6 +94,21 @@
       <trans-unit id="paginate_previous" xml:space="preserve">
 				<source>Previous</source>
 			<target state="needs-translation">Previous</target></trans-unit>
+      <trans-unit id="hdl.address" xml:space="preserve">
+				<source>Address</source>
+			<target state="needs-translation">Address</target></trans-unit>
+      <trans-unit id="hdl.contact" xml:space="preserve">
+				<source>Contact</source>
+			<target state="needs-translation">Contact</target></trans-unit>
+      <trans-unit id="lbl.telephone" xml:space="preserve">
+				<source>Telephone</source>
+			<target state="needs-translation">Telephone</target></trans-unit>
+      <trans-unit id="lbl.fax" xml:space="preserve">
+				<source>Fax</source>
+			<target state="needs-translation">Fax</target></trans-unit>
+      <trans-unit id="btn.contact" xml:space="preserve">
+				<source>Contact</source>
+			<target state="needs-translation">Contact</target></trans-unit>
     </body>
   </file>
 </xliff>
