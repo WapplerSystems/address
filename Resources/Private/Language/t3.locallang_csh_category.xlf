@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve">
+				<source>Category record</source>
+			<target>crwdns389082:0crwdne389082:0</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve">
+				<source>Category for address records.</source>
+			<target>crwdns389084:0crwdne389084:0</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve">
+				<source>See also the website http://www.address.com/</source>
+			<target>crwdns389086:0crwdne389086:0</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+				<source>Language of the category</source>
+			<target>crwdns389088:0crwdne389088:0</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden categories are never shown in the frontend.</source>
+			<target>crwdns389090:0crwdne389090:0</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve">
+				<source>Title of the category</source>
+			<target>crwdns389092:0crwdne389092:0</target></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve">
+				<source>Select a parent category of this record to build a category tree.</source>
+			<target>crwdns389094:0crwdne389094:0</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve">
+				<source>Optional image of a category.</source>
+			<target>crwdns389096:0crwdne389096:0</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve">
+				<source>Optional description of a category.</source>
+			<target>crwdns389098:0crwdne389098:0</target></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve">
+				<source>Choose a page which is used to show the detail view of address records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
+			<target>crwdns389100:0crwdne389100:0</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve">
+				<source>Optional link of a category.</source>
+			<target>crwdns389102:0crwdne389102:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
