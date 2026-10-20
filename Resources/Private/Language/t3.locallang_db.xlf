@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="tx_address_domain_model_address.tabs.relations" xml:space="preserve">
+				<source>Relations</source>
+			<target>crwdns389188:0crwdne389188:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address" xml:space="preserve">
+				<source>Address</source>
+			<target>crwdns389190:0crwdne389190:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.title" xml:space="preserve">
+				<source>Title</source>
+			<target>crwdns389192:0crwdne389192:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.teaser" xml:space="preserve">
+				<source>Teaser</source>
+			<target>crwdns389194:0crwdne389194:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.datetime" xml:space="preserve">
+				<source>Date &amp; Time</source>
+			<target>crwdns389196:0crwdne389196:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.archive" xml:space="preserve">
+				<source>Archive</source>
+			<target>crwdns389198:0crwdne389198:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.archive.placeholder" xml:space="preserve">
+				<source>Define when the address should be listed in the archive</source>
+			<target>crwdns389200:0crwdne389200:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.categories" xml:space="preserve">
+				<source>Categories</source>
+			<target>crwdns389202:0crwdne389202:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related" xml:space="preserve">
+				<source>Related address</source>
+			<target>crwdns389204:0crwdne389204:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_from" xml:space="preserve">
+				<source>Related address (from)</source>
+			<target>crwdns389206:0crwdne389206:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_files" xml:space="preserve">
+				<source>Related files</source>
+			<target>crwdns389208:0crwdne389208:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_files.add" xml:space="preserve">
+				<source>Add related file</source>
+			<target>crwdns389210:0crwdne389210:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_links" xml:space="preserve">
+				<source>Related links</source>
+			<target>crwdns389212:0crwdne389212:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.first_name" xml:space="preserve">
+				<source>First name</source>
+			<target>crwdns389214:0crwdne389214:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.last_name" xml:space="preserve">
+				<source>Last name</source>
+			<target>crwdns389216:0crwdne389216:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.abbreviation" xml:space="preserve">
+				<source>Abbreviation</source>
+			<target>crwdns389218:0crwdne389218:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.middle_name" xml:space="preserve">
+				<source>Middle name</source>
+			<target>crwdns389220:0crwdne389220:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.position" xml:space="preserve">
+				<source>Position</source>
+			<target>crwdns389222:0crwdne389222:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.birthday" xml:space="preserve">
+				<source>Birthday</source>
+			<target>crwdns389224:0crwdne389224:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.academic_title" xml:space="preserve">
+				<source>Academic title</source>
+			<target>crwdns389226:0crwdne389226:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.append_academic_title" xml:space="preserve">
+				<source>Append academic title</source>
+			<target>crwdns389228:0crwdne389228:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.phone" xml:space="preserve">
+				<source>Phone</source>
+			<target>crwdns389230:0crwdne389230:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.www" xml:space="preserve">
+				<source>Website</source>
+			<target>crwdns389232:0crwdne389232:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.fax" xml:space="preserve">
+				<source>Fax</source>
+			<target>crwdns389234:0crwdne389234:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.email" xml:space="preserve">
+				<source>Email</source>
+			<target>crwdns389236:0crwdne389236:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.direct_contact" xml:space="preserve">
+				<source>Direct contactable</source>
+			<target>crwdns389238:0crwdne389238:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.address" xml:space="preserve">
+				<source>Address</source>
+			<target>crwdns389240:0crwdne389240:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.detail_pid" xml:space="preserve">
+				<source>Detail page</source>
+			<target>crwdns389242:0crwdne389242:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.building" xml:space="preserve">
+				<source>Building</source>
+			<target>crwdns389244:0crwdne389244:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.city" xml:space="preserve">
+				<source>City</source>
+			<target>crwdns389246:0crwdne389246:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.zip" xml:space="preserve">
+				<source>Postal code</source>
+			<target>crwdns389248:0crwdne389248:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.region" xml:space="preserve">
+				<source>State/region</source>
+			<target>crwdns389250:0crwdne389250:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.country" xml:space="preserve">
+				<source>Country</source>
+			<target>crwdns389252:0crwdne389252:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.contact_person" xml:space="preserve">
+				<source>Contact person</source>
+			<target>crwdns389254:0crwdne389254:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.custom_marker_icon" xml:space="preserve">
+				<source>Icon</source>
+			<target>crwdns389256:0crwdne389256:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.marker_icon" xml:space="preserve">
+				<source>Icon</source>
+			<target>crwdns389258:0crwdne389258:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.marker_color" xml:space="preserve">
+				<source>Color</source>
+			<target>crwdns389260:0crwdne389260:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.marker" xml:space="preserve">
+				<source>Marker</source>
+			<target>crwdns389262:0crwdne389262:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.inline_map" xml:space="preserve">
+				<source>Karte</source>
+			<target>crwdns389264:0crwdne389264:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.type.I.0" xml:space="preserve">
+				<source>Address</source>
+			<target>crwdns389266:0crwdne389266:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.type.I.1" xml:space="preserve">
+				<source>Person</source>
+			<target>crwdns389268:0crwdne389268:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.type.I.2" xml:space="preserve">
+				<source>Company</source>
+			<target>crwdns389270:0crwdne389270:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact" xml:space="preserve">
+				<source>Contact</source>
+			<target>crwdns389272:0crwdne389272:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type" xml:space="preserve">
+				<source>Type</source>
+			<target>crwdns389274:0crwdne389274:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.email" xml:space="preserve">
+				<source>Email</source>
+			<target>crwdns389276:0crwdne389276:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.telephone" xml:space="preserve">
+				<source>Telephone</source>
+			<target>crwdns389278:0crwdne389278:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.mobilePhone" xml:space="preserve">
+				<source>Mobile phone</source>
+			<target>crwdns389280:0crwdne389280:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.website" xml:space="preserve">
+				<source>Website</source>
+			<target>crwdns389282:0crwdne389282:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.blog" xml:space="preserve">
+				<source>Blog</source>
+			<target>crwdns389284:0crwdne389284:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.xing" xml:space="preserve">
+				<source>Xing</source>
+			<target>crwdns389286:0crwdne389286:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.linkedin" xml:space="preserve">
+				<source>LinkedIn</source>
+			<target>crwdns389288:0crwdne389288:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.x" xml:space="preserve">
+				<source>X</source>
+			<target>crwdns389290:0crwdne389290:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.facebook" xml:space="preserve">
+				<source>Facebook</source>
+			<target>crwdns389292:0crwdne389292:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.instagram" xml:space="preserve">
+				<source>Instagram</source>
+			<target>crwdns389294:0crwdne389294:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.youtube" xml:space="preserve">
+				<source>YouTube</source>
+			<target>crwdns389296:0crwdne389296:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.twitch" xml:space="preserve">
+				<source>Twitch</source>
+			<target>crwdns389298:0crwdne389298:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.vimeo" xml:space="preserve">
+				<source>Vimeo</source>
+			<target>crwdns389300:0crwdne389300:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.mastodon" xml:space="preserve">
+				<source>Mastodon</source>
+			<target>crwdns389302:0crwdne389302:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.threema" xml:space="preserve">
+				<source>Threema</source>
+			<target>crwdns389304:0crwdne389304:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.type.fax" xml:space="preserve">
+				<source>Fax</source>
+			<target>crwdns389306:0crwdne389306:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_contact.content" xml:space="preserve">
+				<source>Content</source>
+			<target>crwdns389308:0crwdne389308:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_markericon" xml:space="preserve">
+				<source>Map marker icon</source>
+			<target>crwdns389310:0crwdne389310:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_markericon.icon" xml:space="preserve">
+				<source>Icon</source>
+			<target>crwdns389312:0crwdne389312:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_markericon.size" xml:space="preserve">
+				<source>Rendered size in px</source>
+			<target>crwdns389314:0crwdne389314:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_markericon.size.description" xml:space="preserve">
+				<source>width,height</source>
+			<target>crwdns389316:0crwdne389316:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_markericon.anchor" xml:space="preserve">
+				<source>Icon anchor in px</source>
+			<target>crwdns389318:0crwdne389318:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_markericon.anchor.description" xml:space="preserve">
+				<source>x,y</source>
+			<target>crwdns389320:0crwdne389320:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.longitude" xml:space="preserve">
+				<source>Longitude</source>
+			<target>crwdns389322:0crwdne389322:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.latitude" xml:space="preserve">
+				<source>Latitude</source>
+			<target>crwdns389324:0crwdne389324:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.media" xml:space="preserve">
+				<source>Media file</source>
+			<target>crwdns389326:0crwdne389326:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.media.add" xml:space="preserve">
+				<source>Add media file</source>
+			<target>crwdns389328:0crwdne389328:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.related_news" xml:space="preserve">
+				<source>Related address</source>
+			<target>crwdns389330:0crwdne389330:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.istopaddress" xml:space="preserve">
+				<source>Top address</source>
+			<target>crwdns389332:0crwdne389332:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags" xml:space="preserve">
+				<source>Tags</source>
+			<target>crwdns389334:0crwdne389334:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags.add" xml:space="preserve">
+				<source>Add a new tag</source>
+			<target>crwdns389336:0crwdne389336:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags.list" xml:space="preserve">
+				<source>List all tags</source>
+			<target>crwdns389338:0crwdne389338:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.tags.edit" xml:space="preserve">
+				<source>Edit tag</source>
+			<target>crwdns389340:0crwdne389340:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.keywords.placeholder" xml:space="preserve">
+				<source>Keyword1, keyword2, keyword3</source>
+			<target>crwdns389342:0crwdne389342:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.contacts" xml:space="preserve">
+				<source>Contacts</source>
+			<target>crwdns389344:0crwdne389344:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target><![CDATA[crwdns389346:0crwdne389346:0]]></target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target>crwdns389348:0crwdne389348:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target>crwdns389350:0crwdne389350:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.seo.composeo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target>crwdns389352:0crwdne389352:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target>crwdns389354:0crwdne389354:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.image" xml:space="preserve">
+				<source>Image</source>
+			<target>crwdns389356:0crwdne389356:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.single_pid" xml:space="preserve">
+				<source>Single-view page for address from this category</source>
+			<target>crwdns389358:0crwdne389358:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.shortcut" xml:space="preserve">
+				<source>Address category shortcut</source>
+			<target>crwdns389360:0crwdne389360:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target><![CDATA[crwdns389362:0crwdne389362:0]]></target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target>crwdns389364:0crwdne389364:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target>crwdns389366:0crwdne389366:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_category.seo.seo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target>crwdns389368:0crwdne389368:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link" xml:space="preserve">
+				<source>Address Link Element</source>
+			<target>crwdns389370:0crwdne389370:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.title" xml:space="preserve">
+				<source>Title</source>
+			<target>crwdns389372:0crwdne389372:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.description" xml:space="preserve">
+				<source>Description</source>
+			<target>crwdns389374:0crwdne389374:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.uri" xml:space="preserve">
+				<source>URL</source>
+			<target>crwdns389376:0crwdne389376:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_link.uri.placeholder" xml:space="preserve">
+				<source>www.domain.org</source>
+			<target>crwdns389378:0crwdne389378:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target>crwdns389380:0crwdne389380:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag" xml:space="preserve">
+				<source>Address Tag</source>
+			<target>crwdns389382:0crwdne389382:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_tag.title" xml:space="preserve">
+				<source>Title</source>
+			<target>crwdns389384:0crwdne389384:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_media.showinpreview" xml:space="preserve">
+				<source>Show in list views</source>
+			<target>crwdns389386:0crwdne389386:0</target></trans-unit>
+      <trans-unit id="tx_address_domain_model_address.path_segment" xml:space="preserve">
+				<source>Speaking URL path segment</source>
+			<target>crwdns389388:0crwdne389388:0</target></trans-unit>
+      <trans-unit id="be_user.tx_address_categorymounts" xml:space="preserve">
+				<source>Address: Category restriction</source>
+			<target>crwdns389390:0crwdne389390:0</target></trans-unit>
+      <trans-unit id="notes" xml:space="preserve">
+				<source>Notes</source>
+			<target>crwdns389392:0crwdne389392:0</target></trans-unit>
+      <trans-unit id="location" xml:space="preserve">
+				<source>Location</source>
+			<target>crwdns389394:0crwdne389394:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
