@@ -5,13 +5,13 @@
     <body>
       <trans-unit id="mlang_tabs_tab" xml:space="preserve">
 				<source>Address Import</source>
-			<target state="needs-translation">Address Import</target></trans-unit>
+			<target state="translated">Címimportálás</target></trans-unit>
       <trans-unit id="mlang_labels_tablabel" xml:space="preserve">
 				<source>Generic import module</source>
-			<target state="needs-translation">Generic import module</target></trans-unit>
+			<target state="translated">Általános importáló modul</target></trans-unit>
       <trans-unit id="mlang_labels_tabdescr" xml:space="preserve">
 				<source>Extensions can provide an import service from various sources (e.g. RSS).</source>
-			<target state="needs-translation">Extensions can provide an import service from various sources (e.g. RSS).</target></trans-unit>
+			<target state="translated">A bővítmények különféle forrásokból (pl. RSS) biztosíthatnak importálási szolgáltatást.</target></trans-unit>
     </body>
   </file>
 </xliff>

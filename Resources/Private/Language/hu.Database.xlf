@@ -5,10 +5,10 @@
     <body>
       <trans-unit id="formEditor.elements.BaseFormElementMixin.editor.hideInEmail.label" xml:space="preserve">
                 <source>Hide in email</source>
-            <target state="needs-translation">Hide in email</target></trans-unit>
+            <target state="translated">Elrejtés e-mailben</target></trans-unit>
       <trans-unit id="formEditor.elements.ContactLabel.label">
         <source>Contact label</source>
-        <target state="needs-translation">Contact label</target>
+        <target state="translated">Kapcsolatfelvételi címke</target>
       </trans-unit>
     </body>
   </file>

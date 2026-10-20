@@ -5,477 +5,477 @@
     <body>
       <trans-unit id="pi1_title" xml:space="preserve">
 				<source>Address system</source>
-			<target state="needs-translation">Address system</target></trans-unit>
+			<target state="translated">Címrendszer</target></trans-unit>
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Address system</source>
-			<target state="needs-translation">Address system</target></trans-unit>
+			<target state="translated">Címrendszer</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
-			<target state="needs-translation">Settings</target></trans-unit>
+			<target state="translated">Beállítások</target></trans-unit>
       <trans-unit id="flexforms_tab.additional" xml:space="preserve">
 				<source>Additional</source>
-			<target state="needs-translation">Additional</target></trans-unit>
+			<target state="translated">További</target></trans-unit>
       <trans-unit id="flexforms_tab.template" xml:space="preserve">
 				<source>Template</source>
-			<target state="needs-translation">Template</target></trans-unit>
+			<target state="translated">Sablon</target></trans-unit>
       <trans-unit id="flexforms_general.mode" xml:space="preserve">
 				<source>What to display</source>
-			<target state="needs-translation">What to display</target></trans-unit>
+			<target state="translated">Mit jelenítsen meg</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve">
 				<source>List view</source>
-			<target state="needs-translation">List view</target></trans-unit>
+			<target state="translated">Listanézet</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
 				<source>List view (without overloading detail view)</source>
-			<target state="needs-translation">List view (without overloading detail view)</target></trans-unit>
+			<target state="translated">Listanézet (részletnézet terhelése nélkül)</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve">
 				<source>Detail view</source>
-			<target state="needs-translation">Detail view</target></trans-unit>
+			<target state="translated">Részletnézet</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_searchform" xml:space="preserve">
 				<source>Search form</source>
-			<target state="needs-translation">Search form</target></trans-unit>
+			<target state="translated">Kereső űrlap</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_searchresult" xml:space="preserve">
 				<source>Search result</source>
-			<target state="needs-translation">Search result</target></trans-unit>
+			<target state="translated">Keresési találat</target></trans-unit>
       <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
 				<source>Category Menu</source>
-			<target state="needs-translation">Category Menu</target></trans-unit>
+			<target state="translated">Kategóriamenü</target></trans-unit>
       <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
 				<source>No view yet configured</source>
-			<target state="needs-translation">No view yet configured</target></trans-unit>
+			<target state="translated">Még nincs nézet beállítva</target></trans-unit>
       <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
 				<source>Search</source>
-			<target state="needs-translation">Search</target></trans-unit>
+			<target state="translated">Keresés</target></trans-unit>
       <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
 				<source>Others</source>
-			<target state="needs-translation">Others</target></trans-unit>
+			<target state="translated">Egyebek</target></trans-unit>
       <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
 				<source>Tag list</source>
-			<target state="needs-translation">Tag list</target></trans-unit>
+			<target state="translated">Címkelista</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
 				<source>Archive</source>
-			<target state="needs-translation">Archive</target></trans-unit>
+			<target state="translated">Archívum</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
 				<source>Only active (non archived)</source>
-			<target state="needs-translation">Only active (non archived)</target></trans-unit>
+			<target state="translated">Csak aktív (nem archivált)</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
 				<source>Archived</source>
-			<target state="needs-translation">Archived</target></trans-unit>
+			<target state="translated">Archivált</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve">
 				<source>Sort by</source>
-			<target state="needs-translation">Sort by</target></trans-unit>
+			<target state="translated">Rendezés szempontja</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
 				<source>Uid</source>
-			<target state="needs-translation">Uid</target></trans-unit>
+			<target state="translated">UID</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
 				<source>Last edited</source>
-			<target state="needs-translation">Last edited</target></trans-unit>
+			<target state="translated">Utolsó szerkesztés</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve">
 				<source>Created</source>
-			<target state="needs-translation">Created</target></trans-unit>
+			<target state="translated">Létrehozva</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve">
 				<source>Given date/time</source>
-			<target state="needs-translation">Given date/time</target></trans-unit>
+			<target state="translated">Megadott dátum/idő</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
 				<source>Title / last name</source>
-			<target state="needs-translation">Title / last name</target></trans-unit>
+			<target state="translated">Cím / vezetéknév</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
 				<source>Manual</source>
-			<target state="needs-translation">Manual</target></trans-unit>
+			<target state="translated">Kézi</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
 				<source>Sort direction</source>
-			<target state="needs-translation">Sort direction</target></trans-unit>
+			<target state="translated">Rendezési irány</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve">
 				<source>Ascending</source>
-			<target state="needs-translation">Ascending</target></trans-unit>
+			<target state="translated">Növekvő</target></trans-unit>
       <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve">
 				<source>Descending</source>
-			<target state="needs-translation">Descending</target></trans-unit>
+			<target state="translated">Csökkenő</target></trans-unit>
       <trans-unit id="flexforms_general.dateField" xml:space="preserve">
 				<source>Date field to use</source>
-			<target state="needs-translation">Date field to use</target></trans-unit>
+			<target state="translated">Használandó dátummező</target></trans-unit>
       <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve">
 				<source>Given date/time</source>
-			<target state="needs-translation">Given date/time</target></trans-unit>
+			<target state="translated">Megadott dátum/idő</target></trans-unit>
       <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
 				<source>Archive date</source>
-			<target state="needs-translation">Archive date</target></trans-unit>
+			<target state="translated">Archiválási dátum</target></trans-unit>
       <trans-unit id="flexforms_general.categories" xml:space="preserve">
 				<source>Category selection</source>
-			<target state="needs-translation">Category selection</target></trans-unit>
+			<target state="translated">Kategóriaválasztás</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
 				<source>Category mode</source>
-			<target state="needs-translation">Category mode</target></trans-unit>
+			<target state="translated">Kategóriamód</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve">
 				<source>Don't care, show all</source>
-			<target state="needs-translation">Don't care, show all</target></trans-unit>
+			<target state="translated">Nem számít, mind megjelenítése</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve">
 				<source>Show items with selected categories (OR)</source>
-			<target state="needs-translation">Show items with selected categories (OR)</target></trans-unit>
+			<target state="translated">A kiválasztott kategóriákkal rendelkező elemek megjelenítése (VAGY)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve">
 				<source>Show items with selected categories (AND)</source>
-			<target state="needs-translation">Show items with selected categories (AND)</target></trans-unit>
+			<target state="translated">A kiválasztott kategóriákkal rendelkező elemek megjelenítése (ÉS)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve">
 				<source>Do NOT show items with selected categories (AND)</source>
-			<target state="needs-translation">Do NOT show items with selected categories (AND)</target></trans-unit>
+			<target state="translated">A kiválasztott kategóriákkal rendelkező elemek ne jelenjenek meg (ÉS)</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve">
 				<source>Do NOT show items with selected categories (OR)</source>
-			<target state="needs-translation">Do NOT show items with selected categories (OR)</target></trans-unit>
+			<target state="translated">A kiválasztott kategóriákkal rendelkező elemek ne jelenjenek meg (VAGY)</target></trans-unit>
       <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
 				<source>Include subcategories</source>
-			<target state="needs-translation">Include subcategories</target></trans-unit>
+			<target state="translated">Alkategóriák belefoglalása</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
 				<source>Time limit (LOW): higher than given time</source>
-			<target state="needs-translation">Time limit (LOW): higher than given time</target></trans-unit>
+			<target state="translated">Időkorlát (ALACSONY): a megadott időnél későbbi</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
 				<source>Time limit (HIGH): Address less than given time</source>
-			<target state="needs-translation">Time limit (HIGH): Address less than given time</target></trans-unit>
+			<target state="translated">Időkorlát (MAGAS): a megadott időnél korábbi cím</target></trans-unit>
       <trans-unit id="flexforms_general.topAddressRestriction" xml:space="preserve">
 				<source>Top Address</source>
-			<target state="needs-translation">Top Address</target></trans-unit>
+			<target state="translated">Kiemelt cím</target></trans-unit>
       <trans-unit id="flexforms_general.topAddressRestriction.1" xml:space="preserve">
 				<source>only Top Address records</source>
-			<target state="needs-translation">only Top Address records</target></trans-unit>
+			<target state="translated">csak kiemelt címek</target></trans-unit>
       <trans-unit id="flexforms_general.topAddressRestriction.2" xml:space="preserve">
 				<source>except Top Address records</source>
-			<target state="needs-translation">except Top Address records</target></trans-unit>
+			<target state="translated">a kiemelt címek kivételével</target></trans-unit>
       <trans-unit id="flexforms_general.selectedAddresses" xml:space="preserve">
 				<source>Show only selected address records</source>
-			<target state="needs-translation">Show only selected address records</target></trans-unit>
+			<target state="translated">Csak a kiválasztott címrekordok megjelenítése</target></trans-unit>
       <trans-unit id="flexforms_general.singleAddress" xml:space="preserve">
 				<source>Show a single address record</source>
-			<target state="needs-translation">Show a single address record</target></trans-unit>
+			<target state="translated">Egyetlen címrekord megjelenítése</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve">
 				<source>Allow preview of hidden records</source>
-			<target state="needs-translation">Allow preview of hidden records</target></trans-unit>
+			<target state="translated">Rejtett rekordok előnézetének engedélyezése</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
 				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
+			<target state="translated">Nem</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
 				<source>Yes</source>
-			<target state="needs-translation">Yes</target></trans-unit>
+			<target state="translated">Igen</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve">
 				<source>Defined in TypoScript</source>
-			<target state="needs-translation">Defined in TypoScript</target></trans-unit>
+			<target state="translated">TypoScriptben definiálva</target></trans-unit>
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
 				<source>Defined in TypoScript</source>
-			<target state="needs-translation">Defined in TypoScript</target></trans-unit>
+			<target state="translated">TypoScriptben definiálva</target></trans-unit>
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
-			<target state="needs-translation">[no constraint]</target></trans-unit>
+			<target state="translated">[nincs megkötés]</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
 				<source>Max width for media elements</source>
-			<target state="needs-translation">Max width for media elements</target></trans-unit>
+			<target state="translated">Médiaelemek maximális szélessége</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve">
 				<source>Max height for media elements</source>
-			<target state="needs-translation">Max height for media elements</target></trans-unit>
+			<target state="translated">Médiaelemek maximális magassága</target></trans-unit>
       <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve">
 				<source>Length of teaser (in chars)</source>
-			<target state="needs-translation">Length of teaser (in chars)</target></trans-unit>
+			<target state="translated">Teaser hossza (karakterben)</target></trans-unit>
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
 				<source>Template Layout</source>
-			<target state="needs-translation">Template Layout</target></trans-unit>
+			<target state="translated">Sablon elrendezés</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
+			<target state="translated">1</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
 				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
+			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
 				<source>Page ID for single address display</source>
-			<target state="needs-translation">Page ID for single address display</target></trans-unit>
+			<target state="translated">Egyedi cím megjelenítéséhez használt oldalazonosító</target></trans-unit>
       <trans-unit id="flexforms_additional.backPid" xml:space="preserve">
 				<source>Page ID to return to</source>
-			<target state="needs-translation">Page ID to return to</target></trans-unit>
+			<target state="translated">Visszatérési oldal azonosítója</target></trans-unit>
       <trans-unit id="flexforms_additional.listPid" xml:space="preserve">
 				<source>Page ID for list display</source>
-			<target state="needs-translation">Page ID for list display</target></trans-unit>
+			<target state="translated">Listamegjelenítéshez használt oldalazonosító</target></trans-unit>
       <trans-unit id="flexforms_additional.limit" xml:space="preserve">
 				<source>Max records displayed</source>
-			<target state="needs-translation">Max records displayed</target></trans-unit>
+			<target state="translated">Megjelenített rekordok maximális száma</target></trans-unit>
       <trans-unit id="flexforms_additional.offset" xml:space="preserve">
 				<source>Starting with given address record. 0 means first record, 1 the 2nd one!</source>
-			<target state="needs-translation">Starting with given address record. 0 means first record, 1 the 2nd one!</target></trans-unit>
+			<target state="translated">Kezdés a megadott címrekorddal. A 0 az első rekordot jelenti, az 1 a másodikat!</target></trans-unit>
       <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
 				<source>Hide the pagination</source>
-			<target state="needs-translation">Hide the pagination</target></trans-unit>
+			<target state="translated">Lapozás elrejtése</target></trans-unit>
       <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve">
 				<source>Items per Page</source>
-			<target state="needs-translation">Items per Page</target></trans-unit>
+			<target state="translated">Elemek oldalanként</target></trans-unit>
       <trans-unit id="flexforms_additional.topAddressFirst" xml:space="preserve">
 				<source>Sort &quot;Top address&quot; before</source>
-			<target state="needs-translation">Sort "Top address" before</target></trans-unit>
+			<target state="translated">"Kiemelt cím" rendezése előre</target></trans-unit>
       <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve">
 				<source>Disable override demand</source>
-			<target state="needs-translation">Disable override demand</target></trans-unit>
+			<target state="translated">Felülbírálási igény letiltása</target></trans-unit>
       <trans-unit id="flexforms_additional.disableMetaTags" xml:space="preserve">
 				<source>Disables setting of meta tags</source>
-			<target state="needs-translation">Disables setting of meta tags</target></trans-unit>
+			<target state="translated">A meta címkék beállításának letiltása</target></trans-unit>
       <trans-unit id="flexforms_additional.excludeAlreadyDisplayedAddress" xml:space="preserve">
 				<source>Exclude already displayed address</source>
-			<target state="needs-translation">Exclude already displayed address</target></trans-unit>
+			<target state="translated">Már megjelenített cím kizárása</target></trans-unit>
       <trans-unit id="flexforms_additional.tags" xml:space="preserve">
 				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
+			<target state="translated">Címkék</target></trans-unit>
       <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
 				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
-			<target state="needs-translation">Page with uid "%s" is not available anymore!</target></trans-unit>
+			<target state="translated">A(z) "%s" azonosítójú oldal már nem érhető el!</target></trans-unit>
       <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
 				<source>Record with uid "%s" is not available anymore!</source>
-			<target state="needs-translation">Record with uid "%s" is not available anymore!</target></trans-unit>
+			<target state="translated">A(z) "%s" azonosítójú rekord már nem érhető el!</target></trans-unit>
       <trans-unit id="pagemodule.addressNotAvailable" xml:space="preserve">
 				<source>Address record with uid &quot;%s&quot; is not available anymore!</source>
-			<target state="needs-translation">Address record with uid "%s" is not available anymore!</target></trans-unit>
+			<target state="translated">A(z) "%s" azonosítójú címrekord már nem érhető el!</target></trans-unit>
       <trans-unit id="pagemodule.switchToPage" xml:space="preserve">
 				<source>Switch to this page</source>
-			<target state="needs-translation">Switch to this page</target></trans-unit>
+			<target state="translated">Váltás erre az oldalra</target></trans-unit>
       <trans-unit id="pagemodule_simple" xml:space="preserve">
 				<source>Simple list</source>
-			<target state="needs-translation">Simple list</target></trans-unit>
+			<target state="translated">Egyszerű lista</target></trans-unit>
       <trans-unit id="pagemodule_advanced" xml:space="preserve">
 				<source>Advanced list</source>
-			<target state="needs-translation">Advanced list</target></trans-unit>
+			<target state="translated">Haladó lista</target></trans-unit>
       <trans-unit id="pagemodule_complex" xml:space="preserve">
 				<source>Full list</source>
-			<target state="needs-translation">Full list</target></trans-unit>
+			<target state="translated">Teljes lista</target></trans-unit>
       <trans-unit id="extmng.prependAtCopy" xml:space="preserve">
 				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
-			<target state="needs-translation">Prepend at copy: Prepend string "copy X".</target></trans-unit>
+			<target state="translated">Előtag másoláskor: a "copy X" szöveg előtagolása.</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction">
         <source>Category restriction: Restrict the available categories in address records. PageTsConfig:
 TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
 				</source>
-        <target state="needs-translation">Category restriction: Restrict the available categories in address records. PageTsConfig:
-TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+        <target state="translated">Kategóriakorlátozás: a címrekordokban elérhető kategóriák korlátozása. PageTsConfig:
+TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. Ez a funkció jelenleg fejlesztés alatt áll, és nem várható, hogy működik!
 				</target>
       </trans-unit>
       <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
 				<source>Categories from current page</source>
-			<target state="needs-translation">Categories from current page</target></trans-unit>
+			<target state="translated">Kategóriák az aktuális oldalról</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve">
 				<source>Categories from site root</source>
-			<target state="needs-translation">Categories from site root</target></trans-unit>
+			<target state="translated">Kategóriák a webhely gyökeréből</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve">
 				<source>Page TsConfig</source>
-			<target state="needs-translation">Page TsConfig</target></trans-unit>
+			<target state="translated">Page TsConfig</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve">
 				<source>No restriction</source>
-			<target state="needs-translation">No restriction</target></trans-unit>
+			<target state="translated">Nincs korlátozás</target></trans-unit>
       <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve">
 				<source>Editor needs to have permissions to all selected categories to save a address item</source>
-			<target state="needs-translation">Editor needs to have permissions to all selected categories to save a address item</target></trans-unit>
+			<target state="translated">A szerkesztőnek jogosultsággal kell rendelkeznie az összes kiválasztott kategóriára a cím elem mentéséhez</target></trans-unit>
       <trans-unit id="extmng.manualSorting" xml:space="preserve">
 				<source>Enable manual sorting of address records</source>
-			<target state="needs-translation">Enable manual sorting of address records</target></trans-unit>
+			<target state="translated">Címrekordok kézi rendezésének engedélyezése</target></trans-unit>
       <trans-unit id="extmng.contentElementRelation" xml:space="preserve">
 				<source>Use content element relation:If set, content elements can be added to address records.</source>
-			<target state="needs-translation">Use content element relation:If set, content elements can be added to address records.</target></trans-unit>
+			<target state="translated">Tartalomelem-kapcsolat használata:Ha be van jelölve, tartalomelemek adhatók hozzá a címrekordokhoz.</target></trans-unit>
       <trans-unit id="extmng.contentElementPreview" xml:space="preserve">
 				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
-			<target state="needs-translation">Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</target></trans-unit>
+			<target state="translated">Tartalomelem-kapcsolatok javított előnézete:Ha be van jelölve, a háttérrendszerben az előnézet az oldalmodulhoz hasonlóan jelenik meg.</target></trans-unit>
       <trans-unit id="extmng.tagPid" xml:space="preserve">
 				<source>Define pid of tag records:Tags are collected on one central page.</source>
-			<target state="needs-translation">Define pid of tag records:Tags are collected on one central page.</target></trans-unit>
+			<target state="translated">Címkerekordok pid-jének megadása:A címkék egy központi oldalon vannak összegyűjtve.</target></trans-unit>
       <trans-unit id="extmng.archiveDate" xml:space="preserve">
 				<source>Archive Date: Define if the archive date is a &quot;Date&quot; or &quot;Date &amp; Time&quot;</source>
-			<target state="needs-translation">Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</target></trans-unit>
+			<target state="translated">Archiválási dátum:Adja meg, hogy az archiválási dátum "Dátum" vagy "Dátum és idő" típusú-e</target></trans-unit>
       <trans-unit id="extmng.archiveDate.date" xml:space="preserve">
 				<source>Date</source>
-			<target state="needs-translation">Date</target></trans-unit>
+			<target state="translated">Dátum</target></trans-unit>
       <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve">
 				<source>Date &amp; Time</source>
-			<target state="needs-translation">Date &amp; Time</target></trans-unit>
+			<target state="translated">Dátum és idő</target></trans-unit>
       <trans-unit id="extmng.showImporter" xml:space="preserve">
 				<source>Show importer:Backend module to import into address</source>
-			<target state="needs-translation">Show importer:Backend module to import into address</target></trans-unit>
+			<target state="translated">Importáló megjelenítése:Címekbe importáló háttérrendszeri modul</target></trans-unit>
       <trans-unit id="extmng.storageUidImporter" xml:space="preserve">
 				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
-			<target state="needs-translation">UID of storage to use when importing files/images:Default (fileadmin) storage is 1</target></trans-unit>
+			<target state="translated">Fájlok/képek importálásakor használandó tároló UID-ja:Az alapértelmezett (fileadmin) tároló az 1</target></trans-unit>
       <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve">
 				<source>In which folder should the importer save files/images (has to exist)</source>
-			<target state="needs-translation">In which folder should the importer save files/images (has to exist)</target></trans-unit>
+			<target state="translated">Melyik mappába mentse az importáló a fájlokat/képeket (léteznie kell)</target></trans-unit>
       <trans-unit id="extmng.showAdministrationModule" xml:space="preserve">
 				<source>Show administration module:Backend module to administrate address records</source>
-			<target state="needs-translation">Show administration module:Backend module to administrate address records</target></trans-unit>
+			<target state="translated">Adminisztrációs modul megjelenítése:Címrekordok kezelésére szolgáló háttérrendszeri modul</target></trans-unit>
       <trans-unit id="extmng.rteForTeaser" xml:space="preserve">
 				<source>Enable a RTE for the teaser field.</source>
-			<target state="needs-translation">Enable a RTE for the teaser field.</target></trans-unit>
+			<target state="translated">RTE engedélyezése a teaser mezőhöz.</target></trans-unit>
       <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
 				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
-			<target state="needs-translation">Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</target></trans-unit>
+			<target state="translated">Kötelező dátummező letiltása:Ha be van jelölve, a dátummező nem kötelező, és új rekord létrehozásakor nem töltődik ki automatikusan.</target></trans-unit>
       <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
-			<target state="needs-translation">Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</target></trans-unit>
+			<target state="translated">Oldalfa elrejtése az adminisztrációs modulhoz: Az egyszerűbb használat érdekében rejtse el az oldalfát az adminisztrációs modul számára.</target></trans-unit>
       <trans-unit id="extmng.slugBehaviour" xml:space="preserve">
 				<source>Slug behaviour: uniqueInSite: The same slug can be used for address in different sites. Use this setting *only* if no address records are shared between sites. "unique" means that same address title will lead to different slug names.</source>
-			<target state="needs-translation">Slug behaviour: uniqueInSite: The same slug can be used for address in different sites. Use this setting *only* if no address records are shared between sites. "unique" means that same address title will lead to different slug names.</target></trans-unit>
+			<target state="translated">Slug-viselkedés: uniqueInSite: Ugyanaz a slug használható a címekhez különböző oldalakon. Ezt a beállítást *csak* akkor használja, ha nincsenek megosztott címrekordok az oldalak között. A "unique" azt jelenti, hogy ugyanaz a címmegnevezés különböző slug-nevekhez vezet.</target></trans-unit>
       <trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for address categories in the Backend</source>
-			<target state="needs-translation">Use this overlay for address categories in the Backend</target></trans-unit>
+			<target state="translated">Ennek az overlay-nek a használata a címkategóriákhoz a háttérrendszerben</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve">
 				<source>There are no languages available, so nothing to choose.</source>
-			<target state="needs-translation">There are no languages available, so nothing to choose.</target></trans-unit>
+			<target state="translated">Nincsenek elérhető nyelvek, így nincs mit választani.</target></trans-unit>
       <trans-unit id="start_import" xml:space="preserve">
 				<source>Start import with %s record(s).</source>
-			<target state="needs-translation">Start import with %s record(s).</target></trans-unit>
+			<target state="translated">Importálás indítása %s rekorddal.</target></trans-unit>
       <trans-unit id="tag_suggest" xml:space="preserve">
 				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
-			<target state="needs-translation">Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</target></trans-unit>
+			<target state="translated">A(z) "%s" címke nem található, szeretnéd létrehozni? &lt;strong&gt;Kattints ide&lt;/strong&gt;</target></trans-unit>
       <trans-unit id="tag_suggest2" xml:space="preserve">
 				<source>Tag could not be found, wanna create it? Click here!</source>
-			<target state="needs-translation">Tag could not be found, wanna create it? Click here!</target></trans-unit>
+			<target state="translated">A címke nem található, szeretnéd létrehozni? Kattints ide!</target></trans-unit>
       <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve">
 				<source>No tag submitted!</source>
-			<target state="needs-translation">No tag submitted!</target></trans-unit>
+			<target state="translated">Nincs címke elküldve!</target></trans-unit>
       <trans-unit id="tag_suggest_error_no-addressid" xml:space="preserve">
 				<source>No address id given!</source>
-			<target state="needs-translation">No address id given!</target></trans-unit>
+			<target state="translated">Nincs címazonosító megadva!</target></trans-unit>
       <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve">
 				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
-			<target state="needs-translation">No pid for the tag record could be found by reading settings of Extension Manager!</target></trans-unit>
+			<target state="translated">A bővítménykezelő beállításainak beolvasásakor nem található pid a címkerekordhoz!</target></trans-unit>
       <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve">
 				<source>No new tag created!</source>
-			<target state="needs-translation">No new tag created!</target></trans-unit>
+			<target state="translated">Nem jött létre új címke!</target></trans-unit>
       <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve">
 				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
-			<target state="needs-translation">No page defined to save tag. Please add the id in the settings of the extension manager.</target></trans-unit>
+			<target state="translated">Nincs megadva oldal a címke mentéséhez. Kérjük, adja meg az azonosítót a bővítménykezelő beállításaiban.</target></trans-unit>
       <trans-unit id="module.headline" xml:space="preserve">
 				<source>Settings</source>
-			<target state="needs-translation">Settings</target></trans-unit>
+			<target state="translated">Beállítások</target></trans-unit>
       <trans-unit id="module.recursive" xml:space="preserve">
 				<source>Recursive</source>
-			<target state="needs-translation">Recursive</target></trans-unit>
+			<target state="translated">Rekurzív</target></trans-unit>
       <trans-unit id="module.timeRange" xml:space="preserve">
 				<source>Time range</source>
-			<target state="needs-translation">Time range</target></trans-unit>
+			<target state="translated">Időtartomány</target></trans-unit>
       <trans-unit id="module.timeRestriction" xml:space="preserve">
 				<source>Time Restriction</source>
-			<target state="needs-translation">Time Restriction</target></trans-unit>
+			<target state="translated">Időkorlátozás</target></trans-unit>
       <trans-unit id="module.timeRestrictionHigh" xml:space="preserve">
 				<source>Time Restriction High</source>
-			<target state="needs-translation">Time Restriction High</target></trans-unit>
+			<target state="translated">Felső időkorlát</target></trans-unit>
       <trans-unit id="module.createNewCategory" xml:space="preserve">
 				<source>Create a new category</source>
-			<target state="needs-translation">Create a new category</target></trans-unit>
+			<target state="translated">Új kategória létrehozása</target></trans-unit>
       <trans-unit id="module.createNewAddressRecord" xml:space="preserve">
 				<source>Create new address record</source>
-			<target state="needs-translation">Create new address record</target></trans-unit>
+			<target state="translated">Új címrekord létrehozása</target></trans-unit>
       <trans-unit id="module.createNewTag" xml:space="preserve">
 				<source>Create new tag record</source>
-			<target state="needs-translation">Create new tag record</target></trans-unit>
+			<target state="translated">Új címkerekord létrehozása</target></trans-unit>
       <trans-unit id="module.topAddressYes" xml:space="preserve">
 				<source>Yes</source>
-			<target state="needs-translation">Yes</target></trans-unit>
+			<target state="translated">Igen</target></trans-unit>
       <trans-unit id="module.topAddressNo" xml:space="preserve">
 				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
+			<target state="translated">Nem</target></trans-unit>
       <trans-unit id="module.searchWord" xml:space="preserve">
 				<source>Search</source>
-			<target state="needs-translation">Search</target></trans-unit>
+			<target state="translated">Keresés</target></trans-unit>
       <trans-unit id="module.addressListing" xml:space="preserve">
 				<source>Address Listing</source>
-			<target state="needs-translation">Address Listing</target></trans-unit>
+			<target state="translated">Címek listája</target></trans-unit>
       <trans-unit id="module.addressCount" xml:space="preserve">
 				<source>%s address records</source>
-			<target state="needs-translation">%s address records</target></trans-unit>
+			<target state="translated">%s címrekord</target></trans-unit>
       <trans-unit id="module.addressPidListing" xml:space="preserve">
 				<source>Address Pid listing</source>
-			<target state="needs-translation">Address Pid listing</target></trans-unit>
+			<target state="translated">Címek pid-listája</target></trans-unit>
       <trans-unit id="administration.title" xml:space="preserve">
 				<source>Address administration</source>
-			<target state="needs-translation">Address administration</target></trans-unit>
+			<target state="translated">Címadminisztráció</target></trans-unit>
       <trans-unit id="administration.nopageselected" xml:space="preserve">
 				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
-			<target state="needs-translation">Please click the page title in the page tree to the left to show the records on that page.</target></trans-unit>
+			<target state="translated">Kérjük, kattintson a bal oldali oldalfán az oldal címére az azon az oldalon található rekordok megjelenítéséhez.</target></trans-unit>
       <trans-unit id="administration.addressPidListing.header" xml:space="preserve">
 				<source>List pages with count of address &amp; category records</source>
-			<target state="needs-translation">List pages with count of address &amp; category records</target></trans-unit>
+			<target state="translated">Oldalak listázása a cím- és kategóriarekordok számával</target></trans-unit>
       <trans-unit id="administration.addressPidListing.description" xml:space="preserve">
 				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the address entries of the page.
 				</source>
-			<target state="needs-translation">Choose a recursive level to display your page tree with the related entries. Click on the page title to show the address entries of the page.
+			<target state="translated">Válasszon rekurzív szintet az oldalfa kapcsolódó bejegyzésekkel történő megjelenítéséhez. Kattintson az oldal címére az oldal címbejegyzéseinek megjelenítéséhez.
 				</target></trans-unit>
       <trans-unit id="administration.nolimit" xml:space="preserve">
 				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
-			<target state="needs-translation">No limit defined in setting "%s"! Include the default TypoScript in the root page.</target></trans-unit>
+			<target state="translated">A(z) "%s" beállításban nincs korlát megadva! Adja hozzá az alapértelmezett TypoScriptet a gyökéroldalhoz.</target></trans-unit>
       <trans-unit id="administration.toggleForm" xml:space="preserve">
 				<source>Show/Hide filter</source>
-			<target state="needs-translation">Show/Hide filter</target></trans-unit>
+			<target state="translated">Szűrő megjelenítése/elrejtése</target></trans-unit>
       <trans-unit id="administration.noaddressfound" xml:space="preserve">
 				<source>No address found</source>
-			<target state="needs-translation">No address found</target></trans-unit>
+			<target state="translated">Nem található cím</target></trans-unit>
       <trans-unit id="administration.noaddressfoundText" xml:space="preserve">
 				<source>The current page does not contain any address records. Either select another page in the page tree on the left or create the first address record on this page.</source>
-			<target state="needs-translation">The current page does not contain any address records. Either select another page in the page tree on the left or create the first address record on this page.</target></trans-unit>
+			<target state="translated">Az aktuális oldal nem tartalmaz címrekordokat. Válasszon másik oldalt a bal oldali oldalfában, vagy hozza létre az első címrekordot ezen az oldalon.</target></trans-unit>
       <trans-unit id="administration.noaddressfoundSwitch" xml:space="preserve">
 				<source>See all pages containing address records</source>
-			<target state="needs-translation">See all pages containing address records</target></trans-unit>
+			<target state="translated">Az összes címrekordot tartalmazó oldal megtekintése</target></trans-unit>
       <trans-unit id="administration.filter.hidden" xml:space="preserve">
 				<source>Hidden</source>
-			<target state="needs-translation">Hidden</target></trans-unit>
+			<target state="translated">Rejtett</target></trans-unit>
       <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve">
 				<source>only hidden</source>
-			<target state="needs-translation">only hidden</target></trans-unit>
+			<target state="translated">csak rejtett</target></trans-unit>
       <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
 				<source>only non-hidden</source>
-			<target state="needs-translation">only non-hidden</target></trans-unit>
+			<target state="translated">csak nem rejtett</target></trans-unit>
       <trans-unit id="address-folder" xml:space="preserve">
 				<source>Address</source>
-			<target state="needs-translation">Address</target></trans-unit>
+			<target state="translated">Cím</target></trans-unit>
       <trans-unit id="import.header" xml:space="preserve">
 				<source>Address Importer</source>
-			<target state="needs-translation">Address Importer</target></trans-unit>
+			<target state="translated">Címimportáló</target></trans-unit>
       <trans-unit id="import.choose_a_job" xml:space="preserve">
 				<source>Choose a job</source>
-			<target state="needs-translation">Choose a job</target></trans-unit>
+			<target state="translated">Feladat kiválasztása</target></trans-unit>
       <trans-unit id="import.description" xml:space="preserve">
 				<source>This is the "Address importer module". </source>
-			<target state="needs-translation">This is the "Address importer module". </target></trans-unit>
+			<target state="translated">Ez a "Címimportáló modul". </target></trans-unit>
       <trans-unit id="import.done" xml:space="preserve">
 				<source>The import has been completed. Reload the module to start a new one.</source>
-			<target state="needs-translation">The import has been completed. Reload the module to start a new one.</target></trans-unit>
+			<target state="translated">Az importálás befejeződött. Töltse újra a modult egy új indításához.</target></trans-unit>
       <trans-unit id="import.backupwarning" xml:space="preserve">
 				<source>It's strongly recommended to backup all address tables before running an import job.</source>
-			<target state="needs-translation">It's strongly recommended to backup all address tables before running an import job.</target></trans-unit>
+			<target state="translated">Erősen ajánlott biztonsági mentést készíteni az összes címtábláról az importfeladat futtatása előtt.</target></trans-unit>
       <trans-unit id="import.backupwarning.header" xml:space="preserve">
 				<source>Important!</source>
-			<target state="needs-translation">Important!</target></trans-unit>
+			<target state="translated">Fontos!</target></trans-unit>
       <trans-unit id="import.nojobs" xml:space="preserve">
 				<source>No jobs available for the importer.</source>
-			<target state="needs-translation">No jobs available for the importer.</target></trans-unit>
+			<target state="translated">Az importálóhoz nincs elérhető feladat.</target></trans-unit>
       <trans-unit id="import.error.configuration.title" xml:space="preserve">
 				<source>The configuration for the import is incomplete!</source>
-			<target state="needs-translation">The configuration for the import is incomplete!</target></trans-unit>
+			<target state="translated">Az importálás konfigurációja hiányos!</target></trans-unit>
       <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve">
 				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
-			<target state="needs-translation">Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</target></trans-unit>
+			<target state="translated">Kérjük, adja meg a "resourceFolderImporter" beállítást a bővítménykezelő konfigurációjában! A megadott mappa tartalmazza az összes importált fájlt.</target></trans-unit>
       <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve">
 				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
-			<target state="needs-translation">The directory defined in the setting "resourceFolderImporter" does not exist!</target></trans-unit>
+			<target state="translated">A "resourceFolderImporter" beállításban megadott mappa nem létezik!</target></trans-unit>
       <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
 				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
-			<target state="needs-translation">Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</target></trans-unit>
+			<target state="translated">Kérjük, adja meg a "storageUidImporter" beállítást a bővítménykezelő konfigurációjában! A megadott azonosító a használt fájltároló.</target></trans-unit>
       <trans-unit id="record.savingdisabled.header">
         <source>Saving is disabled</source>
-        <target state="needs-translation">Saving is disabled</target>
+        <target state="translated">A mentés le van tiltva</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content">
         <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="needs-translation">This record has the following categories assigned that are not defined in your permissions:</target>
+        <target state="translated">Ehhez a rekordhoz olyan kategóriák vannak hozzárendelve, amelyek nem szerepelnek az Ön jogosultságaiban:</target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title">
         <source>Content elements are hidden</source>
-        <target state="needs-translation">Content elements are hidden</target>
+        <target state="translated">A tartalomelemek rejtve vannak</target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.description">
         <source>Content elements are hidden in sys folders of type "address"!</source>
-        <target state="needs-translation">Content elements are hidden in sys folders of type "address"!</target>
+        <target state="translated">A tartalomelemek rejtve vannak az "address" típusú rendszerkönyvtárakban!</target>
       </trans-unit>
       <trans-unit id="wizard.title.address" xml:space="preserve">
 				<source>Address</source>
-			<target state="needs-translation">Address</target></trans-unit>
+			<target state="translated">Cím</target></trans-unit>
       <trans-unit id="wizard.title.person" xml:space="preserve">
 				<source>Person</source>
-			<target state="needs-translation">Person</target></trans-unit>
+			<target state="translated">Személy</target></trans-unit>
     </body>
   </file>
 </xliff>

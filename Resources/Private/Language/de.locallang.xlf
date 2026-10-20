@@ -54,9 +54,9 @@
       <trans-unit id="categories" xml:space="preserve">
 				<source>Categories</source>
 			<target state="translated">Kategorien</target></trans-unit>
-      <trans-unit id="tags" xml:space="preserve">
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
-			<target state="translated">Schlagworte</target></trans-unit>
+			<target state="final">Schlagworte</target></trans-unit>
       <trans-unit id="entry" xml:space="preserve">
 				<source>entry</source>
 			<target state="translated">Eintrag</target></trans-unit>

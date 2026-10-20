@@ -26,7 +26,7 @@
 			<target state="translated">Listenansicht</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
 				<source>List view (without overloading detail view)</source>
-			<target state="needs-translation">List view (without overloading detail view)</target></trans-unit>
+			<target state="translated">Listenansicht (ohne Überladen der Detailansicht)</target></trans-unit>
       <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve">
 				<source>Detail view</source>
 			<target state="translated">Detailansicht</target></trans-unit>
@@ -48,9 +48,9 @@
       <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
 				<source>Others</source>
 			<target state="needs-translation">Others</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
 				<source>Tag list</source>
-			<target state="translated">Schlagwort-Liste</target></trans-unit>
+			<target state="final">Schlagwort-Liste</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
 				<source>Archive</source>
 			<target state="translated">Archiv</target></trans-unit>

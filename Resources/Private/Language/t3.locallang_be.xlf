@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve">
+				<source>Address system</source>
+			<target>crwdns229825:0crwdne229825:0</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
+				<source>Address system</source>
+			<target>crwdns229827:0crwdne229827:0</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve">
+				<source>Settings</source>
+			<target>crwdns229829:0crwdne229829:0</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve">
+				<source>Additional</source>
+			<target>crwdns229831:0crwdne229831:0</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve">
+				<source>Template</source>
+			<target>crwdns229833:0crwdne229833:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve">
+				<source>What to display</source>
+			<target>crwdns229835:0crwdne229835:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_list" xml:space="preserve">
+				<source>List view</source>
+			<target>crwdns229837:0crwdne229837:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_listOnly" xml:space="preserve">
+				<source>List view (without overloading detail view)</source>
+			<target>crwdns229839:0crwdne229839:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_detail" xml:space="preserve">
+				<source>Detail view</source>
+			<target>crwdns229841:0crwdne229841:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_searchform" xml:space="preserve">
+				<source>Search form</source>
+			<target>crwdns229843:0crwdne229843:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.address_searchresult" xml:space="preserve">
+				<source>Search result</source>
+			<target>crwdns229845:0crwdne229845:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
+				<source>Category Menu</source>
+			<target>crwdns229847:0crwdne229847:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
+				<source>No view yet configured</source>
+			<target>crwdns229849:0crwdne229849:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
+				<source>Search</source>
+			<target>crwdns229851:0crwdne229851:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
+				<source>Others</source>
+			<target>crwdns229853:0crwdne229853:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
+				<source>Tag list</source>
+			<target>crwdns229855:0crwdne229855:0</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
+				<source>Archive</source>
+			<target>crwdns229857:0crwdne229857:0</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
+				<source>Only active (non archived)</source>
+			<target>crwdns229859:0crwdne229859:0</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
+				<source>Archived</source>
+			<target>crwdns229861:0crwdne229861:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve">
+				<source>Sort by</source>
+			<target>crwdns229863:0crwdne229863:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
+				<source>Uid</source>
+			<target>crwdns229865:0crwdne229865:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
+				<source>Last edited</source>
+			<target>crwdns229869:0crwdne229869:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve">
+				<source>Created</source>
+			<target>crwdns229871:0crwdne229871:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve">
+				<source>Given date/time</source>
+			<target>crwdns229873:0crwdne229873:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
+				<source>Title / last name</source>
+			<target>crwdns278671:0crwdne278671:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.manual" xml:space="preserve">
+				<source>Manual</source>
+			<target>crwdns278673:0crwdne278673:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
+				<source>Sort direction</source>
+			<target>crwdns229879:0crwdne229879:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve">
+				<source>Ascending</source>
+			<target>crwdns229881:0crwdne229881:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve">
+				<source>Descending</source>
+			<target>crwdns229883:0crwdne229883:0</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve">
+				<source>Date field to use</source>
+			<target>crwdns229885:0crwdne229885:0</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve">
+				<source>Given date/time</source>
+			<target>crwdns229887:0crwdne229887:0</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
+				<source>Archive date</source>
+			<target>crwdns229889:0crwdne229889:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve">
+				<source>Category selection</source>
+			<target>crwdns229891:0crwdne229891:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
+				<source>Category mode</source>
+			<target>crwdns229893:0crwdne229893:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve">
+				<source>Don't care, show all</source>
+			<target>crwdns229895:0crwdne229895:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve">
+				<source>Show items with selected categories (OR)</source>
+			<target>crwdns229897:0crwdne229897:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve">
+				<source>Show items with selected categories (AND)</source>
+			<target>crwdns229899:0crwdne229899:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve">
+				<source>Do NOT show items with selected categories (AND)</source>
+			<target>crwdns229901:0crwdne229901:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve">
+				<source>Do NOT show items with selected categories (OR)</source>
+			<target>crwdns229903:0crwdne229903:0</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
+				<source>Include subcategories</source>
+			<target>crwdns229905:0crwdne229905:0</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
+				<source>Time limit (LOW): higher than given time</source>
+			<target>crwdns229907:0crwdne229907:0</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
+				<source>Time limit (HIGH): Address less than given time</source>
+			<target>crwdns229909:0crwdne229909:0</target></trans-unit>
+      <trans-unit id="flexforms_general.topAddressRestriction" xml:space="preserve">
+				<source>Top Address</source>
+			<target>crwdns229911:0crwdne229911:0</target></trans-unit>
+      <trans-unit id="flexforms_general.topAddressRestriction.1" xml:space="preserve">
+				<source>only Top Address records</source>
+			<target>crwdns229913:0crwdne229913:0</target></trans-unit>
+      <trans-unit id="flexforms_general.topAddressRestriction.2" xml:space="preserve">
+				<source>except Top Address records</source>
+			<target>crwdns229915:0crwdne229915:0</target></trans-unit>
+      <trans-unit id="flexforms_general.selectedAddresses" xml:space="preserve">
+				<source>Show only selected address records</source>
+			<target>crwdns229917:0crwdne229917:0</target></trans-unit>
+      <trans-unit id="flexforms_general.singleAddress" xml:space="preserve">
+				<source>Show a single address record</source>
+			<target>crwdns229919:0crwdne229919:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve">
+				<source>Allow preview of hidden records</source>
+			<target>crwdns229921:0crwdne229921:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
+				<source>No</source>
+			<target>crwdns229923:0crwdne229923:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
+				<source>Yes</source>
+			<target>crwdns229925:0crwdne229925:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve">
+				<source>Defined in TypoScript</source>
+			<target>crwdns229927:0crwdne229927:0</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
+				<source>Defined in TypoScript</source>
+			<target>crwdns229929:0crwdne229929:0</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
+				<source>[no constraint]</source>
+			<target>crwdns229931:0crwdne229931:0</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
+				<source>Max width for media elements</source>
+			<target>crwdns229933:0crwdne229933:0</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve">
+				<source>Max height for media elements</source>
+			<target>crwdns229935:0crwdne229935:0</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve">
+				<source>Length of teaser (in chars)</source>
+			<target>crwdns229937:0crwdne229937:0</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
+				<source>Template Layout</source>
+			<target>crwdns229939:0crwdne229939:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
+				<source>1</source>
+			<target>crwdns229941:0crwdne229941:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
+				<source>2</source>
+			<target>crwdns229943:0crwdne229943:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
+				<source>Page ID for single address display</source>
+			<target>crwdns229945:0crwdne229945:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve">
+				<source>Page ID to return to</source>
+			<target>crwdns229947:0crwdne229947:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve">
+				<source>Page ID for list display</source>
+			<target>crwdns229949:0crwdne229949:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve">
+				<source>Max records displayed</source>
+			<target>crwdns229951:0crwdne229951:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve">
+				<source>Starting with given address record. 0 means first record, 1 the 2nd one!</source>
+			<target>crwdns229953:0crwdne229953:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
+				<source>Hide the pagination</source>
+			<target>crwdns229955:0crwdne229955:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve">
+				<source>Items per Page</source>
+			<target>crwdns229957:0crwdne229957:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.topAddressFirst" xml:space="preserve">
+				<source>Sort &quot;Top address&quot; before</source>
+			<target>crwdns229959:0crwdne229959:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve">
+				<source>Disable override demand</source>
+			<target>crwdns229961:0crwdne229961:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableMetaTags" xml:space="preserve">
+				<source>Disables setting of meta tags</source>
+			<target>crwdns229963:0crwdne229963:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedAddress" xml:space="preserve">
+				<source>Exclude already displayed address</source>
+			<target>crwdns229965:0crwdne229965:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve">
+				<source>Tags</source>
+			<target>crwdns229967:0crwdne229967:0</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
+				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
+			<target>crwdns229969:0%scrwdne229969:0</target></trans-unit>
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
+				<source>Record with uid "%s" is not available anymore!</source>
+			<target>crwdns229971:0%scrwdne229971:0</target></trans-unit>
+      <trans-unit id="pagemodule.addressNotAvailable" xml:space="preserve">
+				<source>Address record with uid &quot;%s&quot; is not available anymore!</source>
+			<target>crwdns229973:0%scrwdne229973:0</target></trans-unit>
+      <trans-unit id="pagemodule.switchToPage" xml:space="preserve">
+				<source>Switch to this page</source>
+			<target>crwdns229975:0crwdne229975:0</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve">
+				<source>Simple list</source>
+			<target>crwdns229977:0crwdne229977:0</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve">
+				<source>Advanced list</source>
+			<target>crwdns229979:0crwdne229979:0</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve">
+				<source>Full list</source>
+			<target>crwdns229981:0crwdne229981:0</target></trans-unit>
+      <trans-unit id="extmng.prependAtCopy" xml:space="preserve">
+				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
+			<target>crwdns229983:0crwdne229983:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction">
+        <source>Category restriction: Restrict the available categories in address records. PageTsConfig:
+TCEFORM.tx_address_domain_model_address.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+				</source>
+        <target>crwdns229985:0crwdne229985:0</target>
+      </trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
+				<source>Categories from current page</source>
+			<target>crwdns229987:0crwdne229987:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve">
+				<source>Categories from site root</source>
+			<target>crwdns229989:0crwdne229989:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve">
+				<source>Page TsConfig</source>
+			<target>crwdns229991:0crwdne229991:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve">
+				<source>No restriction</source>
+			<target>crwdns229993:0crwdne229993:0</target></trans-unit>
+      <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve">
+				<source>Editor needs to have permissions to all selected categories to save a address item</source>
+			<target>crwdns229995:0crwdne229995:0</target></trans-unit>
+      <trans-unit id="extmng.manualSorting" xml:space="preserve">
+				<source>Enable manual sorting of address records</source>
+			<target>crwdns229997:0crwdne229997:0</target></trans-unit>
+      <trans-unit id="extmng.contentElementRelation" xml:space="preserve">
+				<source>Use content element relation:If set, content elements can be added to address records.</source>
+			<target>crwdns229999:0crwdne229999:0</target></trans-unit>
+      <trans-unit id="extmng.contentElementPreview" xml:space="preserve">
+				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
+			<target>crwdns230001:0crwdne230001:0</target></trans-unit>
+      <trans-unit id="extmng.tagPid" xml:space="preserve">
+				<source>Define pid of tag records:Tags are collected on one central page.</source>
+			<target>crwdns230003:0crwdne230003:0</target></trans-unit>
+      <trans-unit id="extmng.archiveDate" xml:space="preserve">
+				<source>Archive Date: Define if the archive date is a &quot;Date&quot; or &quot;Date &amp; Time&quot;</source>
+			<target>crwdns230005:0crwdne230005:0</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.date" xml:space="preserve">
+				<source>Date</source>
+			<target>crwdns230007:0crwdne230007:0</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve">
+				<source>Date &amp; Time</source>
+			<target>crwdns230009:0crwdne230009:0</target></trans-unit>
+      <trans-unit id="extmng.showImporter" xml:space="preserve">
+				<source>Show importer:Backend module to import into address</source>
+			<target>crwdns230011:0crwdne230011:0</target></trans-unit>
+      <trans-unit id="extmng.storageUidImporter" xml:space="preserve">
+				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
+			<target>crwdns230013:0crwdne230013:0</target></trans-unit>
+      <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve">
+				<source>In which folder should the importer save files/images (has to exist)</source>
+			<target>crwdns230015:0crwdne230015:0</target></trans-unit>
+      <trans-unit id="extmng.showAdministrationModule" xml:space="preserve">
+				<source>Show administration module:Backend module to administrate address records</source>
+			<target>crwdns230017:0crwdne230017:0</target></trans-unit>
+      <trans-unit id="extmng.rteForTeaser" xml:space="preserve">
+				<source>Enable a RTE for the teaser field.</source>
+			<target>crwdns230019:0crwdne230019:0</target></trans-unit>
+      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
+				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
+			<target>crwdns230021:0crwdne230021:0</target></trans-unit>
+      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
+				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			<target>crwdns230023:0crwdne230023:0</target></trans-unit>
+      <trans-unit id="extmng.slugBehaviour" xml:space="preserve">
+				<source>Slug behaviour: uniqueInSite: The same slug can be used for address in different sites. Use this setting *only* if no address records are shared between sites. "unique" means that same address title will lead to different slug names.</source>
+			<target>crwdns230025:0crwdne230025:0</target></trans-unit>
+      <trans-unit id="usersettings.overlay" xml:space="preserve">
+				<source>Use this overlay for address categories in the Backend</source>
+			<target>crwdns230027:0crwdne230027:0</target></trans-unit>
+      <trans-unit id="usersettings.no-languages-available" xml:space="preserve">
+				<source>There are no languages available, so nothing to choose.</source>
+			<target>crwdns230029:0crwdne230029:0</target></trans-unit>
+      <trans-unit id="start_import" xml:space="preserve">
+				<source>Start import with %s record(s).</source>
+			<target>crwdns230031:0%scrwdne230031:0</target></trans-unit>
+      <trans-unit id="tag_suggest" xml:space="preserve">
+				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+			<target>crwdns230033:0%scrwdne230033:0</target></trans-unit>
+      <trans-unit id="tag_suggest2" xml:space="preserve">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			<target>crwdns230035:0crwdne230035:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve">
+				<source>No tag submitted!</source>
+			<target>crwdns230037:0crwdne230037:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-addressid" xml:space="preserve">
+				<source>No address id given!</source>
+			<target>crwdns230039:0crwdne230039:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve">
+				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
+			<target>crwdns230041:0crwdne230041:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve">
+				<source>No new tag created!</source>
+			<target>crwdns230043:0crwdne230043:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve">
+				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
+			<target>crwdns230045:0crwdne230045:0</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve">
+				<source>Settings</source>
+			<target>crwdns230047:0crwdne230047:0</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve">
+				<source>Recursive</source>
+			<target>crwdns230049:0crwdne230049:0</target></trans-unit>
+      <trans-unit id="module.timeRange" xml:space="preserve">
+				<source>Time range</source>
+			<target>crwdns230051:0crwdne230051:0</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve">
+				<source>Time Restriction</source>
+			<target>crwdns230053:0crwdne230053:0</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve">
+				<source>Time Restriction High</source>
+			<target>crwdns230055:0crwdne230055:0</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve">
+				<source>Create a new category</source>
+			<target>crwdns230057:0crwdne230057:0</target></trans-unit>
+      <trans-unit id="module.createNewAddressRecord" xml:space="preserve">
+				<source>Create new address record</source>
+			<target>crwdns230059:0crwdne230059:0</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve">
+				<source>Create new tag record</source>
+			<target>crwdns230061:0crwdne230061:0</target></trans-unit>
+      <trans-unit id="module.topAddressYes" xml:space="preserve">
+				<source>Yes</source>
+			<target>crwdns230063:0crwdne230063:0</target></trans-unit>
+      <trans-unit id="module.topAddressNo" xml:space="preserve">
+				<source>No</source>
+			<target>crwdns230065:0crwdne230065:0</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve">
+				<source>Search</source>
+			<target>crwdns230067:0crwdne230067:0</target></trans-unit>
+      <trans-unit id="module.addressListing" xml:space="preserve">
+				<source>Address Listing</source>
+			<target>crwdns230069:0crwdne230069:0</target></trans-unit>
+      <trans-unit id="module.addressCount" xml:space="preserve">
+				<source>%s address records</source>
+			<target>crwdns230071:0%scrwdne230071:0</target></trans-unit>
+      <trans-unit id="module.addressPidListing" xml:space="preserve">
+				<source>Address Pid listing</source>
+			<target>crwdns230073:0crwdne230073:0</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve">
+				<source>Address administration</source>
+			<target>crwdns230075:0crwdne230075:0</target></trans-unit>
+      <trans-unit id="administration.nopageselected" xml:space="preserve">
+				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
+			<target>crwdns230077:0crwdne230077:0</target></trans-unit>
+      <trans-unit id="administration.addressPidListing.header" xml:space="preserve">
+				<source>List pages with count of address &amp; category records</source>
+			<target>crwdns230079:0crwdne230079:0</target></trans-unit>
+      <trans-unit id="administration.addressPidListing.description" xml:space="preserve">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the address entries of the page.
+				</source>
+			<target>crwdns230081:0crwdne230081:0</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve">
+				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
+			<target>crwdns230083:0%scrwdne230083:0</target></trans-unit>
+      <trans-unit id="administration.toggleForm" xml:space="preserve">
+				<source>Show/Hide filter</source>
+			<target>crwdns230085:0crwdne230085:0</target></trans-unit>
+      <trans-unit id="administration.noaddressfound" xml:space="preserve">
+				<source>No address found</source>
+			<target>crwdns230087:0crwdne230087:0</target></trans-unit>
+      <trans-unit id="administration.noaddressfoundText" xml:space="preserve">
+				<source>The current page does not contain any address records. Either select another page in the page tree on the left or create the first address record on this page.</source>
+			<target>crwdns230089:0crwdne230089:0</target></trans-unit>
+      <trans-unit id="administration.noaddressfoundSwitch" xml:space="preserve">
+				<source>See all pages containing address records</source>
+			<target>crwdns230091:0crwdne230091:0</target></trans-unit>
+      <trans-unit id="administration.filter.hidden" xml:space="preserve">
+				<source>Hidden</source>
+			<target>crwdns230093:0crwdne230093:0</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve">
+				<source>only hidden</source>
+			<target>crwdns230095:0crwdne230095:0</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
+				<source>only non-hidden</source>
+			<target>crwdns230097:0crwdne230097:0</target></trans-unit>
+      <trans-unit id="address-folder" xml:space="preserve">
+				<source>Address</source>
+			<target>crwdns230099:0crwdne230099:0</target></trans-unit>
+      <trans-unit id="import.header" xml:space="preserve">
+				<source>Address Importer</source>
+			<target>crwdns230101:0crwdne230101:0</target></trans-unit>
+      <trans-unit id="import.choose_a_job" xml:space="preserve">
+				<source>Choose a job</source>
+			<target>crwdns230103:0crwdne230103:0</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve">
+				<source>This is the "Address importer module". </source>
+			<target>crwdns230105:0crwdne230105:0</target></trans-unit>
+      <trans-unit id="import.done" xml:space="preserve">
+				<source>The import has been completed. Reload the module to start a new one.</source>
+			<target>crwdns230107:0crwdne230107:0</target></trans-unit>
+      <trans-unit id="import.backupwarning" xml:space="preserve">
+				<source>It's strongly recommended to backup all address tables before running an import job.</source>
+			<target>crwdns230109:0crwdne230109:0</target></trans-unit>
+      <trans-unit id="import.backupwarning.header" xml:space="preserve">
+				<source>Important!</source>
+			<target>crwdns230111:0crwdne230111:0</target></trans-unit>
+      <trans-unit id="import.nojobs" xml:space="preserve">
+				<source>No jobs available for the importer.</source>
+			<target>crwdns230113:0crwdne230113:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.title" xml:space="preserve">
+				<source>The configuration for the import is incomplete!</source>
+			<target>crwdns230115:0crwdne230115:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve">
+				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
+			<target>crwdns230117:0crwdne230117:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve">
+				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
+			<target>crwdns230119:0crwdne230119:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			<target>crwdns230121:0crwdne230121:0</target></trans-unit>
+      <trans-unit id="record.savingdisabled.header">
+        <source>Saving is disabled</source>
+        <target>crwdns230123:0crwdne230123:0</target>
+      </trans-unit>
+      <trans-unit id="record.savingdisabled.content">
+        <source>This record has the following categories assigned that are not defined in your permissions:</source>
+        <target>crwdns230125:0crwdne230125:0</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.title">
+        <source>Content elements are hidden</source>
+        <target>crwdns230127:0crwdne230127:0</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.description">
+        <source>Content elements are hidden in sys folders of type "address"!</source>
+        <target>crwdns230129:0crwdne230129:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.title.address" xml:space="preserve">
+				<source>Address</source>
+			<target>crwdns230131:0crwdne230131:0</target></trans-unit>
+      <trans-unit id="wizard.title.person" xml:space="preserve">
+				<source>Person</source>
+			<target>crwdns230133:0crwdne230133:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
