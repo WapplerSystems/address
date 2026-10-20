@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:52Z" product-name="address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve">
+				<source>Link record</source>
+			<target>crwdns298514:0crwdne298514:0</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve">
+				<source>Relation to other pages and records.</source>
+			<target>crwdns298516:0crwdne298516:0</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve">
+				<source>See also the website http://www.address.com/</source>
+			<target>crwdns298518:0crwdne298518:0</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target>crwdns298520:0crwdne298520:0</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve">
+				<source>Optional title of a link.</source>
+			<target>crwdns298522:0crwdne298522:0</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve">
+				<source>Description of a link.</source>
+			<target>crwdns298524:0crwdne298524:0</target></trans-unit>
+      <trans-unit id="uri.description" xml:space="preserve">
+				<source>Link to a file, ... .</source>
+			<target>crwdns298526:0crwdne298526:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
