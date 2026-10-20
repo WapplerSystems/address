@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:17Z" product-name="address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve">
+				<source>Tag record</source>
+			<target>crwdns389178:0crwdne389178:0</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve">
+				<source>Address records can be tagged by those records</source>
+			<target>crwdns389180:0crwdne389180:0</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve">
+				<source>See also the website http://www.address.com/</source>
+			<target>crwdns389182:0crwdne389182:0</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target>crwdns389184:0crwdne389184:0</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve">
+				<source>Title of the tag.</source>
+			<target>crwdns389186:0crwdne389186:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
