@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve">
+				<source>Address record</source>
+			<target>crwdns298382:0crwdne298382:0</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve">
+				<source>Address system.</source>
+			<target>crwdns298384:0crwdne298384:0</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+				<source>Language of the address record.</source>
+			<target>crwdns298386:0crwdne298386:0</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve">
+				<source>Define a date on which the address record should be shown.</source>
+			<target>crwdns298388:0crwdne298388:0</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve">
+				<source>Define a date on which the address record should be hidden.</source>
+			<target>crwdns298390:0crwdne298390:0</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve">
+				<source>Select the user groups which are allowed to see the address record.</source>
+			<target>crwdns298392:0crwdne298392:0</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve">
+				<source>If checked, this address record can only be edited by administrators.</source>
+			<target>crwdns298394:0crwdne298394:0</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden records are not shown in the frontend.</source>
+			<target>crwdns298396:0crwdne298396:0</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve">
+				<source>Address title</source>
+			<target>crwdns298398:0crwdne298398:0</target></trans-unit>
+      <trans-unit id="alternative_title.description" xml:space="preserve">
+				<source>Alternative Title will be used as the title for the browser window / tab</source>
+			<target>crwdns298400:0crwdne298400:0</target></trans-unit>
+      <trans-unit id="teaser.description" xml:space="preserve">
+				<source>Be aware that it can be cropped.</source>
+			<target>crwdns298402:0crwdne298402:0</target></trans-unit>
+      <trans-unit id="type.description" xml:space="preserve">
+				<source>Select the type which can be either a normal address record, a link to an internal page or a link to an external page.</source>
+			<target>crwdns298404:0crwdne298404:0</target></trans-unit>
+      <trans-unit id="istopaddress.description" xml:space="preserve">
+				<source>Top address records can get a special treated concerning layout, sorting, ...</source>
+			<target>crwdns298406:0crwdne298406:0</target></trans-unit>
+      <trans-unit id="author.description" xml:space="preserve">
+				<source>Author of the address record</source>
+			<target>crwdns298408:0crwdne298408:0</target></trans-unit>
+      <trans-unit id="author_email.description" xml:space="preserve">
+				<source>Email address of the author</source>
+			<target>crwdns298410:0crwdne298410:0</target></trans-unit>
+      <trans-unit id="datetime.description" xml:space="preserve">
+				<source>Date of the address record</source>
+			<target>crwdns298412:0crwdne298412:0</target></trans-unit>
+      <trans-unit id="archive.description" xml:space="preserve">
+				<source>Archive date. A date is required if the address record should once be treated as archived address.</source>
+			<target>crwdns298414:0crwdne298414:0</target></trans-unit>
+      <trans-unit id="bodytext.description" xml:space="preserve">
+				<source>Main content of the address record</source>
+			<target>crwdns298416:0crwdne298416:0</target></trans-unit>
+      <trans-unit id="categories.description" xml:space="preserve">
+				<source>Select the categories which are related to this record.</source>
+			<target>crwdns298418:0crwdne298418:0</target></trans-unit>
+      <trans-unit id="tags.description" xml:space="preserve">
+				<source>Define and select tags which fit to the article.</source>
+			<target>crwdns298420:0crwdne298420:0</target></trans-unit>
+      <trans-unit id="content_elements.description" xml:space="preserve">
+				<source>Content elements can be used to generate feature rich address articles.</source>
+			<target>crwdns298422:0crwdne298422:0</target></trans-unit>
+      <trans-unit id="keywords.description" xml:space="preserve">
+				<source>Define keywords which can be used for SEO optimizations.</source>
+			<target>crwdns298424:0crwdne298424:0</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve">
+				<source>Define a description which can be used for SEO optimizations.</source>
+			<target>crwdns298426:0crwdne298426:0</target></trans-unit>
+      <trans-unit id="related.description" xml:space="preserve">
+				<source>Select related address records.</source>
+			<target>crwdns298428:0crwdne298428:0</target></trans-unit>
+      <trans-unit id="related_from.description" xml:space="preserve">
+				<source>Show address which select current address record as related.</source>
+			<target>crwdns298430:0crwdne298430:0</target></trans-unit>
+      <trans-unit id="related_links.description" xml:space="preserve">
+				<source>Define related links to internal and external pages.</source>
+			<target>crwdns298432:0crwdne298432:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
