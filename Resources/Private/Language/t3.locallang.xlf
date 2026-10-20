@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="address" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="msg.searchResultText" xml:space="preserve">
+				<source>There are %1$s results for "%2$s".</source>
+			<target>crwdns389412:0%1$scrwdnd389412:0%2$scrwdne389412:0</target></trans-unit>
+      <trans-unit id="btn.searchStart" xml:space="preserve">
+				<source>Start search</source>
+			<target>crwdns389414:0crwdne389414:0</target></trans-unit>
+      <trans-unit id="msg.searchNoResult" xml:space="preserve">
+				<source>No address found.</source>
+			<target>crwdns389416:0crwdne389416:0</target></trans-unit>
+      <trans-unit id="lbl.searchSubject" xml:space="preserve">
+				<source>Keyword</source>
+			<target>crwdns389418:0crwdne389418:0</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve">
+				<source>Minimum Date</source>
+			<target>crwdns389420:0crwdne389420:0</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve">
+				<source>Maximum Date</source>
+			<target>crwdns389422:0crwdne389422:0</target></trans-unit>
+      <trans-unit id="btn.details" xml:space="preserve">
+				<source>View details</source>
+			<target>crwdns389424:0crwdne389424:0</target></trans-unit>
+      <trans-unit id="btn.back" xml:space="preserve">
+				<source>Back</source>
+			<target>crwdns389426:0crwdne389426:0</target></trans-unit>
+      <trans-unit id="related-address" xml:space="preserve">
+				<source>Related Address</source>
+			<target>crwdns389428:0crwdne389428:0</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve">
+				<source>Related Files</source>
+			<target>crwdns389430:0crwdne389430:0</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve">
+				<source>Related Links</source>
+			<target>crwdns389432:0crwdne389432:0</target></trans-unit>
+      <trans-unit id="author" xml:space="preserve">
+				<source>created by %s</source>
+			<target>crwdns389434:0%scrwdne389434:0</target></trans-unit>
+      <trans-unit id="author_simple" xml:space="preserve">
+				<source>created by</source>
+			<target>crwdns389436:0crwdne389436:0</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve">
+				<source>Page %s of %s.</source>
+			<target>crwdns389438:0%scrwdnd389438:0%scrwdne389438:0</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve">
+				<source>Next</source>
+			<target>crwdns389440:0crwdne389440:0</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve">
+				<source>Previous</source>
+			<target>crwdns389442:0crwdne389442:0</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve">
+				<source>Categories</source>
+			<target>crwdns389444:0crwdne389444:0</target></trans-unit>
+      <trans-unit id="tags" xml:space="preserve">
+				<source>Tags</source>
+			<target>crwdns389446:0crwdne389446:0</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve">
+				<source>entry</source>
+			<target>crwdns389448:0crwdne389448:0</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve">
+				<source>entries</source>
+			<target>crwdns389450:0crwdne389450:0</target></trans-unit>
+      <trans-unit id="list_noaddressfound" xml:space="preserve">
+				<source>No address available.</source>
+			<target>crwdns389452:0crwdne389452:0</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve">
+				<source>No categories available.</source>
+			<target>crwdns389454:0crwdne389454:0</target></trans-unit>
+      <trans-unit id="addressNotFound" xml:space="preserve">
+				<source>The address record is not available anymore.</source>
+			<target>crwdns389456:0crwdne389456:0</target></trans-unit>
+      <trans-unit id="btn.detailPage">
+        <source>More information</source>
+        <target>crwdns389458:0crwdne389458:0</target>
+      </trans-unit>
+      <trans-unit id="lbl.searchLocation">
+        <source>Location</source>
+        <target>crwdns389460:0crwdne389460:0</target>
+      </trans-unit>
+      <trans-unit id="hdl.search">
+        <source>Search</source>
+        <target>crwdns389462:0crwdne389462:0</target>
+      </trans-unit>
+      <trans-unit id="btn.update">
+        <source>Update</source>
+        <target>crwdns389464:0crwdne389464:0</target>
+      </trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve">
+				<source>Next</source>
+			<target>crwdns389440:0crwdne389440:0</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve">
+				<source>Previous</source>
+			<target>crwdns389442:0crwdne389442:0</target></trans-unit>
+      <trans-unit id="hdl.address" xml:space="preserve">
+				<source>Address</source>
+			<target>crwdns415847:0crwdne415847:0</target></trans-unit>
+      <trans-unit id="hdl.contact" xml:space="preserve">
+				<source>Contact</source>
+			<target>crwdns415849:0crwdne415849:0</target></trans-unit>
+      <trans-unit id="lbl.telephone" xml:space="preserve">
+				<source>Telephone</source>
+			<target>crwdns415851:0crwdne415851:0</target></trans-unit>
+      <trans-unit id="lbl.fax" xml:space="preserve">
+				<source>Fax</source>
+			<target>crwdns415853:0crwdne415853:0</target></trans-unit>
+      <trans-unit id="btn.contact" xml:space="preserve">
+				<source>Contact</source>
+			<target>crwdns415855:0crwdne415855:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
